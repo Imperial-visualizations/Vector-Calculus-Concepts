@@ -1,6 +1,6 @@
 /*jshint esversion: 7 */
 
-function UpdateScalarPlot(A, Function, x_max, PlotStep){
+function GetScalarData(A, Function, x_max, PlotStep){
     let z = [];
     let inner_z = [];
     let CurrentZ = 0;
@@ -39,21 +39,41 @@ function UpdateScalarPlot(A, Function, x_max, PlotStep){
             break;
     }
 
+
+    var data = [{
+        z: z_data,
+        type: 'surface'
+     }];
+
+    var layout = {
+        title: 'Mt Bruno Elevation',
+        autosize: false,
+        width: 500,
+        height: 500,
+        margin: {
+            l: 65,
+            r: 50,
+            b: 65,
+            t: 90,
+        }
+    };
+    Plotly.newPlot('myDiv', data, layout);
+
 }
 
-function UpdateVectorPlot(){
+function GetVectorData(){
 
 }
 
 function GetNewInputs(){
     let A = parseFloat(document.getElementById("Slider_1").value);
-    let Function = parseFloat(document.getElementById("Function_Selector").value);
+    let Function = document.getElementById("Function_Selector").value;
     //expecting to return a character
 
     return [A, Function];
 }
 
-function Refresh(){
+function Refresh(new = false){
     //Define a few constants
     let x_max = 100; //max x value permitted on graph.  Will be mirrored and also same in y
     let PlotStep = x_max/100; //distance between points that are plotted
@@ -65,9 +85,11 @@ function Refresh(){
     let Function = NewInputs[1];
 
     //now plot graphs
-    UpdateScalarPlot(A, Function);
-    UpdateVectorPlot(A, Function);
+    GetScalarData(A, Function);
+    GetVectorData(A, Function);
     //console.log("hi");
+    UpdateScalarPlot();
+    UpdateVectorPlot();
 }
 
 
@@ -75,7 +97,7 @@ function Refresh(){
 function Setup1a() {
     $('#Slider_1').on("input", function(){
         //update plots when coefficient changed
-        $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
+        //$("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
         Refresh();
     });
 

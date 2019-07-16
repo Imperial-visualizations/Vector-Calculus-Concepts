@@ -31,35 +31,52 @@
     </script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
+<body>
+    <div id="scroll">
+        <div class="scroll-down">
+            <strong>Select Function: </strong>
+            <select id="Select">
+                <option value="A">Reciprocal </option>
+                <option value="B">"Gaussian"</option>
+                <option value="C">Trigonometric</option>
+            </select>
+        </div>
+    </div>
 
 <!--<div class="container_journey" style="background-color: white;"></div>-->
 <!--<div class="container">-->
 <!--    <div class="row">-->
 <!--        &lt;!&ndash; Graph &ndash;&gt;-->
 <!--        <div class="one-third column" style="padding-left: 2em;">-->
-<h6> $f(\textbf{r})$ </h6>
-<p style="margin-left: 9em; padding: 1em;"> The graph below shows the function where $x$
-    and $y$ are independent variables. </p>
-    <div id='Scalar_Graph' style="width:30vw; height:70vh;">
-<!--                <div id="vectorComponents" style="font-size: 10pt;">0.83 x vector1 & 0.83 x vector2</div>-->
-<!--                <div class="popup" onclick="myFunction()">-->
-<!--                Vectors 1 and 2 are parallel <br> so R2 is not spanned.-->
-<!--                </div>-->
-                <!-- Legend -->
-<!--                <ul style="margin-top: -4em;">-->
-<!--                    <li style="color: rgb(255,0,0);">Basis Vector 1</li>-->
-<!--                    <li style="color: rgb(0,0,255);">Basis Vector 2</li>-->
-<!--                    <li style="color: rgb(0,255,0);">Target Vector</li>-->
-<!--                 </ul>-->
-    </div>
-
-<h6 > $\nabla f(\textbf{r}) $ </h6>
-<p style="margin-left: 9em; padding: 1em;"> $\nabla f(\textbf{r})$, gives the gradient at any point on the scalar
-    field $f(\textbf{r})$. Note that $\nabla f$ is a vector field, as the direction of the vector at any point gives
-    the direction of steepest change.</p>
-            <div id='Vector_Graph' style="width:30vw; height:70vh;">
-
+    <h6> $f(x,y)$ </h6>
+        <p style="margin-left: 9em; padding: 1em;"> The graph below shows the function where $x$
+        and $y$ are independent variables. </p>
+            <div id="A_eqn">
+                     <br><br>
+                    $$\displaystyle f(x)= \frac{a}{ \sqrt{x^2 + y^2} }$$
             </div>
+
+            <div id="B_eqn">
+                     <br><br>
+                    $$\displaystyle f(x) = ae^{\frac{-(x+2)^2+y^2}{2\sigma ^2}}$$
+            </div>
+
+            <div id="C_eqn">
+                     <br><br>
+                    $$\displaystyle f(x)= \frac{a}{ \sqrt{x^2 + y^2} }$$
+            </div>
+
+        <div id='Scalar_Graph' style="width:30vw; height:70vh;">
+
+        </div>
+
+    <h6 > $\nabla f(x,y) $ </h6>
+        <p style="margin-left: 9em; padding: 1em;"> $\nabla f(x,y)$, gives the gradient at any point on the scalar
+            field $f(x,y)$. Note that $\nabla f$ is a vector field, as the direction of the vector at any point gives
+            the direction of steepest change.</p>
+        <div id='Vector_Graph' style="width:30vw; height:70vh;">
+
+        </div>
 
         <!--Buttons/Sliders-->
 <!--        <div class="one-third column" style="padding-left: 50px;">-->

@@ -1,20 +1,38 @@
 /*jshint esversion: 7 */
 
 function UpdateScalarPlot(A, Function, x_max, PlotStep){
+    let z = [];
+    let inner_z = [];
+    let CurrentZ = 0;
     switch (Function){
-        case "A":
+        case "A": //reciprocal 
             for (let x = -x_max; x < x_max; x = x + PlotStep){
                 for (let y = -x_max; y < x_max; y = y + PlotStep){
-                    
+                    CurrentZ = A/(Math.sqrt(x**2 + y**2));
+                    inner_z.push(CurrentZ);
                 }
+                z.push(inner_z);
             }
-            
             break;
-        case "B":
-            
+
+        case "B":  //gaussian type
+            for (let x = -x_max; x < x_max; x = x + PlotStep){
+                for (let y = -x_max; y < x_max; y = y + PlotStep){
+                    CurrentZ = A/(Math.sqrt(x**2 + y**2));
+                    inner_z.push(CurrentZ);
+                }
+                z.push(inner_z);
+            }
             break;
-        case "C":
-            
+
+        case "C": //cos type
+            for (let x = -x_max; x < x_max; x = x + PlotStep){
+                for (let y = -x_max; y < x_max; y = y + PlotStep){
+                    CurrentZ = Math.cos(A*x);
+                    inner_z.push(CurrentZ);
+                }
+                z.push(inner_z);
+            }
             break;
     }
 
@@ -26,7 +44,7 @@ function UpdateVectorPlot(){
 
 function GetNewInputs(){
     let A = parseFloat(document.getElementById("Slider_1").value);
-    let Function = parseFloat(document.getElementById("Function_Selector").value);
+    //let Function = parseFloat(document.getElementById("Function_Selector").value);
     //expecting to return a character
 
     return [A, Function];
@@ -45,6 +63,7 @@ function Refresh(){
     //now plot graphs
     UpdateScalarPlot(A, Function);
     UpdateVectorPlot(A, Function);
+    console.log("hi");
 }
 
 
@@ -66,4 +85,4 @@ function Setup1a() {
 
 
 
-$(document).ready(setup1a); //Load setup when document is ready.
+$(document).ready(Setup1a); //Load setup when document is ready.

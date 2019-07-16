@@ -13,6 +13,7 @@ function UpdateScalarPlot(A, Function, x_max, PlotStep){
                 }
                 z.push(inner_z);
             }
+            console.log("A");
             break;
 
         case "B":  //gaussian type
@@ -23,6 +24,7 @@ function UpdateScalarPlot(A, Function, x_max, PlotStep){
                 }
                 z.push(inner_z);
             }
+            console.log("B");
             break;
 
         case "C": //cos type
@@ -33,6 +35,7 @@ function UpdateScalarPlot(A, Function, x_max, PlotStep){
                 }
                 z.push(inner_z);
             }
+            console.log("C");
             break;
     }
 
@@ -44,7 +47,7 @@ function UpdateVectorPlot(){
 
 function GetNewInputs(){
     let A = parseFloat(document.getElementById("Slider_1").value);
-    //let Function = parseFloat(document.getElementById("Function_Selector").value);
+    let Function = parseFloat(document.getElementById("Function_Selector").value);
     //expecting to return a character
 
     return [A, Function];
@@ -57,25 +60,26 @@ function Refresh(){
 
 
     let NewInputs = GetNewInputs();
+    console.log(NewInputs);
     let A = NewInputs[0]; //coefficient to change gradient
     let Function = NewInputs[1];
 
     //now plot graphs
     UpdateScalarPlot(A, Function);
     UpdateVectorPlot(A, Function);
-    console.log("hi");
+    //console.log("hi");
 }
 
 
 
 function Setup1a() {
-    $('#Slider_1').change(function(){
+    $('#Slider_1').on("input", function(){
         //update plots when coefficient changed
         $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
         Refresh();
     });
 
-    $('#Function_Selector').change(function(){
+    $('#Function_Selector').on("input", function(){
         //update plots when function is changed
         Refresh();
     });

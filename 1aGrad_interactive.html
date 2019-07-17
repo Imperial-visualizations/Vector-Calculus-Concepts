@@ -70,14 +70,8 @@
                 </label>
                     <!--END Slider-->
             </div>
-        </div>
-
-        <div style="width:60%; float:left;">
 
             <div>
-                <h6> $f(x,y)$ </h6>
-                <p style="margin-left: 0em; padding: 0em;"> The graph below shows the scalar field. $x$
-                and $y$ are independent variables. </p>
                 <div id="A_function_eqn">
                             $$\displaystyle f(x,y)= \frac{a}{ \sqrt{x^2 + y^2} }$$
                 </div>
@@ -90,35 +84,33 @@
                         $$\displaystyle f(x,y)= \cos (x) $$
                 </div>
             </div>
-    <!--            </div>-->
 
             <div>
-                <div id='Scalar_Graph' style="width:30vw; height:10vh;"></div>
+                <div id="A_grad_eqn">
+                        $$\displaystyle \nabla f = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x \mathbf{i} + y \mathbf{j} )$$
+                </div>
+
+                <div id="B_grad_eqn">
+                        $$ \displaystyle \begin{align}  \nabla f & = ae^{-\frac{(x-2)^2+y^2}{2\sigma ^2}}(\frac{x-2}{\sigma ^2} \mathbf{i} + \frac{y}{\sigma ^2} \mathbf{j})
+                                                    \\ & - ae^{-\frac{(x+2)^2+y^2}{2\sigma ^2}}(\frac{x+2}{\sigma ^2} \mathbf{i} + \frac{y}{\sigma ^2} \mathbf{j})
+                            \end{align} $$
+                </div>
+
+                <div id="C_grad_eqn">
+                        $$\displaystyle \nabla f = - \sin (x) \mathbf{i} $$
+                </div>
+            </div>
+        </div>
+
+        <div style="width:60%; float:left;">
+            <div>
+                <h7> $f(x,y)$ </h7>
+                <div id='Scalar_Graph' style="width:30vw; height:30vh;"></div>
             </div>
 
             <div>
-                <h6 > $\nabla f(x,y) $ </h6>
-                    <p style="margin-left: 0em; padding: 0em;">
-                        $\nabla f(x,y)$, gives the vector field of maximum gradient at any point on the scalar
-                        field $f(x,y)$. The direction of the vector at any point gives
-                        the direction of steepest change.
-                    </p>
-                        <div id="A_grad_eqn">
-                                $$\displaystyle \nabla f = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x \mathbf{i} + y \mathbf{j} )$$
-                        </div>
-
-                        <div id="B_grad_eqn">
-                                $$\displaystyle \nabla f = ae^{-\frac{(x-2)^2+y^2}{2\sigma ^2}}(\frac{x-2}{\sigma ^2} \mathbf{i} + \frac{y}{\sigma ^2} \mathbf{j})
-                                                            - ae^{-\frac{(x+2)^2+y^2}{2\sigma ^2}}(\frac{x+2}{\sigma ^2} \mathbf{i} + \frac{y}{\sigma ^2} \mathbf{j})$$
-                        </div>
-
-                        <div id="C_grad_eqn">
-                                $$\displaystyle \nabla f = - \sin (x) \mathbf{i} $$
-                        </div>
-            </div>
-
-            <div>
-                <div id='Vector_Graph' style="width:30vw; height:10vh;"> </div>
+                <h7> $\nabla f(x,y) $ </h7>
+                <div id='Vector_Graph' style="width:30vw; height:30vh;"> </div>
             </div>
         </div>
 

@@ -73,7 +73,7 @@ function GetScalarData(A, Function, x_max, PlotStep){
         case "C": //cos type
             for (let i = -x_max; i <= x_max; i += PlotStep){
                 for (let j = -x_max; j <= x_max; j += PlotStep){
-                    CurrentZ = Math.cos(A*i);
+                    CurrentZ = A*Math.cos(i);
                     inner_z.push(CurrentZ);
                 }
                 z.push(inner_z);

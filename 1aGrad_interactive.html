@@ -66,9 +66,7 @@
                     $$\displaystyle f(x,y)= \cos (x) $$
             </div>
 
-        <div id='Scalar_Graph' style="width:30vw; height:70vh;">
-
-        </div>
+        <div id='Scalar_Graph' style="width:30vw; height:70vh;"></div>
 
     <h6 > $\nabla f(x,y) $ </h6>
         <p style="margin-left: 9em; padding: 1em;"> $\nabla f(x,y)$, gives the gradient at any point on the scalar
@@ -88,9 +86,7 @@
                      <br><br>
                     $$\displaystyle \nabla f = - \sin (x) \mathbf{i} $$
             </div>
-        <div id='Vector_Graph' style="width:30vw; height:70vh;">
-
-        </div>
+        <div id='Vector_Graph' style="width:30vw; height:70vh;"></div>
 
         <!--Buttons/Sliders-->
 <!--        <div class="one-third column" style="padding-left: 50px;">-->
@@ -106,9 +102,9 @@
             <h6 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 1vh;">$a$:</h6>
             <!--BEGIN Slider-->
             <label class="slider" style="position: relative; float: left;  width: 50%">
-                <input id="Slider_1" class="inputs" type="range" value="0" min="-2.5" max="2.5" step="0.01" oninput="a_1.value=Slider_1.value"/></input>
+                <input id="Slider_1" class="inputs" type="range" value="10" min="25" max="25" step="0.1"/><!--</input>-->
                 <br>
-                <span> $a$: <output id="a_1" for="Slider_1">0</output></span>
+                <span> $a$: <output id="a_1" for="Slider_1">10</output></span>
             </label>
             <!--END Slider-->
 
@@ -118,6 +114,6 @@
 
     <!--THE BRAINS-->
     <script src=scripts/1aGrad.js></script>
-    <script src=scripts/VC_object.js></script>
+    <!--<script src=scripts/VC_object.js></script>-->
 </body>
 </html>

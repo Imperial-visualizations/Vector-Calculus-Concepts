@@ -41,24 +41,38 @@ function GetScalarData(A, Function, x_max, PlotStep){
 
 
     var data = [{
-        z: z_data,
+        z: z,
         type: 'surface'
      }];
 
-    var layout = {
-        title: 'Mt Bruno Elevation',
-        autosize: false,
-        width: 500,
-        height: 500,
-        margin: {
-            l: 65,
-            r: 50,
-            b: 65,
-            t: 90,
-        }
-    };
-    Plotly.newPlot('myDiv', data, layout);
+    // var layout = {
+    //     title: '',
+    //     autosize: false,
+    //     width: 500,
+    //     height: 500,
+    //     margin: {
+    //         l: 65,
+    //         r: 50,
+    //         b: 65,
+    //         t: 90,
+    //     }
+    // };
+    Plotly.newPlot('Scalar_Graph', data, setLayout('x', 'ct', 'z'));
 
+}
+
+function setLayout(sometitlex, sometitley, sometitlez) {
+    const new_layout = {
+        autosize: true,
+        margin: {l: 45, r: 30, t: 30, b: 30},
+        hovermode: "closest",
+        showlegend: false,
+        xaxis: {range: [-100, 100], zeroline: true, title: sometitlex},
+        yaxis: {range: [-100, 100], zeroline: true, title: sometitley},
+        zaxis: {range: [-100, 100], zeroline: true, title: sometitlez},
+        aspectratio: {x: 1, y: 1}
+    };
+    return new_layout;
 }
 
 function GetVectorData(){
@@ -73,7 +87,7 @@ function GetNewInputs(){
     return [A, Function];
 }
 
-function Refresh(new = false){
+function Refresh(NewPlots = false){
     //Define a few constants
     let x_max = 100; //max x value permitted on graph.  Will be mirrored and also same in y
     let PlotStep = x_max/100; //distance between points that are plotted
@@ -88,8 +102,8 @@ function Refresh(new = false){
     GetScalarData(A, Function);
     GetVectorData(A, Function);
     //console.log("hi");
-    UpdateScalarPlot();
-    UpdateVectorPlot();
+    //UpdateScalarPlot();
+    //UpdateVectorPlot();
 }
 
 
@@ -106,7 +120,7 @@ function Setup1a() {
         Refresh();
     });
 
-    Refresh();
+    Refresh(NewPlots = true);
 }
 
 

@@ -27,7 +27,7 @@ function setLayout(sometitlex, sometitley, sometitlez){
 
             camera: {
                 up: {x: 0, y: 0, z: 1},//sets which way is up
-                eye: {x: 0, y: 20, z: 20}//adjust camera starting view
+                eye: {x: -1, y: -1, z: 1}//adjust camera starting view
             }
         },
     };
@@ -153,11 +153,15 @@ function Refresh(NewPlots = false){
     let NewInputs = GetNewInputs();
     let A = NewInputs[0]; //coefficient to change gradient
     let Function = NewInputs[1];
-    A = 100;
+    //A = 100;
     //now plot graphs
     let ScalarData = GetScalarData(A, Function, x_max, PlotStep);
     //GetVectorData(A, Function);
-    NewScalarPlot(ScalarData);
+    if (NewPlots){
+        NewScalarPlot(ScalarData);
+    }else{
+        UpdateScalarPlot(ScalarData);
+    }
     //UpdateScalarPlot(ScalarData);
     //UpdateVectorPlot();
 }

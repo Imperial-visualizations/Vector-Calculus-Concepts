@@ -58,7 +58,7 @@
 
             <div id="B_function_eqn">
                      <br><br>
-                    $$\displaystyle f(x,y) = ae^{\frac{-(x+2)^2+y^2}{2\sigma ^2}}$$
+                    $$\displaystyle f(x,y) = ae^{-\frac{(x+2)^2+y^2}{2\sigma ^2}} - ae^{-\frac{(x-2)^2+y^2}{2\sigma ^2}}$$
             </div>
 
             <div id="C_function_eqn">
@@ -81,7 +81,8 @@
 
             <div id="B_grad_eqn">
                      <br><br>
-                    $$\displaystyle \nabla f = ae^{\frac{-(x+2)^2+y^2}{2\sigma ^2}}$$
+                    $$\displaystyle \nabla f = ae^{-\frac{(x-2)^2+y^2}{2\sigma ^2}}(\frac{x-2}{\sigma ^2} \mathbf{i} + \frac{y}{\sigma ^2} \mathbf{j})
+                                                - ae^{-\frac{(x+2)^2+y^2}{2\sigma ^2}}(\frac{x+2}{\sigma ^2} \mathbf{i} + \frac{y}{\sigma ^2} \mathbf{j})$$
             </div>
 
             <div id="C_grad_eqn">

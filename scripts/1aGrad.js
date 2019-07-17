@@ -117,11 +117,11 @@ function GetVectorData(){
 }
 
 function UpdateScalarPlot(ScalarData){
-    Plotly.react('Scalar_Graph', ScalarData, setLayout('x', 'y', 'f(x,y)'));
+    Plotly.react('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)'));
 }
 
 function NewScalarPlot(ScalarData){
-    Plotly.newPlot('Scalar_Graph', ScalarData, setLayout('x', 'y', 'f(x,y)'));
+    Plotly.newPlot('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)'));
 }
 
 function UpdateVectorPlot(VectorData){

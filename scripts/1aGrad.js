@@ -62,7 +62,7 @@ function GetScalarData(A, Function, x_max, PlotStep){
         case "B":  //gaussian type
             for (let i = -x_max; i <= x_max; i += PlotStep){
                 for (let j = -x_max; j <= x_max; j += PlotStep){
-                    CurrentZ = A/(Math.sqrt(i**2 + j**2));
+                    CurrentZ = A*Math.exp(-((i + 50)**2 + j**2)/(500)) - A*Math.exp(-((i - 50)**2 + j**2)/(500));
                     inner_z.push(CurrentZ);  
                 }
                 z.push(inner_z);
@@ -147,13 +147,13 @@ function Refresh(NewPlots = false){
     
     //Define a few constants
     let x_max = 100; //max x value permitted on graph.  Will be mirrored and also same in y
-    let PlotStep = 10;//x_max/100; //distance between points that are plotted
+    let PlotStep = 1;//x_max/100; //distance between points that are plotted
 
 
     let NewInputs = GetNewInputs();
     let A = NewInputs[0]; //coefficient to change gradient
     let Function = NewInputs[1];
-    A = 1000;
+    A = 100;
     //now plot graphs
     let ScalarData = GetScalarData(A, Function, x_max, PlotStep);
     //GetVectorData(A, Function);

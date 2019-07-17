@@ -1,49 +1,101 @@
 /*jshint esversion: 7 */
+function setLayout(sometitlex, sometitley, sometitlez){
+    // const new_layout = {
+    //     autosize: true,
+    //     margin: {l: 45, r: 30, t: 30, b: 30},
+    //     hovermode: "closest",
+    //     showlegend: false,
+    //     xaxis: {range: [-100, 100], zeroline: true, title: sometitlex},
+    //     yaxis: {range: [-100, 100], zeroline: true, title: sometitley},
+    //     zaxis: {range: [-100, 100], zeroline: true, title: sometitlez},
+    //     aspectratio: {x: 1, y: 1}
+    // };
+
+
+    const new_layout = {//layout of 3D graph
+        showlegend: false,
+        showscale: false,
+        margin: {
+            l: 10, r: 10, b: 10, t: 1, pad: 5
+        },
+        dragmode: 'orbit',
+        scene: {
+            aspectmode: "cube",
+            xaxis: {range: [-100, 100], title: sometitlex},
+            yaxis: {range: [-100, 100], title: sometitley},
+            zaxis: {range: [-100, 100], title: sometitlez},
+
+            camera: {
+                up: {x: 0, y: 0, z: 1},//sets which way is up
+                eye: {x: 0, y: 20, z: 20}//adjust camera starting view
+            }
+        },
+    };
+    return new_layout;
+}
 
 function GetScalarData(A, Function, x_max, PlotStep){
+    let x = [];
+    let y = [];
     let z = [];
     let inner_z = [];
     let CurrentZ = 0;
+
+    for (let q = -x_max; q <= x_max; q += PlotStep){
+        y.push(q);
+        x.push(q);
+    }
+
     switch (Function){
         case "A": //reciprocal 
-            for (let x = -x_max; x < x_max; x = x + PlotStep){
-                for (let y = -x_max; y < x_max; y = y + PlotStep){
-                    CurrentZ = A/(Math.sqrt(x**2 + y**2));
+            for (let i = -x_max; i <= x_max; i += PlotStep){
+                for (let j = -x_max; j <= x_max; j += PlotStep){
+                    CurrentZ = A/(Math.sqrt(i**2 + j**2));
                     inner_z.push(CurrentZ);
+                    console.log(inner_z);
                 }
                 z.push(inner_z);
+                inner_z = [];
             }
-            console.log("A");
             break;
 
         case "B":  //gaussian type
-            for (let x = -x_max; x < x_max; x = x + PlotStep){
-                for (let y = -x_max; y < x_max; y = y + PlotStep){
-                    CurrentZ = A/(Math.sqrt(x**2 + y**2));
-                    inner_z.push(CurrentZ);
+            for (let i = -x_max; i <= x_max; i += PlotStep){
+                for (let j = -x_max; j <= x_max; j += PlotStep){
+                    CurrentZ = A*Math.exp(-((i + 50)**2 + j**2)/(500)) - A*Math.exp(-((i - 50)**2 + j**2)/(500));
+                    inner_z.push(CurrentZ);  
                 }
                 z.push(inner_z);
+                inner_z = [];
             }
-            console.log("B");
             break;
 
         case "C": //cos type
-            for (let x = -x_max; x < x_max; x = x + PlotStep){
-                for (let y = -x_max; y < x_max; y = y + PlotStep){
-                    CurrentZ = Math.cos(A*x);
+            for (let i = -x_max; i <= x_max; i += PlotStep){
+                for (let j = -x_max; j <= x_max; j += PlotStep){
+                    CurrentZ = Math.cos(A*i);
                     inner_z.push(CurrentZ);
                 }
                 z.push(inner_z);
+                inner_z = [];
             }
-            console.log("C");
             break;
     }
 
-
-    var data = [{
+    let ScalarData = [{
+        type: 'surface',
+        x: x,
+        y: y,
         z: z,
-        type: 'surface'
-     }];
+        showscale: false
+    }];
+      
+    //Plotly.plot('graph', [trace])
+
+    // let ScalarData = [{
+    //     z: z,
+    //     type: 'surface'
+    //  }];
 
     // var layout = {
     //     title: '',
@@ -57,27 +109,31 @@ function GetScalarData(A, Function, x_max, PlotStep){
     //         t: 90,
     //     }
     // };
-    Plotly.newPlot('Scalar_Graph', data, setLayout('x', 'ct', 'z'));
-
-}
-
-function setLayout(sometitlex, sometitley, sometitlez) {
-    const new_layout = {
-        autosize: true,
-        margin: {l: 45, r: 30, t: 30, b: 30},
-        hovermode: "closest",
-        showlegend: false,
-        xaxis: {range: [-100, 100], zeroline: true, title: sometitlex},
-        yaxis: {range: [-100, 100], zeroline: true, title: sometitley},
-        zaxis: {range: [-100, 100], zeroline: true, title: sometitlez},
-        aspectratio: {x: 1, y: 1}
-    };
-    return new_layout;
+    return ScalarData;
 }
 
 function GetVectorData(){
 
 }
+
+function UpdateScalarPlot(ScalarData){
+    Plotly.react('Scalar_Graph', ScalarData, setLayout('x', 'y', 'f(x,y)'));
+}
+
+function NewScalarPlot(ScalarData){
+    Plotly.newPlot('Scalar_Graph', ScalarData, setLayout('x', 'y', 'f(x,y)'));
+}
+
+function UpdateVectorPlot(VectorData){
+
+}
+
+function NewVectorPlot(VectorData){
+
+}
+
+
+
 
 function GetNewInputs(){
     let A = parseFloat(document.getElementById("Slider_1").value);
@@ -88,21 +144,21 @@ function GetNewInputs(){
 }
 
 function Refresh(NewPlots = false){
+    
     //Define a few constants
     let x_max = 100; //max x value permitted on graph.  Will be mirrored and also same in y
-    let PlotStep = x_max/100; //distance between points that are plotted
+    let PlotStep = 1;//x_max/100; //distance between points that are plotted
 
 
     let NewInputs = GetNewInputs();
-    console.log(NewInputs);
     let A = NewInputs[0]; //coefficient to change gradient
     let Function = NewInputs[1];
-
+    A = 100;
     //now plot graphs
-    GetScalarData(A, Function);
-    GetVectorData(A, Function);
-    //console.log("hi");
-    //UpdateScalarPlot();
+    let ScalarData = GetScalarData(A, Function, x_max, PlotStep);
+    //GetVectorData(A, Function);
+    NewScalarPlot(ScalarData);
+    //UpdateScalarPlot(ScalarData);
     //UpdateVectorPlot();
 }
 

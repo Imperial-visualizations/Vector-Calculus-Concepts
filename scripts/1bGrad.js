@@ -1,3 +1,36 @@
+let a1b = 5;
+let sigma1b = 10;
+let xMin = -20;
+let xMax = 20;
+let yMin = -20;
+let yMax = 20;
+let plotStep = 1;
+let ScalarPlot = [];
+
+const layout_1b = {
+            title: 'Mt Bruno Elevation',
+            autosize: false,
+            width: 500,
+            height: 500,
+            margin: {
+                        l: 65,
+                        r: 50,
+                        b: 65,
+                        t: 90},
+            dragmode: 'orbit',
+            scene: {
+                aspectmode: "cube",
+                xaxis: {range: [xMin, xMax], title: 'x'},
+                yaxis: {range: [yMin, yMax], title: 'y'},
+                zaxis: {range: [-10, 10], title: 'f(x,y)'},
+
+                camera: {
+                    up: {x: 0, y: 0, z: 1},//sets which way is up
+                    eye: {x: -1, y: -1, z: 1}//adjust camera starting view
+                }
+            },
+        };
+
 function setupData(xMin, xMax, yMin, yMax, plotStep){
     let xScalar1b = [];
     let yScalar1b = [];
@@ -54,34 +87,12 @@ function testPlot(){
 
     dataPlot1b = dataCompile(xScalarPlot, yScalarPlot, zScalarPlot);
 
-    let layout = {
-        title: 'Mt Bruno Elevation',
-        autosize: false,
-        width: 500,
-        height: 500,
-        margin: {
-                    l: 65,
-                    r: 50,
-                    b: 65,
-                    t: 90},
-        dragmode: 'orbit',
-        scene: {
-            aspectmode: "cube",
-            xaxis: {range: [xMin, xMax], title: 'x'},
-            yaxis: {range: [yMin, yMax], title: 'y'},
-            zaxis: {range: [-10, 10], title: 'f(x,y)'},
-
-            camera: {
-                up: {x: 0, y: 0, z: 1},//sets which way is up
-                eye: {x: -1, y: -1, z: 1}//adjust camera starting view
-            }
-        },
-    };
+//    let layout = layout_1b;
 
     console.log(xScalarPlot);
     console.log(zScalarPlot);
     console.log(dataPlot1b);
-    Plotly.newPlot('Scalar_Graph_1b', dataPlot1b, layout, {showSendToCloud: true});
+    Plotly.newPlot('Scalar_Graph_1b', dataPlot1b, layout_1b, {showSendToCloud: true});
 };
 
 function testPlot2 (){
@@ -90,13 +101,7 @@ function testPlot2 (){
 
 function updatePlot(){
     let a1b = parseFloat(document.getElementById('Slider_1').value);
-    let sigma1b = 10;
-    let xMin = -20;
-    let xMax = 20;
-    let yMin = -20;
-    let yMax = 20;
-    let plotStep = 1;
-    let ScalarPlot = [];
+
 
     ScalarPlot = setupData(xMin, xMax, yMin, yMax, plotStep);
 
@@ -107,33 +112,11 @@ function updatePlot(){
 
     dataPlot1b = dataCompile(xScalarPlot, yScalarPlot, zScalarPlot);
 
-    let layout = {
-        title: 'Mt Bruno Elevation',
-        autosize: false,
-        width: 500,
-        height: 500,
-        margin: {
-                    l: 65,
-                    r: 50,
-                    b: 65,
-                    t: 90},
-        dragmode: 'orbit',
-        scene: {
-            aspectmode: "cube",
-            xaxis: {range: [xMin, xMax], title: 'x'},
-            yaxis: {range: [yMin, yMax], title: 'y'},
-            zaxis: {range: [-10, 10], title: 'f(x,y)'},
-
-            camera: {
-                up: {x: 0, y: 0, z: 1},//sets which way is up
-                eye: {x: -1, y: -1, z: 1}//adjust camera starting view
-            }
-        },
-    };
+    let layout = layout_1b;
 
     Plotly.animate(
         'Scalar_Graph_1b', {
-        data: dataPlot1b, layout: layout,
+        data: dataPlot1b, layout: layout_1b,
 
             fromcurrent: true,
             transition: {duration: 0,},

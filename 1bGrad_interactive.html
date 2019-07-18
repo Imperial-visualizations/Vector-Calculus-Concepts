@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <div class="tab-content">
+            <div>
                 <!--BEGIN Slider-->
                 <!--These Sliders are shared among all tabs-->
 
@@ -61,13 +61,16 @@
 
                 <h6 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 1vh;">$a$:</h6>
                 <!--BEGIN Slider-->
-                <label class="slider" style="position: relative; float: left;  width: 100%">
-                    <span class="sliderMin">-2.5</span>
-                    <input id="Slider_1" class="inputs" type="range" value="0" min="-2.5" max="2.5" step="0.01" oninput="a_1.value=Slider_1.value"/></input>
-                    <span class="sliderMax">2.5</span>
-                    <br>
-                    <span> $a = $ <output id="a_1" for="Slider_1">0</output></span>
-                </label>
+                    <label class="sliderTitle" style="padding-bottom:20px;">$a$:
+                    <span id="Slider_1Display" data-unit="">1</span>
+                    </label>
+                    <label class="slider">
+<!--                        <span class="sliderMin">-10</span>-->
+                        <input id="Slider_1" class="inputs" type="range" value="1" min="-10" max="10" step="0.1" oninput = "Slider_1Display.value=Slider_1.value">
+                        <br>
+                        <span> x: <output id="Slider_1Display" for="Slider_1">1</output></span>
+<!--                        <span class="sliderMax">10</span>-->
+                    </label>
                     <!--END Slider-->
             </div>
 

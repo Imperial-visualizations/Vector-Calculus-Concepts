@@ -1,24 +1,47 @@
 /*jshint esversion: 7 */
-function setLayout(sometitlex, sometitley, sometitlez){
-    const new_layout = {//layout of 3D graph
-        showlegend: false,
-        showscale: false,
-        margin: {
-            l: 10, r: 10, b: 10, t: 1, pad: 5
-        },
-        dragmode: 'orbit',
-        scene: {
-            aspectmode: "cube",
-            xaxis: {range: [-100, 100], title: sometitlex},
-            yaxis: {range: [-100, 100], title: sometitley},
-            zaxis: {range: [-100, 100], title: sometitlez},
+function setLayout(sometitlex, sometitley, sometitlez, Mode){
+    let new_layout = 0;
+    if (Mode == "scalar"){
+        new_layout = {//layout of 3D graph
+            showlegend: false,
+            showscale: false,
+            margin: {
+                l: 10, r: 10, b: 10, t: 1, pad: 0
+            },
+            dragmode: 'orbit',
+            scene: {
+                aspectmode: "cube",
+                xaxis: {range: [-100, 100], title: sometitlex},
+                yaxis: {range: [-100, 100], title: sometitley},
+                zaxis: {range: [-100, 100], title: sometitlez},
 
-            camera: {
-                up: {x: 0, y: 0, z: 1},//sets which way is up
-                eye: {x: -1, y: -1, z: 1}//adjust camera starting view
-            }
-        },
-    };
+                camera: {
+                    up: {x: 0, y: 0, z: 1},//sets which way is up
+                    eye: {x: -1, y: -1, z: 1}//adjust camera starting view
+                }
+            },
+        };
+    }else{ //mode == "vector"
+        new_layout = {//layout of 3D graph
+            showlegend: false,
+            showscale: false,
+            margin: {
+                l: 10, r: 10, b: 10, t: 1, pad: 0
+            },
+            dragmode: 'orbit',
+            scene: {
+                aspectmode: "data",
+                xaxis: {range: [-100, 100], title: sometitlex},
+                yaxis: {range: [-100, 100], title: sometitley},
+                zaxis: {range: [-10, 10], title: sometitlez},
+
+                camera: {
+                    up: {x: 0, y: 0, z: 1},//sets which way is up
+                    eye: {x: -5, y: -5, z: 5}//adjust camera starting view
+                }
+            },
+        };
+    }
     return new_layout;
 }
 
@@ -80,63 +103,36 @@ function GetScalarData(A, Function, x_max, PlotStep){
     return ScalarData;
 }
 
-function GetVectorData(A, Function, x_max, PlotStep){
+function GetVectorData(A, Equation, x_max, PlotStep){
     let ArrowData = [];
     //let z = [];
     let VectorData = [];
     let x = 0;
     let y = 0;
     let z = [0,0];
-    switch (Function){
-        case "A": //reciprocal 
-            for (let i = -x_max; i <= x_max; i += 10*PlotStep){
-                for (let j = -x_max; j <= x_max; j += 10*PlotStep){
-                    ArrowData = GetArrowPoints(i, j, Function, A);
-                    let x = ArrowData[0];
-                    let y = ArrowData[1];
-                    VectorData.push({
-                        type: 'scatter3d',
-                        mode: 'lines',
-                        x: x,
-                        y: y,
-                        z: z,
-                        opacity: 1,
-                        line: {
-                          width: 6
-                        }
-                    });
-                    //z.push(0);
+    
+    for (let i = -x_max; i <= x_max; i += 5*PlotStep){
+        for (let j = -x_max; j <= x_max; j += 5*PlotStep){
+            ArrowData = GetArrowPoints(i, j, Equation, A);
+            let x = ArrowData[0];
+            let y = ArrowData[1];
+            VectorData.push({
+                type: 'scatter3d',
+                mode: 'lines',
+                x: x,
+                y: y,
+                z: z,
+                opacity: 1,
+                line: {
+                    width: 3
                 }
-            }
-            break;
-
-        case "B":  //gaussian type
-        for (let i = -x_max; i <= x_max; i += 10*PlotStep){
-            for (let j = -x_max; j <= x_max; j += 10*PlotStep){
-                ArrowData = GetArrowPoints(i, j, Function, A);
-                let x = ArrowData[0];
-                let y = ArrowData[1];
-                VectorData.push({
-                    type: 'scatter3d',
-                    mode: 'lines',
-                    x: x,
-                    y: y,
-                    z: z,
-                    opacity: 1,
-                    line: {
-                      width: 6
-                    }
-                });
-                //z.push(0);
-            }
+            });
+            //z.push(0);
         }
-            break;
-
-        case "C": //cos type
-            
-            break;
     }
-    console.log(ArrowData);
+           
+    
+    //console.log(ArrowData);
     
    
 
@@ -185,8 +181,9 @@ function GetArrowPoints(x1, y1, Equation, A){
         case "B":  //gaussian type
             c = 50;
             b = 1/500;
-            x2 = 2*A*b*((x1 - c)*exp(-b*((x1 - c)**2 + y**2))-(x1 + c)*exp(-b*((x1 + c)**2 + y**2)));
-            y2 = 2*A*b*y1*(exp(-b*((x1 - c)**2 + y1**2))-exp(-b*((x1 + c)**2 + y1**2)));
+            x2 = 2*A*b*((x1 - c)*Math.exp(-b*((x1 - c)**2 + y**2))-(x1 + c)*Math.exp(-b*((x1 + c)**2 + y**2)));
+            y2 = 2*A*b*y1*(Math.exp(-b*((x1 - c)**2 + y1**2))-Math.exp(-b*((x1 + c)**2 + y1**2)));
+
             break;
 
         case "C": //cos type
@@ -195,6 +192,8 @@ function GetArrowPoints(x1, y1, Equation, A){
             y2 = 0;
             break;
     }
+    x2 = x2*4;
+    y2 = y2*4;
     x.push(x1 + x2);
     y.push(y1 + y2);
 
@@ -228,19 +227,19 @@ function DisplayEquations(Equation){
 }
 
 function UpdateScalarPlot(ScalarData){
-    Plotly.react('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)'));
+    Plotly.react('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)', 'scalar'));
 }
 
 function NewScalarPlot(ScalarData){
-    Plotly.newPlot('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)'));
+    Plotly.newPlot('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)', 'scalar'));
 }
 
 function UpdateVectorPlot(VectorData){
-    Plotly.react('Vector_Graph_1a', VectorData, setLayout('x', 'y', '$\nabla$ f(x,y)'));
+    Plotly.react('Vector_Graph_1a', VectorData, setLayout('x', 'y', '', 'vector'));
 }
 
 function NewVectorPlot(VectorData){
-    Plotly.newPlot('Vector_Graph_1a', VectorData, setLayout('x', 'y', '$\nabla$ f(x,y)'));
+    Plotly.newPlot('Vector_Graph_1a', VectorData, setLayout('x', 'y', '', 'vector'));
 }
 
 

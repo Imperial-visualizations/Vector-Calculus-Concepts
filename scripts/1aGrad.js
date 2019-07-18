@@ -80,32 +80,125 @@ function GetScalarData(A, Function, x_max, PlotStep){
     return ScalarData;
 }
 
-function GetVectorData(){
-
+function GetVectorData(A, Function, x_max, PlotStep){
+    let ArrowData = [];
+    //let z = [];
+    let VectorData = [];
+    let x = 0;
+    let y = 0;
+    let z = [0,0];
     switch (Function){
         case "A": //reciprocal 
-            
+            for (let i = -x_max; i <= x_max; i += 10*PlotStep){
+                for (let j = -x_max; j <= x_max; j += 10*PlotStep){
+                    ArrowData = GetArrowPoints(i, j, Function, A);
+                    let x = ArrowData[0];
+                    let y = ArrowData[1];
+                    VectorData.push({
+                        type: 'scatter3d',
+                        mode: 'lines',
+                        x: x,
+                        y: y,
+                        z: z,
+                        opacity: 1,
+                        line: {
+                          width: 6
+                        }
+                    });
+                    //z.push(0);
+                }
+            }
             break;
 
         case "B":  //gaussian type
-            
+        for (let i = -x_max; i <= x_max; i += 10*PlotStep){
+            for (let j = -x_max; j <= x_max; j += 10*PlotStep){
+                ArrowData = GetArrowPoints(i, j, Function, A);
+                let x = ArrowData[0];
+                let y = ArrowData[1];
+                VectorData.push({
+                    type: 'scatter3d',
+                    mode: 'lines',
+                    x: x,
+                    y: y,
+                    z: z,
+                    opacity: 1,
+                    line: {
+                      width: 6
+                    }
+                });
+                //z.push(0);
+            }
+        }
             break;
 
         case "C": //cos type
             
             break;
     }
+    console.log(ArrowData);
+    
+   
 
-    let ScalarData = [{
-        type: 'surface',
-        x: x,
-        y: y,
-        z: z,
-        showscale: false
-    }];
+    // let ScalarData = [{
+    //     type: 'surface',
+    //     x: x,
+    //     y: y,
+    //     z: z,
+    //     showscale: false
+    // }];
 
-    return ScalarData;
+    // let VectorData = [{
+    //     type: 'scatter3d',
+    //     mode: 'lines',
+    //     x: x,
+    //     y: y,
+    //     z: z,
+    //     opacity: 1,
+    //     line: {
+    //       width: 6
+    //     }
+    // }];
 
+
+
+    return VectorData;
+
+}
+
+function GetArrowPoints(x1, y1, Equation, A){
+    let x = [x1];
+    let y = [y1];
+
+    let x2 = 0;
+    let y2 = 0;
+
+    let b = 0;
+    let c = 0;
+    switch (Equation){
+        case "A": //reciprocal 
+            b = 1/A;
+            x2 = -A*b**2*x1*((b*x1)**2 + (b*y1)**2)**(-3/2);
+            y2 = -A*b**2*y1*((b*x1)**2 + (b*y1)**2)**(-3/2);
+            break;
+
+        case "B":  //gaussian type
+            c = 50;
+            b = 1/500;
+            x2 = 2*A*b*((x1 - c)*exp(-b*((x1 - c)**2 + y**2))-(x1 + c)*exp(-b*((x1 + c)**2 + y**2)));
+            y2 = 2*A*b*y1*(exp(-b*((x1 - c)**2 + y1**2))-exp(-b*((x1 + c)**2 + y1**2)));
+            break;
+
+        case "C": //cos type
+            b = 0.1;
+            x2 = -A*b*Math.sin(b*x);
+            y2 = 0;
+            break;
+    }
+    x.push(x1 + x2);
+    y.push(y1 + y2);
+
+    return [x, y];
 }
 
 function DisplayEquations(Equation){
@@ -143,11 +236,11 @@ function NewScalarPlot(ScalarData){
 }
 
 function UpdateVectorPlot(VectorData){
-    Plotly.react('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)'));
+    Plotly.react('Vector_Graph_1a', VectorData, setLayout('x', 'y', '$\nabla$ f(x,y)'));
 }
 
 function NewVectorPlot(VectorData){
-    Plotly.newPlot('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)'));
+    Plotly.newPlot('Vector_Graph_1a', VectorData, setLayout('x', 'y', '$\nabla$ f(x,y)'));
 }
 
 
@@ -169,18 +262,21 @@ function Refresh(NewPlots = false){
 
     let NewInputs = GetNewInputs();
     let A = NewInputs[0]; //coefficient to change gradient
-    let Function = NewInputs[1];
+    let Equation = NewInputs[1];
     //A = 100;
     //now plot graphs
-    let ScalarData = GetScalarData(A, Function, x_max, PlotStep);
+    let ScalarData = GetScalarData(A, Equation, x_max, PlotStep);
+    let VectorData = GetVectorData(A, Equation, x_max, PlotStep);
     //GetVectorData(A, Function);
 
-    DisplayEquations(Function);
-    
+    DisplayEquations(Equation);
+
     if (NewPlots){
         NewScalarPlot(ScalarData);
+        NewVectorPlot(VectorData);
     }else{
         UpdateScalarPlot(ScalarData);
+        UpdateVectorPlot(VectorData);
     }
     //UpdateScalarPlot(ScalarData);
     //UpdateVectorPlot();

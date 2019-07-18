@@ -1,17 +1,5 @@
 /*jshint esversion: 7 */
 function setLayout(sometitlex, sometitley, sometitlez){
-    // const new_layout = {
-    //     autosize: true,
-    //     margin: {l: 45, r: 30, t: 30, b: 30},
-    //     hovermode: "closest",
-    //     showlegend: false,
-    //     xaxis: {range: [-100, 100], zeroline: true, title: sometitlex},
-    //     yaxis: {range: [-100, 100], zeroline: true, title: sometitley},
-    //     zaxis: {range: [-100, 100], zeroline: true, title: sometitlez},
-    //     aspectratio: {x: 1, y: 1}
-    // };
-
-
     const new_layout = {//layout of 3D graph
         showlegend: false,
         showscale: false,
@@ -50,7 +38,7 @@ function GetScalarData(A, Function, x_max, PlotStep){
         case "A": //reciprocal 
             for (let i = -x_max; i <= x_max; i += PlotStep){
                 for (let j = -x_max; j <= x_max; j += PlotStep){
-                    CurrentZ = A/(Math.sqrt(i**2 + j**2));
+                    CurrentZ = A/(Math.sqrt(((1/(A))*i)**2 + ((1/(A))*j)**2));
                     inner_z.push(CurrentZ);
                 }
                 z.push(inner_z);
@@ -72,7 +60,7 @@ function GetScalarData(A, Function, x_max, PlotStep){
         case "C": //cos type
             for (let i = -x_max; i <= x_max; i += PlotStep){
                 for (let j = -x_max; j <= x_max; j += PlotStep){
-                    CurrentZ = A*Math.cos(i);
+                    CurrentZ = A*Math.cos(0.1*i);
                     inner_z.push(CurrentZ);
                 }
                 z.push(inner_z);
@@ -88,31 +76,62 @@ function GetScalarData(A, Function, x_max, PlotStep){
         z: z,
         showscale: false
     }];
-      
-    //Plotly.plot('graph', [trace])
 
-    // let ScalarData = [{
-    //     z: z,
-    //     type: 'surface'
-    //  }];
-
-    // var layout = {
-    //     title: '',
-    //     autosize: false,
-    //     width: 500,
-    //     height: 500,
-    //     margin: {
-    //         l: 65,
-    //         r: 50,
-    //         b: 65,
-    //         t: 90,
-    //     }
-    // };
     return ScalarData;
 }
 
 function GetVectorData(){
 
+    switch (Function){
+        case "A": //reciprocal 
+            
+            break;
+
+        case "B":  //gaussian type
+            
+            break;
+
+        case "C": //cos type
+            
+            break;
+    }
+
+    let ScalarData = [{
+        type: 'surface',
+        x: x,
+        y: y,
+        z: z,
+        showscale: false
+    }];
+
+    return ScalarData;
+
+}
+
+function DisplayEquations(Equation){
+    document.getElementById("A_function_eqn").style.display = "none";
+    document.getElementById("B_function_eqn").style.display = "none";
+    document.getElementById("C_function_eqn").style.display = "none";
+    document.getElementById("A_grad_eqn").style.display = "none";
+    document.getElementById("B_grad_eqn").style.display = "none";
+    document.getElementById("C_grad_eqn").style.display = "none";
+
+    switch (Equation){
+        case "A": //reciprocal 
+            document.getElementById("A_function_eqn").style.display = "block";
+            document.getElementById("A_grad_eqn").style.display = "block";
+            break;
+
+        case "B":  //gaussian type
+            document.getElementById("B_function_eqn").style.display = "block";
+            document.getElementById("B_grad_eqn").style.display = "block";
+            break;
+
+        case "C": //cos type
+            document.getElementById("C_function_eqn").style.display = "block";
+            document.getElementById("C_grad_eqn").style.display = "block";
+            break;
+    }
 }
 
 function UpdateScalarPlot(ScalarData){
@@ -124,11 +143,11 @@ function NewScalarPlot(ScalarData){
 }
 
 function UpdateVectorPlot(VectorData){
-
+    Plotly.react('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)'));
 }
 
 function NewVectorPlot(VectorData){
-
+    Plotly.newPlot('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)'));
 }
 
 
@@ -143,10 +162,9 @@ function GetNewInputs(){
 }
 
 function Refresh(NewPlots = false){
-    
     //Define a few constants
     let x_max = 100; //max x value permitted on graph.  Will be mirrored and also same in y
-    let PlotStep = 1;//x_max/100; //distance between points that are plotted
+    let PlotStep = 2;//x_max/100; //distance between points that are plotted
 
 
     let NewInputs = GetNewInputs();
@@ -156,6 +174,9 @@ function Refresh(NewPlots = false){
     //now plot graphs
     let ScalarData = GetScalarData(A, Function, x_max, PlotStep);
     //GetVectorData(A, Function);
+
+    DisplayEquations(Function);
+    
     if (NewPlots){
         NewScalarPlot(ScalarData);
     }else{
@@ -170,7 +191,7 @@ function Refresh(NewPlots = false){
 function Setup1a() {
     $('#Slider_1').on("input", function(){
         //update plots when coefficient changed
-        //$("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
+        $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
         Refresh();
     });
 

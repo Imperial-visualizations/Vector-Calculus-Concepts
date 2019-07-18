@@ -52,24 +52,30 @@
                 </div>
             </div>
 
-            <div class="tab-content">
-                <!--BEGIN Slider-->
-                <!--These Sliders are shared among all tabs-->
+            <!--<div>
+                <div>
+                    <h6>$a$:</h6>
+                </div>
+                <div>
+                    <label class="slider" style="position: relative; float: left;  width: 100%">
+                        <span class="sliderMin">-100</span>
+                        <input id="Slider_1" class="inputs" type="range" value="10" min="-100" max="100" step="1"/></input>
+                        <span class="sliderMax">100</span>
+                        <br>
+                        <span> $a = $ <output id="a_1" for="Slider_1">0</output></span>
+                    </label>
+                </div>
+            </div>-->
 
-                <!--Slider Display--> <!--Linked with the slider below-->
-                <!--Linked with a slider and shows the live values of its corresponding slider-->
 
-                <h6 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 1vh;">$a$:</h6>
-                <!--BEGIN Slider-->
-                <label class="slider" style="position: relative; float: left;  width: 100%">
-                    <span class="sliderMin">-100</span>
-                    <input id="Slider_1" class="inputs" type="range" value="10" min="-100" max="100" step="1"/></input>
-                    <span class="sliderMax">100</span>
-                    <br>
-                    <span> $a = $ <output id="a_1" for="Slider_1">0</output></span>
-                </label>
-                    <!--END Slider-->
-            </div>
+            <label class="sliderTitle" style="padding-bottom:20px;">$a$:
+                <span id="Slider_1Display" data-unit="">0</span>
+            </label>
+            <label class="slider">
+                <span class="sliderMin">-100</span>
+                <input id="Slider_1" class="inputs" type="range" value="10" min="-100" max="100" step="1">
+                <span class="sliderMax">100</span>
+            </label>  
 
             <div>
                 <div id="A_function_eqn">

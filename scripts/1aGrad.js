@@ -52,7 +52,6 @@ function GetScalarData(A, Function, x_max, PlotStep){
                 for (let j = -x_max; j <= x_max; j += PlotStep){
                     CurrentZ = A/(Math.sqrt(i**2 + j**2));
                     inner_z.push(CurrentZ);
-                    console.log(inner_z);
                 }
                 z.push(inner_z);
                 inner_z = [];

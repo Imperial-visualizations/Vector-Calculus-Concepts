@@ -118,7 +118,7 @@ function dataLine2Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b){
 
 
 function testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xScalarLine2_1b, yScalarLine2_1b,
-                    xLineMin, yLineMin, xLineMax, yLineMax, a1b, sigma1b, layout_1b){
+                    xLineMin, yLineMin, xLineMax, yLineMax, xPos, a1b, sigma1b, layout_1b){
     let zScalarPlot = gaussian1b(a1b, sigma1b, xScalarPlot, yScalarPlot);
     let zScalarLine1_1b = gaussianLine1b(a1b, sigma1b, xScalarLine1_1b, yScalarLine1_1b);
     let zScalarLine2_1b = gaussianLine1b(a1b, sigma1b, xScalarLine2_1b, yScalarLine2_1b);
@@ -155,8 +155,36 @@ function testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xS
                          showscale: false
                      };
 
+    let dataBallA = {
+                         x:[xPos],
+                         y:[0],
+                         z:gaussianPoint1b(a1b, sigma1b, xPos, 0),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(255,0,0)',
+                                size: 10
+                              },
+                         name: 'Point B',
+                         showscale: false
+    };
+
+    let dataBallB = {
+                     x:[xPos],
+                     y:[path2(xPos)],
+                     z:gaussianPoint1b(a1b, sigma1b, xPos, path2(xPos)),
+                     type: 'scatter3d',
+                     mode: 'markers',
+                     marker: {
+                            color: 'rgb(255,0,0)',
+                            size: 10
+                          },
+                     name: 'Point B',
+                     showscale: false
+                     };
+
     console.log(dataPointA);
-    Plotly.react('Scalar_Graph_1b', [dataPlot1b, dataLine1_1b, dataLine2_1b, dataPointA, dataPointB], layout_1b);
+    Plotly.react('Scalar_Graph_1b', [dataPlot1b, dataLine1_1b, dataLine2_1b, dataPointA, dataPointB, dataBallA, dataBallB], layout_1b);
 };
 
 function testPlot2 (){
@@ -166,6 +194,7 @@ function testPlot2 (){
 function updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
                     xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b){
     let a1b = parseFloat(document.getElementById('Slider_1').value);
+    let xPos = parseFloat(document.getElementById('Slider_2').value);
 
     let zScalarPlot = gaussian1b(a1b, sigma1b, xScalarPlot, yScalarPlot);
     dataPlot1b = dataCompile(xScalarPlot, yScalarPlot, zScalarPlot);
@@ -197,15 +226,43 @@ function updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, 
                          mode: 'markers',
                          marker: {
                                 color: 'rgb(192,192,192)',
-                                size: 10
+                                size: 10,
                               },
                          showscale: false
+                     };
+
+    let dataBallA = {
+                     x:[xPos],
+                     y:[0],
+                     z:gaussianPoint1b(a1b, sigma1b, xPos, 0),
+                     type: 'scatter3d',
+                     mode: 'markers',
+                     marker: {
+                            color: 'rgb(255,0,0)',
+                            size: 10
+                          },
+                     name: 'Point B',
+                     showscale: false
+                     };
+
+    let dataBallB = {
+                     x:[xPos],
+                     y:[path2(xPos)],
+                     z:gaussianPoint1b(a1b, sigma1b, xPos, path2(xPos)),
+                     type: 'scatter3d',
+                     mode: 'markers',
+                     marker: {
+                            color: 'rgb(255,0,0)',
+                            size: 10
+                          },
+                     name: 'Point B',
+                     showscale: false
                      };
 
 //    let layout = layout_1b;
     Plotly.animate(
         'Scalar_Graph_1b', {
-        data: [dataPlot1b, dataLine1_1b, dataLine2_1b, dataPointA, dataPointB], layout: layout_1b,
+        data: [dataPlot1b, dataLine1_1b, dataLine2_1b, dataPointA, dataPointB, dataBallA, dataBallB], layout: layout_1b,
 
             fromcurrent: true,
             transition: {duration: 0,},
@@ -241,6 +298,8 @@ function main(){
     let yLineMin = 0;
     let yLineMax = 0;
 
+    let xPos = xLineMin;
+
     const layout_1b = {
             title: 'YEET',
             autosize: false,
@@ -251,7 +310,7 @@ function main(){
                         r: 50,
                         b: 65,
                         t: 90},
-            dragmode: 'orbit',
+            dragmode: 'turntable',
             scene: {
                 aspectmode: "cube",
                 xaxis: {range: [xMin, xMax], title: 'x'},
@@ -278,14 +337,33 @@ function main(){
     let yScalarLine2_1b = ScalarLine2Plot[1];
     console.log(ScalarLine2Plot)
 
-    testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, a1b, sigma1b,layout_1b);
+    testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xScalarLine2_1b, yScalarLine2_1b,
+             xLineMin, yLineMin, xLineMax, yLineMax, xPos, a1b, sigma1b,layout_1b);
 //    testLinePlot(xScalarLine1_1b, yScalarLine1_1b, a1b, sigma1b, layout_1b);
-    $('#Slider_1').on("input", function(){
-        //update plots when coefficient changed
-        $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
-        updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
-        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b);
+//    $('#Slider_1').on("input", function(){
+//        //update plots when coefficient changed
+//        $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
+//        updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
+//        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b);
+//    });
+
+    $("input[type=range]").each(function () {
+        /*Allows for live update for display values*/
+        $(this).on('input', function(){
+            //Displays: (FLT Value) + (Corresponding Unit(if defined))
+            $("#"+$(this).attr("id") + "Display").val( $(this).val());
+            //NB: Display values are restricted by their definition in the HTML to always display nice number.
+            updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
+        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b); //Updating the plot is linked with display (Just My preference)
+        });
+
     });
+//    $('#Slider_2').on("input", function(){
+//        //update plots when coefficient changed
+//        $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
+//        updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
+//        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b);
+//    });
 };
 
 $(document).ready(main); //Load setup when document is ready.

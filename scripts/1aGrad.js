@@ -3,6 +3,8 @@
 
 
 class Arrow{
+    //class currently only works for 2d arrows drawn at z = 0 on a 3d plot.
+    //need to edit GetDrawData if you want 3d arrows.
     constructor(x1, y1, x2, y2, HeadSize){
         this.TailPos = [x1, y1];
         this.HeadPos = [x2, y2];
@@ -56,6 +58,7 @@ class Arrow{
             y: [this.TailPos[1], this.HeadPos[1]],
             z: [0,0],
             line: {color: "blue", width: 3},
+            hoverinfo: "skip"
         };
 
         let SecondLine = {
@@ -65,6 +68,7 @@ class Arrow{
             y: [this.HeadPos[1], Ay],
             z: [0,0],
             line: {color: "blue", width: 3},
+            hoverinfo: "skip"
         };
 
         let ThirdLine = {
@@ -74,6 +78,7 @@ class Arrow{
             y: [this.HeadPos[1], By],
             z: [0,0],
             line: {color: "blue", width: 3},
+            hoverinfo: "skip"
         };
 
     
@@ -186,79 +191,149 @@ function GetScalarData(A, Equation, x_max, PlotStep){
     return ScalarData;
 }
 
-function GetVectorData(A, Equation, x_max, PlotStep){
+function GetVectorData2(A, Equation, x_max, PlotStep){ //this function was swapped with GetVectorData in order to reduce computation time
     let ArrowData = [];
-    //let z = [];
     let VectorData = [];
-    let x = 0;
-    let y = 0;
-    let z = [0,0];
 
-    let CurrentArrow, LineStuff, FirstLine, SecondLine, ThirdLine;
+
+    let CurrentArrow, LineStuff;
     
     
-    for (let i = -x_max; i <= x_max; i += 5*PlotStep){
-        for (let j = -x_max; j <= x_max; j += 5*PlotStep){
+    for (let i = -x_max; i <= x_max; i += 10*PlotStep){
+        for (let j = -x_max; j <= x_max; j += 10*PlotStep){
             ArrowData = GetArrowPoints(i, j, Equation, A);
-            //console.log(ArrowData);
-            //console.log(ArrowData[0][0]);
-            CurrentArrow = new Arrow(ArrowData[0][0], ArrowData[1][0], ArrowData[0][1], ArrowData[1][1], 3);
+
+            CurrentArrow = new Arrow(ArrowData[0][0], ArrowData[1][0], ArrowData[0][1], ArrowData[1][1], 2);
             LineStuff = CurrentArrow.GetDrawData();
-            //FirstLine = LineStuff[0];
-            //console.log(FirstLine);
-            // SecondLine = LineStuff[1];
-            // ThirdLine = LineStuff[2];
-            
-            // let x = ArrowData[0];
-            // let y = ArrowData[1];
+           
             VectorData.push(LineStuff[0]);
             VectorData.push(LineStuff[1]);
             VectorData.push(LineStuff[2]);
-            // VectorData.push({
-            //     type: 'scatter3d',
-            //     mode: 'lines',
-            //     color: "blue",
-            //     x: x,//FirstLine[0],
-            //     y: y,//FirstLine[1],
-            //     z: z,
-            //     opacity: 1,
-            //     line: {
-            //         width: 3
-            //     }
-            // });
-            //z.push(0);
+           
         }
     }
-           
-    
-    //console.log(ArrowData);
-    
-   
-
-    // let ScalarData = [{
-    //     type: 'surface',
-    //     x: x,
-    //     y: y,
-    //     z: z,
-    //     showscale: false
-    // }];
-
-    // let VectorData = [{
-    //     type: 'scatter3d',
-    //     mode: 'lines',
-    //     x: x,
-    //     y: y,
-    //     z: z,
-    //     opacity: 1,
-    //     line: {
-    //       width: 6
-    //     }
-    // }];
-
 
 
     return VectorData;
 
+}
+
+function GetVectorData(A, Equation, x_max, PlotStep){
+    let ArrowData = [];
+    //let z = [];
+    let VectorData = [];
+    
+    let CurrentArrow, LineStuff;
+
+    let x = [];
+    let y = [];
+
+    let x2 = 0;
+    let y2 = 0;
+    let b = 0;
+    let c = 0;
+    
+    switch (Equation){
+        case "A": //reciprocal 
+            for (let i = -x_max; i <= x_max; i += PlotStep){
+                for (let j = -x_max; j <= x_max; j += PlotStep){
+                    x[0] = i;
+                    y[0] = j;
+                   
+                    b = 1/A;
+                    x2 = -A*b**2*x[0]*((b*x[0])**2 + (b*y[0])**2)**(-3/2);
+                    y2 = -A*b**2*y[0]*((b*x[0])**2 + (b*y[0])**2)**(-3/2);
+                            
+
+                    x2 = x2*4;
+                    y2 = y2*4;
+
+                    x[1] = x[0] + x2;
+                    y[1] = y[0] + y2;
+                
+                    ArrowData = [x, y];
+
+                    CurrentArrow = new Arrow(ArrowData[0][0], ArrowData[1][0], ArrowData[0][1], ArrowData[1][1], 2);
+                    LineStuff = CurrentArrow.GetDrawData();
+                    
+                    VectorData.push(LineStuff[0]);
+                    VectorData.push(LineStuff[1]);
+                    VectorData.push(LineStuff[2]);
+                }
+            }
+            break;
+
+
+        case "B":  //gaussian type
+            
+            for (let i = -x_max; i <= x_max; i += PlotStep){
+                for (let j = -x_max; j <= x_max; j += PlotStep){
+                    x[0] = i;
+                    y[0] = j;
+
+                    b = 1/500;
+                    c = 50;
+                    x2 = 2*A*b*((x[0] - c)*Math.exp(-b*((x[0] - c)**2 + y[0]**2))-(x[0] + c)*Math.exp(-b*((x[0] + c)**2 + y[0]**2)));
+                    y2 = 2*A*b*y[0]*(Math.exp(-b*((x[0] - c)**2 + y[0]**2))-Math.exp(-b*((x[0] + c)**2 + y[0]**2)));
+
+                    //x2 = 2*A*b*((x1 - c)*Math.exp(-b*((x1 - c)**2 + y**2))-(x1 + c)*Math.exp(-b*((x1 + c)**2 + y**2)));
+                    //y2 = 2*A*b*y1*(Math.exp(-b*((x1 - c)**2 + y1**2))-Math.exp(-b*((x1 + c)**2 + y1**2)));
+
+                            
+                    //x2 = x2*4;
+                    //y2 = y2*4;
+
+                    x[1] = x[0] + x2;
+                    y[1] = y[0] + y2;
+                
+                    ArrowData = [x, y];
+
+                    CurrentArrow = new Arrow(ArrowData[0][0], ArrowData[1][0], ArrowData[0][1], ArrowData[1][1], 2);
+                    LineStuff = CurrentArrow.GetDrawData();
+                    
+                    VectorData.push(LineStuff[0]);
+                    VectorData.push(LineStuff[1]);
+                    VectorData.push(LineStuff[2]);
+                    
+                }
+            }
+
+            break;
+
+        case "C": //cos type
+            for (let i = -x_max; i <= x_max; i += PlotStep){
+                for (let j = -x_max; j <= x_max; j += PlotStep){
+                    //ArrowData = GetArrowPoints(i, j, Equation, A);
+                    x[0] = i;
+                    y[0] = j;
+                    
+                    b = 0.1;
+                    x2 = -A*b*Math.sin(b*x[0]);
+                    y2 = 0;
+                            
+                    x2 = x2*4;
+                    y2 = y2*4;
+
+                    x[1] = x[0] + x2;
+                    y[1] = y[0] + y2;
+                
+                    ArrowData = [x, y];
+
+                    CurrentArrow = new Arrow(ArrowData[0][0], ArrowData[1][0], ArrowData[0][1], ArrowData[1][1], 2);
+                    LineStuff = CurrentArrow.GetDrawData();
+    
+                    VectorData.push(LineStuff[0]);
+                    VectorData.push(LineStuff[1]);
+                    VectorData.push(LineStuff[2]);
+                    
+                }
+            }
+            break;
+    }
+
+    
+
+    return VectorData;
 }
 
 function GetArrowPoints(x1, y1, Equation, A){
@@ -280,7 +355,7 @@ function GetArrowPoints(x1, y1, Equation, A){
         case "B":  //gaussian type
             c = 50;
             b = 1/500;
-            x2 = 2*A*b*((x1 - c)*Math.exp(-b*((x1 - c)**2 + y**2))-(x1 + c)*Math.exp(-b*((x1 + c)**2 + y**2)));
+            x2 = 2*A*b*((x1 - c)*Math.exp(-b*((x1 - c)**2 + y1**2))-(x1 + c)*Math.exp(-b*((x1 + c)**2 + y1**2)));
             y2 = 2*A*b*y1*(Math.exp(-b*((x1 - c)**2 + y1**2))-Math.exp(-b*((x1 + c)**2 + y1**2)));
 
             break;
@@ -355,7 +430,8 @@ function GetNewInputs(){
 function Refresh(NewPlots = false){
     //Define a few constants
     let x_max = 100; //max x value permitted on graph.  Will be mirrored and also same in y
-    let PlotStep = 2;//x_max/100; //distance between points that are plotted
+    let ScalarPlotStep = 5;//x_max/100; //distance between points that are plotted
+    let VectorPlotStep = 20;
 
 
     let NewInputs = GetNewInputs();
@@ -363,8 +439,8 @@ function Refresh(NewPlots = false){
     let Equation = NewInputs[1];
     //A = 100;
     //now plot graphs
-    let ScalarData = GetScalarData(A, Equation, x_max, PlotStep);
-    let VectorData = GetVectorData(A, Equation, x_max, PlotStep);
+    let ScalarData = GetScalarData(A, Equation, x_max, ScalarPlotStep);
+    let VectorData = GetVectorData(A, Equation, x_max, VectorPlotStep);
     //GetVectorData(A, Function);
 
     DisplayEquations(Equation);

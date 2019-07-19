@@ -1,4 +1,87 @@
 /*jshint esversion: 7 */
+
+
+
+class Arrow{
+    constructor(x1, y1, x2, y2, HeadSize){
+        this.TailPos = [x1, y1];
+        this.HeadPos = [x2, y2];
+
+        this.HeadSize = HeadSize;
+        this.HeadAngle = Math.PI/4;
+
+        this.r = this.GetLength(this.HeadPos, this.TailPos);
+        this.theta = this.GetTheta(this.HeadPos, this.TailPos);
+
+    }
+
+    GetHeadPos(){
+        return this.HeadPos;
+    }
+
+    GetTailPos(){
+        return this.TailPos;
+    }
+
+    GetLength(){
+        return Math.sqrt((this.HeadPos[0] - this.TailPos[0])**2 + (this.HeadPos[1] - this.TailPos[1])**2);
+    }
+
+    GetTheta(){
+        return Math.atan2((this.HeadPos[1] - this.TailPos[1]), (this.HeadPos[0] - this.TailPos[0])); 
+    }
+
+    GetDrawData(){
+        //need arrays of x values and arrays of y values
+        //first line is main body of arrow
+
+        //let FirstLine = [[this.TailPos[0], this.HeadPos[0]],  [this.TailPos[1], this.HeadPos[1]]];
+
+        let Ax = this.HeadPos[0] - this.HeadSize*Math.sin((Math.PI/2) - this.theta + this.HeadAngle);
+        let Ay = this.HeadPos[1] - this.HeadSize*Math.cos((Math.PI/2) - this.theta + this.HeadAngle);
+        //let PointA = [Ax, Ay];
+
+        let Bx = this.HeadPos[0] - this.HeadSize*Math.sin((Math.PI/2) - this.theta - this.HeadAngle);
+        let By = this.HeadPos[1] - this.HeadSize*Math.cos((Math.PI/2) - this.theta - this.HeadAngle);
+        //let PointB = [Bx, By];
+
+        //let SecondLine = [[this.HeadPos[0], Ax], [this.HeadPos[1], Ay]];
+        //let ThirdLine = [[this.HeadPos[0], Bx], [this.HeadPos[1], By]];
+
+
+        let FirstLine = {
+            type: "scatter3d",
+            mode: "lines",
+            x: [this.TailPos[0], this.HeadPos[0]],
+            y: [this.TailPos[1], this.HeadPos[1]],
+            z: [0,0],
+            line: {color: "blue", width: 3},
+        };
+
+        let SecondLine = {
+            type: "scatter3d",
+            mode: "lines",
+            x: [this.HeadPos[0], Ax],
+            y: [this.HeadPos[1], Ay],
+            z: [0,0],
+            line: {color: "blue", width: 3},
+        };
+
+        let ThirdLine = {
+            type: "scatter3d",
+            mode: "lines",
+            x: [this.HeadPos[0], Bx],
+            y: [this.HeadPos[1], By],
+            z: [0,0],
+            line: {color: "blue", width: 3},
+        };
+
+    
+        return [FirstLine, SecondLine, ThirdLine];
+    }
+}
+
+
 function setLayout(sometitlex, sometitley, sometitlez, Mode){
     let new_layout = 0;
     if (Mode == "scalar"){
@@ -45,7 +128,7 @@ function setLayout(sometitlex, sometitley, sometitlez, Mode){
     return new_layout;
 }
 
-function GetScalarData(A, Function, x_max, PlotStep){
+function GetScalarData(A, Equation, x_max, PlotStep){
     let x = [];
     let y = [];
     let z = [];
@@ -57,7 +140,7 @@ function GetScalarData(A, Function, x_max, PlotStep){
         x.push(q);
     }
 
-    switch (Function){
+    switch (Equation){
         case "A": //reciprocal 
             for (let i = -x_max; i <= x_max; i += PlotStep){
                 for (let j = -x_max; j <= x_max; j += PlotStep){
@@ -110,23 +193,39 @@ function GetVectorData(A, Equation, x_max, PlotStep){
     let x = 0;
     let y = 0;
     let z = [0,0];
+
+    let CurrentArrow, LineStuff, FirstLine, SecondLine, ThirdLine;
+    
     
     for (let i = -x_max; i <= x_max; i += 5*PlotStep){
         for (let j = -x_max; j <= x_max; j += 5*PlotStep){
             ArrowData = GetArrowPoints(i, j, Equation, A);
-            let x = ArrowData[0];
-            let y = ArrowData[1];
-            VectorData.push({
-                type: 'scatter3d',
-                mode: 'lines',
-                x: x,
-                y: y,
-                z: z,
-                opacity: 1,
-                line: {
-                    width: 3
-                }
-            });
+            //console.log(ArrowData);
+            //console.log(ArrowData[0][0]);
+            CurrentArrow = new Arrow(ArrowData[0][0], ArrowData[1][0], ArrowData[0][1], ArrowData[1][1], 3);
+            LineStuff = CurrentArrow.GetDrawData();
+            //FirstLine = LineStuff[0];
+            //console.log(FirstLine);
+            // SecondLine = LineStuff[1];
+            // ThirdLine = LineStuff[2];
+            
+            // let x = ArrowData[0];
+            // let y = ArrowData[1];
+            VectorData.push(LineStuff[0]);
+            VectorData.push(LineStuff[1]);
+            VectorData.push(LineStuff[2]);
+            // VectorData.push({
+            //     type: 'scatter3d',
+            //     mode: 'lines',
+            //     color: "blue",
+            //     x: x,//FirstLine[0],
+            //     y: y,//FirstLine[1],
+            //     z: z,
+            //     opacity: 1,
+            //     line: {
+            //         width: 3
+            //     }
+            // });
             //z.push(0);
         }
     }

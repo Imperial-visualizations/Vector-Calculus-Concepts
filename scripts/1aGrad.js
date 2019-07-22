@@ -155,6 +155,15 @@ function GetScalarData(A, Equation, x_max, PlotStep){
                 z.push(inner_z);
                 inner_z = [];
             }
+
+            // for (let i = -x_max/10; i <= x_max/10; i += PlotStep/10){
+            //     for (let j = -x_max/10; j <= x_max/10; j += PlotStep/10){
+            //         CurrentZ = A/(Math.sqrt(((1/(A))*i)**2 + ((1/(A))*j)**2));
+            //         inner_z.push(CurrentZ);
+            //     }
+            //     z.push(inner_z);
+            //     inner_z = [];
+            // }
             break;
 
         case "B":  //gaussian type
@@ -275,13 +284,9 @@ function GetVectorData(A, Equation, x_max, PlotStep){
                     c = 50;
                     x2 = 2*A*b*((x[0] - c)*Math.exp(-b*((x[0] - c)**2 + y[0]**2))-(x[0] + c)*Math.exp(-b*((x[0] + c)**2 + y[0]**2)));
                     y2 = 2*A*b*y[0]*(Math.exp(-b*((x[0] - c)**2 + y[0]**2))-Math.exp(-b*((x[0] + c)**2 + y[0]**2)));
-
-                    //x2 = 2*A*b*((x1 - c)*Math.exp(-b*((x1 - c)**2 + y**2))-(x1 + c)*Math.exp(-b*((x1 + c)**2 + y**2)));
-                    //y2 = 2*A*b*y1*(Math.exp(-b*((x1 - c)**2 + y1**2))-Math.exp(-b*((x1 + c)**2 + y1**2)));
-
                             
-                    //x2 = x2*4;
-                    //y2 = y2*4;
+                    x2 = x2*4;
+                    y2 = y2*4;
 
                     x[1] = x[0] + x2;
                     y[1] = y[0] + y2;
@@ -400,21 +405,17 @@ function DisplayEquations(Equation){
     }
 }
 
-function UpdateScalarPlot(ScalarData){
+function UpdatePlots(ScalarData, VectorData){
     Plotly.react('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)', 'scalar'));
-}
-
-function NewScalarPlot(ScalarData){
-    Plotly.newPlot('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)', 'scalar'));
-}
-
-function UpdateVectorPlot(VectorData){
     Plotly.react('Vector_Graph_1a', VectorData, setLayout('x', 'y', '', 'vector'));
 }
 
-function NewVectorPlot(VectorData){
+function NewPlots(ScalarData, VectorData){
+    Plotly.newPlot('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)', 'scalar'));
     Plotly.newPlot('Vector_Graph_1a', VectorData, setLayout('x', 'y', '', 'vector'));
 }
+
+
 
 
 
@@ -427,7 +428,7 @@ function GetNewInputs(){
     return [A, Function];
 }
 
-function Refresh(NewPlots = false){
+function Refresh(PlotNew = false){
     //Define a few constants
     let x_max = 100; //max x value permitted on graph.  Will be mirrored and also same in y
     let ScalarPlotStep = 5;//x_max/100; //distance between points that are plotted
@@ -445,12 +446,10 @@ function Refresh(NewPlots = false){
 
     DisplayEquations(Equation);
 
-    if (NewPlots){
-        NewScalarPlot(ScalarData);
-        NewVectorPlot(VectorData);
+    if (PlotNew){
+        NewPlots(ScalarData, VectorData);
     }else{
-        UpdateScalarPlot(ScalarData);
-        UpdateVectorPlot(VectorData);
+        UpdatePlots(ScalarData, VectorData);
     }
     //UpdateScalarPlot(ScalarData);
     //UpdateVectorPlot();
@@ -470,7 +469,7 @@ function Setup1a() {
         Refresh();
     });
 
-    Refresh(NewPlots = true);
+    Refresh(PlotNew = true);
 }
 
 

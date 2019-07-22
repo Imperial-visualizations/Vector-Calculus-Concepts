@@ -56,7 +56,7 @@ class Arrow{
         let SecondLine = {};
         let ThirdLine = {};
 
-        if (this.r <= 0.0001){
+        if (this.r <= 0.000001){
             FirstLine = {
                 type: "scatter3d",
                 mode: "lines",
@@ -143,7 +143,7 @@ class Arrow{
         let SecondLine = {};
         let ThirdLine = {};
 
-        if (this.r <= 0.0001){
+        if (this.r == 0){
             FirstLine = {
                 type: "scatter",
                 mode: "lines",
@@ -224,7 +224,7 @@ function setLayout(sometitlex, sometitley, sometitlez, Mode){
 
                 camera: {
                     up: {x: 0, y: 0, z: 1},//sets which way is up
-                    eye: {x: -1, y: -1, z: 1}//adjust camera starting view
+                    eye: {x: 0, y: -1, z: 1}//adjust camera starting view
                 }
             },
         };

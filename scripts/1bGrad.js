@@ -111,8 +111,7 @@ function dataSurfaceCompile(xSurface,ySurface,zSurface){
                          name: 'Scalar Field',
                          showscale: false
                      };
-     $("#functionValueA").text("sdfghjkl");
-    return dataSurface
+    return dataSurface;
 };
 
 function dataLineACompile(xLine, yLine, zLine){
@@ -253,7 +252,12 @@ function updatePlot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA
 
     else if (equation === "Reciprocal"){
 
-//    a = a * 25;
+    a = a * 5;
+//    let a = parseFloat(document.getElementById('Slider_1').value);
+//    let xPoint = parseFloat(document.getElementById('Slider_2').value);
+
+    let zSurface = reciprocalSurface1b(a, xSurface, ySurface);
+    let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
 
     let zLineA = reciprocalLine1b(a, xLineA, yLineA);
     let dataLineA = dataLineACompile(xLineA, yLineA, zLineA);
@@ -275,10 +279,9 @@ function updatePlot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA
 
     let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
 
-    let zSurface = reciprocalSurface1b(a, xSurface, ySurface);
-    let dataSurface = dataSurfaceCompile(xSurface,ySurface,zSurface);
 
-    console.log(zSurface);
+
+    console.log(dataSurface);
     Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout)
     };
 };
@@ -291,7 +294,7 @@ function main(){
     let xMax = 20;
     let yMin = -20;
     let yMax = 20;
-    let plotStep = 0.5;
+    let plotStep = 2.1;
     let plotLineStep = 0.1;
 
     let xLineMin = -16;

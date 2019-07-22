@@ -1,458 +1,369 @@
-//Delete all this later, its just an example 
-/*jshint esversion: 7 */
+function setupSurfaceData(xMin, xMax, yMin, yMax, plotStep){
+    let xScalar1b = [];
+    let yScalar1b = [];
 
+    for (let i = xMin; i <= xMax; i += plotStep){
+        xScalar1b.push(i);
+    };
 
-//A: Global Initial Parameters:
+    for (let j = yMin; j <= yMax; j += plotStep){
+        yScalar1b.push(j);
+    };
 
-/* Start by putting in all initial parameters you want and any constants you want to use (e.g. G = 6.67*10**(-11),
-any layout properties (which you probably want to keep constant for an individual part of a visualisation
-should go here */
-
-const initialPoint = [0, 1];
-const initialPoint1 = [1.1, 0.1];
-const initialPoint2 = [0.1,1.1];
-const initialPoint3 = [1,1];
-const layout = {
-    autosize: true,
-    //width: 450, "height": 500,
-    margin: {l:30, r:30, t:30, b:30},
-    hovermode: "closest",
-    showlegend: false,
-    xaxis: {range: [-5, 5], zeroline: true},
-    yaxis: {range: [-5, 5], zeroline: true},
-    aspectratio: {x:1, y:1},
+    return [xScalar1b , yScalar1b]
 };
-var currentPoint = initialPoint;
-var initX1 = 0, initY1 = 0;
-var initX2 = 0, initY2 = 0;
-var isBlackText = false;
-
-
-//B: Maths
-
-/*Next comes all the mathematical functions that are used, if you think a library will do a particular job
-that's fine, no need to recreate stuff, but any functions you need to construct yourself should go in this
-next block*/
-
-
-function inner_product(first_vector , second_vector){
-    // Returns the inner product of two vectors
-    var sum = 0;
-    for (var i=0; i<2; i++) {
-        sum += first_vector[i] * second_vector[i];
-    }
-    return sum;
-}
-
-function orthogonal(vector_a , vector_b, tolerance = 0){
-    //Returns whether vectors a and b are orthogonal
-    dot = inner_product(vector_a , vector_b);
-    if (dot === 0){
-        return true;
-        }
-    else {
-        return false;
-        }
-    }
-
-
-function normalised(vector){
-    // Returns whether a vector has a normalised basis
-    dot = inner_product(vector, vector);
-    if (dot === 1){
-        return true;
-        }
-    else {
-        return false;
-        }
-    }
-
-function find_xy(resulting_vector, base_1 , base_2){
-    // Finds the projection of "resulting vector" into base_1 and base_2 and returns the
-    //coefficients that are needed such the reconstruct the result from the two bases
-    b1 = resulting_vector[0];
-    b2 = resulting_vector[1];
-    p1 = base_1[0];
-    p2 = base_1[1];
-    q1 = base_2[0];
-    q2 = base_2[1];
-
-    if (p1 === 0){
-        y = b1 / q1;
-        x = (q1*b2 - b1*q2)/p2;
-    }
-    else if (p1*q2 === p2**2){
-        y = (p1*b2 - b1)/(p2**2 - q1*p2);
-        x = (b1 - y*q1)/(p1);
-    }
-    else{
-        y = (p1*b2 - p2*b1)/(p1*q2 - p2**2);
-        x = (b1/p1) - y*p2;
-    }
-    return x,y;
-}
-
-function projection(target_vector, base_vector){
-    //Finds the distance along 'base_vector' the vector 'target_vector' is projected
-    dot_product = inner_product(target_vector ,base_vector);
-    base_size = Math.sqrt(inner_product(base_vector, base_vector));
-    span = dot_product / base_size;
-    return span;
-}
-
-function scale_vector(original_vector, scale){
-    // Multiplies the each component of the original vector by 'scale'
-    new_1 = scale * original_vector[0];
-    new_2 = scale * original_vector[1];
-    new_vector = [new_1, new_2];
-    return new_vector;
-}
-
-function computeBasis(x1, y1,x2,y2 , x3,y3) {
-    currentPoint1 = [x1, y1];
-    currentPoint2 = [x2, y2];
-    currentPoint3 = [x3, y3];
-
-    rho1 = Math.sqrt(x1**2+y1**2);
-    phi1 = Math.atan(x1/y1);
-
-    rho2 = Math.sqrt(x2**2+y2**2);
-    phi2 = Math.atan(x2/y2);
-
-    rho3 = Math.sqrt(x3**2+y3**2);
-    phi3 = Math.atan(x3/y3);
-
-    dx1 = 1;
-    dy1 = 1;
-    dx2 = 1;
-    dy2 = 1;
-    dx3 = 1;
-    dy3 = 1;
-
-    if (x1<0 && y1>0){
-    dx1=-dx1;
-    }else if (x1>0 && y1<0){
-    dy1=-dy1;
-    }else if (x1<0 && y1<0){
-    dx1=-dx1;
-    dy1=-dy1;
-    }else{}
-
-    if (x2<0 && y2>0){
-    dx2=-dx2;
-    }else if (x2>0 && y2<0){
-    dy2=-dy2;
-    }else if (x2<0 && y2<0){
-    dx2=-dx2;
-    dy2=-dy2;
-    }else{}
-
-    if (x3<0 && y3>0){
-    dx3=-dx3;
-    }else if (x3>0 && y3<0){
-    dy3=-dy3;
-    }else if (x3<0 && y3<0){
-    dx3=-dx3;
-    dy3=-dy3;
-    }else{}
-
-    //This is how we first declare objects
-    x1Vector = new Line2d([[x1, y1], [x1+dx1, y1]]);
-    y1Vector = new Line2d([[x1, y1], [x1, y1+dy1]]);
-    vertex1  = new Line2d([[0, 0], [x1, y1]]);
-
-    x2Vector = new Line2d([[x2, y2], [x2+dx2, y2]]);
-    y2Vector = new Line2d([[x2, y2], [x2, y2+dy2]]);
-    vertex2  = new Line2d([[0, 0], [x2, y2]]);
-
-    x3Vector = new Line2d([[x3, y3], [x3+dx3, y3]]);
-    y3Vector = new Line2d([[x3, y3], [x3, y3+dy3]]);
-    vertex3  = new Line2d([[0, 0], [x3, y3]]);
-
-    var project_1 = scale_vector([x1,y1] ,projection([x3,y3] , [x1,y1]));
-    var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]));
-
-    var m1 = (y1/x1);
-    var m2 = (y2/x2);
-    //fixes case when gradients are infinite
-    if(m1 > 100000){m1 = 1000000;}
-    if(m2 > 100000){m2 = 1000000;}
-
-    var x_prime = (y3 - m1*x3)/(m2 - m1);
-    var y_prime = m2*x_prime;
-
-    var x_dprime = (y3 - m2*x3)/(m1-m2);
-    var y_dprime = m1*x_dprime;
-
-    function isPositive(x){
-        if (Math.abs(x) === x) {
-        return true;
-        } else {
-        return false;
-        }
-    }
-
-    function quadrant(x,y){
-        if (isPositive(x) && isPositive(y)) {return 1;}
-        else if(!isPositive(x) && isPositive(y)) {return 2;}
-        else if (!isPositive(x) && !isPositive(y)) {return 3;}
-        else {return 4;}
-    }
-
-    //define scale factors
-    if (quadrant(x_prime, y_prime) === quadrant(x2,y2)) { //correct for negative sign
-    var scale2 = Math.round((Math.pow((Math.pow(x_prime,2)+Math.pow(y_prime,2)),(1/2))/Math.pow((Math.pow(x2,2)+Math.pow(y2,2)),(1/2)))*100)/100;
-    } else {
-    var scale2 = -Math.round((Math.pow((Math.pow(x_prime,2)+Math.pow(y_prime,2)),(1/2))/Math.pow((Math.pow(x2,2)+Math.pow(y2,2)),(1/2)))*100)/100;
-    }
-
-    if (quadrant(x_dprime,y_dprime)=== quadrant(x1,y1)) {
-    var scale1 = Math.round((Math.pow((Math.pow(x_dprime,2)+Math.pow(y_dprime,2)),(1/2))/Math.pow((Math.pow(x1,2)+Math.pow(y1,2)),(1/2)))*100)/100;
-    } else {
-    var scale1 = -Math.round((Math.pow((Math.pow(x_dprime,2)+Math.pow(y_dprime,2)),(1/2))/Math.pow((Math.pow(x1,2)+Math.pow(y1,2)),(1/2)))*100)/100;
-    }
-
-    //remove projections if parallel
-    //if (Math.abs(m1-m2) > 0.1){
-    if (Math.abs(phi1-phi2) > 0.05){
-       vertex4  = new Line2d([[0, 0], [x_prime, y_prime]]);
-       vertex5 = new Line2d([[x_prime, y_prime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
-
-       vertex6  = new Line2d([[0, 0], [x_dprime, y_dprime]]);
-       vertex7 = new Line2d([[x_dprime, y_dprime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
-
-       $(document).ready(() => {
-	        $('.popup').hide();
-       });
-
-
-    } else {
-        //replace projections with tiny lines if line1 and 2
-        vertex4 = new Line2d([[0, 0], [0,0.005]]);
-        vertex5 = new Line2d([[0, 0], [0.005,0]]);
-        vertex6 = new Line2d([[0, 0], [0,0.005]]);
-        vertex7 = new Line2d([[0, 0], [0.005,0]]);
-
-        $(document).ready(() => {
-            $('.popup').show();
-        });
-
-
-    }
-
-
-    var data = [
-
-
-        {type:"scatter",
-        mode: "lines",
-        x: [0,x1],
-        y: [0,y1],
-        line: {color: black, width: 3, dash: "solid"},
-        },
-
-        {type:"scatter",
-        mode: "lines",
-        x: [0,x2],
-        y: [0,y2],
-        line: {color: blue, width: 3, dash: "solid"}
-        },
-
-        {type:"scatter",
-        mode: "lines",
-        name: "test2",
-        x: [0,x3],
-        y: [0,y3],
-        line: {color: green, width: 3, dash: "solid"}
-        },
-
-
-        vertex1.gObject(cherry, 3),
-        vertex1.arrowHead(cherry, 3),
-        vertex2.gObject(blue, 3),
-        vertex2.arrowHead(blue, 3),
-        vertex3.gObject(green, 3),
-        vertex3.arrowHead(green, 3),
-
-        vertex4.gObject(cyan, 3),//, dash="solid", modetype="lines+text", `${scale2} x vector2 & ${scale1} x vector1`),
-        vertex5.gObject(cyan, 3),
-
-        vertex6.gObject(lilac, 3),//,  dash="solid", modetype="lines+text", `${scale1} x vector1 & ${scale2} x vector2`),
-        vertex7.gObject(lilac, 3),
-     ]
-    ;
-
-    $("#vectorComponents").text(`${scale1} x vector1 & ${scale2} x vector2`);
-    return data;
-}
-
-//C: Interactivity
-
-/* We've now got all the functions we need to use such that for a given user input, we have a data output that we'll use.
-Now we just have to actually obtain the user input from the HTML file by using JQuery and then plot everything relevant that we want to see*/
-
-function initCarte(type) {
-    Plotly.purge("graph");
-    initX1 = initialPoint1[0];
-    initY1 = initialPoint1[1];
-    initX2 = initialPoint2[0];
-    initY2 = initialPoint2[1];
-    initX3 = initialPoint3[0];
-    initY3 = initialPoint3[1];
-
-    /* ~Jquery
-    1.  Assign initial/default x, y values to the sliders and slider displays.
-    */
-    $("#x1Controller").val(initX1);
-    $("#x1ControllerDisplay").val(initX1);
-
-    $("#y1Controller").val(initY1);
-    $("#y1ControllerDisplay").val(initY1);
-
-    $("#x2Controller").val(initX2);
-    $("#x2ControllerDisplay").val(initX2);
-    $("#y2Controller").val(initY2);
-    $("#y2ControllerDisplay").val(initY2);
-
-    $("#x3Controller").val(initX3);
-    $("#x3ControllerDisplay").val(initX3);
-    $("#y3Controller").val(initY3);
-    $("#y3ControllerDisplay").val(initY3);
-
-    /* ~Jquery
-    2.  Declare and store the floating values from x/y- sliders.
-        Hint:
-            - use document.getElementById('idName').value
-            - use parseFloat() to make sure you are getting floating points.
-    */
-
-    var x1 = parseFloat($('x1Controller').val());
-    var y1 = parseFloat(document.getElementById('y1Controller').value);
-
-    var x2 = parseFloat(document.getElementById('x2Controller').value);
-    var y2 = parseFloat(document.getElementById('y2Controller').value);
-
-    var x3 = parseFloat(document.getElementById('x3Controller').value);
-    var y3 = parseFloat(document.getElementById('y3Controller').value);
-
-    var project_1 = scale_vector([x1,y1] , projection([x3,y3] , [x1,y1]));
-    var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]));
-
-    Plotly.newPlot("graph", computeBasis(x1, y1), layout);
-    Plotly.newPlot("graph", computeBasis(x2, y2), layout);
-    Plotly.newPlot("graph", computeBasis(x3, y3), layout);
-
-    return;
-}
-
-
-//D: Calling
-
-/* Now we have to ask the plots to update every time the user interacts with the visualisation. Here we must both
-define what we want it to do when it updates, and then actually ask it to do that. These are the two functions below.
-*/
-
-function updatePlot() {
-    var data = [];
-
-    var x1 = parseFloat(document.getElementById('x1Controller').value);
-    var y1 = parseFloat(document.getElementById('y1Controller').value);
-
-    var x2 = parseFloat(document.getElementById('x2Controller').value);
-    var y2 = parseFloat(document.getElementById('y2Controller').value);
-
-    var x3 = parseFloat(document.getElementById('x3Controller').value);
-    var y3 = parseFloat(document.getElementById('y3Controller').value);
-
-
-    data = computeBasis(x1, y1 , x2, y2 ,x3,y3);
 
+function path2(x){
+    return 10 * Math.sin( (2*Math.PI/42) * (x+16) )
+};
+
+function setupLine1Data(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep) {         //line1; across the mountain. y is kept at 0
+    let xScalarLine1_1b = [];
+    let yScalarLine1_1b = [];
+
+    for (let i = xLineMin; i <= xLineMax; i += plotLineStep){
+        xScalarLine1_1b.push(i);
+    };
+
+    for (let j = xLineMin; j <= xLineMax; j += plotLineStep){
+        yScalarLine1_1b.push(0);
+    };
+
+    return [xScalarLine1_1b , yScalarLine1_1b]
+};
+
+function setupLine2Data(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep){
+    let xScalarLine2_1b = [];
+    let yScalarLine2_1b = [];
+
+    for (let i = xLineMin; i <= xLineMax; i += plotLineStep){
+        xScalarLine2_1b.push(i);
+        yScalarLine2_1b.push( path2(i) );
+    };
+        console.log([xScalarLine2_1b , yScalarLine2_1b]);
+    return [xScalarLine2_1b , yScalarLine2_1b]
+};
+
+function gaussian1b (a, sigma, xScalar1b,yScalar1b){
+    let zScalar1b = [];
+    for (let xValue in xScalar1b){
+        let zArray = [];
+        for (let yValue in yScalar1b){
+            zArray.push(a*Math.exp(-1*(xScalar1b[xValue]**2 + yScalar1b[yValue]**2)/(2*sigma**2)));
+        };
+        zScalar1b.push(zArray);
+    };
+    return zScalar1b;
+};
+
+function gaussianLine1b (a, sigma, xScalarLine1_1b, yScalarLine1_1b){
+    let zScalarLine1_1b = [];
+    for (let xValue in xScalarLine1_1b){
+            zScalarLine1_1b.push(a*Math.exp(-1*(xScalarLine1_1b[xValue]**2 + yScalarLine1_1b[xValue]**2)/(2*sigma**2)));
+        };
+    return zScalarLine1_1b;
+};
+
+function gaussianPoint1b (a, sigma, xPos, yPos){
+    let zPos = [];
+    zPos.push(a*Math.exp(-1*(xPos**2 + yPos**2)/(2*sigma**2)));
+    return zPos;
+};
+
+function dataCompile(xScalar1b,yScalar1b,zScalar1b){
+     let dataPlot = {
+                         x: xScalar1b,
+                         y: yScalar1b,
+                         z: zScalar1b,
+                         type: 'surface',
+                         name: 'Scalar Field',
+                         showscale: false
+                     };
+    return dataPlot
+};
+
+function dataLine1Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b){
+    let dataPlot = {
+                         x:xScalarLine1_1b,
+                         y:yScalarLine1_1b,
+                         z:zScalarLine1_1b,
+                         type: 'scatter3d',
+                         mode: 'lines',
+                         line: {
+                                color: 'rgb(255,255,0)',
+                                width: 10
+                              },
+                         name: 'Path 1',
+                         showscale: false
+                     };
+    return dataPlot
+};
+
+function dataLine2Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b){
+    let dataPlot = {
+                         x:xScalarLine1_1b,
+                         y:yScalarLine1_1b,
+                         z:zScalarLine1_1b,
+                         type: 'scatter3d',
+                         mode: 'lines',
+                         line: {
+                                color: 'rgb(173,255,47)',
+                                width: 10
+                              },
+                         name: 'Path 2',
+                         showscale: false
+                     };
+    return dataPlot
+};
+
+
+function testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xScalarLine2_1b, yScalarLine2_1b,
+                    xLineMin, yLineMin, xLineMax, yLineMax, xPos, a1b, sigma1b, layout_1b){
+    let zScalarPlot = gaussian1b(a1b, sigma1b, xScalarPlot, yScalarPlot);
+    let zScalarLine1_1b = gaussianLine1b(a1b, sigma1b, xScalarLine1_1b, yScalarLine1_1b);
+    let zScalarLine2_1b = gaussianLine1b(a1b, sigma1b, xScalarLine2_1b, yScalarLine2_1b);
+
+    let dataLine1_1b = dataLine1Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b);
+    let dataLine2_1b = dataLine2Compile(xScalarLine2_1b, yScalarLine2_1b, zScalarLine2_1b);
+    let dataPlot1b = dataCompile(xScalarPlot, yScalarPlot, zScalarPlot);
+
+    let dataPointA = {
+                         x:[xLineMin],
+                         y:[yLineMin],
+                         z:gaussianPoint1b(a1b, sigma1b, xLineMin, yLineMin),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(238,130,238)',
+                                size: 10
+                              },
+                         name: 'Point A',
+                         showscale: false
+                     };
+
+    let dataPointB = {
+                         x:[xLineMax],
+                         y:[yLineMax],
+                         z:gaussianPoint1b(a1b, sigma1b, xLineMax, yLineMax),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(192,192,192)',
+                                size: 10
+                              },
+                         name: 'Point B',
+                         showscale: false
+                     };
+
+    let dataBallA = {
+                         x:[xPos],
+                         y:[0],
+                         z:gaussianPoint1b(a1b, sigma1b, xPos, 0),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(255,0,0)',
+                                size: 10
+                              },
+                         name: 'Point B',
+                         showscale: false
+    };
+
+    let dataBallB = {
+                     x:[xPos],
+                     y:[path2(xPos)],
+                     z:gaussianPoint1b(a1b, sigma1b, xPos, path2(xPos)),
+                     type: 'scatter3d',
+                     mode: 'markers',
+                     marker: {
+                            color: 'rgb(255,0,0)',
+                            size: 10
+                          },
+                     name: 'Point B',
+                     showscale: false
+                     };
+
+    console.log(dataPointA);
+    Plotly.react('Scalar_Graph_1b', [dataPlot1b, dataLine1_1b, dataLine2_1b, dataPointA, dataPointB, dataBallA, dataBallB], layout_1b);
+};
+
+function testPlot2 (){
+
+};
+
+function updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
+                    xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b){
+    let a1b = parseFloat(document.getElementById('Slider_1').value);
+    let xPos = parseFloat(document.getElementById('Slider_2').value);
+
+    let zScalarPlot = gaussian1b(a1b, sigma1b, xScalarPlot, yScalarPlot);
+    dataPlot1b = dataCompile(xScalarPlot, yScalarPlot, zScalarPlot);
+
+    let zScalarLine1_1b = gaussianLine1b(a1b, sigma1b, xScalarLine1_1b, yScalarLine1_1b);
+    let dataLine1_1b = dataLine1Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b);
+
+    let zScalarLine2_1b = gaussianLine1b(a1b, sigma1b, xScalarLine2_1b, yScalarLine2_1b);
+    let dataLine2_1b = dataLine2Compile(xScalarLine2_1b, yScalarLine2_1b, zScalarLine2_1b);
+
+    let dataPointA = {
+                         x:[xLineMin],
+                         y:[yLineMin],
+                         z:gaussianPoint1b(a1b, sigma1b, xLineMin, yLineMin),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(238,130,238)',
+                                size: 10
+                              },
+                         showscale: false
+                     };
+
+    let dataPointB = {
+                         x:[xLineMax],
+                         y:[yLineMax],
+                         z:gaussianPoint1b(a1b, sigma1b, xLineMax, yLineMax),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(192,192,192)',
+                                size: 10,
+                              },
+                         showscale: false
+                     };
+
+    let dataBallA = {
+                     x:[xPos],
+                     y:[0],
+                     z:gaussianPoint1b(a1b, sigma1b, xPos, 0),
+                     type: 'scatter3d',
+                     mode: 'markers',
+                     marker: {
+                            color: 'rgb(255,0,0)',
+                            size: 10
+                          },
+                     name: 'Point B',
+                     showscale: false
+                     };
+
+    let dataBallB = {
+                     x:[xPos],
+                     y:[path2(xPos)],
+                     z:gaussianPoint1b(a1b, sigma1b, xPos, path2(xPos)),
+                     type: 'scatter3d',
+                     mode: 'markers',
+                     marker: {
+                            color: 'rgb(255,0,0)',
+                            size: 10
+                          },
+                     name: 'Point B',
+                     showscale: false
+                     };
+
+//    let layout = layout_1b;
     Plotly.animate(
-        'graph',
-        {data: data},
-        {
+        'Scalar_Graph_1b', {
+        data: [dataPlot1b, dataLine1_1b, dataLine2_1b, dataPointA, dataPointB, dataBallA, dataBallB], layout: layout_1b,
+
             fromcurrent: true,
             transition: {duration: 0,},
             frame: {duration: 0, redraw: false,},
             mode: "immediate"
         }
     );
-}
 
+//    Plotly.animate(
+//        'Scalar_Graph_1b', {
+//        data: [dataLine1_1b], layout: layout_1b,
+//
+//            fromcurrent: true,
+//            transition: {duration: 0,},
+//            frame: {duration: 0, redraw: true,},
+//            mode: "immediate"
+//        }
+//    );
+};
 
+function main(){
+    let a1b = 5;
+    let sigma1b = 10;
+    let xMin = -20;
+    let xMax = 20;
+    let yMin = -20;
+    let yMax = 20;
+    let plotStep = 2;
+    let plotLineStep = 0.1;
 
+    let xLineMin = -16;
+    let xLineMax = 5;
+    let yLineMin = 0;
+    let yLineMax = 0;
 
+    let xPos = xLineMin;
 
-function main() {
-    computeBasis(initX1, initY1,initX2,initY2 , initialPoint3[0],initialPoint3[1]);
+    const layout_1b = {
+            title: 'YEET',
+            autosize: false,
+            width: 500,
+            height: 500,
+            margin: {
+                        l: 65,
+                        r: 50,
+                        b: 65,
+                        t: 90},
+            dragmode: 'turntable',
+            scene: {
+                aspectmode: "cube",
+                xaxis: {range: [xMin, xMax], title: 'x'},
+                yaxis: {range: [yMin, yMax], title: 'y'},
+                zaxis: {range: [-10, 10], title: 'f(x,y)'},
 
-    /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
+                camera: {
+                    up: {x: 0, y: 0, z: 1},//sets which way is up
+                    eye: {x: -1, y: -1, z: 1}//adjust camera starting view
+                }
+            },
+        };
+
+    let ScalarPlot = setupSurfaceData(xMin, xMax, yMin, yMax, plotStep);
+    let xScalarPlot = ScalarPlot[0];
+    let yScalarPlot = ScalarPlot[1];
+
+    let ScalarLine1Plot = setupLine1Data(xLineMin, xLineMax, xLineMin, xLineMax, plotLineStep);
+    let xScalarLine1_1b = ScalarLine1Plot[0];
+    let yScalarLine1_1b = ScalarLine1Plot[1];
+
+    let ScalarLine2Plot = setupLine2Data(xLineMin, xLineMax, xLineMin, xLineMax, plotLineStep);
+    let xScalarLine2_1b = ScalarLine2Plot[0];
+    let yScalarLine2_1b = ScalarLine2Plot[1];
+    console.log(ScalarLine2Plot)
+
+    testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xScalarLine2_1b, yScalarLine2_1b,
+             xLineMin, yLineMin, xLineMax, yLineMax, xPos, a1b, sigma1b,layout_1b);
+//    testLinePlot(xScalarLine1_1b, yScalarLine1_1b, a1b, sigma1b, layout_1b);
+//    $('#Slider_1').on("input", function(){
+//        //update plots when coefficient changed
+//        $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
+//        updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
+//        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b);
+//    });
+
     $("input[type=range]").each(function () {
         /*Allows for live update for display values*/
         $(this).on('input', function(){
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
             $("#"+$(this).attr("id") + "Display").val( $(this).val());
             //NB: Display values are restricted by their definition in the HTML to always display nice number.
-            updatePlot(); //Updating the plot is linked with display (Just My preference)
+            updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
+        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b); //Updating the plot is linked with display (Just My preference)
         });
 
-    //Update sliders if value in box is changed
-
-    $("#x1ControllerDisplay").change(function () {
-     var value = this.value;
-     $("#x1Controller").val(value);
-     updatePlot();
     });
+//    $('#Slider_2').on("input", function(){
+//        //update plots when coefficient changed
+//        $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
+//        updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
+//        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b);
+//    });
+};
 
-    $("#y1ControllerDisplay").change(function () {
-     var value = this.value;
-     $("#y1Controller").val(value);
-     updatePlot();
-    });
-
-    $("#x2ControllerDisplay").change(function () {
-     var value = this.value;
-     $("#x2Controller").val(value);
-     updatePlot();
-    });
-
-    $("#y2ControllerDisplay").change(function () {
-     var value = this.value;
-     $("#y2Controller").val(value);
-     updatePlot();
-    });
-
-    $("#x3ControllerDisplay").change(function () {
-     var value = this.value;
-     $("#x3Controller").val(value);
-     updatePlot();
-    });
-
-    $("#y3ControllerDisplay").change(function () {
-     var value = this.value;
-     $("#y3Controller").val(value);
-     updatePlot();
-    });
-
-    });
-
-    /*Tabs*/
-    $(function() {
-        $('ul.tab-nav li a.button').click(function() {
-            var href = $(this).attr('href');
-            $('li a.active.button', $(this).parent().parent()).removeClass('active');
-            $(this).addClass('active');
-            $('.tab-pane.active', $(href).parent()).removeClass('active');
-            $(href).addClass('active');
-
-            initCarte(href); //re-initialise when tab is changed
-            return false;
-        });
-    });
-
-    //The First Initialisation - I use 's' rather than 'z' :p
-    initCarte("#basis");
-    updatePlot(); //Shows initial positions of vectors
-    }
-
-$(document).ready(main); //Load main when document is ready.
+$(document).ready(main); //Load setup when document is ready.

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Page Info-->
+    <title></title>
+    <!--css link-->
+    <link rel="stylesheet"
+          href="styles/skeleton.css">
+    <link rel="stylesheet"
+          href="styles/style.css">
+    <!--Required JS resources-->
+    <!--NB: better to have resources before the main body but still works even if they are not-->
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+    </script>
+    <script type="text/javascript" src="scripts/MathJax-master/MathJax.js">
+    </script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<body>
+
+<!--<div class="container_journey" style="background-color: white;"></div>-->
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        &lt;!&ndash; Graph &ndash;&gt;-->
+<!--        <div class="one-third column" style="padding-left: 2em;">-->
+<div style="width:65%; float:right;">
+    <div class="row">
+        <div style="width:40%; float:right;">
+            <div id="scroll">
+                <div class="scroll-down">
+                    <strong>Select Function: </strong>
+                    <select id="Function_Selector">
+                        <option value="A">Function 1 </option>
+                        <option value="B">Function 2</option>
+                        <option value="C">Function 3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <!--BEGIN Slider-->
+                <!--These Sliders are shared among all tabs-->
+
+                <!--Slider Display--> <!--Linked with the slider below-->
+                <!--Linked with a slider and shows the live values of its corresponding slider-->
+
+                <h6 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 1vh;">$a =$
+                            <output id="Slider_1_value" for="Slider_1">5</output>
+                </h6>
+                <!--BEGIN Slider-->
+
+                    <label class="slider">
+                        <span class="sliderMin">-10</span>
+                        <input id="Slider_1" class="inputs" type="range" value="5" min="-10" max="10" step="0.5" oninput="Slider_1_value.value=Slider_1.value"/></input>
+                        <span class="sliderMax">10</span>
+<!--                        <span> x: <output id="Slider_1_value" for="Slider_1">1</output></span>-->
+                    </label>
+                    <!--END Slider-->
+            </div>
+
+            <div>
+                <!--BEGIN Slider-->
+                <!--These Sliders are shared among all tabs-->
+
+                <!--Slider Display--> <!--Linked with the slider below-->
+                <!--Linked with a slider and shows the live values of its corresponding slider-->
+
+                <h6 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 1vh;"> Path
+<!--                    <label class="sliderTitle" style="padding-bottom:20px;">-->
+                    <br>
+                    $x = $
+                    <output id="Slider_2_value" for="Slider_2">-16</output>
+<!--                        </label>-->
+                </h6>
+                <!--BEGIN Slider-->
+
+                    <label class="slider">
+                        <span class="sliderMin">A</span>
+                        <input id="Slider_2" class="inputs" type="range" value="-16" min="-16" max="5" step="1" oninput="Slider_2_value.value=Slider_2.value"/></input>
+                        <span class="sliderMax">B</span>
+<!--                        <span> x: <output id="Slider_1_value" for="Slider_1">1</output></span>-->
+                    </label>
+                    <!--END Slider-->
+            </div>
+
+            <div>
+                <div id="A_function_eqn">
+                            $$\displaystyle f(x,y)= \frac{a}{ \sqrt{x^2 + y^2} }$$
+                </div>
+
+                <div id="B_function_eqn">
+                        $$\displaystyle f(x,y) = ae^{-\frac{(x+2)^2+y^2}{2\sigma ^2}} - ae^{-\frac{(x-2)^2+y^2}{2\sigma ^2}}$$
+                </div>
+
+                <div id="C_function_eqn">
+                        $$\displaystyle f(x,y)= \cos (x) $$
+                </div>
+            </div>
+
+            <div>
+                <div id="A_grad_eqn">
+                        $$\displaystyle \nabla f = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x \mathbf{i} + y \mathbf{j} )$$
+                </div>
+
+                <div id="B_grad_eqn">
+                        $$ \displaystyle \begin{align}  \nabla f & = ae^{-\frac{(x-2)^2+y^2}{2\sigma ^2}}(\frac{x-2}{\sigma ^2} \mathbf{i} + \frac{y}{\sigma ^2} \mathbf{j})
+                                                    \\ & - ae^{-\frac{(x+2)^2+y^2}{2\sigma ^2}}(\frac{x+2}{\sigma ^2} \mathbf{i} + \frac{y}{\sigma ^2} \mathbf{j})
+                            \end{align} $$
+                </div>
+
+                <div id="C_grad_eqn">
+                        $$\displaystyle \nabla f = - \sin (x) \mathbf{i} $$
+                </div>
+            </div>
+        </div>
+
+        <div style="width:60%; float:left;">
+            <div>
+                <h7> $\nabla f(x,y) $ </h7>
+                <div id='Vector_Graph_1b' style="width:30vw; height:30vh;"> </div>
+            </div>
+
+            <div>
+                <h7> $f(x,y)$ </h7>
+                <div id='Scalar_Graph_1b' style="width:30vw; height:30vh;"></div>
+            </div>
+
+
+        </div>
+
+        <!--Buttons/Sliders-->
+<!--        <div class="one-third column" style="padding-left: 50px;">-->
+
+            <!--Main body contents-->
+
+    </div>
+</div>
+
+<!--    </div>-->
+
+    <!--THE BRAINS-->
+    <script src=scripts/1bGrad.js></script>
+    <script src=scripts/VC_object.js></script>
+</body>
+</html>

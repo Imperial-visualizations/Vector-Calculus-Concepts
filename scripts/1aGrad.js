@@ -218,9 +218,9 @@ function setLayout(sometitlex, sometitley, sometitlez, Mode){
             dragmode: 'orbit',
             scene: {
                 aspectmode: "cube",
-                xaxis: {range: [-100, 100], title: sometitlex},
-                yaxis: {range: [-100, 100], title: sometitley},
-                zaxis: {range: [-100, 100], title: sometitlez},
+                xaxis: {range: [-100, 100], title: sometitlex, showticklabels: false},
+                yaxis: {range: [-100, 100], title: sometitley, showticklabels: false},
+                zaxis: {range: [-100, 100], title: sometitlez, showticklabels: false},
 
                 camera: {
                     up: {x: 0, y: 0, z: 1},//sets which way is up
@@ -256,12 +256,14 @@ function setLayout(sometitlex, sometitley, sometitlez, Mode){
             xaxis: {
                 constrain: "domain",
                 range: [-100, 100],
-                title: "x"
+                title: "x",
+                showticklabels: false
                 //title: "Angle"
             },
             yaxis: {
                 scaleanchor: "x",
                 range: [-100, 100],
+                showticklabels: false,
                 title: "y"
             },
             margin: {

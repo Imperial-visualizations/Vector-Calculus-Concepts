@@ -70,6 +70,18 @@ function gaussianPoint1b (a, sigma, xPos, yPos){
     return zPos;
 };
 
+function reciprocalSurface (a,xSurface,ySurface){
+    let zSurface = [];
+        for (let xValue in xSurface){
+            let zArray = [];
+            for (let yValue in ySurface){
+                zArray.push(a/Math.sqrt(xSurface[xValue]**2 + ySurface[yValue]**2)/(2*sigma**2)));
+            };
+            zScalar1b.push(zArray);
+        };
+        return zScalar1b;
+};
+
 function dataCompile(xScalar1b,yScalar1b,zScalar1b){
      let dataPlot = {
                          x: xScalar1b,

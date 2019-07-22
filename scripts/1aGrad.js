@@ -6,6 +6,9 @@ class Arrow{
     //class currently only works for 2d arrows drawn at z = 0 on a 3d plot.
     //need to edit GetDrawData if you want 3d arrows.
     constructor(x1, y1, x2, y2, HeadSize){
+        //x1 and y1 are coords of tail of arrow
+        //x2 and y2 are coords of head of arrow
+        //HeadSize sets the size of the arrowhead.
         this.TailPos = [x1, y1];
         this.HeadPos = [x2, y2];
 
@@ -33,7 +36,7 @@ class Arrow{
         return Math.atan2((this.HeadPos[1] - this.TailPos[1]), (this.HeadPos[0] - this.TailPos[0])); 
     }
 
-    GetDrawData(){
+    GetDrawData3D(){
         //need arrays of x values and arrays of y values
         //first line is main body of arrow
 
@@ -49,47 +52,163 @@ class Arrow{
 
         //let SecondLine = [[this.HeadPos[0], Ax], [this.HeadPos[1], Ay]];
         //let ThirdLine = [[this.HeadPos[0], Bx], [this.HeadPos[1], By]];
+        let FirstLine = {};
+        let SecondLine = {};
+        let ThirdLine = {};
 
+        if (this.r <= 0.0001){
+            FirstLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.TailPos[0], this.HeadPos[0]],
+                y: [this.TailPos[1], this.HeadPos[1]],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
 
-        let FirstLine = {
-            type: "scatter3d",
-            mode: "lines",
-            x: [this.TailPos[0], this.HeadPos[0]],
-            y: [this.TailPos[1], this.HeadPos[1]],
-            z: [0,0],
-            line: {color: "blue", width: 3},
-            hoverinfo: "skip"
-        };
+            SecondLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.HeadPos[0], Ax],
+                y: [this.HeadPos[1], Ay],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
 
-        let SecondLine = {
-            type: "scatter3d",
-            mode: "lines",
-            x: [this.HeadPos[0], Ax],
-            y: [this.HeadPos[1], Ay],
-            z: [0,0],
-            line: {color: "blue", width: 3},
-            hoverinfo: "skip"
-        };
+            ThirdLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.HeadPos[0], Bx],
+                y: [this.HeadPos[1], By],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+        }else{
 
-        let ThirdLine = {
-            type: "scatter3d",
-            mode: "lines",
-            x: [this.HeadPos[0], Bx],
-            y: [this.HeadPos[1], By],
-            z: [0,0],
-            line: {color: "blue", width: 3},
-            hoverinfo: "skip"
-        };
+            FirstLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.TailPos[0], this.HeadPos[0]],
+                y: [this.TailPos[1], this.HeadPos[1]],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
 
+            SecondLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.HeadPos[0], Ax],
+                y: [this.HeadPos[1], Ay],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+
+            ThirdLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.HeadPos[0], Bx],
+                y: [this.HeadPos[1], By],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+        }
     
         return [FirstLine, SecondLine, ThirdLine];
     }
+
+    GetDrawData2D(){
+        
+        //need arrays of x values and arrays of y values
+        //first line is main body of arrow
+
+        //let FirstLine = [[this.TailPos[0], this.HeadPos[0]],  [this.TailPos[1], this.HeadPos[1]]];
+
+        let Ax = this.HeadPos[0] - this.HeadSize*Math.sin((Math.PI/2) - this.theta + this.HeadAngle);
+        let Ay = this.HeadPos[1] - this.HeadSize*Math.cos((Math.PI/2) - this.theta + this.HeadAngle);
+        //let PointA = [Ax, Ay];
+
+        let Bx = this.HeadPos[0] - this.HeadSize*Math.sin((Math.PI/2) - this.theta - this.HeadAngle);
+        let By = this.HeadPos[1] - this.HeadSize*Math.cos((Math.PI/2) - this.theta - this.HeadAngle);
+        //let PointB = [Bx, By];
+
+        //let SecondLine = [[this.HeadPos[0], Ax], [this.HeadPos[1], Ay]];
+        //let ThirdLine = [[this.HeadPos[0], Bx], [this.HeadPos[1], By]];
+        let FirstLine = {};
+        let SecondLine = {};
+        let ThirdLine = {};
+
+        if (this.r <= 0.0001){
+            FirstLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.TailPos[0], this.HeadPos[0]],
+                y: [this.TailPos[1], this.HeadPos[1]],
+                line: {color: "blue", width: 0},
+                hoverinfo: "skip"
+            };
+
+            SecondLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.HeadPos[0], Ax],
+                y: [this.HeadPos[1], Ay],
+                line: {color: "blue", width: 0},
+                hoverinfo: "skip"
+            };
+
+            ThirdLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.HeadPos[0], Bx],
+                y: [this.HeadPos[1], By],
+                line: {color: "blue", width: 0},
+                hoverinfo: "skip"
+            };
+        }else{
+
+            FirstLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.TailPos[0], this.HeadPos[0]],
+                y: [this.TailPos[1], this.HeadPos[1]],
+                line: {color: "blue", width: 2},
+                hoverinfo: "skip"
+            };
+
+            SecondLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.HeadPos[0], Ax],
+                y: [this.HeadPos[1], Ay],
+                line: {color: "blue", width: 1},
+                hoverinfo: "skip"
+            };
+
+            ThirdLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.HeadPos[0], Bx],
+                y: [this.HeadPos[1], By],
+                line: {color: "blue", width: 1},
+                hoverinfo: "skip"
+            };
+        }
+    
+        return [FirstLine, SecondLine, ThirdLine];
+    }
+
 }
 
 
 function setLayout(sometitlex, sometitley, sometitlez, Mode){
     let new_layout = 0;
-    if (Mode == "scalar"){
+    if (Mode == "Scalar"){
         new_layout = {//layout of 3D graph
             showlegend: false,
             showscale: false,
@@ -109,7 +228,7 @@ function setLayout(sometitlex, sometitley, sometitlez, Mode){
                 }
             },
         };
-    }else{ //mode == "vector"
+    }else if (Mode == "Vector3D"){ //mode == "Vector3D"
         new_layout = {//layout of 3D graph
             showlegend: false,
             showscale: false,
@@ -118,7 +237,7 @@ function setLayout(sometitlex, sometitley, sometitlez, Mode){
             },
             dragmode: 'orbit',
             scene: {
-                aspectmode: "data",
+                aspectmode: "cube",
                 xaxis: {range: [-100, 100], title: sometitlex},
                 yaxis: {range: [-100, 100], title: sometitley},
                 zaxis: {range: [-10, 10], title: sometitlez},
@@ -128,6 +247,34 @@ function setLayout(sometitlex, sometitley, sometitlez, Mode){
                     eye: {x: -5, y: -5, z: 5}//adjust camera starting view
                 }
             },
+        };
+    }else{//mode = Vector2D
+        new_layout = {
+            //autosize: true,
+            
+            showlegend: false,
+            xaxis: {
+                constrain: "domain",
+                range: [-100, 100],
+                title: "x"
+                //title: "Angle"
+            },
+            yaxis: {
+                scaleanchor: "x",
+                range: [-100, 100],
+                title: "y"
+            },
+            margin: {
+                l: 1, r: 1, b: 30, t: 10, pad: 1
+            },
+            // legend: {
+            //     x: 0, y: 10,
+            //     orientation: "h"
+            // },
+            // font: {
+            //     family: "Fira Sans",
+            //     size: 16
+            // }
         };
     }
     return new_layout;
@@ -147,28 +294,19 @@ function GetScalarData(A, Equation, x_max, PlotStep){
 
     switch (Equation){
         case "A": //reciprocal 
-            for (let i = -x_max; i <= x_max; i += PlotStep){
-                for (let j = -x_max; j <= x_max; j += PlotStep){
+            for (let j = -x_max; j <= x_max; j += PlotStep){
+                for (let i = -x_max; i <= x_max; i += PlotStep){
                     CurrentZ = A/(Math.sqrt(((1/(A))*i)**2 + ((1/(A))*j)**2));
                     inner_z.push(CurrentZ);
                 }
                 z.push(inner_z);
                 inner_z = [];
             }
-
-            // for (let i = -x_max/10; i <= x_max/10; i += PlotStep/10){
-            //     for (let j = -x_max/10; j <= x_max/10; j += PlotStep/10){
-            //         CurrentZ = A/(Math.sqrt(((1/(A))*i)**2 + ((1/(A))*j)**2));
-            //         inner_z.push(CurrentZ);
-            //     }
-            //     z.push(inner_z);
-            //     inner_z = [];
-            // }
             break;
 
         case "B":  //gaussian type
-            for (let i = -x_max; i <= x_max; i += PlotStep){
-                for (let j = -x_max; j <= x_max; j += PlotStep){
+            for (let j = -x_max; j <= x_max; j += PlotStep){
+                for (let i = -x_max; i <= x_max; i += PlotStep){
                     CurrentZ = A*Math.exp(-((i + 50)**2 + j**2)/(500)) - A*Math.exp(-((i - 50)**2 + j**2)/(500));
                     inner_z.push(CurrentZ);  
                 }
@@ -178,9 +316,9 @@ function GetScalarData(A, Equation, x_max, PlotStep){
             break;
 
         case "C": //cos type
-            for (let i = -x_max; i <= x_max; i += PlotStep){
-                for (let j = -x_max; j <= x_max; j += PlotStep){
-                    CurrentZ = A*Math.cos(0.1*i);
+            for (let j = -x_max; j <= x_max; j += PlotStep){
+                for (let i = -x_max; i <= x_max; i += PlotStep){
+                    CurrentZ = A*Math.cos(0.05*i);
                     inner_z.push(CurrentZ);
                 }
                 z.push(inner_z);
@@ -194,7 +332,14 @@ function GetScalarData(A, Equation, x_max, PlotStep){
         x: x,
         y: y,
         z: z,
-        showscale: false
+        showscale: false,
+        hoverinfo: "skip",
+        //usecolormap: false,
+        // diffuse: 0,
+        // roughness: 0,
+        // specular: 0,
+        // fresnel: 0
+        //connectgaps: true
     }];
 
     return ScalarData;
@@ -263,7 +408,7 @@ function GetVectorData(A, Equation, x_max, PlotStep){
                     ArrowData = [x, y];
 
                     CurrentArrow = new Arrow(ArrowData[0][0], ArrowData[1][0], ArrowData[0][1], ArrowData[1][1], 2);
-                    LineStuff = CurrentArrow.GetDrawData();
+                    LineStuff = CurrentArrow.GetDrawData2D();
                     
                     VectorData.push(LineStuff[0]);
                     VectorData.push(LineStuff[1]);
@@ -294,7 +439,7 @@ function GetVectorData(A, Equation, x_max, PlotStep){
                     ArrowData = [x, y];
 
                     CurrentArrow = new Arrow(ArrowData[0][0], ArrowData[1][0], ArrowData[0][1], ArrowData[1][1], 2);
-                    LineStuff = CurrentArrow.GetDrawData();
+                    LineStuff = CurrentArrow.GetDrawData2D();
                     
                     VectorData.push(LineStuff[0]);
                     VectorData.push(LineStuff[1]);
@@ -312,7 +457,7 @@ function GetVectorData(A, Equation, x_max, PlotStep){
                     x[0] = i;
                     y[0] = j;
                     
-                    b = 0.1;
+                    b = 0.05;
                     x2 = -A*b*Math.sin(b*x[0]);
                     y2 = 0;
                             
@@ -325,7 +470,7 @@ function GetVectorData(A, Equation, x_max, PlotStep){
                     ArrowData = [x, y];
 
                     CurrentArrow = new Arrow(ArrowData[0][0], ArrowData[1][0], ArrowData[0][1], ArrowData[1][1], 2);
-                    LineStuff = CurrentArrow.GetDrawData();
+                    LineStuff = CurrentArrow.GetDrawData2D();
     
                     VectorData.push(LineStuff[0]);
                     VectorData.push(LineStuff[1]);
@@ -362,7 +507,6 @@ function GetArrowPoints(x1, y1, Equation, A){
             b = 1/500;
             x2 = 2*A*b*((x1 - c)*Math.exp(-b*((x1 - c)**2 + y1**2))-(x1 + c)*Math.exp(-b*((x1 + c)**2 + y1**2)));
             y2 = 2*A*b*y1*(Math.exp(-b*((x1 - c)**2 + y1**2))-Math.exp(-b*((x1 + c)**2 + y1**2)));
-
             break;
 
         case "C": //cos type
@@ -406,13 +550,13 @@ function DisplayEquations(Equation){
 }
 
 function UpdatePlots(ScalarData, VectorData){
-    Plotly.react('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)', 'scalar'));
-    Plotly.react('Vector_Graph_1a', VectorData, setLayout('x', 'y', '', 'vector'));
+    Plotly.react('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)', 'Scalar'));
+    Plotly.react('Vector_Graph_1a', VectorData, setLayout('x', 'y', 'Vector2D'));
 }
 
 function NewPlots(ScalarData, VectorData){
-    Plotly.newPlot('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)', 'scalar'));
-    Plotly.newPlot('Vector_Graph_1a', VectorData, setLayout('x', 'y', '', 'vector'));
+    Plotly.newPlot('Scalar_Graph_1a', ScalarData, setLayout('x', 'y', 'f(x,y)', 'Scalar'));
+    Plotly.newPlot('Vector_Graph_1a', VectorData, setLayout('x', 'y', 'Vector2D'));
 }
 
 
@@ -431,7 +575,7 @@ function GetNewInputs(){
 function Refresh(PlotNew = false){
     //Define a few constants
     let x_max = 100; //max x value permitted on graph.  Will be mirrored and also same in y
-    let ScalarPlotStep = 5;//x_max/100; //distance between points that are plotted
+    let ScalarPlotStep = 2;//x_max/100; //distance between points that are plotted
     let VectorPlotStep = 20;
 
 

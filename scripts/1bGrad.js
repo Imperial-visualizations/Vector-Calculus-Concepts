@@ -1,104 +1,103 @@
+//Below prepares the x,y coordinate data to be calculated, depending on the plot step.
+
 function setupSurfaceData(xMin, xMax, yMin, yMax, plotStep){
-    let xScalar1b = [];
-    let yScalar1b = [];
+    let xSurface = [];
+    let ySurface = [];
 
     for (let i = xMin; i <= xMax; i += plotStep){
-        xScalar1b.push(i);
+        xSurface.push(i);
     };
 
     for (let j = yMin; j <= yMax; j += plotStep){
-        yScalar1b.push(j);
+        ySurface.push(j);
     };
 
-    return [xScalar1b , yScalar1b]
+    return [xSurface , ySurface]
 };
 
+//Line 1 is the horizontal line where y = 0.
+//Line 2 is a sinusodial path.
+function setupLineAData(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep) {
+    let xLine = [];
+    let yLine = [];
+
+    for (let i = xLineMin; i <= xLineMax; i += plotLineStep){
+        xLine.push(i);
+    };
+
+    for (let j = xLineMin; j <= xLineMax; j += plotLineStep){
+        yLine.push(0);
+    };
+
+    return [xLine , yLine]
+};
+
+//path2 draws sinusodial line.
 function path2(x){
     return 10 * Math.sin( (2*Math.PI/42) * (x+16) )
 };
 
-function setupLine1Data(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep) {         //line1; across the mountain. y is kept at 0
-    let xScalarLine1_1b = [];
-    let yScalarLine1_1b = [];
+function setupLineBData(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep){
+    let xLine = [];
+    let yLine = [];
 
     for (let i = xLineMin; i <= xLineMax; i += plotLineStep){
-        xScalarLine1_1b.push(i);
+        xLine.push(i);
+        yLine.push( path2(i) );
     };
-
-    for (let j = xLineMin; j <= xLineMax; j += plotLineStep){
-        yScalarLine1_1b.push(0);
-    };
-
-    return [xScalarLine1_1b , yScalarLine1_1b]
+    return [xLine , yLine]
 };
 
-function setupLine2Data(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep){
-    let xScalarLine2_1b = [];
-    let yScalarLine2_1b = [];
+//Below we calculate the function values f(x,y).
 
-    for (let i = xLineMin; i <= xLineMax; i += plotLineStep){
-        xScalarLine2_1b.push(i);
-        yScalarLine2_1b.push( path2(i) );
-    };
-        console.log([xScalarLine2_1b , yScalarLine2_1b]);
-    return [xScalarLine2_1b , yScalarLine2_1b]
-};
-
-function gaussian1b (a, sigma, xScalar1b,yScalar1b){
-    let zScalar1b = [];
-    for (let xValue in xScalar1b){
-        let zArray = [];
-        for (let yValue in yScalar1b){
-            zArray.push(a*Math.exp(-1*(xScalar1b[xValue]**2 + yScalar1b[yValue]**2)/(2*sigma**2)));
-        };
-        zScalar1b.push(zArray);
-    };
-    return zScalar1b;
-};
-
-function gaussianLine1b (a, sigma, xScalarLine1_1b, yScalarLine1_1b){
-    let zScalarLine1_1b = [];
-    for (let xValue in xScalarLine1_1b){
-            zScalarLine1_1b.push(a*Math.exp(-1*(xScalarLine1_1b[xValue]**2 + yScalarLine1_1b[xValue]**2)/(2*sigma**2)));
-        };
-    return zScalarLine1_1b;
-};
-
-function gaussianPoint1b (a, sigma, xPos, yPos){
-    let zPos = [];
-    zPos.push(a*Math.exp(-1*(xPos**2 + yPos**2)/(2*sigma**2)));
-    return zPos;
-};
-
-function reciprocalSurface (a,xSurface,ySurface){
+//for surface plot.
+function gaussianSurface1b (a, sigma, xSurface,ySurface){
     let zSurface = [];
-        for (let xValue in xSurface){
-            let zArray = [];
-            for (let yValue in ySurface){
-                zArray.push(a/Math.sqrt(xSurface[xValue]**2 + ySurface[yValue]**2)/(2*sigma**2)));
-            };
-            zScalar1b.push(zArray);
+    for (let xValue in xSurface){
+        let zArray = [];
+        for (let yValue in ySurface){
+            zArray.push(a*Math.exp(-1*(xSurface[xValue]**2 + ySurface[yValue]**2)/(2*sigma**2)));
         };
-        return zScalar1b;
+        zSurface.push(zArray);
+    };
+    return zSurface;
 };
 
-function dataCompile(xScalar1b,yScalar1b,zScalar1b){
-     let dataPlot = {
-                         x: xScalar1b,
-                         y: yScalar1b,
-                         z: zScalar1b,
+//for line plot.
+function gaussianLine1b (a, sigma, xLine, yLine){
+    let zLine = [];
+    for (let xValue in xLine){
+            zLine.push(a*Math.exp(-1*(xLine[xValue]**2 + yLine[xValue]**2)/(2*sigma**2)));
+        };
+    return zLine;
+};
+
+//for point plot.
+function gaussianPoint1b (a, sigma, xPoint, yPoint){
+    let zPoint = [];
+    zPoint.push(a*Math.exp(-1*(xPoint**2 + yPoint**2)/(2*sigma**2)));
+    return zPoint;
+};
+
+//Below we prepare the data in the structure that plotly takes.
+function dataSurfaceCompile(xSurface,ySurface,zSurface){
+     let dataSurface = {
+                         x: xSurface,
+                         y: ySurface,
+                         z: zSurface,
                          type: 'surface',
                          name: 'Scalar Field',
                          showscale: false
                      };
-    return dataPlot
+     $("#functionValueA").text("sdfghjkl");
+    return dataSurface
 };
 
-function dataLine1Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b){
-    let dataPlot = {
-                         x:xScalarLine1_1b,
-                         y:yScalarLine1_1b,
-                         z:zScalarLine1_1b,
+function dataLineACompile(xLine, yLine, zLine){
+    let dataLine = {
+                         x:xLine,
+                         y:yLine,
+                         z:zLine,
                          type: 'scatter3d',
                          mode: 'lines',
                          line: {
@@ -108,14 +107,14 @@ function dataLine1Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b){
                          name: 'Path 1',
                          showscale: false
                      };
-    return dataPlot
+    return dataLine
 };
 
-function dataLine2Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b){
-    let dataPlot = {
-                         x:xScalarLine1_1b,
-                         y:yScalarLine1_1b,
-                         z:zScalarLine1_1b,
+function dataLineBCompile(xLine, yLine, zLine){
+    let dataLine = {
+                         x:xLine,
+                         y:yLine,
+                         z:zLine,
                          type: 'scatter3d',
                          mode: 'lines',
                          line: {
@@ -125,24 +124,39 @@ function dataLine2Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b){
                          name: 'Path 2',
                          showscale: false
                      };
-    return dataPlot
+    return dataLine
 };
 
+function selectEquation(){
+    return document.getElementById("Function_Selector").value
+};
 
-function testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xScalarLine2_1b, yScalarLine2_1b,
-                    xLineMin, yLineMin, xLineMax, yLineMax, xPos, a1b, sigma1b, layout_1b){
-    let zScalarPlot = gaussian1b(a1b, sigma1b, xScalarPlot, yScalarPlot);
-    let zScalarLine1_1b = gaussianLine1b(a1b, sigma1b, xScalarLine1_1b, yScalarLine1_1b);
-    let zScalarLine2_1b = gaussianLine1b(a1b, sigma1b, xScalarLine2_1b, yScalarLine2_1b);
+function reciprocal(a,xSurface,ySurface){
+    let zSurface = [];
+    for (let xValue in xSurface){
+            let zArray = [];
+            for (let yValue in ySurface){
+                zArray.push(a/(Math.sqrt( (xSurface[xValue]**2 + ySurface[yValue]**2) )));
+            };
+            zSurface.push(zArray);
+        };
+    return zSurface;
+};
 
-    let dataLine1_1b = dataLine1Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b);
-    let dataLine2_1b = dataLine2Compile(xScalarLine2_1b, yScalarLine2_1b, zScalarLine2_1b);
-    let dataPlot1b = dataCompile(xScalarPlot, yScalarPlot, zScalarPlot);
+function initialPlot(xSurface, ySurface, xLineA, yLineA, xLineB, yLineB,
+                    xLineMin, yLineMin, xLineMax, yLineMax, xPoint, a, sigma, layout){
+    let zSurface = gaussianSurface1b(a, sigma, xSurface, ySurface);
+    let zLineA = gaussianLine1b(a, sigma, xLineA, yLineA);
+    let zLineB = gaussianLine1b(a, sigma, xLineB, yLineB);
+
+    let dataLineA = dataLineACompile(xLineA, yLineA, zLineA);
+    let dataLineB = dataLineBCompile(xLineB, yLineB, zLineB);
+    let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
 
     let dataPointA = {
                          x:[xLineMin],
                          y:[yLineMin],
-                         z:gaussianPoint1b(a1b, sigma1b, xLineMin, yLineMin),
+                         z:gaussianPoint1b(a, sigma, xLineMin, yLineMin),
                          type: 'scatter3d',
                          mode: 'markers',
                          marker: {
@@ -156,7 +170,7 @@ function testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xS
     let dataPointB = {
                          x:[xLineMax],
                          y:[yLineMax],
-                         z:gaussianPoint1b(a1b, sigma1b, xLineMax, yLineMax),
+                         z:gaussianPoint1b(a, sigma, xLineMax, yLineMax),
                          type: 'scatter3d',
                          mode: 'markers',
                          marker: {
@@ -168,59 +182,58 @@ function testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xS
                      };
 
     let dataBallA = {
-                         x:[xPos],
+                         x:[xPoint],
                          y:[0],
-                         z:gaussianPoint1b(a1b, sigma1b, xPos, 0),
+                         z:gaussianPoint1b(a, sigma, xPoint, 0),
                          type: 'scatter3d',
                          mode: 'markers',
                          marker: {
                                 color: 'rgb(255,0,0)',
                                 size: 10
                               },
-                         name: 'Point B',
+                         name: "Ball A",
                          showscale: false
     };
 
     let dataBallB = {
-                     x:[xPos],
-                     y:[path2(xPos)],
-                     z:gaussianPoint1b(a1b, sigma1b, xPos, path2(xPos)),
+                     x:[xPoint],
+                     y:[path2(xPoint)],
+                     z:gaussianPoint1b(a, sigma, xPoint, path2(xPoint)),
                      type: 'scatter3d',
                      mode: 'markers',
                      marker: {
                             color: 'rgb(255,0,0)',
                             size: 10
                           },
-                     name: 'Point B',
+                     name: 'Ball B',
                      showscale: false
                      };
 
-    console.log(dataPointA);
-    Plotly.react('Scalar_Graph_1b', [dataPlot1b, dataLine1_1b, dataLine2_1b, dataPointA, dataPointB, dataBallA, dataBallB], layout_1b);
+    Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout);
 };
 
-function testPlot2 (){
 
-};
+function updatePlot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLineA,
+                    xLineB, yLineB, xLineMin, yLineMin, xLineMax, yLineMax, sigma, layout){
+    Equation = selectEquation();
 
-function updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
-                    xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b){
-    let a1b = parseFloat(document.getElementById('Slider_1').value);
-    let xPos = parseFloat(document.getElementById('Slider_2').value);
+    if (Equation === "Gaussian"){
+    let a = parseFloat(document.getElementById('Slider_1').value);
+    let xPoint = parseFloat(document.getElementById('Slider_2').value);
 
-    let zScalarPlot = gaussian1b(a1b, sigma1b, xScalarPlot, yScalarPlot);
-    dataPlot1b = dataCompile(xScalarPlot, yScalarPlot, zScalarPlot);
+    let zSurface = gaussianSurface1b(a, sigma, xSurface, ySurface);
+    let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
 
-    let zScalarLine1_1b = gaussianLine1b(a1b, sigma1b, xScalarLine1_1b, yScalarLine1_1b);
-    let dataLine1_1b = dataLine1Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b);
+    let zLineA = gaussianLine1b(a, sigma, xLineA, yLineA);
+    let dataLineA = dataLineACompile(xLineA, yLineA, zLineA);
 
-    let zScalarLine2_1b = gaussianLine1b(a1b, sigma1b, xScalarLine2_1b, yScalarLine2_1b);
-    let dataLine2_1b = dataLine2Compile(xScalarLine2_1b, yScalarLine2_1b, zScalarLine2_1b);
+    let zLineB = gaussianLine1b(a, sigma, xLineB, yLineB);
+    let dataLineB = dataLineBCompile(xLineB, yLineB, zLineB);
 
     let dataPointA = {
                          x:[xLineMin],
                          y:[yLineMin],
-                         z:gaussianPoint1b(a1b, sigma1b, xLineMin, yLineMin),
+                         z:gaussianPoint1b(a, sigma, xLineMin, yLineMin),
                          type: 'scatter3d',
                          mode: 'markers',
                          marker: {
@@ -233,7 +246,7 @@ function updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, 
     let dataPointB = {
                          x:[xLineMax],
                          y:[yLineMax],
-                         z:gaussianPoint1b(a1b, sigma1b, xLineMax, yLineMax),
+                         z:gaussianPoint1b(a, sigma, xLineMax, yLineMax),
                          type: 'scatter3d',
                          mode: 'markers',
                          marker: {
@@ -244,58 +257,122 @@ function updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, 
                      };
 
     let dataBallA = {
-                     x:[xPos],
+                     x:[xPoint],
                      y:[0],
-                     z:gaussianPoint1b(a1b, sigma1b, xPos, 0),
+                     z:gaussianPoint1b(a, sigma, xPoint, 0),
                      type: 'scatter3d',
                      mode: 'markers',
                      marker: {
                             color: 'rgb(255,0,0)',
                             size: 10
                           },
-                     name: 'Point B',
+                     name: false,
                      showscale: false
                      };
 
     let dataBallB = {
-                     x:[xPos],
-                     y:[path2(xPos)],
-                     z:gaussianPoint1b(a1b, sigma1b, xPos, path2(xPos)),
+                     x:[xPoint],
+                     y:[path2(xPoint)],
+                     z:gaussianPoint1b(a, sigma, xPoint, path2(xPoint)),
                      type: 'scatter3d',
                      mode: 'markers',
                      marker: {
                             color: 'rgb(255,0,0)',
                             size: 10
                           },
-                     name: 'Point B',
+                     name: false,
                      showscale: false
                      };
 
 //    let layout = layout_1b;
     Plotly.animate(
         'Scalar_Graph_1b', {
-        data: [dataPlot1b, dataLine1_1b, dataLine2_1b, dataPointA, dataPointB, dataBallA, dataBallB], layout: layout_1b,
-
-            fromcurrent: true,
-            transition: {duration: 0,},
-            frame: {duration: 0, redraw: false,},
-            mode: "immediate"
+        data: [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB],
+        layout: layout,
+        fromcurrent: true,
+        transition: {duration: 0,},
+        frame: {duration: 0, redraw: false,},
+        mode: "immediate"
         }
     );
+    $("#functionValueA").text("sdfghjkl");
+    }
 
-//    Plotly.animate(
-//        'Scalar_Graph_1b', {
-//        data: [dataLine1_1b], layout: layout_1b,
-//
-//            fromcurrent: true,
-//            transition: {duration: 0,},
-//            frame: {duration: 0, redraw: true,},
-//            mode: "immediate"
-//        }
-//    );
+    else if (Equation === "Reciprocal"){
+
+    let a = 100 ;
+    let xPoint = parseFloat(document.getElementById('Slider_2').value);
+
+    let zLineA = gaussianLine1b(a, sigma, xLineA, yLineA);
+    let dataLineA = dataLineACompile(xLineA, yLineA, zLineA);
+
+    let zLineB = gaussianLine1b(a, sigma, xLineB, yLineB);
+    let dataLineB = dataLineBCompile(xLineB, yLineB, zLineB);
+
+    let dataPointA = {
+                         x:[xLineMin],
+                         y:[yLineMin],
+                         z:gaussianPoint1b(a, sigma, xLineMin, yLineMin),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(238,130,238)',
+                                size: 10
+                              },
+                         showscale: false
+                     };
+
+    let dataPointB = {
+                         x:[xLineMax],
+                         y:[yLineMax],
+                         z:gaussianPoint1b(a, sigma, xLineMax, yLineMax),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(192,192,192)',
+                                size: 10,
+                              },
+                         showscale: false
+                     };
+
+    let dataBallA = {
+                     x:[xPoint],
+                     y:[0],
+                     z:gaussianPoint1b(a, sigma, xPoint, 0),
+                     type: 'scatter3d',
+                     mode: 'markers',
+                     marker: {
+                            color: 'rgb(255,0,0)',
+                            size: 10
+                          },
+                     name: false,
+                     showscale: false
+                     };
+
+    let dataBallB = {
+                     x:[xPoint],
+                     y:[path2(xPoint)],
+                     z:gaussianPoint1b(a, sigma, xPoint, path2(xPoint)),
+                     type: 'scatter3d',
+                     mode: 'markers',
+                     marker: {
+                            color: 'rgb(255,0,0)',
+                            size: 10
+                          },
+                     name: false,
+                     showscale: false
+                     };
+
+    let zSurface = reciprocal(a, xSurface, ySurface);
+    let dataSurface = dataSurfaceCompile(xSurface,ySurface,zSurface);
+
+    Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout)
+    };
 };
 
+
 function main(){
+console.log("yeet")
     let a1b = 5;
     let sigma1b = 10;
     let xMin = -20;
@@ -336,29 +413,24 @@ function main(){
             },
         };
 
-    let ScalarPlot = setupSurfaceData(xMin, xMax, yMin, yMax, plotStep);
-    let xScalarPlot = ScalarPlot[0];
-    let yScalarPlot = ScalarPlot[1];
+    let xySurface = setupSurfaceData(xMin, xMax, yMin, yMax, plotStep);
+    let xScalarPlot = xySurface[0];
+    let yScalarPlot = xySurface[1];
 
-    let ScalarLine1Plot = setupLine1Data(xLineMin, xLineMax, xLineMin, xLineMax, plotLineStep);
+    let ScalarLine1Plot = setupLineAData(xLineMin, xLineMax, xLineMin, xLineMax, plotLineStep);
     let xScalarLine1_1b = ScalarLine1Plot[0];
     let yScalarLine1_1b = ScalarLine1Plot[1];
 
-    let ScalarLine2Plot = setupLine2Data(xLineMin, xLineMax, xLineMin, xLineMax, plotLineStep);
+    let ScalarLine2Plot = setupLineBData(xLineMin, xLineMax, xLineMin, xLineMax, plotLineStep);
     let xScalarLine2_1b = ScalarLine2Plot[0];
     let yScalarLine2_1b = ScalarLine2Plot[1];
-    console.log(ScalarLine2Plot)
 
-    testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xScalarLine2_1b, yScalarLine2_1b,
+    let Equation = selectEquation();
+
+    initialPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xScalarLine2_1b, yScalarLine2_1b,
              xLineMin, yLineMin, xLineMax, yLineMax, xPos, a1b, sigma1b,layout_1b);
-//    testLinePlot(xScalarLine1_1b, yScalarLine1_1b, a1b, sigma1b, layout_1b);
-//    $('#Slider_1').on("input", function(){
-//        //update plots when coefficient changed
-//        $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
-//        updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
-//        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b);
-//    });
 
+//jQuery to update the plot as the value of the slider changes.
     $("input[type=range]").each(function () {
         /*Allows for live update for display values*/
         $(this).on('input', function(){
@@ -370,12 +442,12 @@ function main(){
         });
 
     });
-//    $('#Slider_2').on("input", function(){
-//        //update plots when coefficient changed
-//        $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
-//        updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
-//        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b);
-//    });
+
+    $('#Function_Selector').on("input", function(){
+        //update plots when function is changed
+        updatePlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xScalarLine2_1b, yScalarLine2_1b,
+             xLineMin, yLineMin, xLineMax, yLineMax, xPos, a1b, sigma1b, layout_1b);
+    });
 };
 
 $(document).ready(main); //Load setup when document is ready.

@@ -101,6 +101,31 @@ function reciprocalPoint1b (a, xPoint, yPoint){
     return a/Math.sqrt(xPoint**2 + yPoint**2)
 };
 
+function sinusodialSurface1b (a, xSurface, ySurface){
+    let zSurface = [];
+    for (let xValue in xSurface){
+            let zArray = [];
+            for (let yValue in ySurface){
+                zArray.push(0.8* a * Math.sin(2* Math.PI/12 * xSurface[xValue]) );
+            };
+            zSurface.push(zArray);
+        };
+    return zSurface;
+};
+
+function sinusodialLine1b (a, xLine, yLine) {
+    let zLine = [];
+    for (let yValue in yLine){
+            zLine.push(0.8 * a * Math.sin(2* Math.PI/12 * yLine[yValue]) );
+        };
+    return zLine;
+};
+
+function sinusodialPoint1b (a, xPoint, yPoint){
+    return 0.8 * a * Math.sin(2* Math.PI/12 * yPoint)
+};
+
+
 //Below we prepare the data in the structure that plotly takes.
 function dataSurfaceCompile(xSurface,ySurface,zSurface){
      let dataSurface = {
@@ -223,67 +248,97 @@ function updatePlot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA
 
     if (equation === "Gaussian"){
 
-    let zSurface = gaussianSurface1b(a, sigma, xSurface, ySurface);
-    let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
+        let zSurface = gaussianSurface1b(a, sigma, xSurface, ySurface);
+        let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
 
-    let zLineA = gaussianLine1b(a, sigma, xLineA, yLineA);
-    let dataLineA = dataLineACompile(xLineA, yLineA, zLineA);
+        let zLineA = gaussianLine1b(a, sigma, xLineA, yLineA);
+        let dataLineA = dataLineACompile(xLineA, yLineA, zLineA);
 
-    let zLineB = gaussianLine1b(a, sigma, xLineB, yLineB);
-    let dataLineB = dataLineBCompile(xLineB, yLineB, zLineB);
+        let zLineB = gaussianLine1b(a, sigma, xLineB, yLineB);
+        let dataLineB = dataLineBCompile(xLineB, yLineB, zLineB);
 
-    let zPointA = gaussianPoint1b(a, sigma, xPointA, yPointA);
-    let zPointB = gaussianPoint1b(a, sigma, xPointB, yPointB);
+        let zPointA = gaussianPoint1b(a, sigma, xPointA, yPointA);
+        let zPointB = gaussianPoint1b(a, sigma, xPointB, yPointB);
 
-    let dataPointA = dataPointACompile(xPointA, yPointA, zPointA);
-    let dataPointB = dataPointBCompile(xPointB, yPointB, zPointB);
+        let dataPointA = dataPointACompile(xPointA, yPointA, zPointA);
+        let dataPointB = dataPointBCompile(xPointB, yPointB, zPointB);
 
-    let zBallA = gaussianPoint1b(a, sigma, xBallA, yBallA);
+        let zBallA = gaussianPoint1b(a, sigma, xBallA, yBallA);
 
-    let zBallB = gaussianPoint1b(a, sigma, xBallB, yBallB);
+        let zBallB = gaussianPoint1b(a, sigma, xBallB, yBallB);
 
-    let dataBallA = dataBallCompile(xBallA, yBallA, zBallA);
+        let dataBallA = dataBallCompile(xBallA, yBallA, zBallA);
 
-    let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
+        let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
 
-//    let layout = layout_1b;
-    Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout)
+    //    let layout = layout_1b;
+        Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout)
     }
 
     else if (equation === "Reciprocal"){
 
-    a = a * 5;
-//    let a = parseFloat(document.getElementById('Slider_1').value);
-//    let xPoint = parseFloat(document.getElementById('Slider_2').value);
+        a = a * 4;
+    //    let a = parseFloat(document.getElementById('Slider_1').value);
+    //    let xPoint = parseFloat(document.getElementById('Slider_2').value);
 
-    let zSurface = reciprocalSurface1b(a, xSurface, ySurface);
-    let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
+        let zSurface = reciprocalSurface1b(a, xSurface, ySurface);
+        let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
 
-    let zLineA = reciprocalLine1b(a, xLineA, yLineA);
-    let dataLineA = dataLineACompile(xLineA, yLineA, zLineA);
+        let zLineA = reciprocalLine1b(a, xLineA, yLineA);
+        let dataLineA = dataLineACompile(xLineA, yLineA, zLineA);
 
-    let zLineB = reciprocalLine1b(a, xLineB, yLineB);
-    let dataLineB = dataLineBCompile(xLineB, yLineB, zLineB);
+        let zLineB = reciprocalLine1b(a, xLineB, yLineB);
+        let dataLineB = dataLineBCompile(xLineB, yLineB, zLineB);
 
-    let zPointA = reciprocalPoint1b(a, xPointA, yPointA);
-    let zPointB = reciprocalPoint1b(a, xPointB, yPointB);
+        let zPointA = reciprocalPoint1b(a, xPointA, yPointA);
+        let zPointB = reciprocalPoint1b(a, xPointB, yPointB);
 
-    let dataPointA = dataPointACompile(xPointA, yPointA, zPointA);
-    let dataPointB = dataPointBCompile(xPointB, yPointB, zPointB);
+        let dataPointA = dataPointACompile(xPointA, yPointA, zPointA);
+        let dataPointB = dataPointBCompile(xPointB, yPointB, zPointB);
 
-    let zBallA = reciprocalPoint1b(a, xBallA, yBallA);
+        let zBallA = reciprocalPoint1b(a, xBallA, yBallA);
 
-    let zBallB = reciprocalPoint1b(a, xBallB, yBallB);
+        let zBallB = reciprocalPoint1b(a, xBallB, yBallB);
 
-    let dataBallA = dataBallCompile(xBallA, yBallA, zBallA);
+        let dataBallA = dataBallCompile(xBallA, yBallA, zBallA);
 
-    let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
+        let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
 
 
 
-    console.log(dataSurface);
+        console.log(dataSurface);
+        Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout)
+    } else if (equation === "Sinusodial") {
+
+        let zSurface = sinusodialSurface1b(a, xSurface, ySurface);
+        let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
+
+        let zLineA = sinusodialLine1b(a, xLineA, yLineA);
+        let dataLineA = dataLineACompile(xLineA, yLineA, zLineA);
+
+        let zLineB = sinusodialLine1b(a, xLineB, yLineB);
+        let dataLineB = dataLineBCompile(xLineB, yLineB, zLineB);
+
+        let zPointA = sinusodialPoint1b(a, xPointA, yPointA);
+        let zPointB = sinusodialPoint1b(a, xPointB, yPointB);
+
+        let dataPointA = dataPointACompile(xPointA, yPointA, zPointA);
+        let dataPointB = dataPointBCompile(xPointB, yPointB, zPointB);
+
+        let zBallA = sinusodialPoint1b(a, xBallA, yBallA);
+
+        let zBallB = sinusodialPoint1b(a, xBallB, yBallB);
+
+        let dataBallA = dataBallCompile(xBallA, yBallA, zBallA);
+
+        let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
+
+
+
+    console.log(zSurface);
     Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout)
-    };
+
+    }
 };
 
 
@@ -294,7 +349,7 @@ function main(){
     let xMax = 20;
     let yMin = -20;
     let yMax = 20;
-    let plotStep = 2.1;
+    let plotStep = 0.33;
     let plotLineStep = 0.1;
 
     let xLineMin = -16;

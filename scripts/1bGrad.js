@@ -13,19 +13,35 @@ function setupSurfaceData(xMin, xMax, yMin, yMax, plotStep){
     return [xScalar1b , yScalar1b]
 };
 
-function setupLine1Data(xMin, xMax, yMin, yMax, plotStep) {         //line1; across the mountain. y is kept at 0
+function path2(x){
+    return 10 * Math.sin( (2*Math.PI/42) * (x+16) )
+};
+
+function setupLine1Data(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep) {         //line1; across the mountain. y is kept at 0
     let xScalarLine1_1b = [];
     let yScalarLine1_1b = [];
 
-    for (let i = xMin; i <= xMax; i += plotStep){
+    for (let i = xLineMin; i <= xLineMax; i += plotLineStep){
         xScalarLine1_1b.push(i);
     };
 
-    for (let j = yMin; j <= yMax; j += plotStep){
+    for (let j = xLineMin; j <= xLineMax; j += plotLineStep){
         yScalarLine1_1b.push(0);
     };
 
     return [xScalarLine1_1b , yScalarLine1_1b]
+};
+
+function setupLine2Data(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep){
+    let xScalarLine2_1b = [];
+    let yScalarLine2_1b = [];
+
+    for (let i = xLineMin; i <= xLineMax; i += plotLineStep){
+        xScalarLine2_1b.push(i);
+        yScalarLine2_1b.push( path2(i) );
+    };
+        console.log([xScalarLine2_1b , yScalarLine2_1b]);
+    return [xScalarLine2_1b , yScalarLine2_1b]
 };
 
 function gaussian1b (a, sigma, xScalar1b,yScalar1b){
@@ -48,18 +64,25 @@ function gaussianLine1b (a, sigma, xScalarLine1_1b, yScalarLine1_1b){
     return zScalarLine1_1b;
 };
 
+function gaussianPoint1b (a, sigma, xPos, yPos){
+    let zPos = [];
+    zPos.push(a*Math.exp(-1*(xPos**2 + yPos**2)/(2*sigma**2)));
+    return zPos;
+};
+
 function dataCompile(xScalar1b,yScalar1b,zScalar1b){
      let dataPlot = {
                          x: xScalar1b,
                          y: yScalar1b,
                          z: zScalar1b,
                          type: 'surface',
+                         name: 'Scalar Field',
                          showscale: false
                      };
     return dataPlot
 };
 
-function dataLineCompile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b){
+function dataLine1Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b){
     let dataPlot = {
                          x:xScalarLine1_1b,
                          y:yScalarLine1_1b,
@@ -67,50 +90,179 @@ function dataLineCompile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b){
                          type: 'scatter3d',
                          mode: 'lines',
                          line: {
-                                color: 'rgb(0, 0, 0)',
+                                color: 'rgb(255,255,0)',
                                 width: 10
                               },
+                         name: 'Path 1',
                          showscale: false
                      };
     return dataPlot
 };
 
-function testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, a1b, sigma1b, layout_1b){
-    let zScalarPlot = gaussian1b(a1b, sigma1b, xScalarPlot, yScalarPlot);
-    let zScalarLine1_1b = gaussianLine1b(a1b, sigma1b, xScalarLine1_1b, yScalarLine1_1b);
-
-    let dataLine1_1b = dataLineCompile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b);
-    let dataPlot1b = dataCompile(xScalarPlot, yScalarPlot, zScalarPlot);
-
-    console.log(dataLine1_1b);
-    Plotly.react('Scalar_Graph_1b', [dataPlot1b, dataLine1_1b], layout_1b);
+function dataLine2Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b){
+    let dataPlot = {
+                         x:xScalarLine1_1b,
+                         y:yScalarLine1_1b,
+                         z:zScalarLine1_1b,
+                         type: 'scatter3d',
+                         mode: 'lines',
+                         line: {
+                                color: 'rgb(173,255,47)',
+                                width: 10
+                              },
+                         name: 'Path 2',
+                         showscale: false
+                     };
+    return dataPlot
 };
 
-function testLinePlot (xScalarLine1_1b, yScalarLine1_1b, a1b, sigma1b, layout_1b){
-    let zScalarLine1_1b = gaussian1b(a1b, sigma1b, xScalarLine1_1b, yScalarLine1_1b);
 
-    let dataLine1_1b = dataLineCompile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b);
+function testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xScalarLine2_1b, yScalarLine2_1b,
+                    xLineMin, yLineMin, xLineMax, yLineMax, xPos, a1b, sigma1b, layout_1b){
+    let zScalarPlot = gaussian1b(a1b, sigma1b, xScalarPlot, yScalarPlot);
+    let zScalarLine1_1b = gaussianLine1b(a1b, sigma1b, xScalarLine1_1b, yScalarLine1_1b);
+    let zScalarLine2_1b = gaussianLine1b(a1b, sigma1b, xScalarLine2_1b, yScalarLine2_1b);
 
-    Plotly.react('Scalar_Graph_1b', dataLine1_1b, layout_1b, {showSendToCloud: true});
+    let dataLine1_1b = dataLine1Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b);
+    let dataLine2_1b = dataLine2Compile(xScalarLine2_1b, yScalarLine2_1b, zScalarLine2_1b);
+    let dataPlot1b = dataCompile(xScalarPlot, yScalarPlot, zScalarPlot);
+
+    let dataPointA = {
+                         x:[xLineMin],
+                         y:[yLineMin],
+                         z:gaussianPoint1b(a1b, sigma1b, xLineMin, yLineMin),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(238,130,238)',
+                                size: 10
+                              },
+                         name: 'Point A',
+                         showscale: false
+                     };
+
+    let dataPointB = {
+                         x:[xLineMax],
+                         y:[yLineMax],
+                         z:gaussianPoint1b(a1b, sigma1b, xLineMax, yLineMax),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(192,192,192)',
+                                size: 10
+                              },
+                         name: 'Point B',
+                         showscale: false
+                     };
+
+    let dataBallA = {
+                         x:[xPos],
+                         y:[0],
+                         z:gaussianPoint1b(a1b, sigma1b, xPos, 0),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(255,0,0)',
+                                size: 10
+                              },
+                         name: 'Point B',
+                         showscale: false
+    };
+
+    let dataBallB = {
+                     x:[xPos],
+                     y:[path2(xPos)],
+                     z:gaussianPoint1b(a1b, sigma1b, xPos, path2(xPos)),
+                     type: 'scatter3d',
+                     mode: 'markers',
+                     marker: {
+                            color: 'rgb(255,0,0)',
+                            size: 10
+                          },
+                     name: 'Point B',
+                     showscale: false
+                     };
+
+    console.log(dataPointA);
+    Plotly.react('Scalar_Graph_1b', [dataPlot1b, dataLine1_1b, dataLine2_1b, dataPointA, dataPointB, dataBallA, dataBallB], layout_1b);
 };
 
 function testPlot2 (){
 
 };
 
-function updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, sigma1b,layout_1b){
+function updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
+                    xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b){
     let a1b = parseFloat(document.getElementById('Slider_1').value);
+    let xPos = parseFloat(document.getElementById('Slider_2').value);
 
     let zScalarPlot = gaussian1b(a1b, sigma1b, xScalarPlot, yScalarPlot);
     dataPlot1b = dataCompile(xScalarPlot, yScalarPlot, zScalarPlot);
 
     let zScalarLine1_1b = gaussianLine1b(a1b, sigma1b, xScalarLine1_1b, yScalarLine1_1b);
-    let dataLine1_1b = dataLineCompile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b);
+    let dataLine1_1b = dataLine1Compile(xScalarLine1_1b, yScalarLine1_1b, zScalarLine1_1b);
+
+    let zScalarLine2_1b = gaussianLine1b(a1b, sigma1b, xScalarLine2_1b, yScalarLine2_1b);
+    let dataLine2_1b = dataLine2Compile(xScalarLine2_1b, yScalarLine2_1b, zScalarLine2_1b);
+
+    let dataPointA = {
+                         x:[xLineMin],
+                         y:[yLineMin],
+                         z:gaussianPoint1b(a1b, sigma1b, xLineMin, yLineMin),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(238,130,238)',
+                                size: 10
+                              },
+                         showscale: false
+                     };
+
+    let dataPointB = {
+                         x:[xLineMax],
+                         y:[yLineMax],
+                         z:gaussianPoint1b(a1b, sigma1b, xLineMax, yLineMax),
+                         type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(192,192,192)',
+                                size: 10,
+                              },
+                         showscale: false
+                     };
+
+    let dataBallA = {
+                     x:[xPos],
+                     y:[0],
+                     z:gaussianPoint1b(a1b, sigma1b, xPos, 0),
+                     type: 'scatter3d',
+                     mode: 'markers',
+                     marker: {
+                            color: 'rgb(255,0,0)',
+                            size: 10
+                          },
+                     name: 'Point B',
+                     showscale: false
+                     };
+
+    let dataBallB = {
+                     x:[xPos],
+                     y:[path2(xPos)],
+                     z:gaussianPoint1b(a1b, sigma1b, xPos, path2(xPos)),
+                     type: 'scatter3d',
+                     mode: 'markers',
+                     marker: {
+                            color: 'rgb(255,0,0)',
+                            size: 10
+                          },
+                     name: 'Point B',
+                     showscale: false
+                     };
 
 //    let layout = layout_1b;
     Plotly.animate(
         'Scalar_Graph_1b', {
-        data: [dataPlot1b, dataLine1_1b], layout: layout_1b,
+        data: [dataPlot1b, dataLine1_1b, dataLine2_1b, dataPointA, dataPointB, dataBallA, dataBallB], layout: layout_1b,
 
             fromcurrent: true,
             transition: {duration: 0,},
@@ -139,8 +291,17 @@ function main(){
     let yMin = -20;
     let yMax = 20;
     let plotStep = 2;
+    let plotLineStep = 0.1;
+
+    let xLineMin = -16;
+    let xLineMax = 5;
+    let yLineMin = 0;
+    let yLineMax = 0;
+
+    let xPos = xLineMin;
+
     const layout_1b = {
-            title: 'Mt Bruno Elevation',
+            title: 'YEET',
             autosize: false,
             width: 500,
             height: 500,
@@ -149,7 +310,7 @@ function main(){
                         r: 50,
                         b: 65,
                         t: 90},
-            dragmode: 'orbit',
+            dragmode: 'turntable',
             scene: {
                 aspectmode: "cube",
                 xaxis: {range: [xMin, xMax], title: 'x'},
@@ -167,17 +328,42 @@ function main(){
     let xScalarPlot = ScalarPlot[0];
     let yScalarPlot = ScalarPlot[1];
 
-    let ScalarLine1Plot = setupLine1Data(xMin, xMax, yMin, yMax, plotStep);
+    let ScalarLine1Plot = setupLine1Data(xLineMin, xLineMax, xLineMin, xLineMax, plotLineStep);
     let xScalarLine1_1b = ScalarLine1Plot[0];
     let yScalarLine1_1b = ScalarLine1Plot[1];
 
-    testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, a1b, sigma1b,layout_1b);
+    let ScalarLine2Plot = setupLine2Data(xLineMin, xLineMax, xLineMin, xLineMax, plotLineStep);
+    let xScalarLine2_1b = ScalarLine2Plot[0];
+    let yScalarLine2_1b = ScalarLine2Plot[1];
+    console.log(ScalarLine2Plot)
+
+    testPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xScalarLine2_1b, yScalarLine2_1b,
+             xLineMin, yLineMin, xLineMax, yLineMax, xPos, a1b, sigma1b,layout_1b);
 //    testLinePlot(xScalarLine1_1b, yScalarLine1_1b, a1b, sigma1b, layout_1b);
-    $('#Slider_1').on("input", function(){
-        //update plots when coefficient changed
-        $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
-        updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, sigma1b,layout_1b);
+//    $('#Slider_1').on("input", function(){
+//        //update plots when coefficient changed
+//        $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
+//        updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
+//        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b);
+//    });
+
+    $("input[type=range]").each(function () {
+        /*Allows for live update for display values*/
+        $(this).on('input', function(){
+            //Displays: (FLT Value) + (Corresponding Unit(if defined))
+            $("#"+$(this).attr("id") + "Display").val( $(this).val());
+            //NB: Display values are restricted by their definition in the HTML to always display nice number.
+            updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
+        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b); //Updating the plot is linked with display (Just My preference)
+        });
+
     });
+//    $('#Slider_2').on("input", function(){
+//        //update plots when coefficient changed
+//        $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
+//        updatePlot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
+//        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, sigma1b,layout_1b);
+//    });
 };
 
 $(document).ready(main); //Load setup when document is ready.

@@ -212,6 +212,7 @@ function setLayout(sometitlex, sometitley, sometitlez, Mode){
         new_layout = {//layout of 3D graph
             showlegend: false,
             showscale: false,
+            uirevision: 'dataset',
             margin: {
                 l: 10, r: 10, b: 10, t: 1, pad: 0
             },
@@ -331,11 +332,15 @@ function GetScalarData(A, Equation, x_max, PlotStep){
 
     let ScalarData = [{
         type: 'surface',
+        // alphahull:5,
+        // opacity:0.8,
+        // color:'rgb(200,100,300)',
+        // type: "mesh3d",
         x: x,
         y: y,
         z: z,
-        showscale: false,
-        hoverinfo: "skip",
+        //showscale: false,
+        //hoverinfo: "skip",
         //usecolormap: false,
         // diffuse: 0,
         // roughness: 0,

@@ -82,7 +82,10 @@ function reciprocalSurface1b(a, xSurface, ySurface){
     for (let xValue in xSurface){
             let zArray = [];
             for (let yValue in ySurface){
-                zArray.push(a/Math.sqrt( xSurface[xValue]**2 + ySurface[yValue]**2 ));
+//                zArray.push(a*xSurface[xValue]*ySurface[yValue])
+//                  zArray.push(5)
+                zArray.push(a/(( xSurface[xValue]**2 + ySurface[yValue]**2)**0.5) );
+//        zArray.push(a)
             };
             zSurface.push(zArray);
         };
@@ -188,6 +191,7 @@ function dataPointACompile(xPoint, yPoint, zPoint){
                                 color: 'rgb(238,130,238)',
                                 size: 10
                               },
+                         name: "Point A",
                          showscale: false
     };
     return dataPoint
@@ -204,6 +208,7 @@ function dataPointBCompile(xPoint, yPoint, zPoint){
                                 color: 'rgb(192,192,192)',
                                 size: 10
                               },
+                         name: "Point B",
                          showscale: false
     };
     return dataPoint
@@ -220,7 +225,7 @@ function dataBallCompile(xBall, yBall, zBall){
                                 color: 'rgb(255,0,0)',
                                 size: 10
                               },
-                         name: false,
+                         name: "Ball",
                          showscale: false
                          };
     return dataBall
@@ -272,43 +277,9 @@ function updatePlot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA
         let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
 
     //    let layout = layout_1b;
-        Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout)
+        Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout);
     }
-
-    else if (equation === "Reciprocal"){
-
-        a = a * 4;
-    //    let a = parseFloat(document.getElementById('Slider_1').value);
-    //    let xPoint = parseFloat(document.getElementById('Slider_2').value);
-
-        let zSurface = reciprocalSurface1b(a, xSurface, ySurface);
-        let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
-
-        let zLineA = reciprocalLine1b(a, xLineA, yLineA);
-        let dataLineA = dataLineACompile(xLineA, yLineA, zLineA);
-
-        let zLineB = reciprocalLine1b(a, xLineB, yLineB);
-        let dataLineB = dataLineBCompile(xLineB, yLineB, zLineB);
-
-        let zPointA = reciprocalPoint1b(a, xPointA, yPointA);
-        let zPointB = reciprocalPoint1b(a, xPointB, yPointB);
-
-        let dataPointA = dataPointACompile(xPointA, yPointA, zPointA);
-        let dataPointB = dataPointBCompile(xPointB, yPointB, zPointB);
-
-        let zBallA = reciprocalPoint1b(a, xBallA, yBallA);
-
-        let zBallB = reciprocalPoint1b(a, xBallB, yBallB);
-
-        let dataBallA = dataBallCompile(xBallA, yBallA, zBallA);
-
-        let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
-
-
-
-        console.log(dataSurface);
-        Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout)
-    } else if (equation === "Sinusodial") {
+        else if (equation === "Sinusodial") {
 
         let zSurface = sinusodialSurface1b(a, xSurface, ySurface);
         let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
@@ -333,11 +304,39 @@ function updatePlot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA
 
         let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
 
+    Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout);
 
+    }
+    else if (equation === "Reciprocal"){
+        a *= 4;
 
-    console.log(zSurface);
-    Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout)
+        let zSurface = reciprocalSurface1b(a, xSurface, ySurface);
+        let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
 
+        let zLineA = reciprocalLine1b(a, xLineA, yLineA);
+        let dataLineA = dataLineACompile(xLineA, yLineA, zLineA);
+
+        let zLineB = reciprocalLine1b(a, xLineB, yLineB);
+        let dataLineB = dataLineBCompile(xLineB, yLineB, zLineB);
+
+        let zPointA = reciprocalPoint1b(a, xPointA, yPointA);
+        let zPointB = reciprocalPoint1b(a, xPointB, yPointB);
+
+        let dataPointA = dataPointACompile(xPointA, yPointA, zPointA);
+        let dataPointB = dataPointBCompile(xPointB, yPointB, zPointB);
+
+        let zBallA = reciprocalPoint1b(a, xBallA, yBallA);
+
+        let zBallB = reciprocalPoint1b(a, xBallB, yBallB);
+
+        let dataBallA = dataBallCompile(xBallA, yBallA, zBallA);
+
+        let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
+
+    //    let layout = layout_1b;
+        Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout);
+
+        Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout)
     }
 };
 
@@ -350,7 +349,7 @@ function main(){
     let yMin = -20;
     let yMax = 20;
     let plotStep = 0.33;
-    let plotLineStep = 0.1;
+    let plotLineStep = 0.11;
 
     let xLineMin = -16;
     let xLineMax = 5;
@@ -360,7 +359,7 @@ function main(){
     let xPos = xLineMin;
 
     const layout_1b = {
-            title: 'YEET',
+            title: 'Scalar Field',
             autosize: false,
             width: 500,
             height: 500,

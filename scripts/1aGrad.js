@@ -220,7 +220,7 @@ function setLayout(sometitlex, sometitley, sometitlez, Mode){
             margin: {
                 l: 10, r: 10, b: 10, t: 1, pad: 0
             },
-            dragmode: 'orbit',
+            dragmode: 'turntable',
             scene: {
                 aspectmode: "cube",
                 xaxis: {range: [-100, 100], title: sometitlex, showticklabels: false},

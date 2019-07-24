@@ -730,12 +730,17 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
 
         let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
 
+        dataBallAVector = dataBallVectorCompile(xBallA,yBallA);
+        dataBallBVector = dataBallVectorCompile(xBallB,yBallB);
+
         let vectorData = GetVectorData(a, xMax, 5);
 
         vectorData.push(dataLineAVector);
         vectorData.push(dataLineBVector);
         vectorData.push(dataPointAVector);
         vectorData.push(dataPointBVector);
+        vectorData.push(dataBallAVector);
+        vectorData.push(dataBallBVector);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);
 
@@ -769,12 +774,17 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
 
         let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
 
+        dataBallAVector = dataBallVectorCompile(xBallA,yBallA);
+        dataBallBVector = dataBallVectorCompile(xBallB,yBallB);
+
         let vectorData = GetVectorData(a, xMax, 3);
 
         vectorData.push(dataLineAVector);
         vectorData.push(dataLineBVector);
         vectorData.push(dataPointAVector);
         vectorData.push(dataPointBVector);
+        vectorData.push(dataBallAVector);
+        vectorData.push(dataBallBVector);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector );
 
@@ -810,12 +820,17 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
 
         let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
 
+        dataBallAVector = dataBallVectorCompile(xBallA,yBallA);
+        dataBallBVector = dataBallVectorCompile(xBallB,yBallB);
+
         let vectorData = GetVectorData(a, xMax, 5);
 
         vectorData.push(dataLineAVector);
         vectorData.push(dataLineBVector);
         vectorData.push(dataPointAVector);
         vectorData.push(dataPointBVector);
+        vectorData.push(dataBallAVector);
+        vectorData.push(dataBallBVector);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);
 

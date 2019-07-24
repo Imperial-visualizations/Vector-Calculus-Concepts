@@ -742,6 +742,9 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         vectorData.push(dataBallAVector);
         vectorData.push(dataBallBVector);
 
+        $("#functionValueBall1").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
+
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);
 
         Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar);
@@ -785,6 +788,9 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         vectorData.push(dataPointBVector);
         vectorData.push(dataBallAVector);
         vectorData.push(dataBallBVector);
+
+        $("#functionValueBall1").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector );
 
@@ -832,13 +838,16 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         vectorData.push(dataBallAVector);
         vectorData.push(dataBallBVector);
 
+        $("#functionValueBall1").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
+
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);
 
     //    let layout = layout_1b;
 //        Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout);
 
         Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar)
-    }
+    };
 };
 
 function main(){
@@ -882,61 +891,12 @@ function main(){
             },
         };
 
-//    const layoutVector_1b = {
-//            title: "Gradient Field",
-////            autosize: true,
-//            width: 300,
-//            height: 300,
-//            showlegend: false,
-////            width: 500,
-////            height: 500,
-//            margin: {
-//                        l: 0,
-//                        r: 0,
-//                        b: 0,
-//                        t: 0,},
-//            xaxis: {
-////                constrain: "domain",
-//                range: [-22, 22],
-//                title: "x",
-////                showticklabels: false
-//                //title: "Angle"
-//            },
-//            yaxis: {
-////                scaleanchor: "x",
-//                range: [-10, 10],
-////                showticklabels: false,
-//                title: "y"
-//            },
-//
-//        };
-
-//const layoutScalar_1b = {//layout of 3D graph
-//            showlegend: false,
-//            showscale: false,
-////            width: 300,
-////            height: 300,
-//            margin: {
-//                l: 10, r: 10, b: 10, t: 1, pad: 0
-//            },
-//            title: "Scalar Field",
-//            dragmode: 'turntable',
-//            scene: {
-//                aspectmode: "cube",
-//                xaxis: {range: [-20, 20], title: 'x'},
-//                yaxis: {range: [-20, 20], title: 'y'},
-//                zaxis: {range: [-10, 10], title: "f(x,y)"},
-//
-//                camera: {
-//                    up: {x: 0, y: 0, z: 1},//sets which way is up
-//                    eye: {x: -1, y: -1, z: 1}//adjust camera starting view
-//                }
-//            },
-//            };
 
         const layoutVector_1b = {
 //            autosize: true,
             title: "Gradient Field",
+//            width: 200,
+//            height: 200,
             showlegend: false,
             xaxis: {
                 constrain: "domain",
@@ -952,7 +912,7 @@ function main(){
                 title: "y"
             },
             margin: {
-                l: 1, r: 1, b: 30, t: 10, pad: 1
+                l: 1, r: 1, b: 30, t: 30, pad: 10
             },};
 
     let xySurface = setupSurfaceData(xMin, xMax, yMin, yMax, plotStep);

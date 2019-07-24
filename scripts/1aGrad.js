@@ -302,7 +302,7 @@ function GetScalarData(A, Equation, x_max, PlotStep){
     }
 
     switch (Equation){
-        case "A": //reciprocal 
+        case "B": //reciprocal 
             for (let j = -x_max; j <= x_max; j += PlotStep){
                 for (let i = -x_max; i <= x_max; i += PlotStep){
                     //i is x and j is y.  CurrentZ is the z value at that x,y
@@ -315,7 +315,7 @@ function GetScalarData(A, Equation, x_max, PlotStep){
             }
             break;
 
-        case "B":  //gaussian type
+        case "A":  //gaussian type
             for (let j = -x_max; j <= x_max; j += PlotStep){
                 for (let i = -x_max; i <= x_max; i += PlotStep){
                     CurrentZ = A*Math.exp(-((i + 50)**2 + j**2)/(500)) - A*Math.exp(-((i - 50)**2 + j**2)/(500));
@@ -404,7 +404,7 @@ function GetVectorData(A, Equation, x_max, PlotStep){
     let c = 0;
     
     switch (Equation){ //run different code depending on the equation
-        case "A": //reciprocal 
+        case "B": //reciprocal 
             for (let i = -x_max; i <= x_max; i += PlotStep){
                 for (let j = -x_max; j <= x_max; j += PlotStep){
                     x[0] = i; //tail of arrow is at x,y position of interest
@@ -439,7 +439,7 @@ function GetVectorData(A, Equation, x_max, PlotStep){
             break;
 
 
-        case "B":  //gaussian type.  see case "A" for explanation
+        case "A":  //gaussian type.  see case "A" for explanation
             
             for (let i = -x_max; i <= x_max; i += PlotStep){
                 for (let j = -x_max; j <= x_max; j += PlotStep){

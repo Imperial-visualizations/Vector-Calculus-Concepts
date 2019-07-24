@@ -609,12 +609,60 @@ function dataPointBCompile(xPoint, yPoint, zPoint){
     return dataPoint
 };
 
+function dataPointAVectorCompile(xPoint, yPoint){
+    let dataPoint = {
+                         x:[xPoint],
+                         y:[yPoint],
+                         type: 'scatter',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(238,130,238)',
+                                size: 15
+                              },
+                         name: "Point A",
+                         showscale: false
+    };
+    return dataPoint
+};
+
+function dataPointBVectorCompile(xPoint, yPoint){
+    let dataPoint = {
+                         x:[xPoint],
+                         y:[yPoint],
+                         type: 'scatter',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(192,192,192)',
+                                size: 15
+                              },
+                         name: "Point B",
+                         showscale: false
+    };
+    return dataPoint
+};
+
 function dataBallCompile(xBall, yBall, zBall){
     let dataBall = {
                          x:[xBall],
                          y:[yBall],
                          z:[zBall],
                          type: 'scatter3d',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(255,0,0)',
+                                size: 10
+                              },
+                         name: "Ball",
+                         showscale: false
+                         };
+    return dataBall
+};
+
+function dataBallVectorCompile(xBall, yBall){
+    let dataBall = {
+                         x:[xBall],
+                         y:[yBall],
+                         type: 'scatter',
                          mode: 'markers',
                          marker: {
                                 color: 'rgb(255,0,0)',
@@ -653,6 +701,12 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
     let xPointB = xLineMax;
     let yPointB = yLineMax;
 
+    let dataPointAVector = dataPointAVectorCompile(xPointA, yPointA);
+    let dataPointBVector = dataPointBVectorCompile(xPointB, yPointB);
+
+    let dataBallAVector = dataBallVectorCompile(xBallA, yBallA);
+    let dataBallBVector = dataBallVectorCompile(xBallB, yBallB);
+
     if (equation === "Gaussian"){
 
         document.getElementById("Gaussian_eqn").style.display = "block";
@@ -678,16 +732,22 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         let zBallB = gaussianPoint1b(a, sigma, xBallB, yBallB);
 
         let dataBallA = dataBallCompile(xBallA, yBallA, zBallA);
-
         let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
 
         let vectorData = GetVectorData(a, xMax, 5);
 
         vectorData.push(dataLineAVector);
         vectorData.push(dataLineBVector);
+        vectorData.push(dataPointAVector);
+        vectorData.push(dataPointBVector);
+        vectorData.push(dataBallAVector);
+        vectorData.push(dataBallBVector);
 
         console.log(dataLineAVector);
         console.log(vectorData);
+
+
+
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);
 
@@ -725,6 +785,10 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
 
         vectorData.push(dataLineAVector);
         vectorData.push(dataLineBVector);
+        vectorData.push(dataPointAVector);
+        vectorData.push(dataPointBVector);
+        vectorData.push(dataBallAVector);
+        vectorData.push(dataBallBVector);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector );
 
@@ -764,6 +828,11 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
 
         vectorData.push(dataLineAVector);
         vectorData.push(dataLineBVector);
+        vectorData.push(dataPointAVector);
+        vectorData.push(dataPointBVector);
+        vectorData.push(dataBallAVector);
+        vectorData.push(dataBallBVector);
+
 
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);

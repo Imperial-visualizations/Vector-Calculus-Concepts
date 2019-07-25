@@ -1,6 +1,6 @@
 <html lang="en"><head>
     <meta charset="UTF-8">
-    <title>Ampère's Law - Imperial Visualisations</title>
+    <title>Stokes' Theorem - Imperial Visualisations</title>
 
     <link rel="stylesheet" href="styles/skeleton.css">
     <link rel="stylesheet" href="styles/style.css">
@@ -60,23 +60,18 @@
         enclosed by the loop.
         <br><br>
 
-        This is demonstrated in the visualisation on the right, where you can see the components of
-        $\displaystyle \mathbf{A.dl}$ as you go around the loop, on the plot at the bottom. This value is positive if
-        the field is pointing in the same direction as dl or negative if it is pointing opposite to dl.
-        <br>
-        You can see the integral carried out around the loop if you press <strong>Play</strong>, and see which components
-        in the plot correspond to certain parts of the loop.
+        This is demonstrated in the visualisation on the right, where the components of
+        $\displaystyle \mathbf{A.dl}$ as you go around the loop are shown in the plot at the bottom. The contributions are positive if
+        the field and dl are pointing in the same direction.
         <br><br>
 
-        When there are points of curl contained within the loop then the overall loop integral is non-zero,
-        since on all parts of the loop, the contribution to the field from the curl source, lines up with dl; however
-        when the curl source is outside of the loop, then the contributions to the integral on one part of the loop are
-        positive and negative on the other part. This results in the total contribution to the integral being zero when
-        there is no curl and equal to the amount of curl contained within the loop, when there is curl inside the loop.
+        When there is curl inside the loop then the overall loop integral is non-zero,
+        since on all parts of the loop, the contributions to the integral from the curl source have the same sign; however
+        when the curl source is outside of the loop, then the contributions cancel out and the net integral is zero.
         <br><br>
-        
+
         This also demonstrates that the curl of a conservative field is zero, since any loop integral
-        in a conservative field is also zero, so no curl is contained.
+        in a conservative field is also zero.
         <br><br>
 
         You can change the shape of the loop to see that this is true for any type of closed loop.

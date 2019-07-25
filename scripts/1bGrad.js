@@ -225,14 +225,14 @@ function GetVectorData(a, x_max, PlotStep){
                     x[0] = i;
                     y[0] = j;
 
-                    let scaleFactor = 500;
+                    let scaleFactor = 1000000;
 
                     x2 = -a/(x[0]**2 + y[0]**2)**1.5*x[0]
                     y2 = -a/(x[0]**2 + y[0]**2)**1.5*y[0]
 
 
-                    x2 = (x2**2*scaleFactor)**0.15*x2;
-                    y2 = (y2**2*scaleFactor)**0.15*y2;
+                    x2 = (x2**2*scaleFactor)**0.1*x2;
+                    y2 = (y2**2*scaleFactor)**0.1*y2;
 
                     x[1] = x[0] + x2;
                     y[1] = y[0] + y2;
@@ -313,51 +313,8 @@ function GetVectorData(a, x_max, PlotStep){
             }
             break;
     }
-
-
-
     return VectorData;
 };
-
-//function GetArrowPoints(x1, y1, A){
-//    let x = [x1];
-//    let y = [y1];
-//
-//    let x2 = 0;
-//    let y2 = 0;
-//
-//    let b = 0;
-//    let c = 0;
-//
-//    let equation = selectEquation();
-//
-//    switch (equation){
-//        case "Reciprocal": //reciprocal
-//            b = 1/A;
-//            x2 = -A*b**2*x1*((b*x1)**2 + (b*y1)**2)**(-3/2);
-//            y2 = -A*b**2*y1*((b*x1)**2 + (b*y1)**2)**(-3/2);
-//            break;
-//
-//        case "Gaussian":  //gaussian type
-//            c = 50;
-//            b = 1/500;
-//            x2 = 2*A*b*((x1 - c)*Math.exp(-b*((x1 - c)**2 + y1**2))-(x1 + c)*Math.exp(-b*((x1 + c)**2 + y1**2)));
-//            y2 = 2*A*b*y1*(Math.exp(-b*((x1 - c)**2 + y1**2))-Math.exp(-b*((x1 + c)**2 + y1**2)));
-//            break;
-//
-//        case "Sinusodial": //cos type
-//            b = 0.1;
-//            x2 = -A*b*Math.sin(b*x);
-//            y2 = 0;
-//            break;
-//    }
-//    x2 = x2*4;
-//    y2 = y2*4;
-//    x.push(x1 + x2);
-//    y.push(y1 + y2);
-//
-//    return [x, y];
-//};
 
 function setupSurfaceData(xMin, xMax, yMin, yMax, plotStep){
     let xSurface = [];
@@ -385,7 +342,7 @@ function setupLineAData(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep) {
     };
 
     for (let j = xLineMin; j <= xLineMax; j += plotLineStep){
-        yLine.push(0);
+        yLine.push(yLineMin);
     };
 
     return [xLine , yLine]
@@ -402,7 +359,7 @@ function setupLineBData(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep){
 
     for (let i = xLineMin; i <= xLineMax; i += plotLineStep){
         xLine.push(i);
-        yLine.push( path2(i) );
+        yLine.push( path2(i) + yLineMin );
     };
     return [xLine , yLine]
 };
@@ -487,6 +444,9 @@ function sinusodialPoint1b (a, xPoint, yPoint){
     return 0.8 * a * Math.sin(2* Math.PI/12 * yPoint)
 };
 
+function selectEquation(){
+    return document.getElementById("Function_Selector").value
+};
 
 //Below we prepare the data in the structure that plotly takes.
 function dataSurfaceCompile(xSurface,ySurface,zSurface){
@@ -571,10 +531,6 @@ function dataLineBVectorCompile(lineArray){
     return dataLine;
 };
 
-function selectEquation(){
-    return document.getElementById("Function_Selector").value
-};
-
 function dataPointACompile(xPoint, yPoint, zPoint){
     let dataPoint = {
                          x:[xPoint],
@@ -626,8 +582,57 @@ function dataBallCompile(xBall, yBall, zBall){
     return dataBall
 };
 
+function dataBallVectorCompile(xBall, yBall){
+    let dataBall = {
+                         x:[xBall],
+                         y:[yBall],
+                         type: 'scatter',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(255,0,0)',
+                                size: 15
+                              },
+                         name: "Ball",
+                         showscale: false
+                         };
+    return dataBall
+};
+
+function dataPointAVectorCompile(xPoint, yPoint){
+    let dataPoint = {
+                         x:[xPoint],
+                         y:[yPoint],
+                         type: 'scatter',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(238,130,238)',
+                                size: 15
+                              },
+                         name: "Point A",
+                         showscale: false
+    };
+    return dataPoint
+};
+
+function dataPointBVectorCompile(xPoint, yPoint){
+    let dataPoint = {
+                         x:[xPoint],
+                         y:[yPoint],
+                         type: 'scatter',
+                         mode: 'markers',
+                         marker: {
+                                color: 'rgb(192,192,192)',
+                                size: 15
+                              },
+                         name: "Point B",
+                         showscale: false
+    };
+    return dataPoint
+};
+
 function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLineA,
-                    xLineB, yLineB, xLineMin, yLineMin, xLineMax, yLineMax, dataLineAVector, dataLineBVector, sigma, layoutScalar, layoutVector){
+                    xLineB, yLineB, xLineMin, yLineMin, xLineMax, yLineMax, dataLineAVector, dataLineBVector, dataPointAVector, dataPointBVector,
+                    sigma, layoutScalar, layoutVector){
 
     document.getElementById("Gaussian_eqn").style.display = "none";
     document.getElementById("Reciprocal_eqn").style.display = "none";
@@ -642,10 +647,10 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
     let equation = selectEquation();
 
     let xBallA = xPoint;
-    let yBallA = 0;
+    let yBallA = yLineMin;
 
     let xBallB = xPoint;
-    let yBallB = path2(xPoint);
+    let yBallB = path2(xPoint) + yLineMin;
 
     let xPointA = xLineMin;
     let yPointA = yLineMin;
@@ -681,16 +686,22 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
 
         let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
 
+        dataBallAVector = dataBallVectorCompile(xBallA,yBallA);
+        dataBallBVector = dataBallVectorCompile(xBallB,yBallB);
+
         let vectorData = GetVectorData(a, xMax, 5);
 
         vectorData.push(dataLineAVector);
         vectorData.push(dataLineBVector);
+        vectorData.push(dataPointAVector);
+        vectorData.push(dataPointBVector);
+        vectorData.push(dataBallAVector);
+        vectorData.push(dataBallBVector);
 
-        console.log(dataLineAVector);
-        console.log(vectorData);
+        $("#functionValueBall1").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);
-
         Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar);
     }
         else if (equation === "Sinusodial") {
@@ -721,14 +732,23 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
 
         let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
 
+        dataBallAVector = dataBallVectorCompile(xBallA,yBallA);
+        dataBallBVector = dataBallVectorCompile(xBallB,yBallB);
+
         let vectorData = GetVectorData(a, xMax, 3);
 
         vectorData.push(dataLineAVector);
         vectorData.push(dataLineBVector);
+        vectorData.push(dataPointAVector);
+        vectorData.push(dataPointBVector);
+        vectorData.push(dataBallAVector);
+        vectorData.push(dataBallBVector);
+
+        $("#functionValueBall1").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector );
-
-    Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar);
+        Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar);
 
     }
     else if (equation === "Reciprocal"){
@@ -760,19 +780,24 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
 
         let dataBallB = dataBallCompile(xBallB, yBallB, zBallB);
 
+        dataBallAVector = dataBallVectorCompile(xBallA,yBallA);
+        dataBallBVector = dataBallVectorCompile(xBallB,yBallB);
+
         let vectorData = GetVectorData(a, xMax, 5);
 
         vectorData.push(dataLineAVector);
         vectorData.push(dataLineBVector);
+        vectorData.push(dataPointAVector);
+        vectorData.push(dataPointBVector);
+        vectorData.push(dataBallAVector);
+        vectorData.push(dataBallBVector);
 
+        $("#functionValueBall1").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);
-
-    //    let layout = layout_1b;
-//        Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layout);
-
         Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar)
-    }
+    };
 };
 
 function main(){
@@ -787,10 +812,8 @@ function main(){
 
     let xLineMin = -16;
     let xLineMax = 5;
-    let yLineMin = 0;
-    let yLineMax = 0;
-
-    let xPos = xLineMin;
+    let yLineMin = -2;
+    let yLineMax = -2;
 
     const layoutScalar_1b = {
             title: 'Scalar Field',
@@ -814,61 +837,38 @@ function main(){
                     eye: {x: -1, y: -1, z: 1}//adjust camera starting view
                 }
             },
-        };
+    };
+
 
     const layoutVector_1b = {
-            title: "Gradient Field",
-//            autosize: true,
-            width: 300,
-            height: 300,
-            showlegend: false,
-//            width: 500,
-//            height: 500,
-            margin: {
-                        l: 0,
-                        r: 0,
-                        b: 0,
-                        t: 0,
-            xaxis: {
-//                constrain: "domain",
-                range: [-22, 22],
-                title: "x",
-//                showticklabels: false
-                //title: "Angle"
-            },
-            yaxis: {
-//                scaleanchor: "x",
-                range: [-10, 10],
-//                showticklabels: false,
-                title: "y"
-            },
-//            margin: {
-//                l: 1, r: 1, b: 30, t: 10, pad: 1
-//            },
-//            margin: {
-//                        l: 50,
-//                        r: 50,
-//                        b: 0,
-//                        t: 0},
-            // legend: {
-            //     x: 0, y: 10,
-            //     orientation: "h"
-            // },
-            // font: {
-            //     family: "Fira Sans",
-            //     size: 16
-            // }
-        },};
+        title: "Gradient Field",
+        showlegend: false,
+        xaxis: {
+            constrain: "domain",
+            range: [-20, 20],
+            title: "x",
+            showticklabels: false
+        },
+        yaxis: {
+            scaleanchor: "x",
+            range: [-20, 20],
+            showticklabels: false,
+            title: "y"
+        },
+        margin: {
+            l: 1, r: 1, b: 30, t: 30, pad: 10
+        },
+    };
 
     let xySurface = setupSurfaceData(xMin, xMax, yMin, yMax, plotStep);
     let xScalarPlot = xySurface[0];
     let yScalarPlot = xySurface[1];
 
-    let ScalarLine1Plot = setupLineAData(xLineMin, xLineMax, xLineMin, xLineMax, plotLineStep);
+    let ScalarLine1Plot = setupLineAData(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep);
     let xScalarLine1_1b = ScalarLine1Plot[0];
     let yScalarLine1_1b = ScalarLine1Plot[1];
 
-    let ScalarLine2Plot = setupLineBData(xLineMin, xLineMax, xLineMin, xLineMax, plotLineStep);
+    let ScalarLine2Plot = setupLineBData(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep);
     let xScalarLine2_1b = ScalarLine2Plot[0];
     let yScalarLine2_1b = ScalarLine2Plot[1];
 
@@ -878,14 +878,12 @@ function main(){
     let lineBVector = setupLineBData(xLineMin, xLineMax, yLineMin, yLineMax, 0.1);
     let dataLineBVector = dataLineBVectorCompile(lineBVector);
 
-//    let VectorData = GetVectorData(a1b, xMax, plotLineStep);
+    let dataPointAVector = dataPointAVectorCompile(xLineMin,yLineMin);
+    let dataPointBVector = dataPointBVectorCompile(xLineMax,yLineMax);
 
-//    Plotly.react('Vector_Graph_1b', VectorData);
-
-//    initialPlot(xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b, xScalarLine2_1b, yScalarLine2_1b,
-//             xLineMin, yLineMin, xLineMax, yLineMax, xPos, a1b, sigma1b,layout_1b);
     plot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
-        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, dataLineAVector, dataLineBVector, sigma1b,layoutScalar_1b, layoutVector_1b);
+        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, dataLineAVector, dataLineBVector, dataPointAVector, dataPointBVector,
+        sigma1b,layoutScalar_1b, layoutVector_1b);
 //jQuery to update the plot as the value of the slider changes.
     $("input[type=range]").each(function () {
         /*Allows for live update for display values*/
@@ -894,7 +892,8 @@ function main(){
             $("#"+$(this).attr("id") + "Display").val( $(this).val());
             //NB: Display values are restricted by their definition in the HTML to always display nice number.
             plot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
-        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, dataLineAVector, dataLineBVector, sigma1b, layoutScalar_1b, layoutVector_1b); //Updating the plot is linked with display (Just My preference)
+            xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, dataLineAVector, dataLineBVector, dataPointAVector, dataPointBVector,
+            sigma1b, layoutScalar_1b, layoutVector_1b); //Updating the plot is linked with display (Just My preference)
         });
 
     });
@@ -902,7 +901,8 @@ function main(){
     $('#Function_Selector').on("input", function(){
         //update plots when function is changed
         plot(xMin, xMax, yMin, yMax, plotStep, xScalarPlot, yScalarPlot, xScalarLine1_1b, yScalarLine1_1b,
-        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, dataLineAVector, dataLineBVector, sigma1b,layoutScalar_1b, layoutVector_1b);
+        xScalarLine2_1b, yScalarLine2_1b, xLineMin, yLineMin, xLineMax, yLineMax, dataLineAVector, dataLineBVector, dataPointAVector, dataPointBVector,
+        sigma1b,layoutScalar_1b, layoutVector_1b);
     });
 };
 

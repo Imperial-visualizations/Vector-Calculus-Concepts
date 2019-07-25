@@ -40,15 +40,15 @@
                 <div class="scroll-down">
                     <strong>Select Function: </strong>
                     <select id="Function_Selector">
-                        <option value="Reciprocal">Reciprocal</option>
                         <option value="Gaussian">Gaussian</option>
+                        <option value="Reciprocal">Reciprocal</option>
                         <option value="Sinusodial">Sinusodial</option>
                     </select>
                 </div>
             </div>
 
             <div>
-                <h6 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 1vh;">$a =$
+                <h6 >$a =$
                             <output id="Slider_1_value" for="Slider_1">5</output>
                 </h6>
                 <!--BEGIN Slider-->
@@ -63,11 +63,11 @@
             </div>
 
             <div>
-                <h6 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 1vh;"> Path
-                    <br>
-                    <div id = "functionValueA"> $x = $  something </div>
-                    <output id="Slider_2_value" for="Slider_2">-16</output>
-                </h6>
+                <h6> Path </h6>
+                    <h7>
+                        <div id = "functionValueBall1">  </div>
+                        <div id = "functionValueBall2">  </div>
+                    </h7>
 
                     <label class="slider">
                         <span class="sliderMin">A</span>
@@ -105,7 +105,6 @@
                 </div>
             </div>
 
-        <!--<div id='Scalar_Graph' style="width:30vw; height:70vh;"></div>-->
 
 
         </div>
@@ -113,12 +112,10 @@
 
         <div style="width:60%; float:left;">
             <div>
-                <h7> $\nabla f(x,y)$ </h7>
                 <div id='Vector_Graph_1b' style="width:30vw; height:30vh;"></div>
             </div>
 
             <div>
-                <h7> $f(x,y) $ </h7>
                 <div id='Scalar_Graph_1b' style="width:30vw; height:30vh;"> </div>
             </div>
         </div>

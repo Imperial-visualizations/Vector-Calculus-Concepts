@@ -202,7 +202,7 @@ class Arrow{
 
 };
 
-function GetVectorData(a, x_max, PlotStep){
+function getVectorData(a, x_max, PlotStep){
     let ArrowData = [];
     //let z = [];
     let VectorData = [];
@@ -634,15 +634,15 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
                     xLineB, yLineB, xLineMin, yLineMin, xLineMax, yLineMax, dataLineAVector, dataLineBVector, dataPointAVector, dataPointBVector,
                     sigma, layoutScalar, layoutVector){
 
-    document.getElementById("Gaussian_eqn").style.display = "none";
-    document.getElementById("Reciprocal_eqn").style.display = "none";
-    document.getElementById("Sinusodial_eqn").style.display = "none";
-    document.getElementById("Grad_Gaussian_eqn").style.display = "none";
-    document.getElementById("Grad_Reciprocal_eqn").style.display = "none";
-    document.getElementById("Grad_Sinusodial_eqn").style.display = "none";
+    document.getElementById("Gaussian_eqn_1b").style.display = "none";
+    document.getElementById("Reciprocal_eqn_1b").style.display = "none";
+    document.getElementById("Sinusodial_eqn_1b").style.display = "none";
+    document.getElementById("Grad_Gaussian_eqn_1b").style.display = "none";
+    document.getElementById("Grad_Reciprocal_eqn_1b").style.display = "none";
+    document.getElementById("Grad_Sinusodial_eqn_1b").style.display = "none";
 
-    let a = parseFloat(document.getElementById('Slider_1').value);
-    let xPoint = parseFloat(document.getElementById('Slider_2').value);
+    let a = parseFloat(document.getElementById('Slider_1_1b').value);
+    let xPoint = parseFloat(document.getElementById('Slider_2_1b').value);
 
     let equation = selectEquation();
 
@@ -660,8 +660,8 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
 
     if (equation === "Gaussian"){
 
-        document.getElementById("Gaussian_eqn").style.display = "block";
-        document.getElementById("Grad_Gaussian_eqn").style.display = "block";
+        document.getElementById("Gaussian_eqn_1b").style.display = "block";
+        document.getElementById("Grad_Gaussian_eqn_1b").style.display = "block";
 
         let zSurface = gaussianSurface1b(a, sigma, xSurface, ySurface);
         let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
@@ -689,7 +689,7 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         dataBallAVector = dataBallVectorCompile(xBallA,yBallA);
         dataBallBVector = dataBallVectorCompile(xBallB,yBallB);
 
-        let vectorData = GetVectorData(a, xMax, 5);
+        let vectorData = getVectorData(a, xMax, 5);
 
         vectorData.push(dataLineAVector);
         vectorData.push(dataLineBVector);
@@ -698,16 +698,16 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         vectorData.push(dataBallAVector);
         vectorData.push(dataBallBVector);
 
-        $("#functionValueBall1").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
-        $("#functionValueBall2").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
+        $("#functionValueBall1_1b").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2_1b").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);
         Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar);
     }
         else if (equation === "Sinusodial") {
 
-        document.getElementById("Sinusodial_eqn").style.display = "block";
-        document.getElementById("Grad_Sinusodial_eqn").style.display = "block";
+        document.getElementById("Sinusodial_eqn_1b").style.display = "block";
+        document.getElementById("Grad_Sinusodial_eqn_1b").style.display = "block";
 
         let zSurface = sinusodialSurface1b(a, xSurface, ySurface);
         let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
@@ -735,7 +735,7 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         dataBallAVector = dataBallVectorCompile(xBallA,yBallA);
         dataBallBVector = dataBallVectorCompile(xBallB,yBallB);
 
-        let vectorData = GetVectorData(a, xMax, 3);
+        let vectorData = getVectorData(a, xMax, 3);
 
         vectorData.push(dataLineAVector);
         vectorData.push(dataLineBVector);
@@ -744,16 +744,16 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         vectorData.push(dataBallAVector);
         vectorData.push(dataBallBVector);
 
-        $("#functionValueBall1").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
-        $("#functionValueBall2").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
+        $("#functionValueBall1_1b").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2_1b").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector );
         Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar);
 
     }
     else if (equation === "Reciprocal"){
-        document.getElementById("Reciprocal_eqn").style.display = "block";
-        document.getElementById("Grad_Reciprocal_eqn").style.display = "block";
+        document.getElementById("Reciprocal_eqn_1b").style.display = "block";
+        document.getElementById("Grad_Reciprocal_eqn_1b").style.display = "block";
 
         a *= 4;
 
@@ -783,7 +783,7 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         dataBallAVector = dataBallVectorCompile(xBallA,yBallA);
         dataBallBVector = dataBallVectorCompile(xBallB,yBallB);
 
-        let vectorData = GetVectorData(a, xMax, 5);
+        let vectorData = getVectorData(a, xMax, 5);
 
         vectorData.push(dataLineAVector);
         vectorData.push(dataLineBVector);
@@ -792,8 +792,8 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         vectorData.push(dataBallAVector);
         vectorData.push(dataBallBVector);
 
-        $("#functionValueBall1").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
-        $("#functionValueBall2").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
+        $("#functionValueBall1_1b").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2_1b").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);
         Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar)

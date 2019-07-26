@@ -309,17 +309,20 @@ function draw() {
     clear();
 
     if (document.getElementById("mode").checked == false) {
-        //Brings in user input and turn it into a charge
+        //Brings in user input and turn it into a divergence
         sel = new charge_selector(parseFloat(document.getElementById('magnit').value), newchargex, newchargey);
 
-        //any points cannot overlap graphically
-        for (let i = 0; i < allpoints.length; i++) {
-            if (allpoints[i].clicked == true && allpoints[i].intersect() == false){
-                allpoints[i].dragposition();
-            }
+    //any points cannot overlap graphically
+    for (let i = 0; i < allpoints.length; i++) {
+        if (allpoints[i].clicked == true && allpoints[i].intersect() == false){
+            cursor(HAND);
+            allpoints[i].dragposition();
+        } else {
+            cursor(ARROW);
         }
+    }
 
-        //draws fieldlines of charges 
+        //draws fieldlines of divergence
         for (let i = 0; i < allpoints.length; i++){
             if (allpoints[i].q != 0){
                 let [x0, y0] = initial_fieldpoints([allpoints[i].x, allpoints[i].y], allpoints[i].r, allpoints[i].n_lines);
@@ -336,7 +339,7 @@ function draw() {
             ellipse(allpoints[i].x, allpoints[i].y, R);
         }
 
-        //draw the top blue rectangle box that contains the text, slider and new charge
+        //draw the top blue rectangle box that contains the text, slider and new divergence
         noStroke();
         fill(247, 252, 251);
         rect(0, 0, width, rect_height);
@@ -344,7 +347,7 @@ function draw() {
         stroke(72, 99, 95);
         line(0, rect_height, width, rect_height);
 
-        //draw the charges that are already inside the canvas
+        //draw the divergence that are already inside the canvas
         if (allpoints.length < maxpoints){
             if (sel.q != 0){
                 noStroke();
@@ -435,7 +438,10 @@ function draw() {
         text('F', 1.02*xfield1, 1.02*yfield1);
 
         if (line_ele[0].clicked == true){
+            cursor(HAND);
             line_ele[0].dragposition();
+        } else {
+            cursor(ARROW);
         }
 
         //draw the top blue rectangle box that contains the text, slider and new charge

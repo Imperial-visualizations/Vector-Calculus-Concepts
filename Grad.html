@@ -156,7 +156,7 @@
                             However, when the balls reach Point B, their function values are equal.</li>
                         <li>This means that the line integral $\int _A ^B \nabla \Omega \cdot \mathbf{ dl }$  is determined
                             only by the value of $\Omega$ at the limits, $\Omega_B - \Omega_A$.</li>
-                        <li>There are a few other functions for you to play around with. Click the dropdown menu to play with them!</li>
+                        <li>There are a few other functions for you to play around with. Click the dropdown menu to find out.</li>
                     </ol>
             <div>
         </p>
@@ -170,195 +170,185 @@
 
   <!--Vis 1-->
   <div id="Vis1_interactive" class="container_vis" style="position: relative;">
-
     <div style="width:65%; float:right;">
-        <div class="row">
-            <div style="width:30%; float:right;">
-                <div id="scroll">
-                    <br/>
-                    <div class="scroll-down">
-                        <strong>Select Function: </strong>
-                        <select id="Function_Selector_1a">
-                            <option value="A">Gaussian</option>
-                            <option value="B">Reciprocal</option>
-                            <option value="C">Sinusoidal</option>
-                        </select>
-                    </div>
-                </div>
-    
-                <label class="sliderTitle" style="padding-bottom:20px;">$a$:
-                    <span id="Slider_1Display" data-unit="">10</span>
-                </label>
-                <label style = "width:100%">
-                    <span class="sliderMin">-100</span>
-                    <input id="Slider_1_1a" class="inputs" type="range" value="10" min="-100" max="100" step="1" style = "width:70%">
-                    <span class="sliderMax">100</span>
-                </label>  
+    <div class="row">
+        <div style="width:30%; float:right;">
+            <div id="scroll">
                 <br/>
-                <br/>
-                <br/>
-                <div>
-                    <div id="B_function_eqn_1a" style="display:none; width:100%">
-                        $$\displaystyle f(x,y)= \frac{a}{ \sqrt{(bx)^2 + (by)^2} }$$
-                    </div>
-    
-                    <div id="A_function_eqn_1a" style="display:none; width:100%">
-                        $$\displaystyle f(x,y) = ae^{-b((x+c)^2+y^2)} - ae^{-b((x-c)^2+y^2)}$$
-                    </div>
-    
-                    <div id="C_function_eqn_1a" style="display:none; width:100%">
-                        $$\displaystyle f(x,y)= a\cos(bx) $$
-                    </div>
-                </div>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <div>
-                    <div id="B_grad_eqn_1a" style="display:none; width:100%">
-                        $$\displaystyle \nabla f = - \frac{ab^2}{ ((bx)^2 +(by)^2)^ {\frac{3}{2}} } (x \mathbf{i} + y \mathbf{j} )$$
-                    </div>
-    
-                    <div id="A_grad_eqn_1a" style="display:none; width:100%; font-size: 8pt">
-                        $$ \displaystyle \begin{align}  \nabla f & = 2ab\bigg(\Big((x-c)e^{-b((x-c)^2 y^2)} - (x+c)e^{-b((x+c)^2 + y^2)}\Big)\mathbf{i}
-                                                    \\ & + y\Big(e^{-b((x-c)^2 + y^2)} - e^{-b((x+c)^2 + y^2)}\Big) \mathbf{j}\bigg)
-                            \end{align} $$
-                    </div>
-    
-                    <div id="C_grad_eqn_1a" style="display:none; width:100%">
-                        $$\displaystyle \nabla f = - ab\sin (bx) \mathbf{i} $$
-                    </div>
+                <div class="scroll-down">
+                    <strong>Select Function: </strong>
+                    <select id="Function_Selector_1a">
+                        <option value="A">Gaussian</option>
+                        <option value="B">Reciprocal</option>
+                        <option value="C">Sinusoidal</option>
+                    </select>
                 </div>
             </div>
-    
-            <div style="width:60%; float:left;">
-                <div>
-                    <h7> $f(x,y)$ </h7>
-                    <div id='Scalar_Graph_1a' style="width:40vw; height:40vh;"></div>
+
+            <label class="sliderTitle" style="padding-bottom:20px;">$a$:
+                <span id="Slider_1Display" data-unit="">10</span>
+            </label>
+            <label style = "width:100%">
+                <span class="sliderMin">-100</span>
+                <input id="Slider_1_1a" class="inputs" type="range" value="10" min="-100" max="100" step="1" style = "width:70%">
+                <span class="sliderMax">100</span>
+            </label>  
+            <br/>
+            <br/>
+            <br/>
+            <div>
+                <div id="B_function_eqn_1a" style="display:none; width:100%">
+                    $$\displaystyle f(x,y)= \frac{a}{ \sqrt{(bx)^2 + (by)^2} }$$
                 </div>
-    
-                <div>
-                    <h7> $\nabla f(x,y) $ </h7>
-                    <div id='Vector_Graph_1a' style="width:40vw; height:40vh;"> </div>
+
+                <div id="A_function_eqn_1a" style="display:none; width:100%">
+                    $$\displaystyle f(x,y) = ae^{-b((x+c)^2+y^2)} - ae^{-b((x-c)^2+y^2)}$$
+                </div>
+
+                <div id="C_function_eqn_1a" style="display:none; width:100%">
+                    $$\displaystyle f(x,y)= a\cos(bx) $$
                 </div>
             </div>
-    
-            <!--Buttons/Sliders-->
-    <!--        <div class="one-third column" style="padding-left: 50px;">-->
-    
-                <!--Main body contents-->
-    
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div>
+                <div id="B_grad_eqn_1a" style="display:none; width:100%">
+                    $$\displaystyle \nabla f = - \frac{ab^2}{ ((bx)^2 +(by)^2)^ {\frac{3}{2}} } (x \mathbf{i} + y \mathbf{j} )$$
+                </div>
+
+                <div id="A_grad_eqn_1a" style="display:none; width:100%; font-size: 8pt">
+                    $$ \displaystyle \begin{align}  \nabla f & = 2ab\bigg(\Big((x-c)e^{-b((x-c)^2 y^2)} - (x+c)e^{-b((x+c)^2 + y^2)}\Big)\mathbf{i}
+                                                \\ & + y\Big(e^{-b((x-c)^2 + y^2)} - e^{-b((x+c)^2 + y^2)}\Big) \mathbf{j}\bigg)
+                        \end{align} $$
+                </div>
+
+                <div id="C_grad_eqn_1a" style="display:none; width:100%">
+                    $$\displaystyle \nabla f = - ab\sin (bx) \mathbf{i} $$
+                </div>
+            </div>
         </div>
+
+        <div style="width:60%; float:left;">
+            <div>
+                <h7> $f(x,y)$ </h7>
+                <div id='Scalar_Graph_1a' style="width:40vw; height:40vh;"></div>
+            </div>
+
+            <div>
+                <h7> $\nabla f(x,y) $ </h7>
+                <div id='Vector_Graph_1a' style="width:40vw; height:40vh;"> </div>
+            </div>
+        </div>
+
+    </div>
     </div>
   </div>
 
   <!--Vis 2-->
   <div id="Vis2_interactive" class="container_vis" style="display: none;">
 
-    <div style="width:65%; float:right;">
-        <div class="row">
-            <div style="width:40%; float:right;">
-                <div id="scroll">
-                    <div class="scroll-down">
-                        <strong>Select Function: </strong>
-                        <select id="Function_Selector">
-                            <option value="Gaussian">Gaussian</option>
-                            <option value="Reciprocal">Reciprocal</option>
-                            <option value="Sinusodial">Sinusodial</option>
-                        </select>
-                    </div>
-                </div>
     
-                <div>
-                    <h6 >$a =$
-                                <output id="Slider_1_value" for="Slider_1">5</output>
-                    </h6>
-                    <!--BEGIN Slider-->
-    
-                        <label class="slider">
-                            <span class="sliderMin">-10</span>
-                            <input id="Slider_1" class="inputs" type="range" value="5" min="-10" max="10" step="0.5" oninput="Slider_1_value.value=Slider_1.value"/></input>
-                            <span class="sliderMax">10</span>
-    <!--                        <span> x: <output id="Slider_1_value" for="Slider_1">1</output></span>-->
-                        </label>
-                        <!--END Slider-->
-                </div>
-    
-                <div>
-                    <h6> Path </h6>
-                        <h7>
-                            <div id = "functionValueBall1">  </div>
-                            <div id = "functionValueBall2">  </div>
-                        </h7>
-    
-                        <label class="slider">
-                            <span class="sliderMin">A</span>
-                            <input id="Slider_2" class="inputs" type="range" value="-16" min="-16" max="5" step="0.2" oninput="Slider_2_value.value=Slider_2.value"/></input>
-                            <span class="sliderMax">B</span>
-                        </label>
-                        <!--END Slider-->
-                </div>
-    
-                <div>
-                    <div id="Grad_Reciprocal_eqn">
-                            $$\displaystyle \nabla \Omega = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x \mathbf{\hat{i}} + y \mathbf{\hat{j}} )$$
-                    </div>
-    
-                    <div id="Grad_Gaussian_eqn">
-                            $$ \displaystyle  \nabla \Omega = \frac{-a}{100}e^{-\frac{x^2+y^2}{200}}(x \mathbf{\hat{i}} + y \mathbf{\hat{j}}) $$
-                    </div>
-    
-                    <div id="Grad_Sinusodial_eqn">
-                            $$\displaystyle \nabla \Omega = \frac{2 \pi}{15} a \cos \Big( \frac{2 \pi}{12} y \Big) \mathbf{\hat{j}}$$
-                    </div>
-                </div>
-    
-                <div>
-                    <div id="Reciprocal_eqn">
-                                $$\Omega(x,y)= \frac{4a}{ \sqrt{x^2 + y^2} }$$
-                    </div>
-    
-                    <div id="Gaussian_eqn">
-                            $$\Omega(x,y) = ae^{-\frac{x^2+y^2}{200}}$$
-                    </div>
-    
-                    <div id="Sinusodial_eqn">
-                            $$\Omega(x,y)= \frac{4}{5} a\sin \Big( \frac{2 \pi}{12}y \Big) $$
-                    </div>
-                </div>
-    
-    
-    
+    <div style="width:40%; float:right;">
+        <div id="scroll">
+            <div class="scroll-down">
+                <strong>Select Function: </strong>
+                <select id="Function_Selector">
+                    <option value="Gaussian">Gaussian</option>
+                    <option value="Reciprocal">Reciprocal</option>
+                    <option value="Sinusodial">Sinusodial</option>
+                </select>
             </div>
-    
-    
-            <div style="width:60%; float:left;">
-                <div>
-                    <div id='Vector_Graph_1b' style="width:30vw; height:30vh;"></div>
-                </div>
-    
-                <div>
-                    <div id='Scalar_Graph_1b' style="width:30vw; height:30vh;"> </div>
-                </div>
+        </div>
+
+        <div>
+            <h6 >$a =$
+                        <output id="Slider_1_1b_value" for="Slider_1_1b">5</output>
+            </h6>
+            <!--BEGIN Slider-->
+
+            <label>
+                <span class="sliderMin">-10</span>
+                <input id="Slider_1_1b" class="inputs" type="range" value="5" min="-10" max="10" step="0.5" oninput="Slider_1_1b_value.value=Slider_1_1b.value"/></input>
+                <span class="sliderMax">10</span>
+            </label>
+            <!--END Slider-->
+        </div>
+
+        <div>
+            <h6> Path </h6>
+            <h7>
+                <div id = "functionValueBall1_1b">  </div>
+                <div id = "functionValueBall2_1b">  </div>
+            </h7>
+
+            <label>
+                <span class="sliderMin">A</span>
+                <input id="Slider_2_1b" class="inputs" type="range" value="-16" min="-16" max="5" step="0.2" oninput="Slider_2_1b_value.value=Slider_2_1b.value"/></input>
+                <span class="sliderMax">B</span>
+            </label>
+                <!--END Slider-->
+        </div>
+
+        <div>
+            <div id="Grad_Reciprocal_eqn_1b">
+                    $$\displaystyle \nabla \Omega = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x \mathbf{\hat{i}} + y \mathbf{\hat{j}} )$$
             </div>
-    
+
+            <div id="Grad_Gaussian_eqn_1b">
+                    $$ \displaystyle  \nabla \Omega = \frac{-a}{100}e^{-\frac{x^2+y^2}{200}}(x \mathbf{\hat{i}} + y \mathbf{\hat{j}}) $$
+            </div>
+
+            <div id="Grad_Sinusodial_eqn_1b">
+                    $$\displaystyle \nabla \Omega = \frac{2 \pi}{15} a \cos \Big( \frac{2 \pi}{12} y \Big) \mathbf{\hat{j}}$$
+            </div>
+        </div>
+
+        <div>
+            <div id="Reciprocal_eqn_1b">
+                        $$\Omega(x,y)= \frac{4a}{ \sqrt{x^2 + y^2} }$$
+            </div>
+
+            <div id="Gaussian_eqn_1b">
+                    $$\Omega(x,y) = ae^{-\frac{x^2+y^2}{200}}$$
+            </div>
+
+            <div id="Sinusodial_eqn_1b">
+                    $$\Omega(x,y)= \frac{4}{5} a\sin \Big( \frac{2 \pi}{12}y \Big) $$
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <div style="width:60%; float:left;">
+        <div>
+            <div id='Vector_Graph_1b' style="width:30vw; height:30vh;"></div>
+        </div>
+
+        <div>
+            <div id='Scalar_Graph_1b' style="width:30vw; height:30vh;"> </div>
         </div>
     </div>
-    
 
-  </div>
+
+</div>
 
 </body>
 
 <!--THE BRAINS-->
 <script src="scripts/Grad.js"></script>
+
 <!--<script src="scripts/Static_EM_Object.js"></script>-->
 
 </html>

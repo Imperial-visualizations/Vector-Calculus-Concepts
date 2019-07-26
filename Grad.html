@@ -1,0 +1,364 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--Page Info-->
+    <title>ToggleTemplate</title>
+    <!--css link-->
+    <link rel="stylesheet" href="styles/skeleton.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <!--Required JS resources-->
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="scripts/p5.min.js"></script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script language="javascript" type="text/javascript" src="scripts/p5.dom.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <style type="text/css">
+      /* The switch - the box around the slider */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      /* Hide default HTML checkbox */
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      /* The slider */
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      input:checked + .slider {
+        background-color: #2196F3;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+</style>
+</head>
+
+
+<body style="overflow: hidden">
+
+  <!--Text for left 1/3-->
+  <div id="Vis_text" class="container_journey">
+
+    <!-- Rounded switch -->
+    <label class="switch">
+        <input id="mode" type="checkbox" onclick="toggle()" checked>
+        <span class="slider round"></span>
+    </label>
+
+    <div id="Vis1_text">
+      
+      
+        <center><h4>Gradient Operator, $\nabla f$</h4></center>
+    
+        <p>
+          Grad operates on a scalar field $f(x, y)$ to produce a vector field indicating the magnitude and direction of the 
+          steepest gradient at each point.  It is easy to remember that grad produces a vector field, because it is necessary
+          for the gradient to have a direction once there is more than one dimension involved.  It must act on a scalar field
+          because it doesn't make much sense for a vector field to have a gradient.
+        </p>
+    
+        <p>
+          The surface shown on the right is a scalar function $f$ of two independent variables, $x$ and $y$.  Note that it is a 2D scalar field &mdash; 
+          the third dimension is just being used to display the value of the function.
+        </p>
+            
+        <p>
+          Beneath it the gradient of the function $\nabla f$ is shown.  By changing the coefficient $a$, the gradient of the function can be increased
+          and decreased in certain directions.  There are also several functions to choose from.
+        </p>
+    
+        <p>
+          The idea extends to three dimensions in the same way.  For example, if you were to plot the magnitude of the Sun's gravitational field
+          in 3D space around the Sun, the gradient of this field would give vectors that point to the centre of the Sun at every point.
+        </p>
+    
+
+    </div>
+
+    <div id="Vis2_text" style="display: none;">
+
+        <center><h5>$$ \Omega_B - \Omega_A = \int _A ^B \nabla \Omega \cdot \mathbf{ dl }$$</h5></center>
+        <p>
+            <br>
+            For a given vector field, if $\mathbf{A} \cdot \mathbf{ dl }$ is an exact differential, $\mathbf{A}$ is a conservative field. Then, $\mathbf{A}$ is the
+            gradient function of some scalar function $\Omega$. That is, $\mathbf{A} = \nabla {\Omega}$.
+            We can relate $\Omega$ and $\nabla \Omega$ by the equation below:
+                $$ \int _A ^B \nabla \Omega \cdot \mathbf{ dl } = \Omega_B - \Omega_A$$
+            From this equation above, we can see that the integral is independent of the path that one takes from A to B,
+            for it is determined by only the values from the parent function $\Omega_B - \Omega_A$. This is a generalisation of the Fundamental Theorem of Calculus.
+            <div>
+                <h6>Visualisation Guide</h6>
+                    <ol>
+                        <li>On the right, you can see a gradient field and its scalar parent function.
+                            Change the value of the parameter $a$, and observe the change in $\nabla \Omega$ and $\Omega$.</li>
+                        <li>Note that as the magnitude of $a$ increases, the length of the arrows in $\nabla \Omega$ increases and the contour of the parent function
+                            $\Omega$ becomes steeper as well. Hence, the gradient vector increases in magnitude as well.</li>
+                        <li>All gradient fields shown in this suite are conservative. This means that the line integral along the field,
+                            $\int \nabla \Omega \cdot \mathbf{ dl }$ is path independent. Move the path of the ball from Point A to Point B
+                            along 2 different paths, Path 1 and Path 2.</li>
+                        <li>Observe their function values. Note that along the path, the value of $\Omega$ may be different.
+                            However, when the balls reach Point B, their function values are equal.</li>
+                        <li>This means that the line integral $\int _A ^B \nabla \Omega \cdot \mathbf{ dl }$  is determined
+                            only by the value of $\Omega$ at the limits, $\Omega_B - \Omega_A$.</li>
+                        <li>There are a few other functions for you to play around with. Click the dropdown menu to play with them!</li>
+                    </ol>
+            <div>
+        </p>
+
+    </div>
+
+
+  </div>
+
+  <!--Visualisation for right 2/3-->
+
+  <!--Vis 1-->
+  <div id="Vis1_interactive" class="container_vis" style="position: relative;">
+
+    <div style="width:65%; float:right;">
+        <div class="row">
+            <div style="width:30%; float:right;">
+                <div id="scroll">
+                    <br/>
+                    <div class="scroll-down">
+                        <strong>Select Function: </strong>
+                        <select id="Function_Selector_1a">
+                            <option value="A">Gaussian</option>
+                            <option value="B">Reciprocal</option>
+                            <option value="C">Sinusoidal</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <label class="sliderTitle" style="padding-bottom:20px;">$a$:
+                    <span id="Slider_1Display" data-unit="">10</span>
+                </label>
+                <label style = "width:100%">
+                    <span class="sliderMin">-100</span>
+                    <input id="Slider_1_1a" class="inputs" type="range" value="10" min="-100" max="100" step="1" style = "width:70%">
+                    <span class="sliderMax">100</span>
+                </label>  
+                <br/>
+                <br/>
+                <br/>
+                <div>
+                    <div id="B_function_eqn_1a" style="display:none; width:100%">
+                        $$\displaystyle f(x,y)= \frac{a}{ \sqrt{(bx)^2 + (by)^2} }$$
+                    </div>
+    
+                    <div id="A_function_eqn_1a" style="display:none; width:100%">
+                        $$\displaystyle f(x,y) = ae^{-b((x+c)^2+y^2)} - ae^{-b((x-c)^2+y^2)}$$
+                    </div>
+    
+                    <div id="C_function_eqn_1a" style="display:none; width:100%">
+                        $$\displaystyle f(x,y)= a\cos(bx) $$
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <div>
+                    <div id="B_grad_eqn_1a" style="display:none; width:100%">
+                        $$\displaystyle \nabla f = - \frac{ab^2}{ ((bx)^2 +(by)^2)^ {\frac{3}{2}} } (x \mathbf{i} + y \mathbf{j} )$$
+                    </div>
+    
+                    <div id="A_grad_eqn_1a" style="display:none; width:100%; font-size: 8pt">
+                        $$ \displaystyle \begin{align}  \nabla f & = 2ab\bigg(\Big((x-c)e^{-b((x-c)^2 y^2)} - (x+c)e^{-b((x+c)^2 + y^2)}\Big)\mathbf{i}
+                                                    \\ & + y\Big(e^{-b((x-c)^2 + y^2)} - e^{-b((x+c)^2 + y^2)}\Big) \mathbf{j}\bigg)
+                            \end{align} $$
+                    </div>
+    
+                    <div id="C_grad_eqn_1a" style="display:none; width:100%">
+                        $$\displaystyle \nabla f = - ab\sin (bx) \mathbf{i} $$
+                    </div>
+                </div>
+            </div>
+    
+            <div style="width:60%; float:left;">
+                <div>
+                    <h7> $f(x,y)$ </h7>
+                    <div id='Scalar_Graph_1a' style="width:40vw; height:40vh;"></div>
+                </div>
+    
+                <div>
+                    <h7> $\nabla f(x,y) $ </h7>
+                    <div id='Vector_Graph_1a' style="width:40vw; height:40vh;"> </div>
+                </div>
+            </div>
+    
+            <!--Buttons/Sliders-->
+    <!--        <div class="one-third column" style="padding-left: 50px;">-->
+    
+                <!--Main body contents-->
+    
+        </div>
+    </div>
+  </div>
+
+  <!--Vis 2-->
+  <div id="Vis2_interactive" class="container_vis" style="display: none;">
+
+    <div style="width:65%; float:right;">
+        <div class="row">
+            <div style="width:40%; float:right;">
+                <div id="scroll">
+                    <div class="scroll-down">
+                        <strong>Select Function: </strong>
+                        <select id="Function_Selector">
+                            <option value="Gaussian">Gaussian</option>
+                            <option value="Reciprocal">Reciprocal</option>
+                            <option value="Sinusodial">Sinusodial</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div>
+                    <h6 >$a =$
+                                <output id="Slider_1_value" for="Slider_1">5</output>
+                    </h6>
+                    <!--BEGIN Slider-->
+    
+                        <label class="slider">
+                            <span class="sliderMin">-10</span>
+                            <input id="Slider_1" class="inputs" type="range" value="5" min="-10" max="10" step="0.5" oninput="Slider_1_value.value=Slider_1.value"/></input>
+                            <span class="sliderMax">10</span>
+    <!--                        <span> x: <output id="Slider_1_value" for="Slider_1">1</output></span>-->
+                        </label>
+                        <!--END Slider-->
+                </div>
+    
+                <div>
+                    <h6> Path </h6>
+                        <h7>
+                            <div id = "functionValueBall1">  </div>
+                            <div id = "functionValueBall2">  </div>
+                        </h7>
+    
+                        <label class="slider">
+                            <span class="sliderMin">A</span>
+                            <input id="Slider_2" class="inputs" type="range" value="-16" min="-16" max="5" step="0.2" oninput="Slider_2_value.value=Slider_2.value"/></input>
+                            <span class="sliderMax">B</span>
+                        </label>
+                        <!--END Slider-->
+                </div>
+    
+                <div>
+                    <div id="Grad_Reciprocal_eqn">
+                            $$\displaystyle \nabla \Omega = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x \mathbf{\hat{i}} + y \mathbf{\hat{j}} )$$
+                    </div>
+    
+                    <div id="Grad_Gaussian_eqn">
+                            $$ \displaystyle  \nabla \Omega = \frac{-a}{100}e^{-\frac{x^2+y^2}{200}}(x \mathbf{\hat{i}} + y \mathbf{\hat{j}}) $$
+                    </div>
+    
+                    <div id="Grad_Sinusodial_eqn">
+                            $$\displaystyle \nabla \Omega = \frac{2 \pi}{15} a \cos \Big( \frac{2 \pi}{12} y \Big) \mathbf{\hat{j}}$$
+                    </div>
+                </div>
+    
+                <div>
+                    <div id="Reciprocal_eqn">
+                                $$\Omega(x,y)= \frac{4a}{ \sqrt{x^2 + y^2} }$$
+                    </div>
+    
+                    <div id="Gaussian_eqn">
+                            $$\Omega(x,y) = ae^{-\frac{x^2+y^2}{200}}$$
+                    </div>
+    
+                    <div id="Sinusodial_eqn">
+                            $$\Omega(x,y)= \frac{4}{5} a\sin \Big( \frac{2 \pi}{12}y \Big) $$
+                    </div>
+                </div>
+    
+    
+    
+            </div>
+    
+    
+            <div style="width:60%; float:left;">
+                <div>
+                    <div id='Vector_Graph_1b' style="width:30vw; height:30vh;"></div>
+                </div>
+    
+                <div>
+                    <div id='Scalar_Graph_1b' style="width:30vw; height:30vh;"> </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    
+
+  </div>
+
+</body>
+
+<!--THE BRAINS-->
+<script src="scripts/Grad.js"></script>
+<!--<script src="scripts/Static_EM_Object.js"></script>-->
+
+</html>

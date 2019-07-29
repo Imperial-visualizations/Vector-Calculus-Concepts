@@ -309,17 +309,20 @@ function draw() {
     clear();
 
     if (document.getElementById("mode").checked == false) {
-        //Brings in user input and turn it into a charge
+        //Brings in user input and turn it into a divergence
         sel = new charge_selector(parseFloat(document.getElementById('magnit').value), newchargex, newchargey);
 
-        //any points cannot overlap graphically
-        for (let i = 0; i < allpoints.length; i++) {
-            if (allpoints[i].clicked == true && allpoints[i].intersect() == false){
-                allpoints[i].dragposition();
-            }
+    //any points cannot overlap graphically
+    for (let i = 0; i < allpoints.length; i++) {
+        if (allpoints[i].clicked == true && allpoints[i].intersect() == false){
+            cursor(HAND);
+            allpoints[i].dragposition();
+        } else {
+            cursor(ARROW);
         }
+    }
 
-        //draws fieldlines of charges 
+        //draws fieldlines of divergence
         for (let i = 0; i < allpoints.length; i++){
             if (allpoints[i].q != 0){
                 let [x0, y0] = initial_fieldpoints([allpoints[i].x, allpoints[i].y], allpoints[i].r, allpoints[i].n_lines);
@@ -336,7 +339,7 @@ function draw() {
             ellipse(allpoints[i].x, allpoints[i].y, R);
         }
 
-        //draw the top blue rectangle box that contains the text, slider and new charge
+        //draw the top blue rectangle box that contains the text, slider and new divergence
         noStroke();
         fill(247, 252, 251);
         rect(0, 0, width, rect_height);
@@ -344,7 +347,7 @@ function draw() {
         stroke(72, 99, 95);
         line(0, rect_height, width, rect_height);
 
-        //draw the charges that are already inside the canvas
+        //draw the divergence that are already inside the canvas
         if (allpoints.length < maxpoints){
             if (sel.q != 0){
                 noStroke();
@@ -383,34 +386,6 @@ function draw() {
         line_ele.push(new line_element(500, 375));
         //WARNING: do not change the order of the transformations, i.e. translate and rotate
         let angle = parseFloat(document.getElementById('angle').value)*3.14/180;
-        translate(line_ele[0].x, line_ele[0].y);
-        rotate(angle);
-
-        //Draw the line element
-        noFill();
-        stroke("#48A9A6");
-        strokeWeight(4);
-        //Line element
-        line(0, -30, 0, 30);
-        stroke(51);
-        //Arrow body
-        line(0, 0, 30, 0);
-        //Arrow head
-        line(30 - 5, 0 - 5, 30, 0);
-        line(30 - 5, 0 + 5, 30, 0);
-        translate(38, 3);
-        rotate(-angle);
-        textAlign(CENTER);
-        strokeWeight(1);
-        text('d', 0, 0);
-        strokeWeight(1.5);
-        text('S', 8, 0);
-        strokeWeight(1);
-        rotate(angle);
-        translate(-38, -3);
-        rotate(-angle);
-        translate(-line_ele[0].x, -line_ele[0].y);
-
         let Fx = 0, Fy = 0, Ftotal;
         for (let k = 0; k < fixedpoints.length; k++) {
             let r = Math.sqrt(((line_ele[0].x - fixedpoints[k].x) ** 2 + (line_ele[0].y - fixedpoints[k].y) ** 2));
@@ -434,8 +409,42 @@ function draw() {
         fill(0, 0, 0);
         text('F', 1.02*xfield1, 1.02*yfield1);
 
+        //Compute flux
+        document.getElementById('flux').value = Math.round(100000*(Fx*Math.cos(angle) - Fy*Math.sin(angle)));
+
+        translate(line_ele[0].x, line_ele[0].y);
+        rotate(-angle);
+
+        //Draw the line element
+        noFill();
+        stroke("#48A9A6");
+        strokeWeight(4);
+        //Line element
+        line(0, -30, 0, 30);
+        stroke(51);
+        //Arrow body
+        line(0, 0, 30, 0);
+        //Arrow head
+        line(30 - 5, 0 - 5, 30, 0);
+        line(30 - 5, 0 + 5, 30, 0);
+        translate(38, 3);
+        rotate(angle);
+        textAlign(CENTER);
+        strokeWeight(1);
+        text('d', 0, 0);
+        strokeWeight(1.5);
+        text('S', 8, 0);
+        strokeWeight(1);
+        rotate(-angle);
+        translate(-38, -3);
+        rotate(angle);
+        translate(-line_ele[0].x, -line_ele[0].y);
+
         if (line_ele[0].clicked == true){
+            cursor(HAND);
             line_ele[0].dragposition();
+        } else {
+            cursor(ARROW);
         }
 
         //draw the top blue rectangle box that contains the text, slider and new charge
@@ -447,5 +456,3 @@ function draw() {
         line(0, rect_height, width, rect_height);
     }
 }
-
-//JS for Vis2

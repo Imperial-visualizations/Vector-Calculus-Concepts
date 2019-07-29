@@ -160,7 +160,7 @@
     <div id="Vis2_interactive" style="display: none;">
       <!--Text next to new charge-->
       <label class="text" style="position: relative; left: 4%; display:inline-block;">
-        <font size="5">Drag to move the surface element</font>
+        <font size="5">Move the surface element</font>
       </label>
       <!--Text next to slider for user to choose magnet orientation-->
       <label class="text" style="position: relative; left: 6%; height: 0vh; display:inline-block;">
@@ -174,6 +174,11 @@
       <label style="position: relative; left: 3%; display:inline-block;">
           <output id="amount2" name="amount2" for="angle">0</output><span>°</span>
       </label>
+      <!--Display flux-->
+      <label style="position: relative; left: 3%; display:inline-block;">
+        Flux:
+        <output id="flux"></output>
+    </label>
     </div>
 
     <!--p5 canvas for drawing charges, fieldlines and loop-->

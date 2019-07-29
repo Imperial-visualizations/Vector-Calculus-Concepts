@@ -386,34 +386,6 @@ function draw() {
         line_ele.push(new line_element(500, 375));
         //WARNING: do not change the order of the transformations, i.e. translate and rotate
         let angle = parseFloat(document.getElementById('angle').value)*3.14/180;
-        translate(line_ele[0].x, line_ele[0].y);
-        rotate(angle);
-
-        //Draw the line element
-        noFill();
-        stroke("#48A9A6");
-        strokeWeight(4);
-        //Line element
-        line(0, -30, 0, 30);
-        stroke(51);
-        //Arrow body
-        line(0, 0, 30, 0);
-        //Arrow head
-        line(30 - 5, 0 - 5, 30, 0);
-        line(30 - 5, 0 + 5, 30, 0);
-        translate(38, 3);
-        rotate(-angle);
-        textAlign(CENTER);
-        strokeWeight(1);
-        text('d', 0, 0);
-        strokeWeight(1.5);
-        text('S', 8, 0);
-        strokeWeight(1);
-        rotate(angle);
-        translate(-38, -3);
-        rotate(-angle);
-        translate(-line_ele[0].x, -line_ele[0].y);
-
         let Fx = 0, Fy = 0, Ftotal;
         for (let k = 0; k < fixedpoints.length; k++) {
             let r = Math.sqrt(((line_ele[0].x - fixedpoints[k].x) ** 2 + (line_ele[0].y - fixedpoints[k].y) ** 2));
@@ -437,6 +409,37 @@ function draw() {
         fill(0, 0, 0);
         text('F', 1.02*xfield1, 1.02*yfield1);
 
+        //Compute flux
+        document.getElementById('flux').value = Math.round(100000*(Fx*Math.cos(angle) - Fy*Math.sin(angle)));
+
+        translate(line_ele[0].x, line_ele[0].y);
+        rotate(-angle);
+
+        //Draw the line element
+        noFill();
+        stroke("#48A9A6");
+        strokeWeight(4);
+        //Line element
+        line(0, -30, 0, 30);
+        stroke(51);
+        //Arrow body
+        line(0, 0, 30, 0);
+        //Arrow head
+        line(30 - 5, 0 - 5, 30, 0);
+        line(30 - 5, 0 + 5, 30, 0);
+        translate(38, 3);
+        rotate(angle);
+        textAlign(CENTER);
+        strokeWeight(1);
+        text('d', 0, 0);
+        strokeWeight(1.5);
+        text('S', 8, 0);
+        strokeWeight(1);
+        rotate(-angle);
+        translate(-38, -3);
+        rotate(angle);
+        translate(-line_ele[0].x, -line_ele[0].y);
+
         if (line_ele[0].clicked == true){
             cursor(HAND);
             line_ele[0].dragposition();
@@ -453,5 +456,3 @@ function draw() {
         line(0, rect_height, width, rect_height);
     }
 }
-
-//JS for Vis2

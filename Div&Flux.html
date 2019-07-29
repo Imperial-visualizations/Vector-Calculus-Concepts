@@ -103,15 +103,17 @@
 
     <div id="Vis1_text">
 
-        Divergence - the beginning and the end of field lines
+        Divergence - What is divergence?
         <br><br>
-        Divergence can be thought as the 'source' or 'sink' of field lines, depending on its sign. 
-        In this visualisation, you can drag the black dot, which can act as a 'source' or 'sink' of field $\mathbf{F}$.
-        A physical <a href="Visualisations/Static-Electromagnetism/EM_p1.html">example</a> of divergence is electrical charge.
-        <br><br>
-        Note that $\displaystyle \nabla \cdot$ is the divergence operator. 
-        <br><br>
-        Click on the toggle button on top-left to find out more about flux and its relationship with divergence.
+        The divergence of a field quantifies how much a field varies in the direction of the field lines. A
+        field is said to be diverging if the field strength changes as you step along field lines. On an
+        infinitesimal level, this may be interpreted as 'sources' of field strength 'creating' or 'destroying'
+        field lines. It may be calculated using the $\displaystyle \nabla $ operator on a vector field to generate
+        a scalar.
+
+        The Visualisation on the right shows an infinitesimal section of a surface (the y axis). The arrows show
+        the direction of the field lines and their thickness represents the field strength. Use the
+        $\displaystyle \nabla  $ slider to understand the difference between positive and negative divergence.
 
     </div>
 
@@ -138,22 +140,51 @@
   <div class="container_vis" style="position: relative;">
     <!--Vis 1-->
     <div id="Vis1_interactive" style="position: relative;">
-      <!--Text next to new charge-->
-      <label class="text" style="position: relative; left: 4%; display:inline-block;">
-          <font size="5">Drag to add</font>
-      </label>
-      <!--Text next to slider for user to choose charge strength and polarity-->
-      <label class="text" style="position: relative; left: 12%; display:inline-block;">
-          <font size="4">Relative divergence:</font>
-      </label>
-      <!--Slider for user to choose charge strength and polarity-->
-      <label style="position: relative; left: 16%; width: 35%; display:inline-block;">
-          <input id="magnit" class="inputs" type="range" value="1" min="-1" max="1" step="0.1" oninput="amount.value=magnit.value"/>
-      </label>
-      <!--Display user input on RHS of slider-->
-      <label style="position: relative; left: 12%; display:inline-block;">
-          <label>$ \nabla \cdot \mathbf{F}$ = <output id="amount" name="amount" for="magnit">1</output></label>
-      </label>
+
+      <div class="container">
+        <div class="row">
+            <!-- Graph -->
+            <div class="one-third column" style="padding-left: 2em;">
+    
+                <div id='graph' style="width:30vw; height:70vh;">
+                    <!-- Legend -->
+                    <ul style="margin-top: -4em;">
+                        <li style="color: rgb(28,34,255);">Target Vector</li>
+                     </ul>
+                </div>
+            </div>
+    
+    
+            <!--Buttons/Sliders-->
+            <div class="one-third column" style="padding-left: 50px;">
+    
+                <!--Main body contents-->
+                <div class="tab-content">
+                        <h6 style="border-left: solid 0px rgb(28,34,255); padding-left: 0px; margin: 5px; padding-top: 1vh; ">Relative divergence </h6>
+                        <!--BEGIN Slider-->
+                        <label style="position: relative; float: left; width: 100%; top: 10px;">
+                            <input id="x3Controller" class="inputs" type="range" value="1" min="-1" max="1" step="0.01" oninput="x3.value=x3Controller.value"/></input>
+                            <br>
+                            <span> $ \nabla \cdot \mathbf{F}$ =  <output id="x3" for="x3Controller">1</output></span>
+                        </label>
+                        <!--END Slider-->
+    
+                        <!--BEGIN Slider-->
+                        <label>
+                            <input id="y3Controller" >
+                        </label>
+                        <!--END Slider-->
+    
+                        <!--Unique Areas-->
+                        <!--BEGIN Basis Vector Area-->
+                        <div class="tab-pane active" id="basis"></div> <!--NB: Also need 'active' here-->
+                        <!--END Basis-->
+                        <!--END Area-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!--Vis 2-->
@@ -178,11 +209,12 @@
       <label style="position: relative; left: 3%; display:inline-block;">
         Flux:
         <output id="flux"></output>
-    </label>
-    </div>
-
+    </label>    
     <!--p5 canvas for drawing charges, fieldlines and loop-->
     <label id="sketch-holder" style="height: 100vh; width: 160vh; margin-top:-6.5%">
+    </div>
+
+
 
   </div>
 
@@ -191,6 +223,7 @@
 </body>
 
 <!--THE BRAINS-->
+<script src=scripts/VC_object.js></script>
 <script src="scripts/Div&Flux.js"></script>
 
 </html>

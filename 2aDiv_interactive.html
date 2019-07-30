@@ -54,15 +54,15 @@
             <div class="tab-content">
                     <h6 style="border-left: solid 0px rgb(79,255,16); padding-left: 0px; margin: 5px; padding-top: 1vh; ">Relative divergence </h6>
                     <!--BEGIN Slider-->
-                    <label class="slider" style="position: relative; float: left; width: 100%; top: 10px; rgb(79,255,16)">
+                    <label style="position: relative; float: left; width: 100%; top: 10px;">
                         <input id="x3Controller" class="inputs" type="range" value="1" min="-1" max="1" step="0.01" oninput="x3.value=x3Controller.value"/></input>
                         <br>
-                        <span> $\nabla \cdot $  =  <output id="x3" for="x3Controller">1</output></span>
+                        <span> $ \nabla \cdot \mathbf{F}$ =  <output id="x3" for="x3Controller">1</output></span>
                     </label>
                     <!--END Slider-->
 
                     <!--BEGIN Slider-->
-                    <label class="slider">
+                    <label>
                         <input id="y3Controller" >
                     </label>
                     <!--END Slider-->

@@ -139,36 +139,55 @@ function computeBasis(x3,y3) {
     let lhsy = [];
     let rhsy = [];
     let widths = [];
+    let colours = []
 
     for (i=0; i<hnumber;i++){
         for (j=0;j<vnumber;j++){
+            colorscale= [250*Math.cos(i*x3),0,Math.abs(250*Math.sin(i*x3))]
             for (let jj=0; jj<2;jj++){
                 for (let ii=0;ii<2;ii++) {
                     if (x3 >= 0) {
-                        console.log('blah')
                         lhsx.push(((-1) ** ii) * x3 * (i));
                         rhsx.push(((-1) ** ii) * x3 * (i + 1));
                         lhsy.push(((-1) ** jj) * j*y3);
                         rhsy.push(((-1) ** jj) * j*y3);
+                        colours.push(colorscale);
                         widths.push(Math.abs((hnumber-i)*x3));
                     } else {
-                        console.log('blah blah')
                         lhsx.push(((-1) ** ii) * x3 * (i+1));
                         rhsx.push(((-1) ** ii) * x3 * (i));
                         lhsy.push(((-1) ** jj) * j*y3);
                         rhsy.push(((-1) ** jj) * j*y3);
+                        colours.push(colorscale);
                         widths.push(Math.abs((hnumber-i)*x3));
                     }
                 }
             }
         }
      }
-    let vertices = [];
 
+    let colors1 = [];
+    let colors2 = [];
+    let colors3 = [];
+    //let colors_string = (eval(colors));
+
+    for (i=0; i<lhsx.length;i++){
+        colors1.push(colours[i][0]);
+        colors2.push(colours[i][1]);
+        colors3.push(colours[i][2]);
+    }
+    let yolo = [];
+    for (i=0; i<lhsx.length;i++) {
+        yolo.push("rgb(" + colors1[i] + "," + colors2[i] + "," + colors3[i] + ")");
+
+    }
+
+
+    let vertices = [];
     for (i=0; i<lhsx.length; i++){
         let a = new Line2d([[lhsx[i], lhsy[i]], [rhsx[i], rhsy[i]]]);
-        vertices.push(a.gObject(blue, widths[i]));
-        vertices.push(a.arrowHead(blue, widths[i]));
+        vertices.push(color= a.gObject(yolo[i], widths[i]));
+        vertices.push(color= a.arrowHead(yolo[i] , widths[i]));
     }
 
         function isPositive(x){

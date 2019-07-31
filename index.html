@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--Title-->
+
     <title>Visualisations Vector Calculus</title>
     <!--css links-->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
@@ -90,58 +91,7 @@
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p1">
-                    Given the vectors <span class="mathJaxInline">$ \vec{V}_{n} $</span> and <span class="mathJaxInline">$ \vec{V}_{m} $</span>, we define their
-                    inner product as
-                    <span class="mathJaxDisplay">
-                            $$\vec{V}_{n} \cdot \vec{V}_{m} = \sum_{i}V_{n}^{(i)} V_{m}^{(i)}, $$
-                        </span>
-                    where <span class="mathJaxInline">$ V_{n}^{(i)} $</span> is the <span class="mathJaxInline">$ i^{\text{th}} $</span> component of the vector
-                    <span class="mathJaxInline">$ \vec{V}_{n} $</span>. If
-                    <span class="mathJaxDisplay">
-                            $$ \vec{V}_{n} \cdot \vec{V}_{m} = 0 \text{ for } m \neq n, $$
-                        </span>
-                    then we say the vectors are <strong>orthogonal</strong>.
-                    <br><br>
-                    If you move in the direction of any vector <span class="mathJaxInline">$ \vec{a} $</span>, you do not change the position
-                    component in the direction of any vector
-                    orthogonal to <span class="mathJaxInline">$ \vec{a} $</span>. In other words, orthogonal vectors are perpendicular.
-                    <!--(... talk about definition of orthogonality)-->
-                    <br><br>
-                    If <span class="mathJaxInline">$ \vec{V}_{n} \cdot \vec{V}_{m} = \delta_{nm} $</span> then the vectors are said to be
-                    <strong>orthonormal</strong>.
-                    <span class="mathJaxDisplay">
-                            $$ \delta_{nm} = \left\{\begin{matrix}0 \quad \text{if } m\neq n
-                            \\ 1 \quad \text{if } m = n
-                            \end{matrix}\right. $$
-                        </span>
-                    This mean the vectors are orthogonal and conveniently normalised.
-                    <br><br>
-                    Use the visualisation to see that when the basis vectors are not parallel they span <span class="mathJaxInline">$ \mathbb{R}^{2} $</span>,
-                    using these as basis vectors, we can construct any other vector in <span class="mathJaxInline">$ \mathbb{R}^{2} $</span>.
-                    <br><br>
-                    If you can represent any vector in <span class="mathJaxInline">$ \mathbb{R}^{n} $</span> using <span class="mathJaxInline">$ n $</span> vectors,
-                    then the basis vectors form a <strong>complete set</strong>.
-                    If the set of these vectors are all orthonormal, then we have a <strong>complete orthonormal
-                    set</strong>.
-                    <br><br>
-                    In the same way as before, we will now demonstrate what it means for <strong>functions</strong> to
-                    be complete.
-                    We define the functions <span class="mathJaxInline">$ f_{n},f_{m} $</span> to exist on the domain <span class="mathJaxInline">$ \left[a,b \right] $</span>.
-                    <br><br>
-                    We define their inner product to be
-                    <span class="mathJaxDisplay">
-                            $$ \langle  f_{n} , f_{m} \rangle = \int_{a}^{b} f_{n}\left(x \right)f_{m}^{*}\left(x \right)dx $$
-                        </span>
-                    and say the functions are <strong>orthogonal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = 0 $</span>
-                    for <span class="mathJaxInline">$ m \neq n $</span>.
-                    <br><br>
-                    We then say the functions are <strong>orthonormal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = \delta_{nm} $</span>.
-                    <br><br>
-                    We now claim that you can construct any square integrable function from a <strong>complete
-                    set</strong> of basis
-                    functions in the same way vectors could be constructed from a complete set of basis vectors. A
-                    square integrable function <span class="mathJaxInline">$ f $</span> is
-                    a function whose inner product with itself, <span class="mathJaxInline">$ \langle f,f \rangle $</span> is finite.
+                    Intro text
                 </div>
             </div>
             <div class="section-container" id="sc2">
@@ -155,100 +105,13 @@
                 <div class="text section-body odd" id="p2">
                     <div id="section2Sub1" class="divclass">
                         <button id="ssh2-1" class="section-sub-head first-sub-head" key="ssh2-1" @click="updateSubSection(1); subScrollTo($event)" data-toggle="collapse" data-target="#section2Sub1ContentContainer"
-                        :style="derivationSubSection === 1 ? 'background-color: #eaf2ff;' : ''">
-                            Introduction to Fourier series <i class='fas fa-chevron-down'></i>
+                        >
+                            Grad Differential <i class='fas fa-chevron-down'></i>
                         </button>
                         <div id="section2Sub1ContentContainer" class="collapse show" data-parent="#p2">
                             <div id="section2Sub1Content" class="section-sub-content" key="section2Sub1Content">
-                                Consider a function <span class="mathJaxInline">$ f(x) $</span> which is periodic over the domain <span class="mathJaxInline">$ -L \leq x < L $</span>
-                                where <span class="mathJaxInline">$ L $</span> is positive. <span class="mathJaxInline">$ f(x) $</span> can be represented as a sum
-                                of
-                                sines and cosines with varying
-                                frequencies.
-                                <br><br>
-                                These trigonometric functions form orthogonal basis.
-                                <br><br>
-                                The Fourier series of <span class="mathJaxInline">$ f(x) $</span> is
-                                <span class="mathJaxDisplay">
-                                        $$ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big) + b_n\sin\Big(\frac{\pi nx}{L}\Big) \Big] $$
-                                    </span>
-                                where
-                                <span class="mathJaxDisplay">
-                                        \begin{align}
-                                        a_n & = \frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx, \\
-                                        b_n & = \frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx, \\
-                                        a_0 & = \frac{1}{L}\int_{-L}^{L} f(x) dx,
-                                        \end{align}
-                                    </span>
-                                and
-                                <span class="mathJaxDisplay">
-                                        $$ n=0,1,2... $$
-                                    </span>
-                                <strong> Note:</strong> <span class="mathJaxInline">$ {a_0}/2 $</span> represents the average value of <span class="mathJaxInline">$ f(x) $</span>.
-                                <br><br>
-                                The Fourier series representation of the function <span class="mathJaxInline">$ f(x) $</span> in exponential
-                                (complex) form is
-                                <span class="mathJaxDisplay">
-                                        $$ f(x) =\sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} \qquad $$
-                                    </span>
-                                where
-                                <span class="mathJaxDisplay">
-                                        $$ c_n = \frac{1}{2L}\int_{-L}^{L} f(x) e^{{-in \pi x}/L} dx, $$
-                                    </span>
-                                <strong>Note:</strong> The constants in front of the integral(s) of the coefficient for
-                                the trigonometric and exponential fourier series are different. Also note the limit of
-                                the
-                                summations.
-                            </div>
-                        </div>
-                    </div>
-                    <div id="section2Sub2" class="divclass">
-                        <button id="ssh2-2" class="section-sub-head collapsed" key="ssh2-2" @click="updateSubSection(2); subScrollTo($event)" data-toggle="collapse" data-target="#section2Sub2ContentContainer"
-                                :style="derivationSubSection === 2 ? 'background-color: #eaf2ff;' : ''">
-                            General Derivation <i class='fas fa-chevron-down'></i>
-                        </button>
-                        <div id="section2Sub2ContentContainer" class="collapse show" data-parent="#p2">
-                            <div id="section2Sub2Content" class="section-sub-content" key="section2Sub2Content">
-                                We begin by assuming that <span class="mathJaxInline">$ f(x) $</span> can be represented as a sum of
-                                exponential terms.
-                                <span class="mathJaxDisplay">
-                                        $$ f(x) = \sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} $$
-                                    </span>
-                                Multiplying by <span class="mathJaxInline">$ e^{{-im \pi x}/L} $</span>, where <span class="mathJaxInline">$ m=0,1,2... $</span>,
-                                and integrating both sides gives the following:
-                                <span class="mathJaxDisplay">
-                                        $$ \int_{-L}^{L} f(x) e^{{-im \pi x}/L} dx = \sum_{n=-\infty}^{\infty} c_n \int_{-L}^{L} e^{{i(n-m) \pi x}/L} dx. $$
-                                    </span>
-                                Performing the integral on the R.H.S gives
-                                <span class="mathJaxDisplay">
-                                        $$ \int_{-L}^L e^{(i\pi x/L)(n-m)}dx =\left\{ \begin{array}{ll} 2L \qquad \text{(if n=m)} \\
-                                        0 \qquad \quad \text{(if n≠m)} \end{array} \right \} = 2L \cdot \delta_{nm}. $$
-                                    </span>
-                                This is the orthonormality of complex exponentials.
-                                <br><br>
-                                Now since the only non-zero value of the sum is when <span class="mathJaxInline">$ n=m $</span>,
-                                <span class="mathJaxDisplay">
-                                        $$ \int_{-L}^L f(x) e^{-im\pi x/L}dx = 2L \sum_{n=-\infty}^{+\infty}c_n\delta_{mn} = 2L\cdot c_m, $$
-                                    </span>
-                                hence
-                                <span class="mathJaxDisplay">
-                                        $$ c_m=\frac{1}{2L}\int_{-L}^{+L}f(x) e^{-im\pi x/L}dx. $$
-                                    </span>
-                                <strong>Note:</strong> As <span class="mathJaxInline">$ m $</span> is an arbitrary integer, it can be assigned
-                                as <span class="mathJaxInline">$ n $</span> for simplicity.
-                                <br><br>
-                                Given the previously derived equation, we can derive the trigonometric form of the
-                                Fourier series. By reorganising the sum, we get
-                                <span class="mathJaxDisplay">
-                                        $$ f(x)= \underbrace{c_0}_\text{n=0} + \sum_{n=1}^{\infty} \big( \underbrace{c_n e^{in\pi x/L}}_\text{Positive n term} + \underbrace{c_{-n} e^{-in\pi x/L}}_\text{Negative n terms} \big).$$
-                                    </span>
-                                We can regroup the terms in the summation in the following way:
-                                <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
-                                                data-target="#regroupexplainContainer"> <span>Show</span> Full Calculation </button>
-                                    </span>
-                                <div id="exampleExtraContainer" class="collapse show extra-content-container">
-                                    <div id="exampleExtra" class="extra-content">
+                                <div id="blablahContainer" class="collapse show extra-content-container">
+                                    <div id="blahblahexplain" class="extra-content">
                                             <span class="mathJaxDisplay">
                                                 \begin{align}
                                                 = \frac{1}{2} \Big[  2c_n e^{in\pi x/L} + 2c_{-n} e^{-in\pi x/L} & \\
@@ -265,41 +128,65 @@
                                             </span>
                                     </div>
                                 </div>
-                                <span class="mathJaxDisplay">
-                                        \begin{align}
-                                        f(x)= c_0 + \sum_{n=1}^{\infty} \Big[ & \frac{c_n + c_{-n}}{2} \big(e^{in\pi x/L} +e^{-in\pi x/L} \big) \\
-                                        & \frac{c_n - c_{-n}}{2} \big(e^{in\pi x/L} -e^{-in\pi x/L} \big) \Big]
-                                        \end{align}
-                                    </span>
-                                Now define <span class="mathJaxInline">$ a_n = c_n + c_{-n} $</span> and
-                                <span class="mathJaxInline">$ b_n = i(c_n - c_{-n}) $</span>
-                                and use that these exponentials can we written as
-                                sines and cosines.
-                                <br><br>
-                                <strong>Note:</strong> <span class="mathJaxInline">$ a_0 = 2c_0 $</span> and <span class="mathJaxInline">$ b_0=0 $</span>.
-                                <br><br>
-                                Hence
-                                <span class="mathJaxDisplay">
-                                        $$ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big) + b_n\sin\Big(\frac{\pi nx}{L}\Big) \Big] $$
-                                    </span>
-                                <span class="mathJaxInline">$ a_n $</span> can be derived by using the expression from <span class="mathJaxInline">$ c_n $</span>
-                                <span class="mathJaxDisplay">
-                                        \begin{align}
-                                        a_n = c_n + c_{-n} = & \frac{1}{2L}\int_{-L}^{+L}f(x) e^{-in\pi x/L}dx \\
-                                        + & \frac{1}{2L} \int_{-L}^{+L}f(x) e^{in\pi x/L}dx
-                                        \end{align}
-                                    </span>
-                                Factorise and spot the exponential form of <span class="mathJaxInline">$ \cos $</span>.
-                                <span class="mathJaxDisplay">
-                                        \begin{align}
-                                        & =\frac{1}{L}\int_{-L}^{+L}f(x) \Big[\frac{e^{in\pi x/L} +e^{-in\pi x/L}}{2}\Big]dx \\
-                                        & =\frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx
-                                        \end{align}
-                                    </span>
-                                Similarly for <span class="mathJaxInline">$ b_n $</span>,
-                                <span class="mathJaxDisplay">
-                                        $$ b_n =\frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx. $$
-                                    </span>
+                                <p>
+                                  Grad operates on a scalar field $f(x, y)$ to produce a vector field indicating the magnitude and direction of the
+                                  steepest gradient at each point.  It is easy to remember that grad produces a vector field, because it is necessary
+                                  for the gradient to have a direction once there is more than one dimension involved.  It must act on a scalar field
+                                  because it doesn't make much sense for a vector field to have a gradient.
+                                </p>
+
+                                <p>
+                                  The surface shown on the right is a scalar function $f$ of two independent variables, $x$ and $y$.  Note that it is a 2D scalar field &mdash;
+                                  the third dimension is just being used to display the value of the function.
+                                </p>
+
+                                <p>
+                                  Beneath it the gradient of the function $\nabla f$ is shown.  By changing the coefficient $a$, the gradient of the function can be increased
+                                  and decreased in certain directions.  There are also several functions to choose from.
+                                </p>
+
+                                <p>
+                                  The idea extends to three dimensions in the same way.  For example, if you were to plot the magnitude of the Sun's gravitational field
+                                  in 3D space around the Sun, the gradient of this field would give vectors that point to the centre of the Sun at every point.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="section2Sub2" class="divclass">
+                        <button id="ssh2-2" class="section-sub-head collapsed" key="ssh2-2" @click="updateSubSection(2); subScrollTo($event)" data-toggle="collapse" data-target="#section2Sub2ContentContainer"
+                                >
+                            Grad integral <i class='fas fa-chevron-down'></i>
+                        </button>
+                        <div id="section2Sub2ContentContainer" class="collapse show" data-parent="#p2">
+                            <div>
+                                 <center><h5>$$ \Omega_B - \Omega_A = \int _A ^B \nabla \Omega \cdot \mathbf{ dl }$$</h5></center>
+                                <p>
+                                    <br>
+                                    For a given vector field, if $\mathbf{A} \cdot \mathbf{ dl }$ is an exact differential, $\mathbf{A}$ is a conservative field. Then, $\mathbf{A}$ is the
+                                    gradient function of some scalar function $\Omega$. That is, $\mathbf{A} = \nabla {\Omega}$.
+                                    We can relate $\Omega$ and $\nabla \Omega$ by the equation below:
+                                        $$ \int _A ^B \nabla \Omega \cdot \mathbf{ dl } = \Omega_B - \Omega_A$$
+                                    From this equation above, we can see that the integral is independent of the path that one takes from A to B,
+                                    for it is determined by only the values from the parent function $\Omega_B - \Omega_A$. This is a generalisation of the Fundamental Theorem of Calculus.
+                                </p>
+                                    <div>
+                                        <h5>Visualisation Guide</h5>
+                                            <ol>
+                                                <li>On the right, you can see a gradient field and its scalar parent function.
+                                                    Change the value of the parameter $a$, and observe the change in $\nabla \Omega$ and $\Omega$.</li>
+                                                <li>Note that as the magnitude of $a$ increases, the length of the arrows in $\nabla \Omega$ increases and the contour of the parent function
+                                                    $\Omega$ becomes steeper as well. Hence, the gradient vector increases in magnitude as well.</li>
+                                                <li>All gradient fields shown in this suite are conservative. This means that the line integral along the field,
+                                                    $\int \nabla \Omega \cdot \mathbf{ dl }$ is path independent. Move the path of the ball from Point A to Point B
+                                                    along 2 different paths, Path 1 and Path 2.</li>
+                                                <li>Observe their function values. Note that along the path, the value of $\Omega$ may be different.
+                                                    However, when the balls reach Point B, their function values are equal.</li>
+                                                <li>This means that the line integral $\int _A ^B \nabla \Omega \cdot \mathbf{ dl }$  is determined
+                                                    only by the value of $\Omega$ at the limits, $\Omega_B - \Omega_A$.</li>
+                                                <li>There are a few other functions for you to play around with. Click the dropdown menu to find out.</li>
+                                            </ol>
+                                    </div>
+
                             </div>
                         </div>
                     </div>
@@ -309,266 +196,116 @@
                 <div class="placeholder" id="ph3">
                     <hr>
                     <h2 class="text section-head" id="s3">
-                        Derivation
+                        Divergence
                     </h2>
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p3">
                     <div id="section3Sub1" class="divclass">
                         <button id="ssh3-1" class="section-sub-head first-sub-head" key="ssh3-1" @click="updateSubSection(1); subScrollTo($event)" data-toggle="collapse" data-target="#section3Sub1ContentContainer"
-                                :style="derivationSubSection === 1 ? 'background-color: #eaf2ff;' : ''">
-                            Introduction to Fourier series <i class='fas fa-chevron-down'></i>
+                                >
+                            Divergence Differential <i class='fas fa-chevron-down'></i>
                         </button>
                         <div id="section3Sub1ContentContainer" class="collapse show" data-parent="#p3">
-                            <div id="section3Sub1Content" class="section-sub-content" key="section3Sub1Content">
-                                Consider a function <span class="mathJaxInline">$ f(x) $</span> which is periodic over the domain <span class="mathJaxInline">$ -L \leq x < L $</span>
-                                where <span class="mathJaxInline">$ L $</span> is positive. <span class="mathJaxInline">$ f(x) $</span> can be represented as a sum
-                                of
-                                sines and cosines with varying
-                                frequencies.
-                                <br><br>
-                                These trigonometric functions form orthogonal basis.
-                                <br><br>
-                                The Fourier series of <span class="mathJaxInline">$ f(x) $</span> is
-                                <span class="mathJaxDisplay">
-                                        $$ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big) + b_n\sin\Big(\frac{\pi nx}{L}\Big) \Big] $$
-                                    </span>
-                                where
-                                <span class="mathJaxDisplay">
-                                        \begin{align}
-                                        a_n & = \frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx, \\
-                                        b_n & = \frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx, \\
-                                        a_0 & = \frac{1}{L}\int_{-L}^{L} f(x) dx,
-                                        \end{align}
-                                    </span>
-                                and
-                                <span class="mathJaxDisplay">
-                                        $$ n=0,1,2... $$
-                                    </span>
-                                <strong> Note:</strong> <span class="mathJaxInline">$ {a_0}/2 $</span> represents the average value of <span class="mathJaxInline">$ f(x) $</span>.
-                                <br><br>
-                                The Fourier series representation of the function <span class="mathJaxInline">$ f(x) $</span> in exponential
-                                (complex) form is
-                                <span class="mathJaxDisplay">
-                                        $$ f(x) =\sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} \qquad $$
-                                    </span>
-                                where
-                                <span class="mathJaxDisplay">
-                                        $$ c_n = \frac{1}{2L}\int_{-L}^{L} f(x) e^{{-in \pi x}/L} dx, $$
-                                    </span>
-                                <strong>Note:</strong> The constants in front of the integral(s) of the coefficient for
-                                the trigonometric and exponential fourier series are different. Also note the limit of
-                                the
-                                summations.
-                            </div>
+                            <h2> What is divergence?</h2>
+                            <p>
+                                The divergence of a field quantifies how much a field varies in the direction of the field lines. A
+                                field is said to be diverging if the field strength changes as you step along field lines. On an
+                                infinitesimal level, this may be interpreted as 'sources' of field strength 'creating' or 'destroying'
+                                field lines. It may be calculated using the $\displaystyle \nabla $ operator on a vector field to generate
+                                a scalar field. The Visualisation on the right shows an infinitesimal section of a surface (the y axis). The arrows show
+                                the direction of the field lines while their thickness and colour represent the field strength. Use the
+                                $\displaystyle \nabla  $ slider to understand the difference between positive and negative divergence.
+                                <br>
+                                <br>
+                                Divergence may also occur if there are sources of field lines (e.g. monopoles) that increase/decrease the
+                                line density of a field, as shown by the figure to the right. The source of divergence adds field lines whereas
+                                the sink takes them away. Hence the source has a positive divergence and the sink has a negative divergence.
+                            </p>
                         </div>
                     </div>
                     <div id="section3Sub2" class="divclass">
                         <button id="ssh3-2" class="section-sub-head collapsed" key="ssh3-2" @click="updateSubSection(2); subScrollTo($event)" data-toggle="collapse" data-target="#section3Sub2ContentContainer"
-                                :style="derivationSubSection === 2 ? 'background-color: #eaf2ff;' : ''">
-                            General Derivation <i class='fas fa-chevron-down'></i>
+                               >
+                            Flux <i class='fas fa-chevron-down'></i>
                         </button>
                         <div id="section3Sub2ContentContainer" class="collapse show" data-parent="#p3">
                             <div id="section3Sub2Content" class="section-sub-content" key="section3Sub2Content">
-                                We begin by assuming that <span class="mathJaxInline">$ f(x) $</span> can be represented as a sum of
-                                exponential terms.
-                                <span class="mathJaxDisplay">
-                                        $$ f(x) = \sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} $$
-                                    </span>
-                                Multiplying by <span class="mathJaxInline">$ e^{{-im \pi x}/L} $</span>, where <span class="mathJaxInline">$ m=0,1,2... $</span>,
-                                and integrating both sides gives the following:
-                                <span class="mathJaxDisplay">
-                                        $$ \int_{-L}^{L} f(x) e^{{-im \pi x}/L} dx = \sum_{n=-\infty}^{\infty} c_n \int_{-L}^{L} e^{{i(n-m) \pi x}/L} dx. $$
-                                    </span>
-                                Performing the integral on the R.H.S gives
-                                <span class="mathJaxDisplay">
-                                        $$ \int_{-L}^L e^{(i\pi x/L)(n-m)}dx =\left\{ \begin{array}{ll} 2L \qquad \text{(if n=m)} \\
-                                        0 \qquad \quad \text{(if n≠m)} \end{array} \right \} = 2L \cdot \delta_{nm}. $$
-                                    </span>
-                                This is the orthonormality of complex exponentials.
-                                <br><br>
-                                Now since the only non-zero value of the sum is when <span class="mathJaxInline">$ n=m $</span>,
-                                <span class="mathJaxDisplay">
-                                        $$ \int_{-L}^L f(x) e^{-im\pi x/L}dx = 2L \sum_{n=-\infty}^{+\infty}c_n\delta_{mn} = 2L\cdot c_m, $$
-                                    </span>
-                                hence
-                                <span class="mathJaxDisplay">
-                                        $$ c_m=\frac{1}{2L}\int_{-L}^{+L}f(x) e^{-im\pi x/L}dx. $$
-                                    </span>
-                                <strong>Note:</strong> As <span class="mathJaxInline">$ m $</span> is an arbitrary integer, it can be assigned
-                                as <span class="mathJaxInline">$ n $</span> for simplicity.
-                                <br><br>
-                                Given the previously derived equation, we can derive the trigonometric form of the
-                                Fourier series. By reorganising the sum, we get
-                                <span class="mathJaxDisplay">
-                                        $$ f(x)= \underbrace{c_0}_\text{n=0} + \sum_{n=1}^{\infty} \big( \underbrace{c_n e^{in\pi x/L}}_\text{Positive n term} + \underbrace{c_{-n} e^{-in\pi x/L}}_\text{Negative n terms} \big).$$
-                                    </span>
-                                We can regroup the terms in the summation in the following way:
-                                <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
-                                                data-target="#regroupexplainContainer"> <span>Show</span> Full Calculation </button>
-                                    </span>
-                                <div id="regroupexplainContainer" class="collapse show extra-content-container">
-                                    <div id="regroupexplain" class="extra-content">
-                                            <span class="mathJaxDisplay">
-                                                \begin{align}
-                                                = \frac{1}{2} \Big[  2c_n e^{in\pi x/L} + 2c_{-n} e^{-in\pi x/L} & \\
-                                                + \underbrace{c_{-n} e^{in\pi x/L} - c_{-n} e^{in\pi x/L}}_\text{ =0} & \\
-                                                + \underbrace{c_{n} e^{-in\pi x/L} -c_{n} e^{-in\pi x/L}}_\text{ =0} & \Big] \\
-                                                \end{align}
-                                                <br>
-                                                \begin{align}
-                                                = \frac{1}{2} \Big[ c_n e^{in\pi x/L} +c_{-n} e^{in\pi x/L} & \\
-                                                + c_n e^{-in\pi x/L} + c_{-n} e^{-in\pi x/L} & \\
-                                                + c_n e^{in\pi x/L} - c_{-n} e^{in\pi x/L} & \\
-                                                - c_n e^{-in\pi x/L} + c_{-n} e^{-in\pi x/L} & \Big] \\
-                                                \end{align}
-                                            </span>
+                                <!--<center><h4>Flux over a Closed Surface, $\oint_{S} \mathbf{A} \cdot \mathbf{dS}$</h4></center>-->
+                                        Flux - the flow of field lines
+                                        <br><br>
+                                        We often call $\mathbf{F} \cdot d\mathbf{S}$ the flux of field $\mathbf{F}$ perpendicular through a surface element $dS$.
+                                        In this visualisation, the green line can be thought as taking the side view of the surface element.
+                                        <br><br>
+                                        The <b>net</b> flux through any surface $S$ is given by the integral:
+                                        $$\iint_S \mathbf{F} \cdot d\mathbf{S}$$
+                                        By considering a <b>closed</b> surface, the Divergence Theorem relates the net flux to the divergence of the field:
+                                        <center>$\unicode{x222F}_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V \nabla \cdot \mathbf{F} dV$</center>
+                                        <br>
+                                        An <a href="Visualisations/Static-Electromagnetism/EM_p1.html">example</a> of the Divergence Theorem is Maxwell's Equation.
                                     </div>
                                 </div>
-                                <span class="mathJaxDisplay">
-                                        \begin{align}
-                                        f(x)= c_0 + \sum_{n=1}^{\infty} \Big[ & \frac{c_n + c_{-n}}{2} \big(e^{in\pi x/L} +e^{-in\pi x/L} \big) \\
-                                        & \frac{c_n - c_{-n}}{2} \big(e^{in\pi x/L} -e^{-in\pi x/L} \big) \Big]
-                                        \end{align}
-                                    </span>
-                                Now define <span class="mathJaxInline">$ a_n = c_n + c_{-n} $</span> and
-                                <span class="mathJaxInline">$ b_n = i(c_n - c_{-n}) $</span>
-                                and use that these exponentials can we written as
-                                sines and cosines.
-                                <br><br>
-                                <strong>Note:</strong> <span class="mathJaxInline">$ a_0 = 2c_0 $</span> and <span class="mathJaxInline">$ b_0=0 $</span>.
-                                <br><br>
-                                Hence
-                                <span class="mathJaxDisplay">
-                                        $$ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big) + b_n\sin\Big(\frac{\pi nx}{L}\Big) \Big] $$
-                                    </span>
-                                <span class="mathJaxInline">$ a_n $</span> can be derived by using the expression from <span class="mathJaxInline">$ c_n $</span>
-                                <span class="mathJaxDisplay">
-                                        \begin{align}
-                                        a_n = c_n + c_{-n} = & \frac{1}{2L}\int_{-L}^{+L}f(x) e^{-in\pi x/L}dx \\
-                                        + & \frac{1}{2L} \int_{-L}^{+L}f(x) e^{in\pi x/L}dx
-                                        \end{align}
-                                    </span>
-                                Factorise and spot the exponential form of <span class="mathJaxInline">$ \cos $</span>.
-                                <span class="mathJaxDisplay">
-                                        \begin{align}
-                                        & =\frac{1}{L}\int_{-L}^{+L}f(x) \Big[\frac{e^{in\pi x/L} +e^{-in\pi x/L}}{2}\Big]dx \\
-                                        & =\frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx
-                                        \end{align}
-                                    </span>
-                                Similarly for <span class="mathJaxInline">$ b_n $</span>,
-                                <span class="mathJaxDisplay">
-                                        $$ b_n =\frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx. $$
-                                    </span>
+
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+
             <div class="section-container" id="sc4">
                 <div class="placeholder" id="ph4">
                     <hr>
                     <h2 class="text section-head" id="s4">
-                        Derivation
+                        Curl
                     </h2>
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p4">
                     <div id="section4Sub1" class="divclass">
                         <button id="ssh4-1" class="section-sub-head first-sub-head" key="ssh4-1" @click="updateSubSection(1); subScrollTo($event)" data-toggle="collapse" data-target="#section4Sub1ContentContainer"
-                                :style="derivationSubSection === 1 ? 'background-color: #eaf2ff;' : ''">
-                            Introduction to Fourier series <i class='fas fa-chevron-down'></i>
+                               >
+                            Curl differential <i class='fas fa-chevron-down'></i>
                         </button>
                         <div id="section4Sub1ContentContainer" class="collapse show" data-parent="#p4">
                             <div id="section4Sub1Content" class="section-sub-content" key="section4Sub1Content">
-                                Consider a function <span class="mathJaxInline">$ f(x) $</span> which is periodic over the domain <span class="mathJaxInline">$ -L \leq x < L $</span>
-                                where <span class="mathJaxInline">$ L $</span> is positive. <span class="mathJaxInline">$ f(x) $</span> can be represented as a sum
-                                of
-                                sines and cosines with varying
-                                frequencies.
-                                <br><br>
-                                These trigonometric functions form orthogonal basis.
-                                <br><br>
-                                The Fourier series of <span class="mathJaxInline">$ f(x) $</span> is
-                                <span class="mathJaxDisplay">
-                                        $$ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big) + b_n\sin\Big(\frac{\pi nx}{L}\Big) \Big] $$
-                                    </span>
-                                where
-                                <span class="mathJaxDisplay">
-                                        \begin{align}
-                                        a_n & = \frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx, \\
-                                        b_n & = \frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx, \\
-                                        a_0 & = \frac{1}{L}\int_{-L}^{L} f(x) dx,
-                                        \end{align}
-                                    </span>
-                                and
-                                <span class="mathJaxDisplay">
-                                        $$ n=0,1,2... $$
-                                    </span>
-                                <strong> Note:</strong> <span class="mathJaxInline">$ {a_0}/2 $</span> represents the average value of <span class="mathJaxInline">$ f(x) $</span>.
-                                <br><br>
-                                The Fourier series representation of the function <span class="mathJaxInline">$ f(x) $</span> in exponential
-                                (complex) form is
-                                <span class="mathJaxDisplay">
-                                        $$ f(x) =\sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} \qquad $$
-                                    </span>
-                                where
-                                <span class="mathJaxDisplay">
-                                        $$ c_n = \frac{1}{2L}\int_{-L}^{L} f(x) e^{{-in \pi x}/L} dx, $$
-                                    </span>
-                                <strong>Note:</strong> The constants in front of the integral(s) of the coefficient for
-                                the trigonometric and exponential fourier series are different. Also note the limit of
-                                the
-                                summations.
+                                <center><h4>Curl Operator, $\nabla \times \mathbf{f} $</h4></center>
+                                <p id="Main-text">
+                                  Stokes' Theorem states:<br>
+                                  $\displaystyle \oint_{l} \mathbf{A.dl} =$ $\displaystyle \iint_{S} \nabla \times \mathbf {A} \cdot d\mathbf{S}$
+                                  <br>
+                                  i.e. the closed loop integral of a vector field is equal to the sum of all the curl contained in the surface
+                                  enclosed by the loop.
+                                  <br><br>
+
+                                  This is demonstrated in the visualisation on the right, where the components of
+                                  $\displaystyle \mathbf{A.dl}$ as you go around the loop are shown in the plot at the bottom. The contributions are positive if
+                                  the field and dl are pointing in the same direction.
+                                  <br><br>
+
+                                  When there is curl inside the loop then the overall loop integral is non-zero,
+                                  since on all parts of the loop, the contributions to the integral from the curl source have the same sign; however
+                                  when the curl source is outside of the loop, then the contributions cancel out and the net integral is zero.
+                                  <br><br>
+
+                                  This also demonstrates that the curl of a conservative field is zero, since any loop integral
+                                  in a conservative field is also zero.
+                                  <br><br>
+
+                                  You can change the shape of the loop to see that this is true for any type of closed loop.
+
+                              </p>
                             </div>
                         </div>
                     </div>
                     <div id="section4Sub2" class="divclass">
                         <button id="ssh4-2" class="section-sub-head collapsed" key="ssh4-2" @click="updateSubSection(2); subScrollTo($event)" data-toggle="collapse" data-target="#section4Sub2ContentContainer"
-                                :style="derivationSubSection === 2 ? 'background-color: #eaf2ff;' : ''">
-                            General Derivation <i class='fas fa-chevron-down'></i>
+                                >
+                            Curl Integral <i class='fas fa-chevron-down'></i>
                         </button>
                         <div id="section4Sub2ContentContainer" class="collapse show" data-parent="#p4">
                             <div id="section4Sub2Content" class="section-sub-content" key="section4Sub2Content">
-                                We begin by assuming that <span class="mathJaxInline">$ f(x) $</span> can be represented as a sum of
-                                exponential terms.
-                                <span class="mathJaxDisplay">
-                                        $$ f(x) = \sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} $$
-                                    </span>
-                                Multiplying by <span class="mathJaxInline">$ e^{{-im \pi x}/L} $</span>, where <span class="mathJaxInline">$ m=0,1,2... $</span>,
-                                and integrating both sides gives the following:
-                                <span class="mathJaxDisplay">
-                                        $$ \int_{-L}^{L} f(x) e^{{-im \pi x}/L} dx = \sum_{n=-\infty}^{\infty} c_n \int_{-L}^{L} e^{{i(n-m) \pi x}/L} dx. $$
-                                    </span>
-                                Performing the integral on the R.H.S gives
-                                <span class="mathJaxDisplay">
-                                        $$ \int_{-L}^L e^{(i\pi x/L)(n-m)}dx =\left\{ \begin{array}{ll} 2L \qquad \text{(if n=m)} \\
-                                        0 \qquad \quad \text{(if n≠m)} \end{array} \right \} = 2L \cdot \delta_{nm}. $$
-                                    </span>
-                                This is the orthonormality of complex exponentials.
-                                <br><br>
-                                Now since the only non-zero value of the sum is when <span class="mathJaxInline">$ n=m $</span>,
-                                <span class="mathJaxDisplay">
-                                        $$ \int_{-L}^L f(x) e^{-im\pi x/L}dx = 2L \sum_{n=-\infty}^{+\infty}c_n\delta_{mn} = 2L\cdot c_m, $$
-                                    </span>
-                                hence
-                                <span class="mathJaxDisplay">
-                                        $$ c_m=\frac{1}{2L}\int_{-L}^{+L}f(x) e^{-im\pi x/L}dx. $$
-                                    </span>
-                                <strong>Note:</strong> As <span class="mathJaxInline">$ m $</span> is an arbitrary integer, it can be assigned
-                                as <span class="mathJaxInline">$ n $</span> for simplicity.
-                                <br><br>
-                                Given the previously derived equation, we can derive the trigonometric form of the
-                                Fourier series. By reorganising the sum, we get
-                                <span class="mathJaxDisplay">
-                                        $$ f(x)= \underbrace{c_0}_\text{n=0} + \sum_{n=1}^{\infty} \big( \underbrace{c_n e^{in\pi x/L}}_\text{Positive n term} + \underbrace{c_{-n} e^{-in\pi x/L}}_\text{Negative n terms} \big).$$
-                                    </span>
-                                We can regroup the terms in the summation in the following way:
-                                <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
-                                                data-target="#regroupexplainContainer"> <span>Show</span> Full Calculation </button>
-                                    </span>
+                                <center><h4>Line Integral over a Closed Loop, $\oint_{C} \mathbf{A} \cdot \mathbf{dl}$ $$\unicode{x222F}$$ </h4></center>
+                                <p>
+                                    Placeholder for text.
+                                </p>
                                 <div id="regroupexplainContainer" class="collapse show extra-content-container">
                                     <div id="regroupexplain" class="extra-content">
                                             <span class="mathJaxDisplay">
@@ -629,6 +366,7 @@
             </div>
         </div>
     </div>
+
     <!--    Right Side of Window - containing mainly interactive and visual content    -->
     <div class="vis-container right" id="right-container">
         <!--    fade transition tag for RHS - applied by Vue and CSS    -->
@@ -687,6 +425,7 @@
     <div class="rightScriptSpace"></div>
     <div class="derivationScriptSpace"></div>
 </div>
+
 </body>
 
 <script src="scripts/nav_Script.js"></script>

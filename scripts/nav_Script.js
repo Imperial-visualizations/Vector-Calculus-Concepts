@@ -12,8 +12,8 @@ let app = new Vue ({
         currentSection: 0,
         sectionTops: [],
         sectionBottoms: [],
-        sectionTitleLong: ["Orthogonality", "Derivation", "Components", "Power Spectrum", "Overview"],
-        sectionTitleShort: ["1","2","3","4","5","6"],
+        sectionTitleLong: ["Introduction", "Gradient", "Divergence", "Curl"],
+        sectionTitleShort: ["1","2","3","4"],
         sectionTitle: [],
         hoverPos: '',
         hoverTitle: false,
@@ -22,22 +22,27 @@ let app = new Vue ({
         journeyHeightOld: "",
         journeyHeightNew: "",
         rightScripts: [
-            ["scripts/orthogonality_object.js", "scripts/0Orthogonality.js"],
             [],
-            ["scripts/Components_of_a_Fourier_Series.js"],
-            ["scripts/Power_Spectrum_of_a_Fourier_Series.js"],
-            ["scripts/Generalised_Fourier_Decomposition.js"],
+            [],
+            [],
+            [],
         ],
         removeScript: "",
         addScript: "",
         firstRunDone: false,
         derivationSubSection: 1,
-        derivationScripts: [
-            ["scripts/Visualising_Simple_Periodic_Functions.js"],
-            ["scripts/Derivation_of_a_Fourier_Series_duo.js"],
+        rightSubScripts2: [
+            [],
+            [],
         ],
-        showEq: true,
-        equationID: "triangular",
+        rightSubScripts3: [
+            [],
+            [],
+        ],
+        rightSubScripts4: [
+            [],
+            [],
+        ],
     },
 
     methods: {
@@ -105,6 +110,7 @@ let app = new Vue ({
 
         // Same as above but for subsections
         // Delay added to allow time for div size changes
+        // --------------CHANGE------------------------
         subScrollTo: function (event) {
             let scrollTarget = event.currentTarget;
             if (scrollTarget.id === "ssh" + app.derivationSubSection) {
@@ -113,6 +119,7 @@ let app = new Vue ({
         },
 
         // Updates derivationSubSection variable to reflect active subsection in derivatives section
+        // --------------CHANGE------------------------
         updateSubSection: function (newSubSection) {
             if (app.derivationSubSection !== newSubSection) {
                 app.derivationSubSection = newSubSection;
@@ -203,7 +210,7 @@ let app = new Vue ({
                 }
             }
         },
-
+        // --------------CHANGE------------------------
         derivationSubSection: function (newValue, oldValue) {
             // Removes and adds scripts depending on which subsection is active when on section 2
 
@@ -250,18 +257,10 @@ let app = new Vue ({
                 }
             }
         },
-
-        equationID: function () {
-            // changes to correct equation to display in section 4 (depending on dropdown selection) and re-runs mathJax
-            app.showEq=false;
-            setTimeout(
-                function () {app.showEq=true
-            }, 50);
-        },
     },
 
     mounted () {
-
+        // --------------CHANGE------------------------
         // $nextTick ensures initial functions only run once Vue is initialised sufficiently
         this.$nextTick ( function () {
             // makes n equal to total number of sections

@@ -30,18 +30,24 @@ let app = new Vue ({
         removeScript: "",
         addScript: "",
         firstRunDone: false,
-        derivationSubSection: 1,
-        rightSubScripts2: [
-            [],
-            [],
-        ],
-        rightSubScripts3: [
-            [],
-            [],
-        ],
-        rightSubScripts4: [
-            [],
-            [],
+        SubSection: [1, 1, 1],
+        rightSubScripts: [
+            [
+                [],
+                [],
+            ],
+            [
+                [],
+                [],
+            ],
+            [
+                [],
+                [],
+            ],
+            [
+                [],
+                [],
+            ],
         ],
     },
 
@@ -111,14 +117,14 @@ let app = new Vue ({
         // Same as above but for subsections
         // Delay added to allow time for div size changes
         // --------------CHANGE------------------------
-        subScrollTo: function (event) {
-            let scrollTarget = event.currentTarget;
-            if (scrollTarget.id === "ssh" + app.derivationSubSection) {
-                scrollTarget.scrollIntoView();
-            }
-        },
+        // subScrollTo: function (event) {
+        //     let scrollTarget = event.currentTarget;
+        //     if (scrollTarget.id === "ssh" + app.SubSection) {
+        //         scrollTarget.scrollIntoView();
+        //     }
+        // },
 
-        // Updates derivationSubSection variable to reflect active subsection in derivatives section
+        // Updates derivationSubSection variable to reflect active subsection(s)
         // --------------CHANGE------------------------
         updateSubSection: function (newSubSection) {
             if (app.derivationSubSection !== newSubSection) {

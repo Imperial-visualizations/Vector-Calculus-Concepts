@@ -160,24 +160,6 @@
                         </button>
                         <div id="section2Sub1ContentContainer" class="collapse show" data-parent="#p2">
                             <div id="section2Sub1Content" class="section-sub-content" key="section2Sub1Content">
-                                <div id="blablahContainer" class="collapse show extra-content-container">
-                                    <div id="blahblahexplain" class="extra-content">
-                                            <span class="mathJaxDisplay">
-                                                \begin{align}
-                                                = \frac{1}{2} \Big[  2c_n e^{in\pi x/L} + 2c_{-n} e^{-in\pi x/L} & \\
-                                                + \underbrace{c_{-n} e^{in\pi x/L} - c_{-n} e^{in\pi x/L}}_\text{ =0} & \\
-                                                + \underbrace{c_{n} e^{-in\pi x/L} -c_{n} e^{-in\pi x/L}}_\text{ =0} & \Big] \\
-                                                \end{align}
-                                                <br>
-                                                \begin{align}
-                                                = \frac{1}{2} \Big[ c_n e^{in\pi x/L} +c_{-n} e^{in\pi x/L} & \\
-                                                + c_n e^{-in\pi x/L} + c_{-n} e^{-in\pi x/L} & \\
-                                                + c_n e^{in\pi x/L} - c_{-n} e^{in\pi x/L} & \\
-                                                - c_n e^{-in\pi x/L} + c_{-n} e^{-in\pi x/L} & \Big] \\
-                                                \end{align}
-                                            </span>
-                                    </div>
-                                </div>
                                 Consider a function <span class="mathJaxInline">$ f(x) $</span> which is periodic over the domain <span class="mathJaxInline">$ -L \leq x < L $</span>
                                 where <span class="mathJaxInline">$ L $</span> is positive. <span class="mathJaxInline">$ f(x) $</span> can be represented as a sum
                                 of
@@ -265,8 +247,8 @@
                                         <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
                                                 data-target="#regroupexplainContainer"> <span>Show</span> Full Calculation </button>
                                     </span>
-                                <div id="regroupexplainContainer" class="collapse show extra-content-container">
-                                    <div id="regroupexplain" class="extra-content">
+                                <div id="exampleExtraContainer" class="collapse show extra-content-container">
+                                    <div id="exampleExtra" class="extra-content">
                                             <span class="mathJaxDisplay">
                                                 \begin{align}
                                                 = \frac{1}{2} \Big[  2c_n e^{in\pi x/L} + 2c_{-n} e^{-in\pi x/L} & \\

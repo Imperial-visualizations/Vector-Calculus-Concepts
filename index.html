@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--Title-->
-
     <title>Visualisations Vector Calculus</title>
     <!--css links-->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
@@ -43,7 +42,7 @@
 <body>
 <div id="app">
     <!--   Title of non-current sections to appear on hovering above respective number in navbar     -->
-    <div  id="hoverTitleSpace" :style="{left: mouseX +'px'}" v-show="hoverTitle !== false">
+    <div id="hoverTitleSpace" :style="{left: mouseX +'px'}" v-show="hoverTitle !== false">
         {{hoverTitle}}
     </div>
     <!--    Left Side of Window - containing mainly text    -->
@@ -78,8 +77,7 @@
                    :max="sectionBottoms[3]" :value="scrollPos"></meter>
         </div>
         <!--    Container for text content split into sections    -->
-        <!--suppress XmlUnboundNsPrefix -->
-        <div class="journey" id="main-journey" v-on:scroll.passive="scrollFunc">
+        <div class="journey" id="main-journey" @scroll.passive="scrollFunc">
             <!--    Section Text Containers   -->
             <div class="section-container" id="sc1">
                 <div class="placeholder" id="ph1">
@@ -102,14 +100,16 @@
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p2">
-                    <ul class="nav nav-pills nav-justified">
-                        <li :class="[subSection[0] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
-                            <a data-toggle="pill" href="#gradDifferential" @click="subScrollTo(2); subSection[0]=1; loadSubScripts(); reMathJax($event); $forceUpdate();">Grad Differential</a>
+                    <!--    Sub-Section Tabs    -->
+                    <ul class="nav nav-tabs nav-justified">
+                        <li :class="[subSection[1] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
+                            <a data-toggle="tab" href="#gradDifferential" @click="subScrollTo(2); subSection[1]=1; loadSubScripts(); $forceUpdate();">Differential</a>
                         </li>
-                        <li :class="[subSection[0] === 2 ? 'shaded' : '', 'tabRight']">
-                            <a data-toggle="pill" href="#gradIntegral" @click="subScrollTo(2); subSection[0]=2; loadSubScripts(); reMathJax($event); $forceUpdate();">Grad Integral</a>
+                        <li :class="[subSection[1] === 2 ? 'shaded' : '', 'tabRight']">
+                            <a data-toggle="tab" href="#gradIntegral" @click="subScrollTo(2); subSection[1]=2; loadSubScripts(); $forceUpdate();">Integral</a>
                         </li>
                     </ul>
+                    <!--    Sub-Section Text Containers    -->
                     <div class="tab-content">
                         <div id="gradDifferential" class="tab-pane fade in active show">
                             <p>
@@ -170,14 +170,16 @@
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p3">
-                    <ul class="nav nav-pills nav-justified">
-                        <li :class="[subSection[1] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
-                            <a data-toggle="pill" href="#divergenceDifferential" @click="subScrollTo(3); subSection[1]=1; loadSubScripts(); reMathJax($event); $forceUpdate();">Divergence Differential</a>
+                    <!--    Sub-Section Tabs    -->
+                    <ul class="nav nav-tabs nav-justified">
+                        <li :class="[subSection[2] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
+                            <a data-toggle="tab" href="#divergenceDifferential" @click="subScrollTo(3); subSection[2]=1; loadSubScripts(); $forceUpdate();">Differential</a>
                         </li>
-                        <li :class="[subSection[1] === 2 ? 'shaded' : '', 'tabRight']">
-                            <a data-toggle="pill" href="#divergenceIntegral" @click="subScrollTo(3); subSection[1]=2; loadSubScripts(); reMathJax($event); $forceUpdate();">Divergence Integral</a>
+                        <li :class="[subSection[2] === 2 ? 'shaded' : '', 'tabRight']">
+                            <a data-toggle="tab" href="#divergenceIntegral" @click="subScrollTo(3); subSection[2]=2; loadSubScripts(); $forceUpdate();">Integral</a>
                         </li>
                     </ul>
+                    <!--    Sub-Section Text Containers    -->
                     <div class="tab-content">
                         <div id="divergenceDifferential" class="tab-pane fade in active show">
                             <h2> What is divergence?</h2>
@@ -221,14 +223,16 @@
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p4">
-                    <ul class="nav nav-pills nav-justified">
-                        <li :class="[subSection[2] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
-                            <a data-toggle="pill" href="#curlDifferential" @click="subScrollTo(4); subSection[2]=1; loadSubScripts(); reMathJax($event); $forceUpdate();">Curl Differential</a>
+                    <!--    Sub-Section Tabs    -->
+                    <ul class="nav nav-tabs nav-justified">
+                        <li :class="[subSection[3] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
+                            <a data-toggle="tab" href="#curlDifferential" @click="subScrollTo(4); subSection[3]=1; loadSubScripts(); $forceUpdate();">Differential</a>
                         </li>
-                        <li :class="[subSection[2] === 2 ? 'shaded' : '', 'tabRight']">
-                            <a data-toggle="pill" href="#curlIntegral" @click="subScrollTo(4); subSection[2]=2; loadSubScripts(); reMathJax($event); $forceUpdate();">Curl Integral</a>
+                        <li :class="[subSection[3] === 2 ? 'shaded' : '', 'tabRight']">
+                            <a data-toggle="tab" href="#curlIntegral" @click="subScrollTo(4); subSection[3]=2; loadSubScripts(); $forceUpdate();">Integral</a>
                         </li>
                     </ul>
+                    <!--    Sub-Section Text Containers    -->
                     <div class="tab-content">
                         <div id="curlDifferential" class="tab-pane fade in active show">
                             <center><h4>Curl Operator, $\nabla \times \mathbf{f} $</h4></center>
@@ -322,7 +326,6 @@
             </div>
         </div>
     </div>
-
     <!--    Right Side of Window - containing mainly interactive and visual content    -->
     <div class="vis-container right" id="right-container">
         <!--    fade transition tag for RHS - applied by Vue and CSS    -->
@@ -336,7 +339,7 @@
                  key="loadout2" v-if="currentSection === 2">
                 <transition name="fade">
                     <!--Interactive Zone Sub Containers-->
-                    <div class="rightload text" id='loadout2sub1' key="loadout2sub1" v-if="subSection[0] === 1">
+                    <div class="rightload text" id='loadout2sub1' key="loadout2sub1" v-if="subSection[1] === 1">
                         <h1>loadout2sub1</h1>
                     </div>
                     <div class="rightload text" id='loadout2sub2' key="loadout2sub2" v-else>
@@ -348,9 +351,11 @@
                  key="loadout2" v-if="currentSection === 3">
                 <transition name="fade">
                     <!--Interactive Zone Sub Containers-->
-                    <div class="rightload text" id='loadout3sub1' key="loadout2sub1" v-if="subSection[1] === 1">
+                    <div class="rightload text" id='loadout3sub1' key="loadout3sub1" v-if="subSection[2] === 1">
+                        <h1>loadout3sub1</h1>
                     </div>
-                    <div class="rightload text" id='loadout3sub2' key="loadout2sub2" v-else>
+                    <div class="rightload text" id='loadout3sub2' key="loadout3sub2" v-else>
+                        <h1>loadout3sub2</h1>
                     </div>
                 </transition>
             </div>
@@ -358,9 +363,11 @@
                  key="loadout4" v-if="currentSection === 4">
                 <transition name="fade">
                     <!--Interactive Zone Sub Containers-->
-                    <div class="rightload text" id='loadout4sub1' key="loadout4sub1" v-if="subSection[2] === 1">
+                    <div class="rightload text" id='loadout4sub1' key="loadout4sub1" v-if="subSection[3] === 1">
+                        <h1>loadout4sub1</h1>
                     </div>
                     <div class="rightload text" id='loadout4sub2' key="loadout4sub2" v-else>
+                        <h1>loadout4sub2</h1>
                     </div>
                 </transition>
             </div>
@@ -383,7 +390,6 @@
     <div class="rightScriptSpace"></div>
     <div class="rightSubScriptSpace"></div>
 </div>
-
 </body>
 
 <script src="scripts/nav_Script.js"></script>

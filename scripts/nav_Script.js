@@ -22,31 +22,31 @@ let app = new Vue ({
         journeyHeightOld: "",
         journeyHeightNew: "",
         rightScripts: [
-            ["test"],
-            ["test"],
-            ["test"],
-            ["test"],
+            ["scripts/VC-scripts/0Intro.js"],
+            [],
+            [],
+            [],
         ],
         removeScript: "",
         addScript: "",
         firstRunDone: false,
-        subSection: [1,1,1],
+        subSection: [false,1,1,1],
         rightSubScripts: [
             [
-                ["test"],
-                ["test"],
+                [],
+                [],
             ],
             [
-                ["test"],
-                ["test"],
+                ["scripts/VC-scripts/1aGrad.js"],
+                ["scripts/VC-scripts/1bGrad.js"],
             ],
             [
-                ["test"],
-                ["test"],
+                ["scripts/VC-scripts/2aDiv.js"],
+                ["scripts/VC-scripts/2bDiv.js"],
             ],
             [
-                ["test"],
-                ["test"],
+                ["scripts/VC-scripts/3aCurl.js"],
+                ["scripts/VC-scripts/3bCurl.js"],
             ],
         ],
     },
@@ -114,20 +114,29 @@ let app = new Vue ({
             document.querySelectorAll("#"+"sc"+event.currentTarget.dataset.no)[0].scrollIntoView({behavior: "smooth"});
         },
 
+        // Same as above but for subsections
+        subScrollTo: function (section) {
+            if (app.currentSection !== section) {
+                let scrollTarget = document.querySelectorAll("#sc" + section)[0];
+                scrollTarget.scrollIntoView({behavior: "smooth"});
+            }
+        },
+
+        // Removes and adds scripts depending on which section and subsection is active
         loadSubScripts: function () {
-            // Removes and adds scripts depending on which subsection is active when on section 2
             console.log("fired");
             document.querySelectorAll('.rightSubScriptSpace')[0].innerHTML = "";
             for (let i = 2; i <= 4; i++) {
                 if (app.currentSection === i) {
                     console.log("section " + i + " recognised");
                     for (let j = 1; j <= 2; j++) {
-                        if (app.subSection[i - 2] === j) {
+                        if (app.subSection[i - 1] === j) {
                             console.log("subsection " + j + " recognised");
-                            for (let k = 1; k <= app.rightSubScripts[i - 2][j - 1].length; k++) {
+                            for (let k = 1; k <= app.rightSubScripts[i - 1][j - 1].length; k++) {
+                                console.log("subScriptNo " + k + " recognised");
                                 app.addScript = document.createElement("script");
                                 app.addScript.id = "rightSubScriptS" + i + "." + j + "E" + k;
-                                app.addScript.src = (app.rightSubScripts[i - 2][j - 1][k - 1]);
+                                app.addScript.src = (app.rightSubScripts[i - 1][j - 1][k - 1]);
                                 app.addScript.async = false;
                                 document.querySelectorAll('.rightSubScriptSpace')[0].appendChild(app.addScript);
                             }
@@ -137,18 +146,12 @@ let app = new Vue ({
             }
         },
 
-        // Same as above but for subsections
-        subScrollTo: function (section) {
-            if (app.currentSection !== section) {
-                let scrollTarget = document.querySelectorAll("#sc" + section)[0];
-                scrollTarget.scrollIntoView({behavior: "smooth"});
-            }
-        },
-
+        // Updates number of title being hovered over in nav/progress bar in data
         hoverPosUpdate: function (event) {
             app.hoverPos = parseFloat(event.currentTarget.dataset.no)
         },
 
+        // Updates if and what title show when hovering over nav/progress bar
         selectHover: function () {
             if (app.currentTitle !== app.hoverPos) {
                 app.hoverTitle=app.sectionTitleLong[app.hoverPos-1]
@@ -157,11 +160,13 @@ let app = new Vue ({
             }
         },
 
+        // Updates x-position of mouse in data
         updateMouseX: function(event) {
             // pass event object, bound to mouse move with update
             app.mouseX = event.clientX -15;
         },
 
+        // Toggles button text from 'hide' to 'show' depending on state
         hideShowToggle: function (event) {
             let toggleTarget = event.currentTarget.querySelectorAll('span')[0].innerHTML;
             if (toggleTarget === "Show") {
@@ -170,24 +175,19 @@ let app = new Vue ({
                 event.currentTarget.querySelectorAll('span')[0].innerHTML = "Show"
             }
         },
-
-        reMathJax: function (event) {
-            // let target =  event.currentTarget.href.split("#").pop()
-            // console.log("called for " + target);
-            // setTimeout(function () {MathJax.Hub.Queue(["Rerender",MathJax.Hub,target])}, 150)
-        },
     },
 
     watch: {
 
-        currentTitle: function (newValue, oldValue) {
         // Updates current section title to display in full in nav/progress bar whilst minimising other section titles
+        currentTitle: function (newValue, oldValue) {
+
             app.swapTitles(newValue, oldValue)
         },
 
+        // Removes and adds scripts depending on which section is at top of visible part of journey and which tab is open
         currentSection: function (newValue, oldValue) {
 
-            // Removes and adds scripts depending on which section is at top of visible part of journey
             document.querySelectorAll('.rightScriptSpace')[0].innerHTML = "";
             for (let i=1; i<=app.rightScripts[newValue-1].length; i++) {
                 app.addScript = document.createElement("script");
@@ -206,7 +206,6 @@ let app = new Vue ({
     },
 
     mounted () {
-        // --------------CHANGE------------------------
         // $nextTick ensures initial functions only run once Vue is initialised sufficiently
         this.$nextTick ( function () {
             // makes n equal to total number of sections
@@ -226,14 +225,6 @@ let app = new Vue ({
                     this.sectionPos();
                 }
             },2000);
-            // collapses collapsible divs once mathJax has loaded fully
-            setTimeout(function () {MathJax.Hub.Queue(function () {
-               let collapseDivs = document.querySelectorAll(".collapse:not(#introContentContainer)");
-               for (let i=0; i<collapseDivs.length; i++) {
-                   collapseDivs[i].classList.remove("show");
-               }
-            })
-            }, 1000)
         }
     )},
 });

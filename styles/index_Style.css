@@ -28,7 +28,7 @@
     top: 0;
     left: 0;
     background: #ccdfff;
-    z-index: 1;
+    z-index: 5;
 }
 
 #progress-container {
@@ -39,7 +39,7 @@
     left: 0;
     top: 0;
     border:none;
-    z-index: 2;
+    z-index: 6;
 }
 
 meter {
@@ -90,7 +90,7 @@ meter::-moz-meter-bar {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 6;
 }
 
 .overlay-button {
@@ -108,7 +108,7 @@ meter::-moz-meter-bar {
     border: none;
     min-width: 25px;
     transition: flex-grow 450ms ease;
-    z-index: 4;
+    z-index: 8;
     box-shadow: none;
 }
 
@@ -143,7 +143,7 @@ meter::-moz-meter-bar {
     border-radius: 0.5vh;
     background: #000000;
     color: #ffffff;
-    z-index: 2;
+    z-index: 6;
     box-shadow: 0.2vw 0.2vh 0.2vh 0.1vh #888888;
 }
 
@@ -156,7 +156,7 @@ meter::-moz-meter-bar {
     border-width: 8px;
     border-style: solid;
     border-color: transparent transparent #000000 transparent;
-    z-index: 2;
+    z-index: 6;
 }
 
 .journey {
@@ -227,40 +227,59 @@ button.section-sub-head:hover {
     background-color: #eaf2ff;
 }
 
-.nav-pills {
+.nav-tabs {
     display: flex;
     width: inherit;
+    position: relative;
+    top: 8px;
+    margin: 0;
 }
 
-.nav-pills > li {
+.nav-tabs > li {
+    display: flex;
+    flex-direction: column;
     flex-basis: 0;
     flex-grow: 1;
-    padding: 1.5% 0;
     border-radius: 8px 8px 0 0 ;
     text-align: center;
     background: #ffffff;
+    align-items: stretch;
+    z-index: 1;
 }
 
-.nav-pills > li.tabLeft {
-    margin: 0 2.5% 0 0;
+.nav-tabs > li.tabLeft {
+    margin: 0 1.5% 0 0;
 }
 
-.nav-pills > li.tabRight {
-    margin: 0 0 0 2.5%;
+.nav-tabs > li.tabRight {
+    margin: 0 0 0 1.5%;
 }
 
-.nav-pills > li:hover {
+.nav-tabs > li:hover {
     background: #ccdfff;
+    box-shadow: 3px 4px 3px #a8a8a8;
 }
 
-.nav-pills > li.shaded {
+.nav-tabs > li.shaded {
     background: #eaf2ff;
+    box-shadow: 3px 4px 3px #a8a8a8;
+}
+
+.nav-tabs > li > a {
+    padding: 5% 0 6% 0;
+    border-radius: inherit;
+    font-size: calc(5px + 1.1vw);
+    z-index: 1;
 }
 
 .tab-content {
+    position: relative;
     color : #000000;
     background-color: #eaf2ff;
     padding : 20px 30px;
+    box-shadow: 3px 4px 3px #a8a8a8;
+    z-index: 2;
+    border-radius: 8px 8px 8px 8px;
 }
 
 .tab-content > .tab-pane:not(.active),
@@ -334,7 +353,7 @@ i {
     top: 0;
     left: 0;
     box-shadow: 0 1vh 2.5vh #b1b1b1;
-    z-index: 1;
+    z-index: 5;
 }
 
 .banner {
@@ -350,7 +369,7 @@ i {
             #37578b 100%
     );
     color: #ffffff;
-    z-index: 2;
+    z-index: 6;
 }
 
 #vis-title {

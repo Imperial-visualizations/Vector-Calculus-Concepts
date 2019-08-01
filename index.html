@@ -36,7 +36,6 @@
     },
     "HTML-CSS": { fonts: ["TeX"] }
   });
-
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 </head>
@@ -86,7 +85,7 @@
                 <div class="placeholder" id="ph1">
                     <hr>
                     <h2 class="text section-head" id="s1">
-                        {{sectionTitle[0]}}
+                        {{sectionTitleLong[0]}}
                     </h2>
                     <hr>
                 </div>
@@ -98,96 +97,66 @@
                 <div class="placeholder" id="ph2">
                     <hr>
                     <h2 class="text section-head" id="s2">
-                        Derivation
+                        {{sectionTitleLong[1]}}
                     </h2>
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p2">
-                    <div id="section2Sub1" class="divclass">
-                        <button id="ssh2-1" class="section-sub-head first-sub-head" key="ssh2-1" @click="updateSubSection(1); subScrollTo($event)" data-toggle="collapse" data-target="#section2Sub1ContentContainer"
-                        >
-                            Grad Differential <i class='fas fa-chevron-down'></i>
-                        </button>
-                        <div id="section2Sub1ContentContainer" class="collapse show" data-parent="#p2">
-                            <div id="section2Sub1Content" class="section-sub-content" key="section2Sub1Content">
-                                <div id="blablahContainer" class="collapse show extra-content-container">
-                                    <div id="blahblahexplain" class="extra-content">
-                                            <span class="mathJaxDisplay">
-                                                \begin{align}
-                                                = \frac{1}{2} \Big[  2c_n e^{in\pi x/L} + 2c_{-n} e^{-in\pi x/L} & \\
-                                                + \underbrace{c_{-n} e^{in\pi x/L} - c_{-n} e^{in\pi x/L}}_\text{ =0} & \\
-                                                + \underbrace{c_{n} e^{-in\pi x/L} -c_{n} e^{-in\pi x/L}}_\text{ =0} & \Big] \\
-                                                \end{align}
-                                                <br>
-                                                \begin{align}
-                                                = \frac{1}{2} \Big[ c_n e^{in\pi x/L} +c_{-n} e^{in\pi x/L} & \\
-                                                + c_n e^{-in\pi x/L} + c_{-n} e^{-in\pi x/L} & \\
-                                                + c_n e^{in\pi x/L} - c_{-n} e^{in\pi x/L} & \\
-                                                - c_n e^{-in\pi x/L} + c_{-n} e^{-in\pi x/L} & \Big] \\
-                                                \end{align}
-                                            </span>
-                                    </div>
-                                </div>
-                                <p>
-                                  Grad operates on a scalar field $f(x, y)$ to produce a vector field indicating the magnitude and direction of the
-                                  steepest gradient at each point.  It is easy to remember that grad produces a vector field, because it is necessary
-                                  for the gradient to have a direction once there is more than one dimension involved.  It must act on a scalar field
-                                  because it doesn't make much sense for a vector field to have a gradient.
-                                </p>
-
-                                <p>
-                                  The surface shown on the right is a scalar function $f$ of two independent variables, $x$ and $y$.  Note that it is a 2D scalar field &mdash;
-                                  the third dimension is just being used to display the value of the function.
-                                </p>
-
-                                <p>
-                                  Beneath it the gradient of the function $\nabla f$ is shown.  By changing the coefficient $a$, the gradient of the function can be increased
-                                  and decreased in certain directions.  There are also several functions to choose from.
-                                </p>
-
-                                <p>
-                                  The idea extends to three dimensions in the same way.  For example, if you were to plot the magnitude of the Sun's gravitational field
-                                  in 3D space around the Sun, the gradient of this field would give vectors that point to the centre of the Sun at every point.
-                                </p>
-                            </div>
+                    <ul class="nav nav-pills nav-justified">
+                        <li :class="[subSection[0] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
+                            <a data-toggle="pill" href="#gradDifferential" @click="subScrollTo(2); subSection[0]=1; loadSubScripts(); reMathJax($event); $forceUpdate();">Grad Differential</a>
+                        </li>
+                        <li :class="[subSection[0] === 2 ? 'shaded' : '', 'tabRight']">
+                            <a data-toggle="pill" href="#gradIntegral" @click="subScrollTo(2); subSection[0]=2; loadSubScripts(); reMathJax($event); $forceUpdate();">Grad Integral</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="gradDifferential" class="tab-pane fade in active show">
+                            <p>
+                                Grad operates on a scalar field $f(x, y)$ to produce a vector field indicating the magnitude and direction of the
+                                steepest gradient at each point.  It is easy to remember that grad produces a vector field, because it is necessary
+                                for the gradient to have a direction once there is more than one dimension involved.  It must act on a scalar field
+                                because it doesn't make much sense for a vector field to have a gradient.
+                            </p>
+                            <p>
+                                The surface shown on the right is a scalar function $f$ of two independent variables, $x$ and $y$.  Note that it is a 2D scalar field &mdash;
+                                the third dimension is just being used to display the value of the function.
+                            </p>
+                            <p>
+                                Beneath it the gradient of the function $\nabla f$ is shown.  By changing the coefficient $a$, the gradient of the function can be increased
+                                and decreased in certain directions.  There are also several functions to choose from.
+                            </p>
+                            <p>
+                                The idea extends to three dimensions in the same way.  For example, if you were to plot the magnitude of the Sun's gravitational field
+                                in 3D space around the Sun, the gradient of this field would give vectors that point to the centre of the Sun at every point.
+                            </p>
                         </div>
-                    </div>
-                    <div id="section2Sub2" class="divclass">
-                        <button id="ssh2-2" class="section-sub-head collapsed" key="ssh2-2" @click="updateSubSection(2); subScrollTo($event)" data-toggle="collapse" data-target="#section2Sub2ContentContainer"
-                                >
-                            Grad integral <i class='fas fa-chevron-down'></i>
-                        </button>
-                        <div id="section2Sub2ContentContainer" class="collapse show" data-parent="#p2">
-                            <div>
-                                 <center><h5>$$ \Omega_B - \Omega_A = \int _A ^B \nabla \Omega \cdot \mathbf{ dl }$$</h5></center>
-                                <p>
-                                    <br>
-                                    For a given vector field, if $\mathbf{A} \cdot \mathbf{ dl }$ is an exact differential, $\mathbf{A}$ is a conservative field. Then, $\mathbf{A}$ is the
-                                    gradient function of some scalar function $\Omega$. That is, $\mathbf{A} = \nabla {\Omega}$.
-                                    We can relate $\Omega$ and $\nabla \Omega$ by the equation below:
-                                        $$ \int _A ^B \nabla \Omega \cdot \mathbf{ dl } = \Omega_B - \Omega_A$$
-                                    From this equation above, we can see that the integral is independent of the path that one takes from A to B,
-                                    for it is determined by only the values from the parent function $\Omega_B - \Omega_A$. This is a generalisation of the Fundamental Theorem of Calculus.
-                                </p>
-                                    <div>
-                                        <h5>Visualisation Guide</h5>
-                                            <ol>
-                                                <li>On the right, you can see a gradient field and its scalar parent function.
-                                                    Change the value of the parameter $a$, and observe the change in $\nabla \Omega$ and $\Omega$.</li>
-                                                <li>Note that as the magnitude of $a$ increases, the length of the arrows in $\nabla \Omega$ increases and the contour of the parent function
-                                                    $\Omega$ becomes steeper as well. Hence, the gradient vector increases in magnitude as well.</li>
-                                                <li>All gradient fields shown in this suite are conservative. This means that the line integral along the field,
-                                                    $\int \nabla \Omega \cdot \mathbf{ dl }$ is path independent. Move the path of the ball from Point A to Point B
-                                                    along 2 different paths, Path 1 and Path 2.</li>
-                                                <li>Observe their function values. Note that along the path, the value of $\Omega$ may be different.
-                                                    However, when the balls reach Point B, their function values are equal.</li>
-                                                <li>This means that the line integral $\int _A ^B \nabla \Omega \cdot \mathbf{ dl }$  is determined
-                                                    only by the value of $\Omega$ at the limits, $\Omega_B - \Omega_A$.</li>
-                                                <li>There are a few other functions for you to play around with. Click the dropdown menu to find out.</li>
-                                            </ol>
-                                    </div>
-
-                            </div>
+                        <div id="gradIntegral" class="tab-pane fade">
+                            <h5>$$ \Omega_B - \Omega_A = \int _A ^B \nabla \Omega \cdot \mathbf{ dl }$$</h5>
+                            <p>
+                                <br>
+                                For a given vector field, if $\mathbf{A} \cdot \mathbf{ dl }$ is an exact differential, $\mathbf{A}$ is a conservative field. Then, $\mathbf{A}$ is the
+                                gradient function of some scalar function $\Omega$. That is, $\mathbf{A} = \nabla {\Omega}$.
+                                We can relate $\Omega$ and $\nabla \Omega$ by the equation below:
+                                $$ \int _A ^B \nabla \Omega \cdot \mathbf{ dl } = \Omega_B - \Omega_A$$
+                                From this equation above, we can see that the integral is independent of the path that one takes from A to B,
+                                for it is determined by only the values from the parent function $\Omega_B - \Omega_A$. This is a generalisation of the Fundamental Theorem of Calculus.
+                            </p>
+                            <h5>Visualisation Guide</h5>
+                            <ol>
+                                <li>On the right, you can see a gradient field and its scalar parent function.
+                                    Change the value of the parameter $a$, and observe the change in $\nabla \Omega$ and $\Omega$.</li>
+                                <li>Note that as the magnitude of $a$ increases, the length of the arrows in $\nabla \Omega$ increases and the contour of the parent function
+                                    $\Omega$ becomes steeper as well. Hence, the gradient vector increases in magnitude as well.</li>
+                                <li>All gradient fields shown in this suite are conservative. This means that the line integral along the field,
+                                    $\int \nabla \Omega \cdot \mathbf{ dl }$ is path independent. Move the path of the ball from Point A to Point B
+                                    along 2 different paths, Path 1 and Path 2.</li>
+                                <li>Observe their function values. Note that along the path, the value of $\Omega$ may be different.
+                                    However, when the balls reach Point B, their function values are equal.</li>
+                                <li>This means that the line integral $\int _A ^B \nabla \Omega \cdot \mathbf{ dl }$  is determined
+                                    only by the value of $\Omega$ at the limits, $\Omega_B - \Omega_A$.</li>
+                                <li>There are a few other functions for you to play around with. Click the dropdown menu to find out.</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
@@ -196,17 +165,21 @@
                 <div class="placeholder" id="ph3">
                     <hr>
                     <h2 class="text section-head" id="s3">
-                        Divergence
+                        {{sectionTitleLong[2]}}
                     </h2>
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p3">
-                    <div id="section3Sub1" class="divclass">
-                        <button id="ssh3-1" class="section-sub-head first-sub-head" key="ssh3-1" @click="updateSubSection(1); subScrollTo($event)" data-toggle="collapse" data-target="#section3Sub1ContentContainer"
-                                >
-                            Divergence Differential <i class='fas fa-chevron-down'></i>
-                        </button>
-                        <div id="section3Sub1ContentContainer" class="collapse show" data-parent="#p3">
+                    <ul class="nav nav-pills nav-justified">
+                        <li :class="[subSection[1] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
+                            <a data-toggle="pill" href="#divergenceDifferential" @click="subScrollTo(3); subSection[1]=1; loadSubScripts(); reMathJax($event); $forceUpdate();">Divergence Differential</a>
+                        </li>
+                        <li :class="[subSection[1] === 2 ? 'shaded' : '', 'tabRight']">
+                            <a data-toggle="pill" href="#divergenceIntegral" @click="subScrollTo(3); subSection[1]=2; loadSubScripts(); reMathJax($event); $forceUpdate();">Divergence Integral</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="divergenceDifferential" class="tab-pane fade in active show">
                             <h2> What is divergence?</h2>
                             <p>
                                 The divergence of a field quantifies how much a field varies in the direction of the field lines. A
@@ -223,91 +196,75 @@
                                 the sink takes them away. Hence the source has a positive divergence and the sink has a negative divergence.
                             </p>
                         </div>
-                    </div>
-                    <div id="section3Sub2" class="divclass">
-                        <button id="ssh3-2" class="section-sub-head collapsed" key="ssh3-2" @click="updateSubSection(2); subScrollTo($event)" data-toggle="collapse" data-target="#section3Sub2ContentContainer"
-                               >
-                            Flux <i class='fas fa-chevron-down'></i>
-                        </button>
-                        <div id="section3Sub2ContentContainer" class="collapse show" data-parent="#p3">
-                            <div id="section3Sub2Content" class="section-sub-content" key="section3Sub2Content">
-                                <!--<center><h4>Flux over a Closed Surface, $\oint_{S} \mathbf{A} \cdot \mathbf{dS}$</h4></center>-->
-                                        Flux - the flow of field lines
-                                        <br><br>
-                                        We often call $\mathbf{F} \cdot d\mathbf{S}$ the flux of field $\mathbf{F}$ perpendicular through a surface element $dS$.
-                                        In this visualisation, the green line can be thought as taking the side view of the surface element.
-                                        <br><br>
-                                        The <b>net</b> flux through any surface $S$ is given by the integral:
-                                        $$\iint_S \mathbf{F} \cdot d\mathbf{S}$$
-                                        By considering a <b>closed</b> surface, the Divergence Theorem relates the net flux to the divergence of the field:
-                                        <center>$\unicode{x222F}_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V \nabla \cdot \mathbf{F} dV$</center>
-                                        <br>
-                                        An <a href="Visualisations/Static-Electromagnetism/EM_p1.html">example</a> of the Divergence Theorem is Maxwell's Equation.
-                                    </div>
-                                </div>
-
-                            </div>
+                        <div id="divergenceIntegral" class="tab-pane fade">
+                            Flux - the flow of field lines
+                            <br><br>
+                            We often call $\mathbf{F} \cdot d\mathbf{S}$ the flux of field $\mathbf{F}$ perpendicular through a surface element $dS$.
+                            In this visualisation, the green line can be thought as taking the side view of the surface element.
+                            <br><br>
+                            The <b>net</b> flux through any surface $S$ is given by the integral:
+                            $$\iint_S \mathbf{F} \cdot d\mathbf{S}$$
+                            By considering a <b>closed</b> surface, the Divergence Theorem relates the net flux to the divergence of the field:
+                            <center>$\unicode{x222F}_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V \nabla \cdot \mathbf{F} dV$</center>
+                            <br>
+                            An <a href="Visualisations/Static-Electromagnetism/EM_p1.html">example</a> of the Divergence Theorem is Maxwell's Equation.
                         </div>
                     </div>
-
+                </div>
+            </div>
             <div class="section-container" id="sc4">
                 <div class="placeholder" id="ph4">
                     <hr>
                     <h2 class="text section-head" id="s4">
-                        Curl
+                        {{sectionTitleLong[3]}}
                     </h2>
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p4">
-                    <div id="section4Sub1" class="divclass">
-                        <button id="ssh4-1" class="section-sub-head first-sub-head" key="ssh4-1" @click="updateSubSection(1); subScrollTo($event)" data-toggle="collapse" data-target="#section4Sub1ContentContainer"
-                               >
-                            Curl differential <i class='fas fa-chevron-down'></i>
-                        </button>
-                        <div id="section4Sub1ContentContainer" class="collapse show" data-parent="#p4">
-                            <div id="section4Sub1Content" class="section-sub-content" key="section4Sub1Content">
-                                <center><h4>Curl Operator, $\nabla \times \mathbf{f} $</h4></center>
-                                <p id="Main-text">
-                                  Stokes' Theorem states:<br>
-                                  $\displaystyle \oint_{l} \mathbf{A.dl} =$ $\displaystyle \iint_{S} \nabla \times \mathbf {A} \cdot d\mathbf{S}$
-                                  <br>
-                                  i.e. the closed loop integral of a vector field is equal to the sum of all the curl contained in the surface
-                                  enclosed by the loop.
-                                  <br><br>
+                    <ul class="nav nav-pills nav-justified">
+                        <li :class="[subSection[2] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
+                            <a data-toggle="pill" href="#curlDifferential" @click="subScrollTo(4); subSection[2]=1; loadSubScripts(); reMathJax($event); $forceUpdate();">Curl Differential</a>
+                        </li>
+                        <li :class="[subSection[2] === 2 ? 'shaded' : '', 'tabRight']">
+                            <a data-toggle="pill" href="#curlIntegral" @click="subScrollTo(4); subSection[2]=2; loadSubScripts(); reMathJax($event); $forceUpdate();">Curl Integral</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="curlDifferential" class="tab-pane fade in active show">
+                            <center><h4>Curl Operator, $\nabla \times \mathbf{f} $</h4></center>
+                            <p id="Main-text">
+                                Stokes' Theorem states:<br>
+                                $\displaystyle \oint_{l} \mathbf{A.dl} =$ $\displaystyle \iint_{S} \nabla \times \mathbf {A} \cdot d\mathbf{S}$
+                                <br>
+                                i.e. the closed loop integral of a vector field is equal to the sum of all the curl contained in the surface
+                                enclosed by the loop.
+                                <br><br>
 
-                                  This is demonstrated in the visualisation on the right, where the components of
-                                  $\displaystyle \mathbf{A.dl}$ as you go around the loop are shown in the plot at the bottom. The contributions are positive if
-                                  the field and dl are pointing in the same direction.
-                                  <br><br>
+                                This is demonstrated in the visualisation on the right, where the components of
+                                $\displaystyle \mathbf{A.dl}$ as you go around the loop are shown in the plot at the bottom. The contributions are positive if
+                                the field and dl are pointing in the same direction.
+                                <br><br>
 
-                                  When there is curl inside the loop then the overall loop integral is non-zero,
-                                  since on all parts of the loop, the contributions to the integral from the curl source have the same sign; however
-                                  when the curl source is outside of the loop, then the contributions cancel out and the net integral is zero.
-                                  <br><br>
+                                When there is curl inside the loop then the overall loop integral is non-zero,
+                                since on all parts of the loop, the contributions to the integral from the curl source have the same sign; however
+                                when the curl source is outside of the loop, then the contributions cancel out and the net integral is zero.
+                                <br><br>
 
-                                  This also demonstrates that the curl of a conservative field is zero, since any loop integral
-                                  in a conservative field is also zero.
-                                  <br><br>
+                                This also demonstrates that the curl of a conservative field is zero, since any loop integral
+                                in a conservative field is also zero.
+                                <br><br>
 
-                                  You can change the shape of the loop to see that this is true for any type of closed loop.
+                                You can change the shape of the loop to see that this is true for any type of closed loop.
 
-                              </p>
-                            </div>
+                            </p>
                         </div>
-                    </div>
-                    <div id="section4Sub2" class="divclass">
-                        <button id="ssh4-2" class="section-sub-head collapsed" key="ssh4-2" @click="updateSubSection(2); subScrollTo($event)" data-toggle="collapse" data-target="#section4Sub2ContentContainer"
-                                >
-                            Curl Integral <i class='fas fa-chevron-down'></i>
-                        </button>
-                        <div id="section4Sub2ContentContainer" class="collapse show" data-parent="#p4">
-                            <div id="section4Sub2Content" class="section-sub-content" key="section4Sub2Content">
-                                <center><h4>Line Integral over a Closed Loop, $\oint_{C} \mathbf{A} \cdot \mathbf{dl}$ $$\unicode{x222F}$$ </h4></center>
-                                <p>
-                                    Placeholder for text.
-                                </p>
-                                <div id="regroupexplainContainer" class="collapse show extra-content-container">
-                                    <div id="regroupexplain" class="extra-content">
+                        <div id="curlIntegral" class="tab-pane fade">
+                            <center><h4>Line Integral over a Closed Loop, $\oint_{C} \mathbf{A} \cdot \mathbf{dl}$ $$\unicode{x222F}$$ </h4></center>
+                            <p>
+                                Placeholder for text.
+                            </p>
+                            <div id="regroupexplainContainer" class="collapse show extra-content-container">
+                                <div id="regroupexplain" class="extra-content">
                                             <span class="mathJaxDisplay">
                                                 \begin{align}
                                                 = \frac{1}{2} \Big[  2c_n e^{in\pi x/L} + 2c_{-n} e^{-in\pi x/L} & \\
@@ -322,44 +279,43 @@
                                                 - c_n e^{-in\pi x/L} + c_{-n} e^{-in\pi x/L} & \Big] \\
                                                 \end{align}
                                             </span>
-                                    </div>
                                 </div>
-                                <span class="mathJaxDisplay">
+                            </div>
+                            <span class="mathJaxDisplay">
                                         \begin{align}
                                         f(x)= c_0 + \sum_{n=1}^{\infty} \Big[ & \frac{c_n + c_{-n}}{2} \big(e^{in\pi x/L} +e^{-in\pi x/L} \big) \\
                                         & \frac{c_n - c_{-n}}{2} \big(e^{in\pi x/L} -e^{-in\pi x/L} \big) \Big]
                                         \end{align}
                                     </span>
-                                Now define <span class="mathJaxInline">$ a_n = c_n + c_{-n} $</span> and
-                                <span class="mathJaxInline">$ b_n = i(c_n - c_{-n}) $</span>
-                                and use that these exponentials can we written as
-                                sines and cosines.
-                                <br><br>
-                                <strong>Note:</strong> <span class="mathJaxInline">$ a_0 = 2c_0 $</span> and <span class="mathJaxInline">$ b_0=0 $</span>.
-                                <br><br>
-                                Hence
-                                <span class="mathJaxDisplay">
+                            Now define <span class="mathJaxInline">$ a_n = c_n + c_{-n} $</span> and
+                            <span class="mathJaxInline">$ b_n = i(c_n - c_{-n}) $</span>
+                            and use that these exponentials can we written as
+                            sines and cosines.
+                            <br><br>
+                            <strong>Note:</strong> <span class="mathJaxInline">$ a_0 = 2c_0 $</span> and <span class="mathJaxInline">$ b_0=0 $</span>.
+                            <br><br>
+                            Hence
+                            <span class="mathJaxDisplay">
                                         $$ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big) + b_n\sin\Big(\frac{\pi nx}{L}\Big) \Big] $$
                                     </span>
-                                <span class="mathJaxInline">$ a_n $</span> can be derived by using the expression from <span class="mathJaxInline">$ c_n $</span>
-                                <span class="mathJaxDisplay">
+                            <span class="mathJaxInline">$ a_n $</span> can be derived by using the expression from <span class="mathJaxInline">$ c_n $</span>
+                            <span class="mathJaxDisplay">
                                         \begin{align}
                                         a_n = c_n + c_{-n} = & \frac{1}{2L}\int_{-L}^{+L}f(x) e^{-in\pi x/L}dx \\
                                         + & \frac{1}{2L} \int_{-L}^{+L}f(x) e^{in\pi x/L}dx
                                         \end{align}
                                     </span>
-                                Factorise and spot the exponential form of <span class="mathJaxInline">$ \cos $</span>.
-                                <span class="mathJaxDisplay">
+                            Factorise and spot the exponential form of <span class="mathJaxInline">$ \cos $</span>.
+                            <span class="mathJaxDisplay">
                                         \begin{align}
                                         & =\frac{1}{L}\int_{-L}^{+L}f(x) \Big[\frac{e^{in\pi x/L} +e^{-in\pi x/L}}{2}\Big]dx \\
                                         & =\frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx
                                         \end{align}
                                     </span>
-                                Similarly for <span class="mathJaxInline">$ b_n $</span>,
-                                <span class="mathJaxDisplay">
+                            Similarly for <span class="mathJaxInline">$ b_n $</span>,
+                            <span class="mathJaxDisplay">
                                         $$ b_n =\frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx. $$
                                     </span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -374,40 +330,42 @@
             <!--    Interactive Zone Containers   -->
             <div class="rightload text odd" id='loadout1'
                  key="loadout1" v-if="currentSection === 1">
-
+                <h1>loadout1</h1>
             </div>
             <div class="rightload text even" id='loadout2'
                  key="loadout2" v-if="currentSection === 2">
                 <transition name="fade">
                     <!--Interactive Zone Sub Containers-->
-                    <div class="rightload text" id='loadout2sub1' key="loadout2sub1" v-if="derivationSubSection !== 3">
+                    <div class="rightload text" id='loadout2sub1' key="loadout2sub1" v-if="subSection[0] === 1">
+                        <h1>loadout2sub1</h1>
                     </div>
                     <div class="rightload text" id='loadout2sub2' key="loadout2sub2" v-else>
+                        <h1>loadout2sub2</h1>
                     </div>
                 </transition>
             </div>
             <div class="rightload text odd" id='loadout3'
-                 key="loadout2" v-if="currentSection === 2">
+                 key="loadout2" v-if="currentSection === 3">
                 <transition name="fade">
                     <!--Interactive Zone Sub Containers-->
-                    <div class="rightload text" id='loadout3sub1' key="loadout2sub1" v-if="derivationSubSection !== 3">
+                    <div class="rightload text" id='loadout3sub1' key="loadout2sub1" v-if="subSection[1] === 1">
                     </div>
                     <div class="rightload text" id='loadout3sub2' key="loadout2sub2" v-else>
                     </div>
                 </transition>
             </div>
             <div class="rightload text even" id='loadout4'
-                 key="loadout4" v-if="currentSection === 2">
+                 key="loadout4" v-if="currentSection === 4">
                 <transition name="fade">
                     <!--Interactive Zone Sub Containers-->
-                    <div class="rightload text" id='loadout4sub1' key="loadout4sub1" v-if="derivationSubSection !== 3">
+                    <div class="rightload text" id='loadout4sub1' key="loadout4sub1" v-if="subSection[2] === 1">
                     </div>
                     <div class="rightload text" id='loadout4sub2' key="loadout4sub2" v-else>
                     </div>
                 </transition>
             </div>
             <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
-                 v-if="1 <= currentSection <= 5 === false">
+                 v-if="1 <= currentSection <= 4 === false">
                 please wait...
             </div>
         </transition-group>
@@ -416,14 +374,14 @@
     <div class="banner">
         <!--    Visualisation Title    -->
         <h1 class="" id="vis-title">
-            THE FOURIER SERIES
+            VECTOR CALCULUS CONCEPTS
         </h1>
         <a href="https://www.imperialvisualisations.com/learn/">
             <img id="vis-logo" src="VisualisationsLogoWhite2.png">
         </a>
     </div>
     <div class="rightScriptSpace"></div>
-    <div class="derivationScriptSpace"></div>
+    <div class="rightSubScriptSpace"></div>
 </div>
 
 </body>

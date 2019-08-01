@@ -22,31 +22,31 @@ let app = new Vue ({
         journeyHeightOld: "",
         journeyHeightNew: "",
         rightScripts: [
-            [],
-            [],
-            [],
-            [],
+            ["test"],
+            ["test"],
+            ["test"],
+            ["test"],
         ],
         removeScript: "",
         addScript: "",
         firstRunDone: false,
-        SubSection: [1, 1, 1],
+        subSection: [1,1,1],
         rightSubScripts: [
             [
-                [],
-                [],
+                ["test"],
+                ["test"],
             ],
             [
-                [],
-                [],
+                ["test"],
+                ["test"],
             ],
             [
-                [],
-                [],
+                ["test"],
+                ["test"],
             ],
             [
-                [],
-                [],
+                ["test"],
+                ["test"],
             ],
         ],
     },
@@ -114,25 +114,35 @@ let app = new Vue ({
             document.querySelectorAll("#"+"sc"+event.currentTarget.dataset.no)[0].scrollIntoView({behavior: "smooth"});
         },
 
-        // Same as above but for subsections
-        // Delay added to allow time for div size changes
-        // --------------CHANGE------------------------
-        // subScrollTo: function (event) {
-        //     let scrollTarget = event.currentTarget;
-        //     if (scrollTarget.id === "ssh" + app.SubSection) {
-        //         scrollTarget.scrollIntoView();
-        //     }
-        // },
-
-        // Updates derivationSubSection variable to reflect active subsection(s)
-        // --------------CHANGE------------------------
-        updateSubSection: function (newSubSection) {
-            if (app.derivationSubSection !== newSubSection) {
-                app.derivationSubSection = newSubSection;
-            } else {
-                app.derivationSubSection = 0;
+        loadSubScripts: function () {
+            // Removes and adds scripts depending on which subsection is active when on section 2
+            console.log("fired");
+            document.querySelectorAll('.rightSubScriptSpace')[0].innerHTML = "";
+            for (let i = 2; i <= 4; i++) {
+                if (app.currentSection === i) {
+                    console.log("section " + i + " recognised");
+                    for (let j = 1; j <= 2; j++) {
+                        if (app.subSection[i - 2] === j) {
+                            console.log("subsection " + j + " recognised");
+                            for (let k = 1; k <= app.rightSubScripts[i - 2][j - 1].length; k++) {
+                                app.addScript = document.createElement("script");
+                                app.addScript.id = "rightSubScriptS" + i + "." + j + "E" + k;
+                                app.addScript.src = (app.rightSubScripts[i - 2][j - 1][k - 1]);
+                                app.addScript.async = false;
+                                document.querySelectorAll('.rightSubScriptSpace')[0].appendChild(app.addScript);
+                            }
+                        }
+                    }
+                }
             }
-            app.$forceUpdate();
+        },
+
+        // Same as above but for subsections
+        subScrollTo: function (section) {
+            if (app.currentSection !== section) {
+                let scrollTarget = document.querySelectorAll("#sc" + section)[0];
+                scrollTarget.scrollIntoView({behavior: "smooth"});
+            }
         },
 
         hoverPosUpdate: function (event) {
@@ -159,7 +169,13 @@ let app = new Vue ({
             } else {
                 event.currentTarget.querySelectorAll('span')[0].innerHTML = "Show"
             }
-        }
+        },
+
+        reMathJax: function (event) {
+            // let target =  event.currentTarget.href.split("#").pop()
+            // console.log("called for " + target);
+            // setTimeout(function () {MathJax.Hub.Queue(["Rerender",MathJax.Hub,target])}, 150)
+        },
     },
 
     watch: {
@@ -180,89 +196,13 @@ let app = new Vue ({
                 app.addScript.async = false;
                 document.querySelectorAll('.rightScriptSpace')[0].appendChild(app.addScript);
             }
-            // Code to deal with loading / unloading appropriate scripts when entering / leaving section 2 as the scripts depend on which subsection is active
-            if (oldValue === 2) {
-                document.querySelectorAll('.derivationScriptSpace')[0].innerHTML = "";
-            }
-            if (newValue === 2) {
-                if (app.derivationSubSection !==3) {
-                    for (let i=1; i<=app.derivationScripts[0].length; i++) {
-                        app.addScript = document.createElement("script");
-                        app.addScript.id ="derivationScriptS" + 0 + "E" + i;
-                        app.addScript.src = (app.derivationScripts[0][i-1]);
-                        app.addScript.async = false;
-                        document.querySelectorAll('.derivationScriptSpace')[0].appendChild(app.addScript);
-                    }
-                    setTimeout(function () {
-                        if (app.derivationSubSection > 3) {
-                            document.querySelectorAll('#opt' + (app.derivationSubSection - 3))[0].setAttribute("selected", "true");
-                            document.querySelectorAll('#SelectSec2Sub1')[0].setAttribute("disabled", "true");
-                            document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "none";
-                            setTimeout(function () {
-                                selectorFuncSec2Sub0();
-                                document.querySelectorAll("#subSecTitle")[0].innerHTML=document.querySelectorAll("#opt"+(app.derivationSubSection-3))[0].title;
-                                document.querySelectorAll("#subSecTitle")[0].style.display="block";
-                            }, 200);
-                        }
-                    }, 200);
-                } else {
-                    for (let i=1; i<=app.derivationScripts[1].length; i++) {
-                        app.addScript = document.createElement("script");
-                        app.addScript.id ="derivationScriptS" + 1 + "E" + i;
-                        app.addScript.src = (app.derivationScripts[1][i-1]);
-                        app.addScript.async = false;
-                        document.querySelectorAll('.derivationScriptSpace')[0].appendChild(app.addScript);
-                    }
-                }
-            }
-        },
-        // --------------CHANGE------------------------
-        derivationSubSection: function (newValue, oldValue) {
-            // Removes and adds scripts depending on which subsection is active when on section 2
 
-            document.querySelectorAll('.derivationScriptSpace')[0].innerHTML = "";
-            if (app.currentSection === 2) {
-                if (newValue !==3) {
-                    for (let i=1; i<=app.derivationScripts[0].length; i++) {
-                        app.addScript = document.createElement("script");
-                        app.addScript.id ="derivationScriptS" + 0 + "E" + i;
-                        app.addScript.src = (app.derivationScripts[0][i-1]);
-                        app.addScript.async = false;
-                        document.querySelectorAll('.derivationScriptSpace')[0].appendChild(app.addScript);
-                    }
-                    // locks function displayed to show only specific example if subsection about specific function is active
-                    setTimeout(function () {
-                        if (oldValue > 3) {
-                            document.querySelectorAll('#opt' + (oldValue - 3))[0].removeAttribute("selected");
-                            document.querySelectorAll('#SelectSec2Sub1')[0].removeAttribute("disabled");
-                            document.querySelectorAll("#subSecTitle")[0].style.display = "none";
-                            document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "block";
-                        }
-                        if (newValue > 3) {
-                            document.querySelectorAll('#opt' + (newValue - 3))[0].setAttribute("selected", "true");
-                            document.querySelectorAll('#SelectSec2Sub1')[0].setAttribute("disabled", "true");
-                            document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "none";
-                            setTimeout(function () {
-                                selectorFuncSec2Sub0();
-                                document.querySelectorAll("#subSecTitle")[0].innerHTML=document.querySelectorAll("#opt"+(newValue-3))[0].title;
-                                document.querySelectorAll("#subSecTitle")[0].style.display="block";
-                            }, 200);
-                        }
-                    }, 200);
-                } else {
-                    for (let i=1; i<=app.derivationScripts[1].length; i++) {
-                        app.addScript = document.createElement("script");
-                        app.addScript.id ="derivationScriptS" + 1 + "E" + i;
-                        app.addScript.src = (app.derivationScripts[1][i-1]);
-                        app.addScript.async = false;
-                        document.querySelectorAll('.derivationScriptSpace')[0].appendChild(app.addScript);
-                    }
-                }
-                if (oldValue !== 0) {
-                    document.querySelectorAll("ssh" + oldValue)
-                }
+            if (newValue !== 1) {
+                app.loadSubScripts();
+            } else {
+                document.querySelectorAll('.rightSubScriptSpace')[0].innerHTML = "";
             }
-        },
+        }
     },
 
     mounted () {

@@ -344,6 +344,7 @@ i {
     bottom: 0;
     right: 0;
     background: #ffffff;
+    z-index: -1;
 }
 
 #banner-dummy {

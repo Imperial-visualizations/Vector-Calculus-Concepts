@@ -127,6 +127,7 @@ let app = new Vue ({
         loadSubScripts: function () {
             console.log("fired");
             document.querySelectorAll('.rightSubScriptSpace')[0].innerHTML = "";
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "app"]);
             for (let i = 2; i <= 4; i++) {
                 if (app.currentSection === i) {
                     console.log("section " + i + " recognised");
@@ -140,6 +141,7 @@ let app = new Vue ({
                                 app.addScript.src = (app.rightSubScripts[i - 1][j - 1][k - 1]);
                                 app.addScript.async = false;
                                 document.querySelectorAll('.rightSubScriptSpace')[0].appendChild(app.addScript);
+
                             }
                         }
                     }

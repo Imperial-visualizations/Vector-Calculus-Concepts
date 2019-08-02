@@ -240,7 +240,7 @@ button.section-sub-head:hover {
     flex-direction: column;
     flex-basis: 0;
     flex-grow: 1;
-    border-radius: 8px 8px 0 0 ;
+    border-radius: 0.5vh 0.5vh 0 0 ;
     text-align: center;
     background: #ffffff;
     align-items: stretch;
@@ -256,13 +256,13 @@ button.section-sub-head:hover {
 }
 
 .nav-tabs > li:hover {
-    background: #ccdfff;
-    box-shadow: 3px 4px 3px #a8a8a8;
+    background: #eaf2ff;
+    box-shadow: 2px 2px 2px #a8a8a8;
 }
 
 .nav-tabs > li.shaded {
     background: #eaf2ff;
-    box-shadow: 3px 4px 3px #a8a8a8;
+    box-shadow: 2px 2px 2px #a8a8a8;
 }
 
 .nav-tabs > li > a {
@@ -270,16 +270,21 @@ button.section-sub-head:hover {
     border-radius: inherit;
     font-size: calc(5px + 1.1vw);
     z-index: 1;
+    text-decoration: none;
+    color: #033482;
 }
 
 .tab-content {
     position: relative;
     color : #000000;
     background-color: #eaf2ff;
-    padding : 20px 30px;
-    box-shadow: 3px 4px 3px #a8a8a8;
+    padding : 2vh 2vw;
+    /*box-shadow: 3px 4px 3px #a8a8a8;*/
     z-index: 2;
-    border-radius: 8px 8px 8px 8px;
+    /*border-radius: 8px 8px 8px 8px;*/
+    border-radius: 0.5vh 0.5vh 0.5vh 0.5vh;
+    /*border: 1px solid grey;*/
+    box-shadow: 2px 2px 2px #a8a8a8;
 }
 
 .tab-content > .tab-pane:not(.active),

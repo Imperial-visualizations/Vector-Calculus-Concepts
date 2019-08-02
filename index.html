@@ -50,7 +50,6 @@
     <div class="vis-container left" id="left-container">
         <!--     Dynamic Navigation Bar and Section Headings       -->
         <div class="" id="progress-container">
-            <div id="banner-dummy"></div>
             <!--    Dynamic Section Heading Text - overlaid on meters    -->
             <!--    Also act as buttons to navigate between sections    -->
             <div class="" id="overlay" @mousemove="hoverTitle !== false ? updateMouseX($event) : ''">
@@ -76,6 +75,7 @@
                    :max="sectionBottoms[2]" :value="scrollPos"></meter>
             <meter :class="[currentTitle === 4 ? 'activeMeter' : '']" id="m4" :min="sectionTops[3]"
                    :max="sectionBottoms[3]" :value="scrollPos"></meter>
+            <div id="banner-dummy"></div>
         </div>
         <!--    Container for text content split into sections    -->
         <div class="journey" id="main-journey" @scroll.passive="scrollFunc">
@@ -290,84 +290,97 @@
                 </div>
             </div>
         </div>
-        <!--    Right Side of Window - containing mainly interactive and visual content    -->
-        <div class="vis-container right" id="right-container">
-            <!--    fade transition tag for RHS - applied by Vue and CSS    -->
-            <transition-group name="fade" tag="div" class="transition-container">
-                <!--    Interactive Zone Containers   -->
-                <div class="rightload text odd" id='loadout1' key="loadout1" v-if="currentSection === 1">
+    </div>
+    <!--    Right Side of Window - containing mainly interactive and visual content    -->
+    <div class="vis-container right" id="right-container">
+        <!--    Title Banner above Right Side    -->
+        <div class="banner">
+            <!--    Visualisation Title    -->
+            <h1 class="" id="vis-title">
+                VECTOR CALCULUS CONCEPTS
+            </h1>
+            <a href="https://www.imperialvisualisations.com/learn/">
+                <img id="vis-logo" src="VisualisationsLogoWhite2.png">
+            </a>
+        </div>
+        <!--    Space into which visualisations are loaded    -->
+        <div id="rightloadSpace">
+        <!--    fade transition tag for RHS - applied by Vue and CSS    -->
+        <transition-group name="fade" tag="div" class="transition-container">
+            <!--    Interactive Zone Containers   -->
+            <div class="rightload text odd" id='loadout1' key="loadout1" v-if="currentSection === 1">
 
-                </div>
-                <div class="rightload text even" id='loadout2' key="loadout2" v-if="currentSection === 2">
-                    <transition name="fade">
-                        <!--Interactive Zone Sub Containers-->
-                        <div class="rightload text" id='loadout2sub1' key="loadout2sub1"
-                            v-if="subSection[1] === 1">
+            </div>
+            <div class="rightload text even" id='loadout2' key="loadout2" v-if="currentSection === 2">
+                <transition name="fade">
+                    <!--Interactive Zone Sub Containers-->
+                    <div class="rightload text" id='loadout2sub1' key="loadout2sub1"
+                         v-if="subSection[1] === 1">
 
-                            <div style="width:30%; float:right;">
-                                <div id="scroll">
-                                    <br />
-                                    <div class="scroll-down">
-                                        <strong>Select Function: </strong>
-                                        <select id="Function_Selector_1a">
-                                            <option value="A">Gaussian</option>
-                                            <option value="B">Reciprocal</option>
-                                            <option value="C">Sinusoidal</option>
-                                        </select>
-                                    </div>
+                        <div style="width:30%; float:right;">
+                            <div id="scroll">
+                                <br/>
+                                <div class="scroll-down">
+                                    <strong>Select Function: </strong>
+                                    <select id="Function_Selector_1a">
+                                        <option value="A">Gaussian</option>
+                                        <option value="B">Reciprocal</option>
+                                        <option value="C">Sinusoidal</option>
+                                    </select>
                                 </div>
+                            </div>
 
-                                <label class="sliderTitle" style="padding-bottom:20px;">$a$:
-                                    <span id="Slider_1Display" data-unit="">10</span>
-                                </label>
-                                <label style="width:100%">
-                                    <span class="sliderMin">-100</span>
-                                    <input id="Slider_1_1a" class="inputs" type="range" value="10" min="-100" max="100"
-                                        step="1" style="width:70%">
-                                    <span class="sliderMax">100</span>
-                                </label>
-                                <br />
-                                <br />
-                                <br />
-                                <div>
-                                    <div id="B_function_eqn_1a" style="display:none; width:100%">
+                            <label class="sliderTitle" style="padding-bottom:20px;">$a$:
+                                <span id="Slider_1Display" data-unit="">10</span>
+                            </label>
+                            <label style="width:100%">
+                                <span class="sliderMin">-100</span>
+                                <input id="Slider_1_1a" class="inputs" type="range" value="10" min="-100" max="100"
+                                       step="1" style="width:70%">
+                                <span class="sliderMax">100</span>
+                            </label>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div>
+                                <div id="B_function_eqn_1a" style="display:none; width:100%">
                                         <span class="mathJaxDisplay">
                                             $$\displaystyle f(x,y)= \frac{a}{ \sqrt{(bx)^2 + (by)^2} }$$
                                         </span>
-                                    </div>
+                                </div>
 
-                                    <div id="A_function_eqn_1a" style="display:none; width:100%">
+                                <div id="A_function_eqn_1a" style="display:none; width:100%">
                                         <span class="mathJaxDisplay">
                                             $$\displaystyle f(x,y) = ae^{-b((x+c)^2+y^2)} - ae^{-b((x-c)^2+y^2)}$$
                                         </span>
-                                    </div>
+                                </div>
 
-                                    <div id="C_function_eqn_1a" style="display:none; width:100%">
+                                <div id="C_function_eqn_1a" style="display:none; width:100%">
                                         <span class="mathJaxDisplay">
                                             $$\displaystyle f(x,y)= a\cos(bx) $$
                                         </span>
-                                    </div>
                                 </div>
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <div>
-                                    <div id="B_grad_eqn_1a" style="display:none; width:100%">
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div>
+                                <div id="B_grad_eqn_1a" style="display:none; width:100%">
                                         <span class="mathJaxDisplay">
                                             $$\displaystyle \nabla f = - \frac{ab^2}{ ((bx)^2 +(by)^2)^ {\frac{3}{2}} }
                                             (x \mathbf{i} + y \mathbf{j} )$$
                                         </span>
-                                    </div>
+                                </div>
 
-                                    <div id="A_grad_eqn_1a" style="display:none; width:100%; font-size: 8pt">
+                                <div id="A_grad_eqn_1a" style="display:none; width:100%; font-size: 8pt">
                                         <span class="mathJaxDisplay">
                                             $$ \displaystyle \begin{align} \nabla f & = 2ab\bigg(\Big((x-c)e^{-b((x-c)^2
                                             y^2)} - (x+c)e^{-b((x+c)^2 + y^2)}\Big)\mathbf{i}
@@ -375,376 +388,364 @@
                                             \mathbf{j}\bigg)
                                             \end{align} $$
                                         </span>
-                                    </div>
+                                </div>
 
-                                    <div id="C_grad_eqn_1a" style="display:none; width:100%">
+                                <div id="C_grad_eqn_1a" style="display:none; width:100%">
                                         <span class="mathJaxDisplay">
                                             $$\displaystyle \nabla f = - ab\sin (bx) \mathbf{i} $$
                                         </span>
-                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div style="width:60%; float:left;">
-                                <div>
+                        <div style="width:60%; float:left;">
+                            <div>
                                     <span class="mathJaxDisplay">
                                         <h7>$f(x,y)$</h7>
                                     </span>
-                                    <div id='Scalar_Graph_1a' style="width:40vw; height:40vh;"></div>
-                                </div>
+                                <div id='Scalar_Graph_1a' style="width:40vw; height:40vh;"></div>
+                            </div>
 
-                                <div>
+                            <div>
                                     <span class="mathJaxDisplay">
                                         <h7> $\nabla f(x,y) $ </h7>
                                     </span>
-                                    <div id='Vector_Graph_1a' style="width:40vw; height:40vh;"> </div>
+                                <div id='Vector_Graph_1a' style="width:40vw; height:40vh;"></div>
+                            </div>
+                        </div>
+
+                        <!--Buttons/Sliders-->
+                        <!--        <div class="one-third column" style="padding-left: 50px;">-->
+
+                        <!--Main body contents-->
+
+
+                    </div>
+                    <div class="rightload text" id='loadout2sub2' key="loadout2sub2" v-else>
+                        <div class="row">
+                            <div style="width:40%; float:right;">
+                                <div id="scroll">
+                                    <div class="scroll-down">
+                                        <strong>Select Function: </strong>
+                                        <select id="Function_Selector">
+                                            <option value="Gaussian">Gaussian</option>
+                                            <option value="Reciprocal">Reciprocal</option>
+                                            <option value="Sinusodial">Sinusodial</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h6>$a =$
+                                        <output id="Slider_1_1b_value" for="Slider_1_1b">5</output>
+                                    </h6>
+                                    <!--BEGIN Slider-->
+
+                                    <label>
+                                        <span class="sliderMin">-10</span>
+                                        <input id="Slider_1_1b" class="inputs" type="range" value="5" min="-10"
+                                               max="10" step="0.5"
+                                               oninput="Slider_1_1b_value.value=Slider_1_1b.value"/></input>
+                                        <span class="sliderMax">10</span>
+                                    </label>
+                                    <!--END Slider-->
+                                </div>
+
+                                <div>
+                                    <h6> Path </h6>
+                                    <h7>
+                                        <div id="functionValueBall1_1b"></div>
+                                        <div id="functionValueBall2_1b"></div>
+                                    </h7>
+
+                                    <label>
+                                        <span class="sliderMin">A</span>
+                                        <input id="Slider_2_1b" class="inputs" type="range" value="-16" min="-16"
+                                               max="5" step="0.2"
+                                               oninput="Slider_2_1b_value.value=Slider_2_1b.value"/></input>
+                                        <span class="sliderMax">B</span>
+                                    </label>
+                                    <!--END Slider-->
+                                </div>
+
+                                <div>
+                                    <div id="Grad_Reciprocal_eqn_1b">
+                                        $$\displaystyle \nabla \Omega = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x
+                                        \mathbf{\hat{i}} + y \mathbf{\hat{j}} )$$
+                                    </div>
+
+                                    <div id="Grad_Gaussian_eqn_1b">
+                                        $$ \displaystyle \nabla \Omega = \frac{-a}{100}e^{-\frac{x^2+y^2}{200}}(x
+                                        \mathbf{\hat{i}} + y \mathbf{\hat{j}}) $$
+                                    </div>
+
+                                    <div id="Grad_Sinusodial_eqn_1b">
+                                        $$\displaystyle \nabla \Omega = \frac{2 \pi}{15} a \cos \Big( \frac{2
+                                        \pi}{12} y \Big) \mathbf{\hat{j}}$$
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div id="Reciprocal_eqn_1b">
+                                        $$\Omega(x,y)= \frac{4a}{ \sqrt{x^2 + y^2} }$$
+                                    </div>
+
+                                    <div id="Gaussian_eqn_1b">
+                                        $$\Omega(x,y) = ae^{-\frac{x^2+y^2}{200}}$$
+                                    </div>
+
+                                    <div id="Sinusodial_eqn_1b">
+                                        $$\Omega(x,y)= \frac{4}{5} a\sin \Big( \frac{2 \pi}{12}y \Big) $$
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div style="width:60%; float:left;">
+                                <div>
+                                    <div id='Vector_Graph_1b' style="width:30vw; height:30vh;"></div>
+                                </div>
+
+                                <div>
+                                    <div id='Scalar_Graph_1b' style="width:30vw; height:30vh;"></div>
                                 </div>
                             </div>
 
-                            <!--Buttons/Sliders-->
-                            <!--        <div class="one-third column" style="padding-left: 50px;">-->
+                        </div>
+                    </div>
+                </transition>
+            </div>
+            <div class="rightload text odd" id='loadout3' key="loadout3" v-if="currentSection === 3">
+                <transition name="fade">
+                    <!--Interactive Zone Sub Containers-->
+                    <div class="rightload text" id='loadout3sub1' key="loadout3sub1"
+                         v-if="subSection[2] === 1">
+                        <!-- Graph -->
+                        <div class="one-third column" style="padding-left: 2em;">
+
+                            <div id='graph' style="width:30vw; height:70vh;">
+                                <!-- Legend -->
+                                <ul style="margin-top: -4em;">
+                                    <li style="color: rgb(255,47,62);">Target Vector</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--Buttons/Sliders-->
+                        <div class="one-third column" style="padding-left: 50px;">
 
                             <!--Main body contents-->
-
-
-                        </div>
-                        <div class="rightload text" id='loadout2sub2' key="loadout2sub2" v-else>
-                            <div class="row">
-                                <div style="width:40%; float:right;">
-                                    <div id="scroll">
-                                        <div class="scroll-down">
-                                            <strong>Select Function: </strong>
-                                            <select id="Function_Selector">
-                                                <option value="Gaussian">Gaussian</option>
-                                                <option value="Reciprocal">Reciprocal</option>
-                                                <option value="Sinusodial">Sinusodial</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <h6>$a =$
-                                            <output id="Slider_1_1b_value" for="Slider_1_1b">5</output>
-                                        </h6>
-                                        <!--BEGIN Slider-->
-
-                                        <label>
-                                            <span class="sliderMin">-10</span>
-                                            <input id="Slider_1_1b" class="inputs" type="range" value="5" min="-10"
-                                                max="10" step="0.5"
-                                                oninput="Slider_1_1b_value.value=Slider_1_1b.value" /></input>
-                                            <span class="sliderMax">10</span>
-                                        </label>
-                                        <!--END Slider-->
-                                    </div>
-
-                                    <div>
-                                        <h6> Path </h6>
-                                        <h7>
-                                            <div id="functionValueBall1_1b"> </div>
-                                            <div id="functionValueBall2_1b"> </div>
-                                        </h7>
-
-                                        <label>
-                                            <span class="sliderMin">A</span>
-                                            <input id="Slider_2_1b" class="inputs" type="range" value="-16" min="-16"
-                                                max="5" step="0.2"
-                                                oninput="Slider_2_1b_value.value=Slider_2_1b.value" /></input>
-                                            <span class="sliderMax">B</span>
-                                        </label>
-                                        <!--END Slider-->
-                                    </div>
-
-                                    <div>
-                                        <div id="Grad_Reciprocal_eqn_1b">
-                                            $$\displaystyle \nabla \Omega = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x
-                                            \mathbf{\hat{i}} + y \mathbf{\hat{j}} )$$
-                                        </div>
-
-                                        <div id="Grad_Gaussian_eqn_1b">
-                                            $$ \displaystyle \nabla \Omega = \frac{-a}{100}e^{-\frac{x^2+y^2}{200}}(x
-                                            \mathbf{\hat{i}} + y \mathbf{\hat{j}}) $$
-                                        </div>
-
-                                        <div id="Grad_Sinusodial_eqn_1b">
-                                            $$\displaystyle \nabla \Omega = \frac{2 \pi}{15} a \cos \Big( \frac{2
-                                            \pi}{12} y \Big) \mathbf{\hat{j}}$$
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div id="Reciprocal_eqn_1b">
-                                            $$\Omega(x,y)= \frac{4a}{ \sqrt{x^2 + y^2} }$$
-                                        </div>
-
-                                        <div id="Gaussian_eqn_1b">
-                                            $$\Omega(x,y) = ae^{-\frac{x^2+y^2}{200}}$$
-                                        </div>
-
-                                        <div id="Sinusodial_eqn_1b">
-                                            $$\Omega(x,y)= \frac{4}{5} a\sin \Big( \frac{2 \pi}{12}y \Big) $$
-                                        </div>
-                                    </div>
-
-
-
-                                </div>
-
-
-                                <div style="width:60%; float:left;">
-                                    <div>
-                                        <div id='Vector_Graph_1b' style="width:30vw; height:30vh;"></div>
-                                    </div>
-
-                                    <div>
-                                        <div id='Scalar_Graph_1b' style="width:30vw; height:30vh;"> </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </transition>
-                </div>
-                <div class="rightload text odd" id='loadout3' key="loadout3" v-if="currentSection === 3">
-                    <transition name="fade">
-                        <!--Interactive Zone Sub Containers-->
-                        <div class="rightload text" id='loadout3sub1' key="loadout3sub1"
-                            v-if="subSection[2] === 1">
-                            <!-- Graph -->
-                            <div class="one-third column" style="padding-left: 2em;">
-
-                                <div id='graph' style="width:30vw; height:70vh;">
-                                    <!-- Legend -->
-                                    <ul style="margin-top: -4em;">
-                                        <li style="color: rgb(255,47,62);">Target Vector</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!--Buttons/Sliders-->
-                            <div class="one-third column" style="padding-left: 50px;">
-
-                                <!--Main body contents-->
-                                <div class="tab-content">
-                                    <h6
+                            <div class="tab-content">
+                                <h6
                                         style="border-left: solid 0px rgb(79,255,16); padding-left: 0px; margin: 5px; padding-top: 1vh; ">
-                                        Relative divergence </h6>
-                                    <!--BEGIN Slider-->
-                                    <label style="position: relative; float: left; width: 100%; top: 10px;">
-                                        <input id="x3Controller" class="inputs" type="range" value="1" min="-1" max="1"
-                                            step="0.01" oninput="x3.value=x3Controller.value" /></input>
-                                        <br>
-                                        <span> $ \nabla \cdot \mathbf{F}$ = <output id="x3"
-                                                for="x3Controller">1</output></span>
-                                    </label>
-                                    <!--END Slider-->
+                                    Relative divergence </h6>
+                                <!--BEGIN Slider-->
+                                <label style="position: relative; float: left; width: 100%; top: 10px;">
+                                    <input id="x3Controller" class="inputs" type="range" value="1" min="-1" max="1"
+                                           step="0.01" oninput="x3.value=x3Controller.value"/></input>
+                                    <br>
+                                    <span> $ \nabla \cdot \mathbf{F}$ = <output id="x3"
+                                                                                for="x3Controller">1</output></span>
+                                </label>
+                                <!--END Slider-->
 
-                                    <!--BEGIN Slider-->
-                                    <label>
-                                        <input id="y3Controller">
-                                    </label>
-                                    <!--END Slider-->
+                                <!--BEGIN Slider-->
+                                <label>
+                                    <input id="y3Controller">
+                                </label>
+                                <!--END Slider-->
 
-                                    <!--Unique Areas-->
-                                    <!--BEGIN Basis Vector Area-->
-                                    <div class="tab-pane active" id="basis"></div>
-                                    <!--NB: Also need 'active' here-->
-                                    <!--END Basis-->
-                                    <!--END Area-->
-                                </div>
-                                <div style="width:30vh; height:30vh; position: fixed; bottom: 50%; left: 63%">
-                                    <img style="width:inherit; height:inherit;" src="VC/2adiv_sink.png">
-                                </div>
-                                <div style="width:30vh; height:30vh; position: fixed; bottom: 50%; left: 80%">
-                                    <img style="width:inherit; height:inherit;" src="VC/2adiv_source.png">
-                                </div>
+                                <!--Unique Areas-->
+                                <!--BEGIN Basis Vector Area-->
+                                <div class="tab-pane active" id="basis"></div>
+                                <!--NB: Also need 'active' here-->
+                                <!--END Basis-->
+                                <!--END Area-->
+                            </div>
+                            <div style="width:30vh; height:30vh; position: fixed; bottom: 50%; left: 63%">
+                                <img style="width:inherit; height:inherit;" src="VC/2adiv_sink.png">
+                            </div>
+                            <div style="width:30vh; height:30vh; position: fixed; bottom: 50%; left: 80%">
+                                <img style="width:inherit; height:inherit;" src="VC/2adiv_source.png">
                             </div>
                         </div>
-                        <div class="rightload text" id='loadout3sub2' key="loadout3sub2" v-else>
-                            <!--Text next to new charge-->
-                            <label class="text" style="position: relative; left: 4%; display:inline-block;">
-                                <font size="5">Move the surface element</font>
-                            </label>
-                            <!--Text next to slider for user to choose magnet orientation-->
-                            <label class="text"
-                                style="position: relative; left: 6%; height: 0vh; display:inline-block;">
-                                <font size="4">Orientation:</font>
-                            </label>
-                            <!--Slider for user to choose magnet orientation-->
-                            <label id="angleChange"
-                                style="position: relative; left: 7%; width: 30%; height: 0vh; display:inline-block;"
-                                value=false>
-                                <input id="angle" class="inputs" onmousedown="angleChange.value=true"
-                                    onmouseup="angleChange.value = false" type="range" value="0" min="0" max="360"
-                                    step="1" oninput="amount2.value=angle.value" />
-                            </label>
-                            <!--Display user input for magnet orientation on RHS of slider-->
-                            <label style="position: relative; left: 3%; display:inline-block;">
-                                <output id="amount2" name="amount2" for="angle">0</output><span>°</span>
-                            </label>
-                            <!--Display flux-->
-                            <label style="position: relative; left: 3%; display:inline-block;">
-                                Flux:
-                                <output id="flux"></output>
-                            </label>
-                            <!--p5 canvas for drawing charges, fieldlines and loop-->
-                            <label id="sketch-holder" style="height: 100vh; width: 160vh; margin-top:-6.5%">
-                        </div>
-                    </transition>
-                </div>
-                <div class="rightload text even" id='loadout4' key="loadout4" v-if="currentSection === 4">
-                    <transition name="fade">
-                        <!--Interactive Zone Sub Containers-->
-                        <div class="rightload text" id='loadout4sub1' key="loadout4sub1"
-                            v-if="subSection[3] === 1">
+                    </div>
+                    <div class="rightload text" id='loadout3sub2' key="loadout3sub2" v-else>
+                        <!--Text next to new charge-->
+                        <label class="text" style="position: relative; left: 4%; display:inline-block;">
+                            <font size="5">Move the surface element</font>
+                        </label>
+                        <!--Text next to slider for user to choose magnet orientation-->
+                        <label class="text"
+                               style="position: relative; left: 6%; height: 0vh; display:inline-block;">
+                            <font size="4">Orientation:</font>
+                        </label>
+                        <!--Slider for user to choose magnet orientation-->
+                        <label id="angleChange"
+                               style="position: relative; left: 7%; width: 30%; height: 0vh; display:inline-block;"
+                               value=false>
+                            <input id="angle" class="inputs" onmousedown="angleChange.value=true"
+                                   onmouseup="angleChange.value = false" type="range" value="0" min="0" max="360"
+                                   step="1" oninput="amount2.value=angle.value"/>
+                        </label>
+                        <!--Display user input for magnet orientation on RHS of slider-->
+                        <label style="position: relative; left: 3%; display:inline-block;">
+                            <output id="amount2" name="amount2" for="angle">0</output>
+                            <span>°</span>
+                        </label>
+                        <!--Display flux-->
+                        <label style="position: relative; left: 3%; display:inline-block;">
+                            Flux:
+                            <output id="flux"></output>
+                        </label>
+                        <!--p5 canvas for drawing charges, fieldlines and loop-->
+                        <label id="sketch-holder" style="height: 100vh; width: 160vh; margin-top:-6.5%">
+                    </div>
+                </transition>
+            </div>
+            <div class="rightload text even" id='loadout4' key="loadout4" v-if="currentSection === 4">
+                <transition name="fade">
+                    <!--Interactive Zone Sub Containers-->
+                    <div class="rightload text" id='loadout4sub1' key="loadout4sub1"
+                         v-if="subSection[3] === 1">
 
-                        </div>
-                        <div class="rightload text" id='loadout4sub2' key="loadout4sub2" v-else>
-                            <div class="three columns" id="buttons-holder"
-                                style="position:inherit; margin-left: 1vw; margin-top: 5vh;">
+                    </div>
+                    <div class="rightload text" id='loadout4sub2' key="loadout4sub2" v-else>
+                        <div class="three columns" id="buttons-holder"
+                             style="position:inherit; margin-left: 1vw; margin-top: 5vh;">
 
-                                <div id="settings">
+                            <div id="settings">
 
-                                    <p style="margin-top:-2vh;" id="desc">Loop type:</p>
-                                    <div id="circuit-modifiers" style="margin-left: 6vw; margin-top: -2vw;">
-                                        <select class="form-control" id="circuitSelectList" style="margin-top: -3vh">
-                                            <option value="0">
-                                                circle
-                                            </option>
-                                            <option value="1">
-                                                arc 1
-                                            </option>
-                                            <option value="2">
-                                                arc 2
-                                            </option>
-                                            <option value="3">
-                                                rectangle 1
-                                            </option>
-                                            <option value="4">
-                                                square
-                                            </option>
+                                <p style="margin-top:-2vh;" id="desc">Loop type:</p>
+                                <div id="circuit-modifiers" style="margin-left: 6vw; margin-top: -2vw;">
+                                    <select class="form-control" id="circuitSelectList" style="margin-top: -3vh">
+                                        <option value="0">
+                                            circle
+                                        </option>
+                                        <option value="1">
+                                            arc 1
+                                        </option>
+                                        <option value="2">
+                                            arc 2
+                                        </option>
+                                        <option value="3">
+                                            rectangle 1
+                                        </option>
+                                        <option value="4">
+                                            square
+                                        </option>
 
-                                        </select>
+                                    </select>
 
-                                    </div>
-                                    <button id="buttonPlay">Play</button>
-                                    <button id="buttonReset">
-                                        Reset
+                                </div>
+                                <button id="buttonPlay">Play</button>
+                                <button id="buttonReset">
+                                    Reset
+                                </button>
+                                <div id="Current-modifiers">
+
+                                    <button id="buttonAddWire">
+                                        Add Curl Source
                                     </button>
-                                    <div id="Current-modifiers">
-
-                                        <button id="buttonAddWire">
-                                            Add Curl Source
-                                        </button>
-                                        <br>
-                                        <button id="buttonRemoveWires">
-                                            Remove Curl Sources
-                                        </button>
-                                        <button id="buttonLoopToggle" style="display:none;">
-                                            Remove Loop
-                                        </button>
-                                        <button id="buttonFieldFlow" style="display:none;">
-                                            Field Flow
-                                        </button>
-                                        <!--<br>
-                                         <p>
-                                          Wires Selected:
-                                          <b>
-                                           <span id="wireSelected" style="color:blue;">1</span>
-                                          </b>
-                                         </p>-->
-                                        <label class="sliderTitle" for="currentSlider" id="tagCurrentSlider"
-                                            style="margin-bottom:0.1vh">
-                                            Amount of Curl:
-                                            <b>
-                                                <span data-unit="Amps" id="currentDynamicDisplay">5</span>
-                                            </b>
-                                        </label>
-                                        <label class="slider">
-                                            <input id="currentSlider" max="10" min="-10" name="currentSlider" step="1"
-                                                type="range" value="5">
-                                        </label>
-                                    </div>
-
-                                    <div id="diameter-modifiers">
-                                        <label class="sliderTitle" style="margin-bottom:0.1vh">
-                                            Diameter of loop:
-                                        </label>
-                                        <label class="slider">
-                                            <input id="diameterSlider" max="290" min="20" step="20" type="range">
-                                        </label>
-                                    </div>
+                                    <br>
+                                    <button id="buttonRemoveWires">
+                                        Remove Curl Sources
+                                    </button>
+                                    <button id="buttonLoopToggle" style="display:none;">
+                                        Remove Loop
+                                    </button>
+                                    <button id="buttonFieldFlow" style="display:none;">
+                                        Field Flow
+                                    </button>
+                                    <!--<br>
+                                     <p>
+                                      Wires Selected:
+                                      <b>
+                                       <span id="wireSelected" style="color:blue;">1</span>
+                                      </b>
+                                     </p>-->
+                                    <label class="sliderTitle" for="currentSlider" id="tagCurrentSlider"
+                                           style="margin-bottom:0.1vh">
+                                        Amount of Curl:
+                                        <b>
+                                            <span data-unit="Amps" id="currentDynamicDisplay">5</span>
+                                        </b>
+                                    </label>
+                                    <label class="slider">
+                                        <input id="currentSlider" max="10" min="-10" name="currentSlider" step="1"
+                                               type="range" value="5">
+                                    </label>
                                 </div>
-                            </div>
 
-
-
-
-
-                            <div class="eight columns" id="graphics-holder" style="position:relative; right:5vw">
-                                <div id="sketch-holder"
-                                    style="position: relative; top: -36vh; right: -2vw; width: 55vw; height: 60vh; cursor: default;">
-                                    <canvas id="defaultCanvas0" class="p5Canvas" width="1524" height="521"
-                                        style="width: 762.047px; height: 260.5px; z-index:2"></canvas></div>
-                                <div id="graph-holder"
-                                    style="position:relative; left: -2vw; top:-8vh; width:125%; height:50vh; "
-                                    class="js-plotly-plot">
-                                    <div class="plot-container plotly">
-                                        <div class="svg-container"
-                                            style="position: relative; width:550.359px; height:2vh; z-index: -2;">
-                                            <svg class="main-svg" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="550.359"
-                                                height="192.766" style="background: rgb(255, 255, 255);"></svg>
-
-
-                                            <div class="modebar-container"
-                                                style="position: absolute; top: 0px; right: 0px; width: 100%;"></div>
-                                            <svg class="main-svg" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="550.359"
-                                                height="192.766">
-                                                <g class="hoverlayer"></g>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="B-dl-text-holder"
-                                    style="position:absolute; right:47vw; top:65vh; width:25%; height:30vh">
-                                    <p style="font-size: large;">
-                                        $\displaystyle\oint\mathbf{A.dl}=$
-                                        <span id="Bdl-text">5.0*μ<sub>0<sub></sub></sub></span>
-                                    </p>
-                                    <p>
-                                        We are using a Riemann sum to integrate, so the number of steps is referring to
-                                        the number of steps used in the numerical integration.
+                                <div id="diameter-modifiers">
+                                    <label class="sliderTitle" style="margin-bottom:0.1vh">
+                                        Diameter of loop:
+                                    </label>
+                                    <label class="slider">
+                                        <input id="diameterSlider" max="290" min="20" step="20" type="range">
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                    </transition>
-                </div>
-                <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
-                    v-if="1 <= currentSection <= 5 === false">
-                    please wait...
-                </div>
-            </transition-group>
-        </div>
+
+
+                        <div class="eight columns" id="graphics-holder" style="position:relative; right:5vw">
+                            <div id="sketch-holder"
+                                 style="position: relative; top: -36vh; right: -2vw; width: 55vw; height: 60vh; cursor: default;">
+                                <canvas id="defaultCanvas0" class="p5Canvas" width="1524" height="521"
+                                        style="width: 762.047px; height: 260.5px; z-index:2"></canvas>
+                            </div>
+                            <div id="graph-holder"
+                                 style="position:relative; left: -2vw; top:-8vh; width:125%; height:50vh; "
+                                 class="js-plotly-plot">
+                                <div class="plot-container plotly">
+                                    <div class="svg-container"
+                                         style="position: relative; width:550.359px; height:2vh; z-index: -2;">
+                                        <svg class="main-svg" xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="550.359"
+                                             height="192.766" style="background: rgb(255, 255, 255);"></svg>
+
+
+                                        <div class="modebar-container"
+                                             style="position: absolute; top: 0px; right: 0px; width: 100%;"></div>
+                                        <svg class="main-svg" xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="550.359"
+                                             height="192.766">
+                                            <g class="hoverlayer"></g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="B-dl-text-holder"
+                                 style="position:absolute; right:47vw; top:65vh; width:25%; height:30vh">
+                                <p style="font-size: large;">
+                                    $\displaystyle\oint\mathbf{A.dl}=$
+                                    <span id="Bdl-text">5.0*μ<sub>0<sub></sub></sub></span>
+                                </p>
+                                <p>
+                                    We are using a Riemann sum to integrate, so the number of steps is referring to
+                                    the number of steps used in the numerical integration.
+                            </div>
+                        </div>
+                    </div>
+                </transition>
+            </div>
+            <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
+                 v-if="1 <= currentSection <= 5 === false">
+                please wait...
+            </div>
+        </transition-group>
     </div>
-    <!--    Title Banner above Right Side    -->
-    <div class="banner">
-        <!--    Visualisation Title    -->
-        <h1 class="" id="vis-title">
-            VECTOR CALCULUS CONCEPTS
-        </h1>
-        <a href="https://www.imperialvisualisations.com/learn/">
-            <img id="vis-logo" src="VisualisationsLogoWhite2.png">
-        </a>
     </div>
-    <div class="rightScriptSpace"></div>
-    <div class="rightSubScriptSpace"></div>
+    <div class="rightScriptSpace scriptSpace"></div>
+    <div class="rightSubScriptSpace scriptSpace"></div>
 </div>
 </body>
 
 <script src="scripts/nav_Script.js"></script>
-<script src="classes.js"></script>
-<script src="VC\scripts\VC_object.js"></script>
+<script src="scripts/VC-scripts/classes.js"></script>
+<script src="scripts/VC-scripts/VC_object.js"></script>
 
 </html>

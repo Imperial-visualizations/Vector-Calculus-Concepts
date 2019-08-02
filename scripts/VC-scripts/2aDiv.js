@@ -4,9 +4,9 @@
 any layout properties (which you probably want to keep constant for an individual part of a visualisation
 should go here */
 
-const initialPoint = [1, 0];
-const initialPoint3 = [1,0];
-const layout = {
+var initialPoint = [1, 0];
+var initialPoint3 = [1,0];
+var layout = {
     autosize: true,
     //width: 450, "height": 500,
     margin: {l:30, r:30, t:30, b:30},

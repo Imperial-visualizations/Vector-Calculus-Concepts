@@ -51,11 +51,11 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
 any layout properties (which you probably want to keep constant for an individual part of a visualisation
 should go here */
 
-const initialPoint = [0, 1];
-const initialPoint1 = [1.1, 0.1];
-const initialPoint2 = [0.1,1.1];
-const initialPoint3 = [1,1];
-const layout = {
+var initialPoint = [0, 1];
+var initialPoint1 = [1.1, 0.1];
+var initialPoint2 = [0.1,1.1];
+var initialPoint3 = [1,1];
+var layout = {
     autosize: true,
     //width: 450, "height": 500,
     margin: {l:30, r:30, t:30, b:30},

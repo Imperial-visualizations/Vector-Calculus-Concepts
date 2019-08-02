@@ -29,24 +29,24 @@ Maybe only setting calculations when need display, and avoid wires moving while 
 would then require only one calculation and therefore not slow viz down
 */
 
-let width = $('#sketch-holder').width(), height = $('#sketch-holder').height(), neutralpoints = [], allpoints = [], maxpoints = 10; //activepoints = []
-const Nvertices = 1700, max_range = 1500, R = 16, square_size = 100, padding = 50, rect_height = height/8, arrow_size = 5;
+var width = $('#sketch-holder').width(), height = $('#sketch-holder').height(), neutralpoints = [], allpoints = [], maxpoints = 10; //activepoints = []
+var Nvertices = 1700, max_range = 1500, R = 16, square_size = 100, padding = 50, rect_height = height/8, arrow_size = 5;
 
-let currentContainer = [], circuitContainer=[], arrows = [], myCanvas, countingFrames = 0, notChangeAngle=false, stepLength=1,t=10;
-let vectorB, circuit, arc1,arc2, rectangle1, square1, theta = -Math.PI / 2, magFieldScaling = 200;
-let dTheta = 0.5, dt=10, mu0 = 4 * Math.PI * Math.pow(10, -7);
-let fieldDisplay = true, playing = false, mouseWasPressed = false, someWireClose = false, wireSelected = 0, circuitSelected = 0, loopActive = true, hasPlayed = false;
-let fieldFlow = false, Examples = false;
+var currentContainer = [], circuitContainer=[], arrows = [], myCanvas, countingFrames = 0, notChangeAngle=false, stepLength=1,t=10;
+var vectorB, circuit, arc1,arc2, rectangle1, square1, theta = -Math.PI / 2, magFieldScaling = 200;
+var dTheta = 0.5, dt=10, mu0 = 4 * Math.PI * Math.pow(10, -7);
+var fieldDisplay = true, playing = false, mouseWasPressed = false, someWireClose = false, wireSelected = 0, circuitSelected = 0, loopActive = true, hasPlayed = false;
+var fieldFlow = false, Examples = false;
 
 //Example variables
-let angle_Eg = 0, frame_no = 60, mu0_1 = 1 /*Number(Math.PI * 4E-7)*/,arrowNo = 1, index = 0, nostep = 50, sign = 0, O11 = 1;
+var angle_Eg = 0, frame_no = 60, mu0_1 = 1 /*Number(Math.PI * 4E-7)*/,arrowNo = 1, index = 0, nostep = 50, sign = 0, O11 = 1;
 
 /* Now the plotly part of declaration */
-let trace = {x: [], y: []}, layout, trace2 = {x: [], y: []}, trace3 = {x:[], y:[]};
-let x = [], y = [], r = [];
-let B, Bdl = 0, intBdl = 0;
+var trace = {x: [], y: []}, layout, trace2 = {x: [], y: []}, trace3 = {x:[], y:[]};
+var x = [], y = [], r = [];
+var B, Bdl = 0, intBdl = 0;
 
-let doDraw = true;
+var doDraw = true;
 
 var arr = [];
 function setup() {

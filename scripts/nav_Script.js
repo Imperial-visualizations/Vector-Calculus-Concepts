@@ -24,7 +24,7 @@ let app = new Vue ({
         rightScripts: [
             ["scripts/VC-scripts/0Intro.js"],
             [],
-            ["VC/scripts/VC_object.js"],
+            [],
             [],
             [],
         ],
@@ -62,6 +62,7 @@ let app = new Vue ({
                 app.changeTitle();
                 app.changeSec();
             }
+            console.log(this.currentSection);
         },
 
         handleElement: function (section) {
@@ -127,6 +128,7 @@ let app = new Vue ({
         loadSubScripts: function () {
             console.log("fired");
             document.querySelectorAll('.rightSubScriptSpace')[0].innerHTML = "";
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "app"]);
             for (let i = 2; i <= 4; i++) {
                 if (app.currentSection === i) {
                     console.log("section " + i + " recognised");
@@ -145,6 +147,8 @@ let app = new Vue ({
                     }
                 }
             }
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'right-container']);   //Antoine: added this line to make MathJax load, don't know if there is a better way of doing this
+            
         },
 
         // Updates number of title being hovered over in nav/progress bar in data

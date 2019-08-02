@@ -83,7 +83,7 @@ function setup() {
 }
 
 //defining the loop
-const Circuit = class {
+class Circuit {
     constructor(x, y, type, args){
         this.x=x;
         this.y=y;
@@ -208,7 +208,7 @@ const Circuit = class {
     }
 };
 
-const Wire = class {
+class Wire {
     constructor(x, y, A, index) {
         this.x = x;
         this.y = y;

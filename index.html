@@ -342,7 +342,7 @@
                     <transition name="fade">
                         <!--Interactive Zone Sub Containers-->
                         <div class="rightload text" id='loadout2sub1' key="loadout2sub1"
-                            v-if="derivationSubSection !== 3">
+                            v-if="subSection[1] === 1">
 
                             <div style="width:30%; float:right;">
                                 <div id="scroll">
@@ -549,7 +549,7 @@
                     <transition name="fade">
                         <!--Interactive Zone Sub Containers-->
                         <div class="rightload text" id='loadout3sub1' key="loadout3sub1"
-                            v-if="derivationSubSection !== 3">
+                            v-if="subSection[2] === 1">
                             <!-- Graph -->
                             <div class="one-third column" style="padding-left: 2em;">
 
@@ -636,7 +636,7 @@
                     <transition name="fade">
                         <!--Interactive Zone Sub Containers-->
                         <div class="rightload text" id='loadout4sub1' key="loadout4sub1"
-                            v-if="derivationSubSection !== 3">
+                            v-if="subSection[3] === 1">
 
                         </div>
                         <div class="rightload text" id='loadout4sub2' key="loadout4sub2" v-else>
@@ -797,5 +797,7 @@
 </body>
 
 <script src="scripts/nav_Script.js"></script>
+<script src="classes.js"></script>
+<script src="VC\scripts\VC_object.js"></script>
 
 </html>

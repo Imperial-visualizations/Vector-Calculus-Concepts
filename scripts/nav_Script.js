@@ -23,7 +23,7 @@ let app = new Vue ({
         journeyHeightNew: "",
         rightScripts: [
             [],
-            [],
+            ["VC/scripts/VC_object.js"],
             [],
             [],
         ],
@@ -32,8 +32,8 @@ let app = new Vue ({
         firstRunDone: false,
         derivationSubSection: 1,
         rightSubScripts2: [
-            [],
-            [],
+            ["VC/scripts/1aGrad.js"],
+            ["VC/scripts/1bGrad.js"],
         ],
         rightSubScripts3: [
             [],

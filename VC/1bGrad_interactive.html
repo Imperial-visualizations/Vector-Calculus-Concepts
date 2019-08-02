@@ -34,92 +34,92 @@
 <body>
 
 <div style="width:65%; float:right;">
-    <div class="row">
-        <div style="width:40%; float:right;">
-            <div id="scroll">
-                <div class="scroll-down">
-                    <strong>Select Function: </strong>
-                    <select id="Function_Selector">
-                        <option value="Gaussian">Gaussian</option>
-                        <option value="Reciprocal">Reciprocal</option>
-                        <option value="Sinusodial">Sinusodial</option>
-                    </select>
+        <div class="row">
+                <div style="width:40%; float:right;">
+                    <div id="scroll">
+                        <div class="scroll-down">
+                            <strong>Select Function: </strong>
+                            <select id="Function_Selector">
+                                <option value="Gaussian">Gaussian</option>
+                                <option value="Reciprocal">Reciprocal</option>
+                                <option value="Sinusodial">Sinusodial</option>
+                            </select>
+                        </div>
+                    </div>
+        
+                    <div>
+                        <h6 >$a =$
+                                    <output id="Slider_1_1b_value" for="Slider_1_1b">5</output>
+                        </h6>
+                        <!--BEGIN Slider-->
+        
+                            <label>
+                                <span class="sliderMin">-10</span>
+                                <input id="Slider_1_1b" class="inputs" type="range" value="5" min="-10" max="10" step="0.5" oninput="Slider_1_1b_value.value=Slider_1_1b.value"/></input>
+                                <span class="sliderMax">10</span>
+                            </label>
+                            <!--END Slider-->
+                    </div>
+        
+                    <div>
+                        <h6> Path </h6>
+                            <h7>
+                                <div id = "functionValueBall1_1b">  </div>
+                                <div id = "functionValueBall2_1b">  </div>
+                            </h7>
+        
+                            <label>
+                                <span class="sliderMin">A</span>
+                                <input id="Slider_2_1b" class="inputs" type="range" value="-16" min="-16" max="5" step="0.2" oninput="Slider_2_1b_value.value=Slider_2_1b.value"/></input>
+                                <span class="sliderMax">B</span>
+                            </label>
+                            <!--END Slider-->
+                    </div>
+        
+                    <div>
+                        <div id="Grad_Reciprocal_eqn_1b">
+                                $$\displaystyle \nabla \Omega = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x \mathbf{\hat{i}} + y \mathbf{\hat{j}} )$$
+                        </div>
+        
+                        <div id="Grad_Gaussian_eqn_1b">
+                                $$ \displaystyle  \nabla \Omega = \frac{-a}{100}e^{-\frac{x^2+y^2}{200}}(x \mathbf{\hat{i}} + y \mathbf{\hat{j}}) $$
+                        </div>
+        
+                        <div id="Grad_Sinusodial_eqn_1b">
+                                $$\displaystyle \nabla \Omega = \frac{2 \pi}{15} a \cos \Big( \frac{2 \pi}{12} y \Big) \mathbf{\hat{j}}$$
+                        </div>
+                    </div>
+        
+                    <div>
+                        <div id="Reciprocal_eqn_1b">
+                                    $$\Omega(x,y)= \frac{4a}{ \sqrt{x^2 + y^2} }$$
+                        </div>
+        
+                        <div id="Gaussian_eqn_1b">
+                                $$\Omega(x,y) = ae^{-\frac{x^2+y^2}{200}}$$
+                        </div>
+        
+                        <div id="Sinusodial_eqn_1b">
+                                $$\Omega(x,y)= \frac{4}{5} a\sin \Big( \frac{2 \pi}{12}y \Big) $$
+                        </div>
+                    </div>
+        
+        
+        
                 </div>
-            </div>
-
-            <div>
-                <h6 >$a =$
-                            <output id="Slider_1_1b_value" for="Slider_1_1b">5</output>
-                </h6>
-                <!--BEGIN Slider-->
-
-                    <label>
-                        <span class="sliderMin">-10</span>
-                        <input id="Slider_1_1b" class="inputs" type="range" value="5" min="-10" max="10" step="0.5" oninput="Slider_1_1b_value.value=Slider_1_1b.value"/></input>
-                        <span class="sliderMax">10</span>
-                    </label>
-                    <!--END Slider-->
-            </div>
-
-            <div>
-                <h6> Path </h6>
-                    <h7>
-                        <div id = "functionValueBall1_1b">  </div>
-                        <div id = "functionValueBall2_1b">  </div>
-                    </h7>
-
-                    <label>
-                        <span class="sliderMin">A</span>
-                        <input id="Slider_2_1b" class="inputs" type="range" value="-16" min="-16" max="5" step="0.2" oninput="Slider_2_1b_value.value=Slider_2_1b.value"/></input>
-                        <span class="sliderMax">B</span>
-                    </label>
-                    <!--END Slider-->
-            </div>
-
-            <div>
-                <div id="Grad_Reciprocal_eqn_1b">
-                        $$\displaystyle \nabla \Omega = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x \mathbf{\hat{i}} + y \mathbf{\hat{j}} )$$
+        
+        
+                <div style="width:60%; float:left;">
+                    <div>
+                        <div id='Vector_Graph_1b' style="width:30vw; height:30vh;"></div>
+                    </div>
+        
+                    <div>
+                        <div id='Scalar_Graph_1b' style="width:30vw; height:30vh;"> </div>
+                    </div>
                 </div>
-
-                <div id="Grad_Gaussian_eqn_1b">
-                        $$ \displaystyle  \nabla \Omega = \frac{-a}{100}e^{-\frac{x^2+y^2}{200}}(x \mathbf{\hat{i}} + y \mathbf{\hat{j}}) $$
-                </div>
-
-                <div id="Grad_Sinusodial_eqn_1b">
-                        $$\displaystyle \nabla \Omega = \frac{2 \pi}{15} a \cos \Big( \frac{2 \pi}{12} y \Big) \mathbf{\hat{j}}$$
-                </div>
+        
             </div>
-
-            <div>
-                <div id="Reciprocal_eqn_1b">
-                            $$\Omega(x,y)= \frac{4a}{ \sqrt{x^2 + y^2} }$$
-                </div>
-
-                <div id="Gaussian_eqn_1b">
-                        $$\Omega(x,y) = ae^{-\frac{x^2+y^2}{200}}$$
-                </div>
-
-                <div id="Sinusodial_eqn_1b">
-                        $$\Omega(x,y)= \frac{4}{5} a\sin \Big( \frac{2 \pi}{12}y \Big) $$
-                </div>
-            </div>
-
-
-
-        </div>
-
-
-        <div style="width:60%; float:left;">
-            <div>
-                <div id='Vector_Graph_1b' style="width:30vw; height:30vh;"></div>
-            </div>
-
-            <div>
-                <div id='Scalar_Graph_1b' style="width:30vw; height:30vh;"> </div>
-            </div>
-        </div>
-
-    </div>
 </div>
 
 

@@ -1,9 +1,9 @@
 
-
 //document.getElementById("Vis2_interactive").style.display = "block";
 
 var width = $('#sketch-holder').width(), height = $('#sketch-holder').height(), allpoints = [], maxpoints = 10, newchargex = 240, newchargey = 38, line_ele = [];
 var Nvertices = 700, max_range = 2000, R = 16, square_size = 100, padding = 50, rect_height = height/8, arrow_size = 2;
+
 
 //Used to prevent things from overlapping one another
 class volume_element {

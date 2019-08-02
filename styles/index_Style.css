@@ -28,7 +28,7 @@
     top: 0;
     left: 0;
     background: #ccdfff;
-    z-index: 1;
+    z-index: 5;
 }
 
 #progress-container {
@@ -39,7 +39,7 @@
     left: 0;
     top: 0;
     border:none;
-    z-index: 2;
+    z-index: 6;
 }
 
 meter {
@@ -90,7 +90,7 @@ meter::-moz-meter-bar {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 6;
 }
 
 .overlay-button {
@@ -108,7 +108,7 @@ meter::-moz-meter-bar {
     border: none;
     min-width: 25px;
     transition: flex-grow 450ms ease;
-    z-index: 4;
+    z-index: 8;
     box-shadow: none;
 }
 
@@ -143,7 +143,7 @@ meter::-moz-meter-bar {
     border-radius: 0.5vh;
     background: #000000;
     color: #ffffff;
-    z-index: 2;
+    z-index: 6;
     box-shadow: 0.2vw 0.2vh 0.2vh 0.1vh #888888;
 }
 
@@ -156,7 +156,7 @@ meter::-moz-meter-bar {
     border-width: 8px;
     border-style: solid;
     border-color: transparent transparent #000000 transparent;
-    z-index: 2;
+    z-index: 6;
 }
 
 .journey {
@@ -170,7 +170,7 @@ meter::-moz-meter-bar {
     overflow-x:hidden;
     text-align: justify;
     /*border-right: solid 1px #b8b8b8;*/
-    box-shadow: 0px 0px 5px #a8a8a8;
+    box-shadow: 0 0 5px #a8a8a8;
 }
 
 .section-body {
@@ -227,6 +227,74 @@ button.section-sub-head:hover {
     background-color: #eaf2ff;
 }
 
+.nav-tabs {
+    display: flex;
+    width: inherit;
+    position: relative;
+    top: 8px;
+    margin: 0;
+}
+
+.nav-tabs > li {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 0;
+    flex-grow: 1;
+    border-radius: 8px 8px 0 0 ;
+    text-align: center;
+    background: #ffffff;
+    align-items: stretch;
+    z-index: 1;
+}
+
+.nav-tabs > li.tabLeft {
+    margin: 0 1.5% 0 0;
+}
+
+.nav-tabs > li.tabRight {
+    margin: 0 0 0 1.5%;
+}
+
+.nav-tabs > li:hover {
+    background: #ccdfff;
+    box-shadow: 3px 4px 3px #a8a8a8;
+}
+
+.nav-tabs > li.shaded {
+    background: #eaf2ff;
+    box-shadow: 3px 4px 3px #a8a8a8;
+}
+
+.nav-tabs > li > a {
+    padding: 5% 0 6% 0;
+    border-radius: inherit;
+    font-size: calc(5px + 1.1vw);
+    z-index: 1;
+}
+
+.tab-content {
+    position: relative;
+    color : #000000;
+    background-color: #eaf2ff;
+    padding : 20px 30px;
+    box-shadow: 3px 4px 3px #a8a8a8;
+    z-index: 2;
+    border-radius: 8px 8px 8px 8px;
+}
+
+.tab-content > .tab-pane:not(.active),
+.pill-content > .pill-pane:not(.active) {
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    height: 0;
+}
+
+.tab-content > .tab-pane.active,
+.pill-content > .pill-pane.active {
+    display: block;
+    visibility:visible;
+}
 h3.section-sub-head {
     width: 100%;
     margin: 4vh 0 2vh 0;
@@ -285,7 +353,7 @@ i {
     top: 0;
     left: 0;
     box-shadow: 0 1vh 2.5vh #b1b1b1;
-    z-index: 1;
+    z-index: 5;
 }
 
 .banner {
@@ -301,7 +369,7 @@ i {
             #37578b 100%
     );
     color: #ffffff;
-    z-index: 2;
+    z-index: 6;
 }
 
 #vis-title {
@@ -363,52 +431,9 @@ i {
 
 .extra-content {
     /* Indicates a drop down box to hide stuff */
-    background: #ccdfff;
+    background: #eaf2ff;
     padding: 25px 40px;
     border-radius: 5px;
     text-align: justify;
     margin-bottom: 30px;
 }
-
-
-/*---------------------------------------------------slider style------------------------------------------------------------------------*/
-
-/*
-
-input[type="range"] {
-               !* -webkit-box-shadow: 0 1px 0 0px #424242, 0 1px 0 #060607 inset, 0px 2px 10px 0px black inset, 1px 0px 2px rgba(0, 0, 0, 0.4) inset, 0 0px 1px rgba(0, 0, 0, 0.6) inset;
-                *!margin-top: 2px;
-
-                border-radius: 15px;
-                color: #ff5153;
-                -webkit-appearance: none;
-                height:10px;
-            }
-            input[type="range"]::-webkit-slider-thumb {
-                -webkit-appearance: none;
-                cursor: default;
-                top: -5px;
-                height: 30px;
-                width: 20px;
-                transform: translateY(-4px);
-                background: none repeat scroll 0 0 #777;
-                border-radius: 15px;
-                -webkit-box-shadow: 0 -1px 1px #0091D4 inset;
-            }
-input[type="range"]::-webkit-slider-thumb{
-       -webkit-appearance: none;
-       width: 25px;
-       height: 25px;
-
-       cursor: pointer;
-       border-radius: 15px;
-       background: #DEF3F8;
-       box-shadow: 0 0 10px #0091D4 inset;
-   }
-input[type="range"]::-webkit-slider-runnable-track{
-       height: 7px;
-       border-radius: 10px;
-       border: 1px solid currentcolor;
-
-   }
-*/

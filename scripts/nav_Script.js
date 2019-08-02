@@ -22,6 +22,7 @@ let app = new Vue ({
         journeyHeightOld: "",
         journeyHeightNew: "",
         rightScripts: [
+            ["scripts/VC-scripts/0Intro.js"],
             [],
             ["VC/scripts/VC_object.js"],
             [],
@@ -30,18 +31,24 @@ let app = new Vue ({
         removeScript: "",
         addScript: "",
         firstRunDone: false,
-        derivationSubSection: 1,
-        rightSubScripts2: [
-            ["VC/scripts/1aGrad.js"],
-            ["VC/scripts/1bGrad.js"],
-        ],
-        rightSubScripts3: [
-            [],
-            [],
-        ],
-        rightSubScripts4: [
-            [],
-            [],
+        subSection: [false,1,1,1],
+        rightSubScripts: [
+            [
+                [],
+                [],
+            ],
+            [
+                ["scripts/VC-scripts/1aGrad.js"],
+                ["scripts/VC-scripts/1bGrad.js"],
+            ],
+            [
+                ["scripts/VC-scripts/2aDiv.js"],
+                ["scripts/VC-scripts/2bDiv.js"],
+            ],
+            [
+                ["scripts/VC-scripts/3aCurl.js"],
+                ["scripts/VC-scripts/3bCurl.js"],
+            ],
         ],
     },
 
@@ -109,30 +116,43 @@ let app = new Vue ({
         },
 
         // Same as above but for subsections
-        // Delay added to allow time for div size changes
-        // --------------CHANGE------------------------
-        subScrollTo: function (event) {
-            let scrollTarget = event.currentTarget;
-            if (scrollTarget.id === "ssh" + app.derivationSubSection) {
-                scrollTarget.scrollIntoView();
+        subScrollTo: function (section) {
+            if (app.currentSection !== section) {
+                let scrollTarget = document.querySelectorAll("#sc" + section)[0];
+                scrollTarget.scrollIntoView({behavior: "smooth"});
             }
         },
 
-        // Updates derivationSubSection variable to reflect active subsection in derivatives section
-        // --------------CHANGE------------------------
-        updateSubSection: function (newSubSection) {
-            if (app.derivationSubSection !== newSubSection) {
-                app.derivationSubSection = newSubSection;
-            } else {
-                app.derivationSubSection = 0;
+        // Removes and adds scripts depending on which section and subsection is active
+        loadSubScripts: function () {
+            console.log("fired");
+            document.querySelectorAll('.rightSubScriptSpace')[0].innerHTML = "";
+            for (let i = 2; i <= 4; i++) {
+                if (app.currentSection === i) {
+                    console.log("section " + i + " recognised");
+                    for (let j = 1; j <= 2; j++) {
+                        if (app.subSection[i - 1] === j) {
+                            console.log("subsection " + j + " recognised");
+                            for (let k = 1; k <= app.rightSubScripts[i - 1][j - 1].length; k++) {
+                                console.log("subScriptNo " + k + " recognised");
+                                app.addScript = document.createElement("script");
+                                app.addScript.id = "rightSubScriptS" + i + "." + j + "E" + k;
+                                app.addScript.src = (app.rightSubScripts[i - 1][j - 1][k - 1]);
+                                app.addScript.async = false;
+                                document.querySelectorAll('.rightSubScriptSpace')[0].appendChild(app.addScript);
+                            }
+                        }
+                    }
+                }
             }
-            app.$forceUpdate();
         },
 
+        // Updates number of title being hovered over in nav/progress bar in data
         hoverPosUpdate: function (event) {
             app.hoverPos = parseFloat(event.currentTarget.dataset.no)
         },
 
+        // Updates if and what title show when hovering over nav/progress bar
         selectHover: function () {
             if (app.currentTitle !== app.hoverPos) {
                 app.hoverTitle=app.sectionTitleLong[app.hoverPos-1]
@@ -141,11 +161,13 @@ let app = new Vue ({
             }
         },
 
+        // Updates x-position of mouse in data
         updateMouseX: function(event) {
             // pass event object, bound to mouse move with update
             app.mouseX = event.clientX -15;
         },
 
+        // Toggles button text from 'hide' to 'show' depending on state
         hideShowToggle: function (event) {
             let toggleTarget = event.currentTarget.querySelectorAll('span')[0].innerHTML;
             if (toggleTarget === "Show") {
@@ -153,19 +175,20 @@ let app = new Vue ({
             } else {
                 event.currentTarget.querySelectorAll('span')[0].innerHTML = "Show"
             }
-        }
+        },
     },
 
     watch: {
 
-        currentTitle: function (newValue, oldValue) {
         // Updates current section title to display in full in nav/progress bar whilst minimising other section titles
+        currentTitle: function (newValue, oldValue) {
+
             app.swapTitles(newValue, oldValue)
         },
 
+        // Removes and adds scripts depending on which section is at top of visible part of journey and which tab is open
         currentSection: function (newValue, oldValue) {
 
-            // Removes and adds scripts depending on which section is at top of visible part of journey
             document.querySelectorAll('.rightScriptSpace')[0].innerHTML = "";
             for (let i=1; i<=app.rightScripts[newValue-1].length; i++) {
                 app.addScript = document.createElement("script");
@@ -174,93 +197,16 @@ let app = new Vue ({
                 app.addScript.async = false;
                 document.querySelectorAll('.rightScriptSpace')[0].appendChild(app.addScript);
             }
-            // Code to deal with loading / unloading appropriate scripts when entering / leaving section 2 as the scripts depend on which subsection is active
-            if (oldValue === 2) {
-                document.querySelectorAll('.derivationScriptSpace')[0].innerHTML = "";
-            }
-            if (newValue === 2) {
-                if (app.derivationSubSection !==3) {
-                    for (let i=1; i<=app.derivationScripts[0].length; i++) {
-                        app.addScript = document.createElement("script");
-                        app.addScript.id ="derivationScriptS" + 0 + "E" + i;
-                        app.addScript.src = (app.derivationScripts[0][i-1]);
-                        app.addScript.async = false;
-                        document.querySelectorAll('.derivationScriptSpace')[0].appendChild(app.addScript);
-                    }
-                    setTimeout(function () {
-                        if (app.derivationSubSection > 3) {
-                            document.querySelectorAll('#opt' + (app.derivationSubSection - 3))[0].setAttribute("selected", "true");
-                            document.querySelectorAll('#SelectSec2Sub1')[0].setAttribute("disabled", "true");
-                            document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "none";
-                            setTimeout(function () {
-                                selectorFuncSec2Sub0();
-                                document.querySelectorAll("#subSecTitle")[0].innerHTML=document.querySelectorAll("#opt"+(app.derivationSubSection-3))[0].title;
-                                document.querySelectorAll("#subSecTitle")[0].style.display="block";
-                            }, 200);
-                        }
-                    }, 200);
-                } else {
-                    for (let i=1; i<=app.derivationScripts[1].length; i++) {
-                        app.addScript = document.createElement("script");
-                        app.addScript.id ="derivationScriptS" + 1 + "E" + i;
-                        app.addScript.src = (app.derivationScripts[1][i-1]);
-                        app.addScript.async = false;
-                        document.querySelectorAll('.derivationScriptSpace')[0].appendChild(app.addScript);
-                    }
-                }
-            }
-        },
-        // --------------CHANGE------------------------
-        derivationSubSection: function (newValue, oldValue) {
-            // Removes and adds scripts depending on which subsection is active when on section 2
 
-            document.querySelectorAll('.derivationScriptSpace')[0].innerHTML = "";
-            if (app.currentSection === 2) {
-                if (newValue !==3) {
-                    for (let i=1; i<=app.derivationScripts[0].length; i++) {
-                        app.addScript = document.createElement("script");
-                        app.addScript.id ="derivationScriptS" + 0 + "E" + i;
-                        app.addScript.src = (app.derivationScripts[0][i-1]);
-                        app.addScript.async = false;
-                        document.querySelectorAll('.derivationScriptSpace')[0].appendChild(app.addScript);
-                    }
-                    // locks function displayed to show only specific example if subsection about specific function is active
-                    setTimeout(function () {
-                        if (oldValue > 3) {
-                            document.querySelectorAll('#opt' + (oldValue - 3))[0].removeAttribute("selected");
-                            document.querySelectorAll('#SelectSec2Sub1')[0].removeAttribute("disabled");
-                            document.querySelectorAll("#subSecTitle")[0].style.display = "none";
-                            document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "block";
-                        }
-                        if (newValue > 3) {
-                            document.querySelectorAll('#opt' + (newValue - 3))[0].setAttribute("selected", "true");
-                            document.querySelectorAll('#SelectSec2Sub1')[0].setAttribute("disabled", "true");
-                            document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "none";
-                            setTimeout(function () {
-                                selectorFuncSec2Sub0();
-                                document.querySelectorAll("#subSecTitle")[0].innerHTML=document.querySelectorAll("#opt"+(newValue-3))[0].title;
-                                document.querySelectorAll("#subSecTitle")[0].style.display="block";
-                            }, 200);
-                        }
-                    }, 200);
-                } else {
-                    for (let i=1; i<=app.derivationScripts[1].length; i++) {
-                        app.addScript = document.createElement("script");
-                        app.addScript.id ="derivationScriptS" + 1 + "E" + i;
-                        app.addScript.src = (app.derivationScripts[1][i-1]);
-                        app.addScript.async = false;
-                        document.querySelectorAll('.derivationScriptSpace')[0].appendChild(app.addScript);
-                    }
-                }
-                if (oldValue !== 0) {
-                    document.querySelectorAll("ssh" + oldValue)
-                }
+            if (newValue !== 1) {
+                app.loadSubScripts();
+            } else {
+                document.querySelectorAll('.rightSubScriptSpace')[0].innerHTML = "";
             }
-        },
+        }
     },
 
     mounted () {
-        // --------------CHANGE------------------------
         // $nextTick ensures initial functions only run once Vue is initialised sufficiently
         this.$nextTick ( function () {
             // makes n equal to total number of sections
@@ -280,14 +226,6 @@ let app = new Vue ({
                     this.sectionPos();
                 }
             },2000);
-            // collapses collapsible divs once mathJax has loaded fully
-            setTimeout(function () {MathJax.Hub.Queue(function () {
-               let collapseDivs = document.querySelectorAll(".collapse:not(#introContentContainer)");
-               for (let i=0; i<collapseDivs.length; i++) {
-                   collapseDivs[i].classList.remove("show");
-               }
-            })
-            }, 1000)
         }
     )},
 });

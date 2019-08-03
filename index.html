@@ -308,6 +308,11 @@
         <!--    fade transition tag for RHS - applied by Vue and CSS    -->
         <transition-group name="fade" tag="div" class="transition-container">
             <!--    Interactive Zone Containers   -->
+            <div class="rightload" id="loadwait" key="loadwait" v-if="true">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            </div>
             <div class="rightload text odd" id='loadout1' key="loadout1" v-if="currentSection === 1">
 
             </div>
@@ -731,10 +736,6 @@
                         </div>
                     </div>
                 </transition>
-            </div>
-            <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
-                 v-if="1 <= currentSection <= 5 === false">
-                please wait...
             </div>
         </transition-group>
     </div>

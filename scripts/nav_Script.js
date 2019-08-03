@@ -28,8 +28,6 @@ let app = new Vue ({
             [],
             [],
         ],
-        removeScript: "",
-        addScript: "",
         firstRunDone: false,
         subSection: [false,1,1,1],
         rightSubScripts: [
@@ -67,9 +65,7 @@ let app = new Vue ({
 
         handleElement: function (section) {
             // update currentSection variable if user scrolls past the top edge of its corresponding section on left side
-            let topSection = document.querySelectorAll("#"+"sc"+section)[0].offsetTop - 2;
-            let bottomSection = topSection + document.querySelectorAll("#"+"sc"+section)[0].offsetHeight - 2;
-            if (app.scrollPos >= topSection && app.scrollPos < bottomSection) {
+            if (app.scrollPos >= app.sectionTops[section -1] && app.scrollPos < app.sectionBottoms[section -1]) {
                 app.currentTitle = section;
             }
         },
@@ -108,6 +104,8 @@ let app = new Vue ({
                         app.sectionBottoms[i-1] = (app.sectionTops[i-1] + document.querySelectorAll("#"+"sc"+i)[0].offsetHeight - document.querySelectorAll(".journey")[0].offsetHeight);
                     }
                 }
+                app.firstRunDone = true;
+                app.scrollFunc();
             })
         },
 
@@ -125,31 +123,20 @@ let app = new Vue ({
         },
 
         // Removes and adds scripts depending on which section and subsection is active
-        loadSubScripts: function () {
-            console.log("fired");
+        loadSubScripts: debounce (function () {
             document.querySelectorAll('.rightSubScriptSpace')[0].innerHTML = "";
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "app"]);
-            for (let i = 2; i <= 4; i++) {
-                if (app.currentSection === i) {
-                    console.log("section " + i + " recognised");
-                    for (let j = 1; j <= 2; j++) {
-                        if (app.subSection[i - 1] === j) {
-                            console.log("subsection " + j + " recognised");
-                            for (let k = 1; k <= app.rightSubScripts[i - 1][j - 1].length; k++) {
-                                console.log("subScriptNo " + k + " recognised");
-                                app.addScript = document.createElement("script");
-                                app.addScript.id = "rightSubScriptS" + i + "." + j + "E" + k;
-                                app.addScript.src = (app.rightSubScripts[i - 1][j - 1][k - 1]);
-                                app.addScript.async = false;
-                                document.querySelectorAll('.rightSubScriptSpace')[0].appendChild(app.addScript);
-                            }
-                        }
-                    }
-                }
-            }
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'right-container']);   //Antoine: added this line to make MathJax load, don't know if there is a better way of doing this
-            
-        },
+            console.log("section " + app.currentSection + " recognised");
+            console.log("subsection " + app.subSection[app.currentSection - 1] + " recognised");
+            for (let k = 1; k <= app.rightSubScripts[app.currentSection - 1][app.subSection[app.currentSection - 1] - 1].length; k++) {
+                console.log("subScriptNo " + k + " recognised");
+                app.addScript = document.createElement("script");
+                app.addScript.id = "rightSubScriptS" + app.currentSection + "." + app.subSection[app.currentSection - 1] + "E" + k;
+                app.addScript.src = (app.rightSubScripts[app.currentSection - 1][app.subSection[app.currentSection - 1] - 1][k - 1]);
+                app.addScript.async = false;
+                document.querySelectorAll('.rightSubScriptSpace')[0].appendChild(app.addScript);
+                // Antoine: added this line to make MathJax load, don't know if there is a better way of doing this
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'right-container']);  }
+        }, 200),
 
         // Updates number of title being hovered over in nav/progress bar in data
         hoverPosUpdate: function (event) {
@@ -216,10 +203,7 @@ let app = new Vue ({
             // makes n equal to total number of sections
             app.n = document.querySelectorAll(".section-container").length;
             // calculates initial div section positions in journey with respect to the top
-            this.sectionPos();
-            app.firstRunDone = true;
-            // runs scrollFunc once on loading in case page does not load with top of journey in view
-            app.scrollFunc();
+            app.sectionPos();
             // checks if journey div height changes every x seconds
             // if it does change, re-runs sectionPos to calculate section div positions
             app.journeyHeightOld = document.querySelectorAll(".journey")[0].scrollHeight;

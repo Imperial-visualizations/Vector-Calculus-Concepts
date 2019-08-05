@@ -113,7 +113,7 @@ function getPath() { //create array of (x,y) for each path
     //console.log(scale, oldScale, circuitSelected, oldType);
 
     if(scale !== oldScale || circuitSelected !== oldType){
-            Path = []
+            Path = [];
             //console.log('update path');
             if (circuitSelected == 0) { //Circle path
             stepSize = 0.03;
@@ -756,7 +756,7 @@ function buttonResetFunction() {
 
 function buttonFieldFlowFunction() {
     fieldFlow = !fieldFlow;
-    arr = []
+    arr = [];
     for(i=0; i<width; i+=20) {
         for(j=0; j<height; j+=20){
             arr.push(new Arrow(i, j, 10));

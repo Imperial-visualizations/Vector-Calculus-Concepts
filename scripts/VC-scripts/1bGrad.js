@@ -642,6 +642,8 @@ function main(){
     const layoutVector_1b = {
         title: "Gradient Field",
         showlegend: false,
+        width: 300,
+            height: 300,
         xaxis: {
             constrain: "domain",
             range: [-20, 20],

@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ab84a33-3352-4538-bf0c-005f2739d42b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/VC/2bDiv_interactive.html" beforeDir="false" afterPath="$PROJECT_DIR$/VC/2bDiv_interactive.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VC/3bCurl_interactive.html" beforeDir="false" afterPath="$PROJECT_DIR$/VC/3bCurl_interactive.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/VC-scripts/1bGrad.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/VC-scripts/1bGrad.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/loadout_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/loadout_Style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,26 +16,30 @@
     <session id="-902653111">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="159" />
-          <entry key="js" value="38" />
+          <entry key="css" value="2" />
+          <entry key="html" value="183" />
+          <entry key="js" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="159" />
-          <entry key="JavaScript" value="38" />
+          <entry key="CSS" value="2" />
+          <entry key="HTML" value="183" />
+          <entry key="JavaScript" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="css" value="1" />
           <entry key="html" value="8" />
-          <entry key="js" value="5" />
+          <entry key="js" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="CSS" value="1" />
           <entry key="HTML" value="8" />
-          <entry key="JavaScript" value="5" />
+          <entry key="JavaScript" value="7" />
         </counts>
       </usages-collector>
     </session>
@@ -45,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="430" column="51" selection-start-line="430" selection-start-column="51" selection-end-line="430" selection-end-column="51" />
+            <state relative-caret-position="72">
+              <caret line="512" column="93" selection-start-line="512" selection-start-column="93" selection-end-line="512" selection-end-column="93" />
               <folding>
                 <element signature="n#head#0;n#html#0;n#!!top" />
                 <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
@@ -118,6 +122,8 @@
                 <element signature="n#div#0;n#div#0;n#div#0;n#transition#0;n#div#2;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#transition#0;n#div#2;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#transition#0;n#div#2;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#transition#0;n#div#2;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#transition#0;n#div#2;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#div#0;n#transition#0;n#div#3;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#transition#0;n#div#3;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h6#0;n#div#0;n#div#1;n#div#0;n#transition#0;n#div#3;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -125,6 +131,24 @@
                 <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#transition#0;n#div#3;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#label#5;n#div#1;n#transition#0;n#div#3;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/styles/loadout_Style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VC/scripts/2bDiv.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4921">
+              <caret line="259" column="12" lean-forward="true" selection-start-line="259" selection-start-column="12" selection-end-line="259" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -157,24 +181,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/VC-scripts/1bGrad.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="490">
+              <caret line="644" column="16" selection-start-line="644" selection-start-column="16" selection-end-line="644" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/VC-scripts/3bCurl.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-536">
               <caret line="430" column="9" lean-forward="true" selection-start-line="430" selection-start-column="9" selection-end-line="430" selection-end-column="9" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VC/Curl.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="234" column="83" lean-forward="true" selection-start-line="234" selection-start-column="83" selection-end-line="234" selection-end-column="83" />
-              <folding>
-                <element signature="n#style#0;n#canvas#0;n#div#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -207,10 +228,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>let</find>
-      <find>const</find>
-      <find>pill</find>
-      <find>reMathJax($event);</find>
       <find>$</find>
       <find>section-s</find>
       <find>HEAD</find>
@@ -234,9 +251,13 @@
       <find>arrow</find>
       <find>sketch-holder</find>
       <find>classes</find>
-      <find>sket</find>
       <find>relative</find>
       <find>done</find>
+      <find>sket</find>
+      <find>width</find>
+      <find>height</find>
+      <find>vector</find>
+      <find>loadout2</find>
     </findStrings>
     <replaceStrings>
       <replace>tab</replace>
@@ -262,11 +283,12 @@
         <option value="$PROJECT_DIR$/../Fourier-Series/styles/index_Style.css" />
         <option value="$PROJECT_DIR$/../Fourier-Series/scripts/nav_Script.js" />
         <option value="$PROJECT_DIR$/../Fourier-Series/styles/loadout_Style.css" />
-        <option value="$PROJECT_DIR$/styles/loadout_Style.css" />
         <option value="$PROJECT_DIR$/scripts/VC-scripts/2bDiv.js" />
         <option value="$PROJECT_DIR$/scripts/VC-scripts/3bCurl.js" />
         <option value="$PROJECT_DIR$/VC/3bCurl_interactive.html" />
         <option value="$PROJECT_DIR$/VC/2bDiv_interactive.html" />
+        <option value="$PROJECT_DIR$/scripts/VC-scripts/1bGrad.js" />
+        <option value="$PROJECT_DIR$/styles/loadout_Style.css" />
         <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
@@ -507,13 +529,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/VC-scripts/1bGrad.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-95">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/VC-scripts/3aCurl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-380">
@@ -528,13 +543,6 @@
     <entry file="file://$PROJECT_DIR$/../Fourier-Series/styles/index_Style.css" />
     <entry file="file://$PROJECT_DIR$/../Fourier-Series/styles/loadout_Style.css" />
     <entry file="file://$PROJECT_DIR$/../Fourier-Series/scripts/nav_Script.js" />
-    <entry file="file://$PROJECT_DIR$/styles/loadout_Style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="12" lean-forward="true" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/styles/index_Style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6800">
@@ -563,13 +571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VC/scripts/2bDiv.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4921">
-          <caret line="259" column="12" lean-forward="true" selection-start-line="259" selection-start-column="12" selection-end-line="259" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VC/Curl.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -577,13 +578,6 @@
           <folding>
             <element signature="n#style#0;n#canvas#0;n#div#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/VC-scripts/2bDiv.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -605,13 +599,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index-1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="792" column="10" lean-forward="true" selection-start-line="792" selection-start-column="10" selection-end-line="792" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -656,10 +643,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/VC-scripts/2bDiv.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/VC-scripts/1bGrad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="644" column="16" selection-start-line="644" selection-start-column="16" selection-end-line="644" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index-1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1620">
+          <caret line="792" column="10" lean-forward="true" selection-start-line="792" selection-start-column="10" selection-end-line="792" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VC/scripts/2bDiv.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4921">
+          <caret line="259" column="12" lean-forward="true" selection-start-line="259" selection-start-column="12" selection-end-line="259" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/loadout_Style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="430" column="51" selection-start-line="430" selection-start-column="51" selection-end-line="430" selection-end-column="51" />
+        <state relative-caret-position="72">
+          <caret line="512" column="93" selection-start-line="512" selection-start-column="93" selection-end-line="512" selection-end-column="93" />
           <folding>
             <element signature="n#head#0;n#html#0;n#!!top" />
             <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
@@ -731,6 +753,8 @@
             <element signature="n#div#0;n#div#0;n#div#0;n#transition#0;n#div#2;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#div#0;n#div#1;n#transition#0;n#div#2;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#transition#0;n#div#2;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#transition#0;n#div#2;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#transition#0;n#div#2;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#0;n#transition#0;n#div#3;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#div#1;n#div#0;n#transition#0;n#div#3;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h6#0;n#div#0;n#div#1;n#div#0;n#transition#0;n#div#3;n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />

@@ -866,7 +866,7 @@ function initialPlot() {
 }
 
 //button functions:
-let buttonPresses = 0;
+var buttonPresses = 0;
 function buttonLoopToggleFunction() {
 
         //console.log(loopActive);

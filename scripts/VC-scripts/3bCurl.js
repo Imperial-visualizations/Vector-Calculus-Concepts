@@ -29,7 +29,7 @@ Maybe only setting calculations when need display, and avoid wires moving while 
 would then require only one calculation and therefore not slow viz down
 */
 
-var width = $('#sketch-holder').width(), height = $('#sketch-holder').height(), neutralpoints = [], allpoints = [], maxpoints = 10; //activepoints = []
+var width = $('#sketch-holder-2').width(), height = $('#sketch-holder-2').height(), neutralpoints = [], allpoints = [], maxpoints = 10; //activepoints = []
 var Nvertices = 1700, max_range = 1500, R = 16, square_size = 100, padding = 50, rect_height = height/8, arrow_size = 5;
 
 var currentContainer = [], circuitContainer=[], arrows = [], myCanvas, countingFrames = 0, notChangeAngle=false, stepLength=1,t=10;
@@ -50,7 +50,7 @@ var doDraw = true;
 
 var arr = [];
 function setup() {
-    let width = $('#sketch-holder').width(), height = $('#sketch-holder').height();
+    let width = $('#sketch-holder-2').width(), height = $('#sketch-holder-2').height();
     //link the functions to the buttons
     $('#buttonPlay').click(buttonPlayFunction);
     $('#buttonField').click(buttonFieldFunction);
@@ -63,13 +63,13 @@ function setup() {
         circuitSelected = this.value;
         buttonResetFunction();
     });
-    $('#buttonLoopToggle').click(buttonLoopToggleFunction);
+    //$('#buttonLoopToggle').click(buttonLoopToggleFunction);
     $('#buttonFieldFlow').click(buttonFieldFlowFunction);
     $('#buttonExamples').click(buttonExamplesFunction);
     //buttonLoopToggleFunction();
 
     myCanvas = createCanvas(width, height);
-    myCanvas.parent('sketch-holder');
+    myCanvas.parent('sketch-holder-2-2');
     frameRate(120);
     currentContainer.push(new Wire(circuit.x, circuit.y, 5, 0));
     initialPlot();
@@ -86,15 +86,15 @@ function setup() {
 
 
 
-circuit= new Circuit($('#sketch-holder').width() / 2, $('#sketch-holder').height() / 2, "circle", {diam:200});
+circuit= new Circuit($('#sketch-holder-2').width() / 2, $('#sketch-holder-2').height() / 2, "circle", {diam:200});
 circuitContainer.push(circuit);
-arc1= new Circuit($('#sketch-holder').width() / 2, $('#sketch-holder').height() / 2, "arcs", {diam:[150, 300, 250, 200], theta:[-Math.PI/3, Math.PI+Math.PI/7, Math.PI/2, 2*Math.PI/3]});
+arc1= new Circuit($('#sketch-holder-2').width() / 2, $('#sketch-holder-2').height() / 2, "arcs", {diam:[150, 300, 250, 200], theta:[-Math.PI/3, Math.PI+Math.PI/7, Math.PI/2, 2*Math.PI/3]});
 circuitContainer.push(arc1);
-arc2 = new Circuit($('#sketch-holder').width() / 2, $('#sketch-holder').height() / 2, "arcs", {diam:[125, 240, 200, 300], theta:[Math.PI/6, Math.PI-Math.PI/7, -Math.PI/3, -2*Math.PI/3]});
+arc2 = new Circuit($('#sketch-holder-2').width() / 2, $('#sketch-holder-2').height() / 2, "arcs", {diam:[125, 240, 200, 300], theta:[Math.PI/6, Math.PI-Math.PI/7, -Math.PI/3, -2*Math.PI/3]});
 circuitContainer.push(arc2);
-rectangle1 = new Circuit($('#sketch-holder').width() / 2, $('#sketch-holder').height() / 2, "rectangle", {height:100, width:300});
+rectangle1 = new Circuit($('#sketch-holder-2').width() / 2, $('#sketch-holder-2').height() / 2, "rectangle", {height:100, width:300});
 circuitContainer.push(rectangle1);
-square1 = new Circuit($('#sketch-holder').width() / 2, $('#sketch-holder').height() / 2, "rectangle", {height:200, width:200});
+square1 = new Circuit($('#sketch-holder-2').width() / 2, $('#sketch-holder-2').height() / 2, "rectangle", {height:200, width:200});
 circuitContainer.push(square1);
 
 
@@ -456,11 +456,11 @@ vectorB = { //describes the green vector B and the small increase element dl at 
 function addWire(wires) {
     let index = wires.length;
     if (index<6){
-        wires.push(new Wire(index%6 * $('#sketch-holder').width() / 6, 20, 5, index));
+        wires.push(new Wire(index%6 * $('#sketch-holder-2').width() / 6, 20, 5, index));
         wireSelected = index;
     }
     else if (index<11){
-        wires.push(new Wire((index%6+1)*$('#sketch-holder').width()/6, $('#sketch-holder').height()-20, 5, index));
+        wires.push(new Wire((index%6+1)*$('#sketch-holder-2').width()/6, $('#sketch-holder-2').height()-20, 5, index));
         wireSelected = index;
     }
     if (index > 10) { //maximum amount of wires we can add
@@ -652,7 +652,7 @@ function initialPlot() {
 }
 
 //button functions:
-let buttonPresses = 0;
+/*let buttonPresses = 0;
 function buttonLoopToggleFunction() {
 
         //console.log(loopActive);
@@ -693,7 +693,7 @@ function buttonLoopToggleFunction() {
         }
     loopActive = !loopActive;
     buttonPresses ++
-    }
+    }*/
 
 
 function buttonPlayFunction() {
@@ -822,7 +822,7 @@ function checkStartPos() {
 }
 //resize the canvas if the window size changes
 function windowResized() {
-    let width = $('#sketch-holder').width(), height = $('#sketch-holder').height();
+    let width = $('#sketch-holder-2').width(), height = $('#sketch-holder-2').height();
     resizeCanvas(width, height);
 }
 //same for plotly
@@ -833,13 +833,13 @@ window.onresize = function () {
 function mouseShape() {
     if (checkStartPos()) { //we are in the start position
         if (someWireClose && !mouseWasPressed) {
-            $('#sketch-holder').css('cursor', 'grab');
+            $('#sketch-holder-2').css('cursor', 'grab');
         }
         else if (mouseWasPressed) {
-            $('#sketch-holder').css('cursor', 'grabbing');
+            $('#sketch-holder-2').css('cursor', 'grabbing');
         }
         else {
-            $('#sketch-holder').css('cursor', 'default');
+            $('#sketch-holder-2').css('cursor', 'default');
         }
         someWireClose = false;
     }
@@ -848,7 +848,7 @@ function mouseShape() {
 var Bxdisp = 0;
 var Bydisp = 0;
 
-function Arrow(x, y, length) {
+function arrow(x, y, length) {
     this.x = x;
     this.y = y;
     this.Bxdisp = Bxdisp;
@@ -908,7 +908,7 @@ function draw() {
             for(k=0; k<arr.length; k++){
                 arr[k].update();
             }
-            Arrow(width/2,height/2,20);
+            arrow(width/2,height/2,20);
         };
 
 
@@ -979,5 +979,3 @@ function draw() {
         //drawNumber ++
 
 }
-
-

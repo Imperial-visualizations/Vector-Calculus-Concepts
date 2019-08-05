@@ -69,7 +69,7 @@ function setup() {
     //buttonLoopToggleFunction();
 
     myCanvas = createCanvas(width, height);
-    myCanvas.parent('sketch-holder-2-2');
+    myCanvas.parent('sketch-holder-2');
     frameRate(120);
     currentContainer.push(new Wire(circuit.x, circuit.y, 5, 0));
     initialPlot();
@@ -113,7 +113,7 @@ function getPath() { //create array of (x,y) for each path
     //console.log(scale, oldScale, circuitSelected, oldType);
 
     if(scale !== oldScale || circuitSelected !== oldType){
-            Path = []
+            Path = [];
             //console.log('update path');
             if (circuitSelected == 0) { //Circle path
             stepSize = 0.03;
@@ -756,7 +756,7 @@ function buttonResetFunction() {
 
 function buttonFieldFlowFunction() {
     fieldFlow = !fieldFlow;
-    arr = []
+    arr = [];
     for(i=0; i<width; i+=20) {
         for(j=0; j<height; j+=20){
             arr.push(new Arrow(i, j, 10));
@@ -897,7 +897,7 @@ function arrow(x, y, length) {
 
 
 
-let done=false;
+var done=false;
 function draw() {
     //if(doDraw || drawNumber < 2) {
 

@@ -332,4 +332,7 @@ function main() {
     updatePlot(); //Shows initial positions of vectors
     }
 
-$(document).ready(main); //Load main when document is ready.
+setTimeout(function () {
+    main
+}, 5000)
+//$(document).ready(main); //Load main when document is ready.

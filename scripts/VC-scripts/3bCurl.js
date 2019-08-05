@@ -63,7 +63,7 @@ function setup() {
         circuitSelected = this.value;
         buttonResetFunction();
     });
-    $('#buttonLoopToggle').click(buttonLoopToggleFunction);
+    //$('#buttonLoopToggle').click(buttonLoopToggleFunction);
     $('#buttonFieldFlow').click(buttonFieldFlowFunction);
     $('#buttonExamples').click(buttonExamplesFunction);
     //buttonLoopToggleFunction();
@@ -652,7 +652,7 @@ function initialPlot() {
 }
 
 //button functions:
-let buttonPresses = 0;
+/*let buttonPresses = 0;
 function buttonLoopToggleFunction() {
 
         //console.log(loopActive);
@@ -693,7 +693,7 @@ function buttonLoopToggleFunction() {
         }
     loopActive = !loopActive;
     buttonPresses ++
-    }
+    }*/
 
 
 function buttonPlayFunction() {
@@ -848,7 +848,7 @@ function mouseShape() {
 var Bxdisp = 0;
 var Bydisp = 0;
 
-function Arrow(x, y, length) {
+function arrow(x, y, length) {
     this.x = x;
     this.y = y;
     this.Bxdisp = Bxdisp;
@@ -908,7 +908,7 @@ function draw() {
             for(k=0; k<arr.length; k++){
                 arr[k].update();
             }
-            Arrow(width/2,height/2,20);
+            arrow(width/2,height/2,20);
         };
 
 
@@ -979,5 +979,3 @@ function draw() {
         //drawNumber ++
 
 }
-
-

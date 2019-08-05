@@ -69,7 +69,7 @@ function setup() {
     //buttonLoopToggleFunction();
 
     myCanvas = createCanvas(width, height);
-    myCanvas.parent('sketch-holder-2-2');
+    myCanvas.parent('sketch-holder-2');
     frameRate(120);
     currentContainer.push(new Wire(circuit.x, circuit.y, 5, 0));
     initialPlot();
@@ -897,7 +897,7 @@ function arrow(x, y, length) {
 
 
 
-let done=false;
+var done=false;
 function draw() {
     //if(doDraw || drawNumber < 2) {
 

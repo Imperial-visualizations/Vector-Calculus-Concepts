@@ -427,8 +427,8 @@
 
                     </div>
                     <div class="rightload text" id='loadout2sub2' key="loadout2sub2" v-else>
-                        <div class="row">
-                            <div style="width:40%; float:right;">
+                        <div class="row" style="position: absolute; left: 5vw; top: 3vh">
+                            <div style="width:40%; ">
                                 <div id="scroll">
                                     <div class="scroll-down">
                                         <strong>Select Function: </strong>
@@ -618,7 +618,8 @@
 
                     </div>
                     <div class="rightload text" id='loadout4sub2' key="loadout4sub2" v-else>
-                        <div class="three columns" id="buttons-holder"
+                        <iframe src="VC/3bCurl_interactive.html" height="800px" width="950px"></iframe>
+                        <!--<div class="three columns" id="buttons-holder"
                              style="position:inherit; margin-left: 1vw; margin-top: 5vh;">
 
                             <div id="settings">
@@ -664,13 +665,13 @@
                                     <button id="buttonFieldFlow" style="display:none;">
                                         Field Flow
                                     </button>
-                                    <!--<br>
+                                    &lt;!&ndash;<br>
                                      <p>
                                       Wires Selected:
                                       <b>
                                        <span id="wireSelected" style="color:blue;">1</span>
                                       </b>
-                                     </p>-->
+                                     </p>&ndash;&gt;
                                     <label class="sliderTitle" for="currentSlider" id="tagCurrentSlider"
                                            style="margin-bottom:0.1vh">
                                         Amount of Curl:
@@ -733,7 +734,9 @@
                                     We are using a Riemann sum to integrate, so the number of steps is referring to
                                     the number of steps used in the numerical integration.
                             </div>
-                        </div>
+                            </div>
+                            -->
+
                     </div>
                 </transition>
             </div>

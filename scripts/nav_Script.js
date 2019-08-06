@@ -60,7 +60,6 @@ let app = new Vue ({
                 app.changeTitle();
                 app.changeSec();
             }
-            console.log(this.currentSection);
         },
 
         handleElement: function (section) {

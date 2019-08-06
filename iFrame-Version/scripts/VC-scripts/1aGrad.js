@@ -368,6 +368,7 @@ function DisplayEquations(Equation){
             document.getElementById("C_grad_eqn_1a").style.display = "block";
             break;
     }
+    MathJax.Hub.Queue(["Rerender", MathJax.Hub, 'eqConSec2']);
 }
 
 function UpdatePlots(ScalarData, VectorData){

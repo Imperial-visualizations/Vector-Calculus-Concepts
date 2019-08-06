@@ -580,36 +580,36 @@
                         </div>
                     </div>
                     <div class="rightload text" id='loadout3sub2' key="loadout3sub2" v-else>
-                        <!--<iframe src="VC/2bDiv_interactive.html" width="950px" height="800px"></iframe>-->
+                        <iframe src="VC/2bDiv_interactive.html" width="950px" height="800px"></iframe>
                         <!--Text next to new charge-->
-                        <label class="text" style="position: relative; left: 4%; display:inline-block;">
-                            <font size="5">Move the surface element</font>
-                        </label>
-                        <!--Text next to slider for user to choose magnet orientation-->
-                        <label class="text"
-                               style="position: relative; left: 6%; height: 0vh; display:inline-block;">
-                            <font size="4">Orientation:</font>
-                        </label>
-                        <!--Slider for user to choose magnet orientation-->
-                        <label id="angleChange"
-                               style="position: relative; left: 7%; width: 30%; height: 0vh; display:inline-block;"
-                               value=false>
-                            <input id="angle" class="inputs" onmousedown="angleChange.value=true"
-                                   onmouseup="angleChange.value = false" type="range" value="0" min="0" max="360"
-                                   step="1" oninput="amount2.value=angle.value"/>
-                        </label>
-                        <!--Display user input for magnet orientation on RHS of slider-->
-                        <label style="position: relative; left: 3%; display:inline-block;">
-                            <output id="amount2" name="amount2" for="angle">0</output>
-                            <span>°</span>
-                        </label>
-                        <!--Display flux-->
-                        <label style="position: relative; left: 3%; display:inline-block;">
-                            Flux:
-                            <output id="flux"></output>
-                        </label>
-                        <!--p5 canvas for drawing charges, fieldlines and loop-->
-                        <label id="sketch-holder" style="height: 100vh; width: 160vh; margin-top:-6.5%"/>
+                        <!--<label class="text" style="position: relative; left: 4%; display:inline-block;">-->
+                            <!--<font size="5">Move the surface element</font>-->
+                        <!--</label>-->
+                        <!--&lt;!&ndash;Text next to slider for user to choose magnet orientation&ndash;&gt;-->
+                        <!--<label class="text"-->
+                               <!--style="position: relative; left: 6%; height: 0vh; display:inline-block;">-->
+                            <!--<font size="4">Orientation:</font>-->
+                        <!--</label>-->
+                        <!--&lt;!&ndash;Slider for user to choose magnet orientation&ndash;&gt;-->
+                        <!--<label id="angleChange"-->
+                               <!--style="position: relative; left: 7%; width: 30%; height: 0vh; display:inline-block;"-->
+                               <!--value=false>-->
+                            <!--<input id="angle" class="inputs" onmousedown="angleChange.value=true"-->
+                                   <!--onmouseup="angleChange.value = false" type="range" value="0" min="0" max="360"-->
+                                   <!--step="1" oninput="amount2.value=angle.value"/>-->
+                        <!--</label>-->
+                        <!--&lt;!&ndash;Display user input for magnet orientation on RHS of slider&ndash;&gt;-->
+                        <!--<label style="position: relative; left: 3%; display:inline-block;">-->
+                            <!--<output id="amount2" name="amount2" for="angle">0</output>-->
+                            <!--<span>°</span>-->
+                        <!--</label>-->
+                        <!--&lt;!&ndash;Display flux&ndash;&gt;-->
+                        <!--<label style="position: relative; left: 3%; display:inline-block;">-->
+                            <!--Flux:-->
+                            <!--<output id="flux"></output>-->
+                        <!--</label>-->
+                        <!--&lt;!&ndash;p5 canvas for drawing charges, fieldlines and loop&ndash;&gt;-->
+                        <!--<label id="sketch-holder" style="height: 100vh; width: 160vh; margin-top:-6.5%"/>-->
                     </div>
                 </transition>
             </div>

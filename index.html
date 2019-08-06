@@ -322,9 +322,9 @@
                     <div class="rightload text" id='loadout2sub1' key="loadout2sub1"
                          v-if="subSection[1] === 1">
 
-                        <div style="width:30%; float:right;">
-                            <div id="scroll">
-                                <br/>
+                        <div class='rightColumn' style="display: flex; flex-direction:column; width:30%; float:right; height:100%; padding-bottom: 10%; padding-top: 10%">
+                            <div id="scroll" style='flex-grow: 1'>
+    
                                 <div class="scroll-down">
                                     <strong>Select Function: </strong>
                                     <select id="Function_Selector_1a">
@@ -335,6 +335,7 @@
                                 </div>
                             </div>
 
+                            <div id='overall-sliders-container' style='flex-grow: 1'>
                             <label class="sliderTitle" style="padding-bottom:20px;">$a$:
                                 <span id="Slider_1Display" data-unit="">10</span>
                             </label>
@@ -344,78 +345,52 @@
                                        step="1" style="width:70%">
                                 <span class="sliderMax">100</span>
                             </label>
-                            <br/>
-                            <br/>
-                            <br/>
+                            </div>
+                            
+                            <div id='eqContainer' style='flex-grow: 1'>
                             <div>
                                 <div id="B_function_eqn_1a" style="display:none; width:100%">
-                                        <span class="mathJaxDisplay">
-                                            $$\displaystyle f(x,y)= \frac{a}{ \sqrt{(bx)^2 + (by)^2} }$$
-                                        </span>
+                                        <img src='Images\B_function_eqn_1a.PNG' style='height:100%; width:100%'>   
                                 </div>
 
-                                <div id="A_function_eqn_1a" style="display:none; width:100%">
-                                        <span class="mathJaxDisplay">
-                                            $$\displaystyle f(x,y) = ae^{-b((x+c)^2+y^2)} - ae^{-b((x-c)^2+y^2)}$$
-                                        </span>
+                                <div id="A_function_eqn_1a" style="display:none; width:100%;">
+                                    <img src='Images\A_function_eqn_1a.PNG' style='height:100%; width:100%;'>
                                 </div>
 
                                 <div id="C_function_eqn_1a" style="display:none; width:100%">
-                                        <span class="mathJaxDisplay">
-                                            $$\displaystyle f(x,y)= a\cos(bx) $$
-                                        </span>
+                                    <img src='Images\C_function_eqn_1a.PNG' style='height:100%; width:100%'>
                                 </div>
                             </div>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
+                           
                             <div>
                                 <div id="B_grad_eqn_1a" style="display:none; width:100%">
-                                        <span class="mathJaxDisplay">
-                                            $$\displaystyle \nabla f = - \frac{ab^2}{ ((bx)^2 +(by)^2)^ {\frac{3}{2}} }
-                                            (x \mathbf{i} + y \mathbf{j} )$$
-                                        </span>
+                                    <img src='Images\B_grad_eqn_1a.PNG' style='height:100%; width:100%'>
                                 </div>
 
-                                <div id="A_grad_eqn_1a" style="display:none; width:100%; font-size: 8pt">
-                                        <span class="mathJaxDisplay">
-                                            $$ \displaystyle \begin{align} \nabla f & = 2ab\bigg(\Big((x-c)e^{-b((x-c)^2
-                                            y^2)} - (x+c)e^{-b((x+c)^2 + y^2)}\Big)\mathbf{i}
-                                            \\ & + y\Big(e^{-b((x-c)^2 + y^2)} - e^{-b((x+c)^2 + y^2)}\Big)
-                                            \mathbf{j}\bigg)
-                                            \end{align} $$
-                                        </span>
+                                <div id="A_grad_eqn_1a" style="display:none; width:100%;">
+                                    <img src='Images\A_grad_eqn_1a.PNG' style='height:100%; width:100%;'>
                                 </div>
 
                                 <div id="C_grad_eqn_1a" style="display:none; width:100%">
-                                        <span class="mathJaxDisplay">
-                                            $$\displaystyle \nabla f = - ab\sin (bx) \mathbf{i} $$
-                                        </span>
+                                    <img src='Images\C_grad_eqn_1a.PNG' style='height:100%; width:100%'>
                                 </div>
                             </div>
                         </div>
+                        </div>
 
-                        <div style="width:60%; float:left;">
-                            <div>
+                        <div div=#graphContainer style='width:60%; float: left; height:100%; bottom: 5px'>
+                            <div style='height: 50%; width:100%'>
                                     <span class="mathJaxDisplay">
                                         <h6>$f(x,y)$</h6>
                                     </span>
-                                <div id='Scalar_Graph_1a' style="width:40vw; height:40vh;"></div>
+                                <div id='Scalar_Graph_1a' style='width:100%;height: 90%'></div>
                             </div>
 
-                            <div>
+                            <div style='height: 50%; width:100%'>
                                     <span class="mathJaxDisplay">
                                         <h6> $\nabla f(x,y) $ </h6>
                                     </span>
-                                <div id='Vector_Graph_1a' style="width:40vw; height:40vh;"></div>
+                                <div id='Vector_Graph_1a' style='width:100%;height: 90%'></div>
                             </div>
                         </div>
 
@@ -580,36 +555,36 @@
                         </div>
                     </div>
                     <div class="rightload text" id='loadout3sub2' key="loadout3sub2" v-else>
-                        <!--<iframe src="VC/2bDiv_interactive.html" width="950px" height="800px"></iframe>-->
+                        <iframe src="VC/2bDiv_interactive.html" width="950px" height="800px"></iframe>
                         <!--Text next to new charge-->
-                        <label class="text" style="position: relative; left: 4%; display:inline-block;">
-                            <font size="5">Move the surface element</font>
-                        </label>
-                        <!--Text next to slider for user to choose magnet orientation-->
-                        <label class="text"
-                               style="position: relative; left: 6%; height: 0vh; display:inline-block;">
-                            <font size="4">Orientation:</font>
-                        </label>
-                        <!--Slider for user to choose magnet orientation-->
-                        <label id="angleChange"
-                               style="position: relative; left: 7%; width: 30%; height: 0vh; display:inline-block;"
-                               value=false>
-                            <input id="angle" class="inputs" onmousedown="angleChange.value=true"
-                                   onmouseup="angleChange.value = false" type="range" value="0" min="0" max="360"
-                                   step="1" oninput="amount2.value=angle.value"/>
-                        </label>
-                        <!--Display user input for magnet orientation on RHS of slider-->
-                        <label style="position: relative; left: 3%; display:inline-block;">
-                            <output id="amount2" name="amount2" for="angle">0</output>
-                            <span>°</span>
-                        </label>
-                        <!--Display flux-->
-                        <label style="position: relative; left: 3%; display:inline-block;">
-                            Flux:
-                            <output id="flux"></output>
-                        </label>
-                        <!--p5 canvas for drawing charges, fieldlines and loop-->
-                        <label id="sketch-holder" style="height: 100vh; width: 160vh; margin-top:-6.5%"/>
+                        <!--<label class="text" style="position: relative; left: 4%; display:inline-block;">-->
+                            <!--<font size="5">Move the surface element</font>-->
+                        <!--</label>-->
+                        <!--&lt;!&ndash;Text next to slider for user to choose magnet orientation&ndash;&gt;-->
+                        <!--<label class="text"-->
+                               <!--style="position: relative; left: 6%; height: 0vh; display:inline-block;">-->
+                            <!--<font size="4">Orientation:</font>-->
+                        <!--</label>-->
+                        <!--&lt;!&ndash;Slider for user to choose magnet orientation&ndash;&gt;-->
+                        <!--<label id="angleChange"-->
+                               <!--style="position: relative; left: 7%; width: 30%; height: 0vh; display:inline-block;"-->
+                               <!--value=false>-->
+                            <!--<input id="angle" class="inputs" onmousedown="angleChange.value=true"-->
+                                   <!--onmouseup="angleChange.value = false" type="range" value="0" min="0" max="360"-->
+                                   <!--step="1" oninput="amount2.value=angle.value"/>-->
+                        <!--</label>-->
+                        <!--&lt;!&ndash;Display user input for magnet orientation on RHS of slider&ndash;&gt;-->
+                        <!--<label style="position: relative; left: 3%; display:inline-block;">-->
+                            <!--<output id="amount2" name="amount2" for="angle">0</output>-->
+                            <!--<span>°</span>-->
+                        <!--</label>-->
+                        <!--&lt;!&ndash;Display flux&ndash;&gt;-->
+                        <!--<label style="position: relative; left: 3%; display:inline-block;">-->
+                            <!--Flux:-->
+                            <!--<output id="flux"></output>-->
+                        <!--</label>-->
+                        <!--&lt;!&ndash;p5 canvas for drawing charges, fieldlines and loop&ndash;&gt;-->
+                        <!--<label id="sketch-holder" style="height: 100vh; width: 160vh; margin-top:-6.5%"/>-->
                     </div>
                 </transition>
             </div>

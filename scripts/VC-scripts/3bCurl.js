@@ -49,6 +49,8 @@ var B, Bdl = 0, intBdl = 0;
 var doDraw = true;
 
 var arr = [];
+
+intcurl = function (p) {
 function setup() {
     let width = $('#sketch-holder-2').width(), height = $('#sketch-holder-2').height();
     //link the functions to the buttons

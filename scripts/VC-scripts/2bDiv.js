@@ -1,7 +1,7 @@
 
 //document.getElementById("Vis2_interactive").style.display = "block";
 
-var width = $('#sketch-holder').width(), height = $('#sketch-holder').height(), allpoints = [], maxpoints = 10, newchargex = 240, newchargey = 38, line_ele = [];
+var width = $('#sketch-holder1').width(), height = $('#sketch-holder1').height(), allpoints = [], maxpoints = 10, newchargex = 240, newchargey = 38, line_ele = [];
 var Nvertices = 700, max_range = 2000, R = 16, square_size = 100, padding = 50, rect_height = height/8, arrow_size = 2;
 
 
@@ -124,7 +124,7 @@ v1 = new volume_element(width/2, height/2, width/8, width/8);
 //draw canvas in which everything p5.js happens
 function setup() {
     let canvas = createCanvas(width,height);
-    canvas.parent('sketch-holder');
+    canvas.parent('sketch-holder1');
     frameRate(60);
 }
 

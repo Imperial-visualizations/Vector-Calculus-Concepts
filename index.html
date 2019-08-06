@@ -406,14 +406,14 @@
                         <div style="width:60%; float:left;">
                             <div>
                                     <span class="mathJaxDisplay">
-                                        <h7>$f(x,y)$</h7>
+                                        <h6>$f(x,y)$</h6>
                                     </span>
                                 <div id='Scalar_Graph_1a' style="width:40vw; height:40vh;"></div>
                             </div>
 
                             <div>
                                     <span class="mathJaxDisplay">
-                                        <h7> $\nabla f(x,y) $ </h7>
+                                        <h6> $\nabla f(x,y) $ </h6>
                                     </span>
                                 <div id='Vector_Graph_1a' style="width:40vw; height:40vh;"></div>
                             </div>
@@ -427,8 +427,8 @@
 
                     </div>
                     <div class="rightload text" id='loadout2sub2' key="loadout2sub2" v-else>
-                        <div class="row">
-                            <div style="width:40%; float:right;">
+                        <div class="row" style="position: absolute; left: 5vw; top: 3vh">
+                            <div style="width:45%; ">
                                 <div id="scroll">
                                     <div class="scroll-down">
                                         <strong>Select Function: </strong>
@@ -441,7 +441,7 @@
                                 </div>
 
                                 <div>
-                                    <h6>$a =$
+                                    <h6 style="font-weight: bold;font-size: 16px">Adjust value $a =$:
                                         <output id="Slider_1_1b_value" for="Slider_1_1b">5</output>
                                     </h6>
                                     <!--BEGIN Slider-->
@@ -457,12 +457,7 @@
                                 </div>
 
                                 <div>
-                                    <h6> Path </h6>
-                                    <h7>
-                                        <div id="functionValueBall1_1b"></div>
-                                        <div id="functionValueBall2_1b"></div>
-                                    </h7>
-
+                                    <h6 style="font-weight: bold"> Move balls alone paths between A and B: </h6>
                                     <label>
                                         <span class="sliderMin">A</span>
                                         <input id="Slider_2_1b" class="inputs" type="range" value="-16" min="-16"
@@ -470,6 +465,13 @@
                                                oninput="Slider_2_1b_value.value=Slider_2_1b.value"/></input>
                                         <span class="sliderMax">B</span>
                                     </label>
+                                    <h6>
+                                        <div id="functionValueBall1_1b"></div>
+                                        <div id="functionValueBall2_1b"></div>
+                                    </h6>
+                                    <hr>
+
+
                                     <!--END Slider-->
                                 </div>
 
@@ -508,9 +510,9 @@
                             </div>
 
 
-                            <div style="width:60%; float:left;">
+                            <div style="width:55%; float:left;">
                                 <div>
-                                    <div id='Vector_Graph_1b' style="width:30vw; height:30vh;"></div>
+                                    <div id='Vector_Graph_1b' style="width: 30vw; height: 250px;justify-content:center; padding-left: 8vw"></div>
                                 </div>
 
                                 <div>
@@ -539,12 +541,12 @@
                         </div>
 
                         <!--Buttons/Sliders-->
-                        <div class="one-third column" style="padding-left: 50px;">
+                        <div class="one-third column" style="padding-left: 50px;float: right">
 
                             <!--Main body contents-->
-                            <div class="tab-content">
+                            <div >
                                 <h6
-                                        style="border-left: solid 0px rgb(79,255,16); padding-left: 0px; margin: 5px; padding-top: 1vh; ">
+                                        style="border-left: solid 0px rgb(79,255,16); padding-left: 0px; margin: 5px; padding-top: 1vh; position: relative; ">
                                     Relative divergence </h6>
                                 <!--BEGIN Slider-->
                                 <label style="position: relative; float: left; width: 100%; top: 10px;">
@@ -569,15 +571,16 @@
                                 <!--END Basis-->
                                 <!--END Area-->
                             </div>
-                            <div style="width:30vh; height:30vh; position: fixed; bottom: 50%; left: 63%">
+                            <div style="width:30vh; height:30vh; position: fixed; bottom: 45%; left: 63%">
                                 <img style="width:inherit; height:inherit;" src="VC/2adiv_sink.png">
                             </div>
-                            <div style="width:30vh; height:30vh; position: fixed; bottom: 50%; left: 80%">
+                            <div style="width:30vh; height:30vh; position: fixed; bottom: 45%; left: 80%">
                                 <img style="width:inherit; height:inherit;" src="VC/2adiv_source.png">
                             </div>
                         </div>
                     </div>
                     <div class="rightload text" id='loadout3sub2' key="loadout3sub2" v-else>
+                        <!--<iframe src="VC/2bDiv_interactive.html" width="950px" height="800px"></iframe>-->
                         <!--Text next to new charge-->
                         <label class="text" style="position: relative; left: 4%; display:inline-block;">
                             <font size="5">Move the surface element</font>
@@ -606,7 +609,7 @@
                             <output id="flux"></output>
                         </label>
                         <!--p5 canvas for drawing charges, fieldlines and loop-->
-                        <label id="sketch-holder" style="height: 100vh; width: 160vh; margin-top:-6.5%">
+                        <label id="sketch-holder" style="height: 100vh; width: 160vh; margin-top:-6.5%"/>
                     </div>
                 </transition>
             </div>
@@ -618,7 +621,8 @@
 
                     </div>
                     <div class="rightload text" id='loadout4sub2' key="loadout4sub2" v-else>
-                        <div class="three columns" id="buttons-holder"
+                        <iframe src="VC/3bCurl_interactive.html" height="800px" width="950px"></iframe>
+                        <!--<div class="three columns" id="buttons-holder"
                              style="position:inherit; margin-left: 1vw; margin-top: 5vh;">
 
                             <div id="settings">
@@ -664,13 +668,13 @@
                                     <button id="buttonFieldFlow" style="display:none;">
                                         Field Flow
                                     </button>
-                                    <!--<br>
+                                    &lt;!&ndash;<br>
                                      <p>
                                       Wires Selected:
                                       <b>
                                        <span id="wireSelected" style="color:blue;">1</span>
                                       </b>
-                                     </p>-->
+                                     </p>&ndash;&gt;
                                     <label class="sliderTitle" for="currentSlider" id="tagCurrentSlider"
                                            style="margin-bottom:0.1vh">
                                         Amount of Curl:
@@ -697,7 +701,7 @@
 
 
                         <div class="eight columns" id="graphics-holder" style="position:relative; right:5vw">
-                            <div id="sketch-holder"
+                            <div id="sketch-holder-2"
                                  style="position: relative; top: -36vh; right: -2vw; width: 55vw; height: 60vh; cursor: default;">
                                 <canvas id="defaultCanvas0" class="p5Canvas" width="1524" height="521"
                                         style="width: 762.047px; height: 260.5px; z-index:2"></canvas>
@@ -733,7 +737,9 @@
                                     We are using a Riemann sum to integrate, so the number of steps is referring to
                                     the number of steps used in the numerical integration.
                             </div>
-                        </div>
+                            </div>
+                            -->
+
                     </div>
                 </transition>
             </div>

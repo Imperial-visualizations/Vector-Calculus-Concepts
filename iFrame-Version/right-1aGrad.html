@@ -2,9 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <!--Title-->
+    <title>right-1aGrad</title>
+    <!--css links-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/skeleton.css" rel="stylesheet">
+    <link href="styles/index_Style.css" rel="stylesheet">
+    <link href="styles/loadout_Style.css" rel="stylesheet">
+    <!--Required JS resources-->
+    <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/debounce_and_throttle.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 </head>
-<body>
+<body id="loadout2sub1">
+    <div id="scroll">
+        <div class="scroll-down">
+            <strong>Select Function: </strong>
+            <select id="Function_Selector_1a">
+                <option value="A">Gaussian</option>
+                <option value="B">Reciprocal</option>
+                <option value="C">Sinusoidal</option>
+            </select>
+        </div>
+    </div>
+    <label class="sliderTitle" style="padding-bottom:20px;">$a$:
+        <span id="Slider_1Display" data-unit="">10</span>
+    </label>
+    <label style = "width:100%">
+        <span class="sliderMin">-100</span>
+        <input id="Slider_1_1a" class="inputs" type="range" value="10" min="-100" max="100" step="1" style = "width:70%">
+        <span class="sliderMax">100</span>
+    </label>
+    <div>
+        <div id="B_function_eqn_1a" style="display:none; width:100%">
+            $$\displaystyle f(x,y)= \frac{a}{ \sqrt{(bx)^2 + (by)^2} }$$
+        </div>
 
+        <div id="A_function_eqn_1a" style="display:none; width:100%">
+            $$\displaystyle f(x,y) = ae^{-b((x+c)^2+y^2)} - ae^{-b((x-c)^2+y^2)}$$
+        </div>
+
+        <div id="C_function_eqn_1a" style="display:none; width:100%">
+            $$\displaystyle f(x,y)= a\cos(bx) $$
+        </div>
+    </div>
+    <div>
+        <div id="B_grad_eqn_1a" style="display:none; width:100%">
+            $$\displaystyle \nabla f = - \frac{ab^2}{ ((bx)^2 +(by)^2)^ {\frac{3}{2}} } (x \mathbf{i} + y \mathbf{j} )$$
+        </div>
+
+        <div id="A_grad_eqn_1a" style="display:none; width:100%; font-size: 8pt">
+            $$ \displaystyle \begin{align}  \nabla f & = 2ab\bigg(\Big((x-c)e^{-b((x-c)^2 y^2)} - (x+c)e^{-b((x+c)^2 + y^2)}\Big)\mathbf{i}
+            \\ & + y\Big(e^{-b((x-c)^2 + y^2)} - e^{-b((x+c)^2 + y^2)}\Big) \mathbf{j}\bigg)
+            \end{align} $$
+        </div>
+
+        <div id="C_grad_eqn_1a" style="display:none; width:100%">
+            $$\displaystyle \nabla f = - ab\sin (bx) \mathbf{i} $$
+        </div>
+    </div>
+    <div>
+        <h7> $f(x,y)$ </h7>
+        <div id='Scalar_Graph_1a' style="width:40vw; height:40vh;"></div>
+    </div>
+
+    <div>
+        <h7> $\nabla f(x,y) $ </h7>
+        <div id='Vector_Graph_1a' style="width:40vw; height:40vh;"> </div>
+    </div>
 </body>
+<script src="scripts/VC-scripts/classes.js"></script>
+<script src="scripts/VC-scripts/VC_object.js"></script>
+<script src="scripts/VC-scripts/1aGrad.js"></script>
 </html>

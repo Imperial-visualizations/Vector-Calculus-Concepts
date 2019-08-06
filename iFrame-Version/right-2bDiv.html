@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Title-->
+    <title>right-2bDiv</title>
+    <!--css links-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/skeleton.css" rel="stylesheet">
+    <link href="styles/index_Style.css" rel="stylesheet">
+    <link href="styles/loadout_Style.css" rel="stylesheet">
+    <!--Required JS resources-->
+    <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/debounce_and_throttle.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body id="loadout3sub2">
+    <div id="Vis2_interactive" style="display: block;">
+        <!--Text next to new charge-->
+        <label class="text" style="position: relative; left: 4%; display:inline-block;">
+            <font size="5">Move the surface element</font>
+        </label>
+        <!--Text next to slider for user to choose magnet orientation-->
+        <label class="text" style="position: relative; left: 6%; height: 0vh; display:inline-block;">
+            <font size="4">Orientation:</font>
+        </label>
+        <!--Slider for user to choose magnet orientation-->
+        <label id="angleChange" style="position: relative; left: 7%; width: 30%; height: 0vh; display:inline-block;"
+               value=false>
+            <input id="angle" class="inputs" onmousedown="angleChange.value=true" onmouseup="angleChange.value = false"
+                   type="range" value="0" min="0" max="360" step="1" oninput="amount2.value=angle.value" />
+        </label>
+        <!--Display user input for magnet orientation on RHS of slider-->
+        <label style="position: relative; left: 3%; display:inline-block;">
+            <output id="amount2" name="amount2" for="angle">0</output><span>°</span>
+        </label>
+        <!--Display flux-->
+        <label style="position: relative; left: 3%; display:inline-block;">
+            Flux:
+            <output id="flux"></output>
+        </label>
+        <!--p5 canvas for drawing charges, fieldlines and loop-->
+        <label id="sketch-holder" style="height: 100vh; width: 160vh; margin-top:-6.5%"></label>
+    </div>
+</body>
+<script src="scripts/VC-scripts/2bDiv.js"></script>
+</html>

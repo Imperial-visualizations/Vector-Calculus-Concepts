@@ -21,6 +21,10 @@
     flex-direction: column;
 }
 
+iframe {
+    border: none;
+}
+
 /* LEFT SIDE STYLES */
 
 .left {

@@ -350,10 +350,6 @@ i {
 
 /* RIGHT SIDE STYLES */
 
-iframe {
-    border: none;
-}
-
 .right {
     width: 67vw;
     position: fixed;
@@ -475,8 +471,4 @@ iframe {
     border-radius: 5px;
     text-align: justify;
     margin-bottom: 30px;
-}
-
-iframe {
-    border: none;
 }

@@ -334,5 +334,5 @@ function main() {
 
 setTimeout(function () {
     main
-}, 1000)
+}, 5000)
 //$(document).ready(main); //Load main when document is ready.

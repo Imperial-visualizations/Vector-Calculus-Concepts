@@ -49,6 +49,8 @@ var B, Bdl = 0, intBdl = 0;
 var doDraw = true;
 
 var arr = [];
+
+intcurl = function (p) {
 function setup() {
     let width = $('#sketch-holder').width(), height = $('#sketch-holder').height();
     //link the functions to the buttons
@@ -897,7 +899,7 @@ function arrow(x, y, length) {
 
 
 
-let done=false;
+var done=false;
 function draw() {
     //if(doDraw || drawNumber < 2) {
 

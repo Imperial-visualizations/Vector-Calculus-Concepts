@@ -350,6 +350,10 @@ i {
 
 /* RIGHT SIDE STYLES */
 
+iframe {
+    border: none;
+}
+
 .right {
     width: 67vw;
     position: fixed;

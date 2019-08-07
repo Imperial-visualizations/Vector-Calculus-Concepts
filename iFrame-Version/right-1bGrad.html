@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--Title-->
     <title>right-1bGrad</title>
     <!--css links-->
@@ -35,10 +36,78 @@
   });
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="scripts/VC-scripts/VC_object.js"></script>
+    <script src="scripts/VC-scripts/classes.js"></script>
 </head>
 <body id="loadout2sub2">
-<div class="row">
-    <div style="width:40%; float:right;">
+
+
+    <!--Graph 1-->
+    <h4 class="graph1Title"> $$ \Omega (x,y) $$ </h4>
+    <div id='Vector_Graph_1b'></div>
+    <!--Graph 2-->
+    <h4 class="graph2Title"> $$ \nabla \Omega (x,y) $$ </h4>
+    <div id='Scalar_Graph_1b'> </div>
+
+
+    <div class="inputsContainer">
+        <div class="partial-sliders-container">
+            <label class="slider-label">$a$:
+                <output id="Slider_1_1b_value" for="Slider_1_1b">5</output>
+            </label>
+            <!--BEGIN Slider-->
+            <label class="slider">
+                <span class="sliderMin">-10</span>
+                <input id="Slider_1_1b" class="inputs" type="range" value="5" min="-10" max="10" step="0.5" oninput="Slider_1_1b_value.value=Slider_1_1b.value"/></input>
+                <span class="sliderMax">10</span>
+            </label>
+            <!--END Slider-->
+        </div>
+
+        <div class="partial-sliders-container">
+            <label class="slider-label flex-slider-label">
+                <span class="slider-label">Path:</span>
+                <div class="slider-label smaller-text">$ \Omega (x,y)$<span id = "functionValueBall1_1b" class="slider-label smaller-text">  </span></div>
+                <div class="slider-label smaller-text">$ \Omega (x,y)$<span id = "functionValueBall2_1b" class="slider-label smaller-text">  </span></div>
+            </label>
+            <!--BEGIN Slider-->
+            <label class="slider">
+                <span class="sliderMin">A</span>
+                <input id="Slider_2_1b" class="inputs" type="range" value="-16" min="-16" max="5" step="0.2" oninput="Slider_2_1b_value.value=Slider_2_1b.value"/></input>
+                <span class="sliderMax">B</span>
+            </label>
+            <!--END Slider-->
+        </div>
+    </div>
+
+    <div class="legendContainer">
+        <div id="path1" class="legendContent">
+            <div class="colorBlock yellow"></div>
+            <span>Path 1</span>
+        </div>
+        <div id="path2" class="legendContent">
+            <div class="colorBlock green"></div>
+            <span>Path 1</span>
+        </div>
+        <div id="pointA" class="legendContent">
+            <div class="colorCircle pink"></div>
+            <span>Point A</span>
+        </div>
+        <div id="pointB" class="legendContent">
+            <div class="colorCircle gray"></div>
+            <span>Point B</span>
+        </div>
+        <div id="ballA" class="legendContent">
+            <div class="colorCircle red"></div>
+            <span>Ball</span>
+        </div>
+        <div id="ballB" class="legendContent">
+            <div class="colorCircle red"></div>
+            <span>Ball</span>
+        </div>
+    </div>
+
+    <div id=""eqConSec2b class="equationContainer">
         <div id="scroll">
             <div class="scroll-down">
                 <strong>Select Function: </strong>
@@ -49,50 +118,6 @@
                 </select>
             </div>
         </div>
-
-        <div>
-            <h6 >$a =$
-                <output id="Slider_1_1b_value" for="Slider_1_1b">5</output>
-            </h6>
-            <!--BEGIN Slider-->
-
-            <label>
-                <span class="sliderMin">-10</span>
-                <input id="Slider_1_1b" class="inputs" type="range" value="5" min="-10" max="10" step="0.5" oninput="Slider_1_1b_value.value=Slider_1_1b.value"/></input>
-                <span class="sliderMax">10</span>
-            </label>
-            <!--END Slider-->
-        </div>
-
-        <div>
-            <h6> Path </h6>
-            <h7>
-                <div id = "functionValueBall1_1b">  </div>
-                <div id = "functionValueBall2_1b">  </div>
-            </h7>
-
-            <label>
-                <span class="sliderMin">A</span>
-                <input id="Slider_2_1b" class="inputs" type="range" value="-16" min="-16" max="5" step="0.2" oninput="Slider_2_1b_value.value=Slider_2_1b.value"/></input>
-                <span class="sliderMax">B</span>
-            </label>
-            <!--END Slider-->
-        </div>
-
-        <div>
-            <div id="Grad_Reciprocal_eqn_1b">
-                $$\displaystyle \nabla \Omega = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x \mathbf{\hat{i}} + y \mathbf{\hat{j}} )$$
-            </div>
-
-            <div id="Grad_Gaussian_eqn_1b">
-                $$ \displaystyle  \nabla \Omega = \frac{-a}{100}e^{-\frac{x^2+y^2}{200}}(x \mathbf{\hat{i}} + y \mathbf{\hat{j}}) $$
-            </div>
-
-            <div id="Grad_Sinusodial_eqn_1b">
-                $$\displaystyle \nabla \Omega = \frac{2 \pi}{15} a \cos \Big( \frac{2 \pi}{12} y \Big) \mathbf{\hat{j}}$$
-            </div>
-        </div>
-
         <div>
             <div id="Reciprocal_eqn_1b">
                 $$\Omega(x,y)= \frac{4a}{ \sqrt{x^2 + y^2} }$$
@@ -106,23 +131,32 @@
                 $$\Omega(x,y)= \frac{4}{5} a\sin \Big( \frac{2 \pi}{12}y \Big) $$
             </div>
         </div>
+        <div>
+            <div id="Grad_Reciprocal_eqn_1b">
+                $$\displaystyle \nabla \Omega = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x \mathbf{\hat{i}} + y
+                \mathbf{\hat{j}} )$$
+            </div>
 
+            <div id="Grad_Gaussian_eqn_1b">
+                $$ \displaystyle \nabla \Omega = \frac{-a}{100}e^{-\frac{x^2+y^2}{200}}(x \mathbf{\hat{i}} + y
+                \mathbf{\hat{j}}) $$
+            </div>
+
+            <div id="Grad_Sinusodial_eqn_1b">
+                $$\displaystyle \nabla \Omega = \frac{2 \pi}{15} a \cos \Big( \frac{2 \pi}{12} y \Big)
+                \mathbf{\hat{j}}$$
+            </div>
+        </div>
 
 
     </div>
 
 
-    <div style="width:60%; float:left;">
-        <div>
-            <div id='Vector_Graph_1b' style="width:30vw; height:30vh;"></div>
-        </div>
 
-        <div>
-            <div id='Scalar_Graph_1b' style="width:30vw; height:30vh;"> </div>
-        </div>
-    </div>
 
-</div>
+
+
+
 </body>
 <script src="scripts/VC-scripts/1bGrad.js"></script>
 </html>

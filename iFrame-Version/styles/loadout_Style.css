@@ -214,7 +214,7 @@
     flex: 1 0 auto;
 }
 
-#loadout2sub1 .sliderMin, #loadout2sub0 .sliderMax {
+#loadout2sub1 .sliderMin, #loadout2sub1 .sliderMax {
     width: 40px;
     flex: 0 0 40px;
     text-align: center;
@@ -227,52 +227,169 @@
     flex: 1 1 auto;
 }
 
-#loadout2sub2 #graph1Sec2 {
+#loadout2sub2 .graph1Title {
     width: 55%;
-    height: 45%;
+    height: 70px;
     position: absolute;
-    left: 50px;
-    top: 40px;
+    top: 10px;
+    left: 30px;
+    text-align: center;
 }
 
-#loadout2sub2 #graph2Sec2 {
-    width: 55%;
-    height: 45%;
+#loadout2sub2 #Scalar_Graph_1b {
+    width: 50%;
+    height: 60%;
     position: absolute;
-    left: 50px;
+    left: 30px;
+    top: 100px;
+}
+
+#loadout2sub2 .graph2Title {
+    width: 40%;
+    height: 70px;
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    text-align: center;
+}
+
+#loadout2sub2 #Vector_Graph_1b{
+    width: 40%;
+    height: 55%;
+    position: absolute;
+    right: 30px;
+    top: 100px;
+}
+
+#loadout2sub2 .inputsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 45%;
+    height: 25%;
+    position: absolute;
     bottom: 20px;
+    left: 50px;
+}
+
+#loadout2sub2 .legendContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 10%;
+    height: 25%;
+    position: absolute;
+    bottom: 40px;
+    right: calc(50px + 25% + 100px);
+    font-size: 14pt;
+}
+
+#loadout2sub2 .legendContent {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+#loadout2sub2 .legendContent span {
+    flex: 1 0 auto;
+    text-align: right;
+}
+
+#loadout2sub2 .colorBlock {
+    flex: 0 0 auto;
+    width: 60px;
+    height: 10px;
+}
+
+#loadout2sub2 .colorCircle {
+    flex: 0 0 auto;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+#loadout2sub2 .yellow {
+    background: rgb(255,255,0);
+}
+
+#loadout2sub2 .green {
+    background: rgb(173,255,47);
+}
+
+#loadout2sub2 .pink {
+    background: rgb(238,130,238);
+}
+
+#loadout2sub2 .gray {
+    background: rgb(192,192,192);
+}
+
+#loadout2sub2 .red {
+    background: rgb(255,0,0);
+}
+
+#loadout2sub2 .equationContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 30%;
+    position: absolute;
+    bottom: 20px;
+    right: 50px;
+    font-size: 16pt;
 }
 
 #loadout2sub2 .overall-sliders-container {
-    width: 35%;
-    height: 95%;
+    width: 90%;
     display: flex;
     flex-direction: column;
-    position: absolute;
-    right: 30px;
-    top: 50px;
+}
+
+#loadout2sub2 .partial-sliders-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    justify-content: flex-end;
 }
 
 #loadout2sub2 .slider-label {
-    font-size: 20pt;
+    font-size: 18pt;
     text-align: left;
     padding-left: 8px;
     margin: 0;
-    padding-top: 0;
-    flex-basis: 0;
-    flex-grow: 0.5;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    flex-basis: auto;
+    flex-grow: 0.3;
     flex-shrink: 1;
+}
+
+#loadout2sub2 .smaller-text {
+    font-size: 14pt;
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: right;
+}
+
+#loadout2sub2 .flex-slider-label {
+    display: flex;
+    flex-direction: row;
+    padding-right: 40px;
+    align-items: baseline;
 }
 
 #loadout2sub2 .slider {
     display: flex;
     align-items: baseline;
-    flex-basis: 0;
-    flex-grow: 1;
-    flex-shrink: 1;
+    flex: 1 0 auto;
 }
 
-#loadout2sub2 .sliderMin, #loadout2sub1 .sliderMax {
+#loadout2sub2 .sliderMin, #loadout2sub2 .sliderMax {
     width: 40px;
     flex: 0 0 40px;
     text-align: center;
@@ -287,84 +404,119 @@
 
 /* SECTION 3 */
 
-#loadout3 {
+#loadout3sub1 {
 }
 
-#loadout3 #graph1Sec3 {
-    width: 94%;
-    height: 60%;
+#loadout3sub1 .graphTitle {
+    width: 65%;
+    height: 70px;
     position: absolute;
-    left: 3%;
-    top: 10%;
+    top: 40px;
+    left: 30px;
+    text-align: center;
 }
 
-#scrollSec3 {
-    width: 100%;
-    height: 10%;
+#loadout3sub1 #Graph_2a {
+    width: 65%;
+    height: 80%;
     position: absolute;
-    top: 20px;
-    display: table;
-    margin: 0 auto;
+    left: 30px;
+    top: 80px;
 }
 
-#loadout3 .scroll_down {
-    display: table;
-    margin: 0 auto;
-}
-
-#loadout3 .overall-sliders-container {
+#loadout3sub1 .overall-sliders-container {
     display: flex;
     flex-direction: column;
     position: absolute;
-    left: 5%;
-    bottom: 0;
-    width: 45%;
-    height: 25%;
+    bottom: 10px;
+    left: 30px;
+    width: 60%;
+    height: 20%;
 }
 
-#loadout3 .partial-sliders-container {
+#loadout3sub1 .partial-sliders-container {
     display: flex;
     flex-direction: row;
+    align-items: center;
     flex-basis: 0;
     flex-grow: 1;
     flex-shrink: 1;
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+    width: 60%;
+    height: 10%;
 }
 
-#loadout3 .slider-label {
-    font-size: 14pt;
+#loadout3sub1 .slider-label {
+    font-size: 18pt;
     text-align: left;
-    padding-left: 8px;
+    padding-left: 30px;
     margin: 0;
     padding-top: 0;
-    flex-basis: 0;
-    flex-grow: 0.5;
+    padding-bottom: 10px;
+    flex-basis: auto;
+    flex-grow: 0.3;
     flex-shrink: 1;
 }
 
-#loadout3 .slider {
-    flex-basis: 0;
-    flex-grow: 1;
-    flex-shrink: 1;
+#loadout3sub1 .slider {
+    display: flex;
+    align-items: baseline;
+    flex: 1 0 auto;
 }
 
-#equationSpace {
-    position: absolute;
-    right: 5%;
-    bottom: 3%;
-    width: 45%;
-    height: 22%;
-    font-size: calc(3px + 0.95vw);
+#loadout3sub1 .sliderMin, #loadout2sub2 .sliderMax {
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
 }
 
-#loadout3 .equationContainer {
+#loadout3sub1 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+#loadout3sub1 #divSourceContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    width: 35%;
+    height: 40%;
+    position: absolute;
+    top: 60px;
+    right: 30px;
 }
 
-#loadout3 img {
-    height: 100%;
+#loadout3sub1 #divSinkContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+    height: 40%;
+    position: absolute;
+    bottom: 60px;
+    right: 30px;
+}
+
+#loadout3sub1 #picTitle {
+    flex: 0 0 auto;
+    height: 50px;
+}
+
+#loadout3sub1 #divSource, #loadout3sub1 #divSink {
+    display: flex;
+    flex: 1 0 100px;
+
+}
+
+#loadout3sub2 {
+}
+
+#loadout3sub2 {
+
 }
 
 /* SECTION 4 */

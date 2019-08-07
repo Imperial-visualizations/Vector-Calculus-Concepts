@@ -368,7 +368,7 @@ function DisplayEquations(Equation){
             document.getElementById("C_grad_eqn_1a").style.display = "block";
             break;
     }
-    MathJax.Hub.Queue(["Rerender", MathJax.Hub, 'eqConSec2']);
+    MathJax.Hub.Queue(["Rerender", MathJax.Hub, 'eqConSec2a']);
 }
 
 function UpdatePlots(ScalarData, VectorData){
@@ -444,4 +444,4 @@ function Setup1a() {
 
 
 
-$(document).ready(Setup1a); //Load setup when document is ready.
+$(document).ready(setTimeout(function () {Setup1a()},100)); //Load setup when document is ready.

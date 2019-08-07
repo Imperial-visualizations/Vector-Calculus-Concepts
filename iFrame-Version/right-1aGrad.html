@@ -35,6 +35,8 @@
   });
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="scripts/VC-scripts/VC_object.js"></script>
+    <script src="scripts/VC-scripts/classes.js"></script>
 </head>
 <body id="loadout2sub1">
     <!--Graph 1-->
@@ -59,16 +61,18 @@
             <label class="slider-label">$a$:
                 <span id="Slider_1_1aDisplay" data-unit="">10</span>
             </label>
+            <!--BEGIN Slider-->
             <label class="slider">
                 <span class="sliderMin">-100</span>
                 <input id="Slider_1_1a" class="inputs" type="range" value="10" min="-100" max="100" step="1">
                 <span class="sliderMax">100</span>
             </label>
+            <!--END Slider-->
         </div>
     </div>
 
 
-    <div id="eqConSec2" class="equationContainer">
+    <div id="eqConSec2a" class="equationContainer">
         <div>
             <div id="B_function_eqn_1a">
                 $$ f(x,y)= \frac{a}{ \sqrt{(bx)^2 + (by)^2} } $$
@@ -102,7 +106,5 @@
 
 
 </body>
-<script src="scripts/VC-scripts/classes.js"></script>
-<script src="scripts/VC-scripts/VC_object.js"></script>
 <script src="scripts/VC-scripts/1aGrad.js"></script>
 </html>

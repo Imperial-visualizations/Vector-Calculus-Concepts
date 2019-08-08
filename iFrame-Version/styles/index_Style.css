@@ -224,14 +224,9 @@ button.section-sub-head {
     position: relative;
     margin: 10px 0 20px 0;
     text-align: center;
-    /*font-size: 18pt;*/
     font-size: 1.4vw;
-    /*background: #ccdfff;*/
-    /*border: solid 1px black;*/
     border: solid 1px #033482;
-    /*border-radius: 10%;*/
     color: #033482;
-    /*border-radius: 40px;*/
     box-shadow: none;
 }
 

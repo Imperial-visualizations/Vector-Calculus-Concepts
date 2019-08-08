@@ -36,7 +36,7 @@ let currentContainer = [], circuitContainer=[], arrows = [], myCanvas, countingF
 let vectorB, circuit, arc1,arc2, rectangle1, square1, theta = -Math.PI / 2, magFieldScaling = 200;
 let dTheta = 0.5, dt=10, mu0 = 4 * Math.PI * Math.pow(10, -7);
 let fieldDisplay = true, playing = false, mouseWasPressed = false, someWireClose = false, wireSelected = 0, circuitSelected = 0, loopActive = true, hasPlayed = false;
-let fieldFlow = false, Examples = false;
+let Examples = false;
 
 //Example variables
 let angle_Eg = 0, frame_no = 60, mu0_1 = 1 /*Number(Math.PI * 4E-7)*/,arrowNo = 1, index = 0, nostep = 50, sign = 0, O11 = 1;
@@ -63,14 +63,12 @@ function setup() {
         circuitSelected = this.value;
         buttonResetFunction();
     });
-    $('#buttonLoopToggle').click(buttonLoopToggleFunction);
-    $('#buttonFieldFlow').click(buttonFieldFlowFunction);
     $('#buttonExamples').click(buttonExamplesFunction);
     //buttonLoopToggleFunction();
 
     myCanvas = createCanvas(width, height);
     myCanvas.parent('sketch-holder');
-    frameRate(120);
+    frameRate(60);
     currentContainer.push(new Wire(circuit.x, circuit.y, 5, 0));
     initialPlot();
 
@@ -791,7 +789,7 @@ function args_plot_Bdl(loop, wires) {
     //intBdl = integration_simps(x,y);
     //console.log(simpsIntBdl);
 
-    trace = {x: x, y: y, name: 'A.dl', type: 'scatter', width:5 };
+    trace = {x: x, y: y, name: 'B.dl', type: 'scatter', width:5 };
     //trace3 shows the results as if all wires were located in the center
     let val3=0, y3=[];
     for (let p=0; p<y.length; p++){
@@ -799,7 +797,7 @@ function args_plot_Bdl(loop, wires) {
     }
     if (y.length!==0){val3 = val3/y.length;}
     y3 = Array(y.length).fill(val3);
-    trace3 = {x:x, y:y3, name:'average A.dl', type:'scatter', line:{color:'cornFlowerBlue', dash: 'dot', width:2, opacity:0.1} , fill:'tonexty'}
+    trace3 = {x:x, y:y3, name:'average B.dl', type:'scatter', line:{color:'cornFlowerBlue', dash: 'dot', width:2, opacity:0.1} , fill:'tonexty'}
     trace2 = {
         x: [x[0]],
         y: [y[0]],
@@ -833,8 +831,8 @@ function args_plot_Bdl(loop, wires) {
 function initialPlot() {
     layout = {
         title: {
-            text: 'Line integral of <b>A.dl</b> around the loop',
-            y: 0.8
+            text: 'Line integral of <b>B.dl</b> around the loop',
+            y: 0.9
         },
         autosize: true,
         xaxis: {
@@ -848,16 +846,19 @@ function initialPlot() {
             //dtick: Math.PI / 2,
         },
         yaxis: {
-            showticklabels: false,
+            showticklabels: true,
             title: 'B.dl',
             range: [-10 * Math.pow(10, -7), 10 * Math.pow(10, -7)],
             exponentformat: 'e',
             showexponent: 'all'
         },
+        margin: {
+            l: 50, r: 1, b: 50, t: 1, pad: 1
+        },
         showlegend: true,
         legend: {
-            x: 1,
-            y: 0.5
+            x: 0.7,
+            y: 0.1
         }
 
     };
@@ -866,49 +867,6 @@ function initialPlot() {
 }
 
 //button functions:
-var buttonPresses = 0;
-function buttonLoopToggleFunction() {
-
-    //console.log(loopActive);
-    if(loopActive){
-        //if Statement allows reset when switching back to differential form, without causing error on initialisation
-        if (buttonPresses != 0){
-            buttonResetFunction();
-        }
-
-        $('#graph-holder').hide();
-        $('#B-dl-text-holder').hide();
-        $('#buttonLoopToggle').html('Add Loop');
-        $('#circuit-modifiers').hide();
-        $('#desc').hide();
-        $('#buttonPlay').hide();
-        $('#diameter-modifiers').hide();
-        Plotly.react('graph-holder', [trace, trace3,trace2], layout, {displayModeBar: false});
-
-        //$('#IntegralForm').hide();
-        //$('#DifferentialForm').show();
-        //buttonResetFunction;
-
-
-    } else {
-        //buttonResetFunction();
-        $('#graph-holder').show();
-        $('#B-dl-text-holder').show();
-        $('#buttonLoopToggle').html('Remove Loop');
-        $('#circuit-modifiers').show();
-        $('#desc').show();
-        $('#buttonPlay').show();
-        $('#diameter-modifiers').show();
-        Plotly.react('graph-holder', [trace, trace3,trace2], layout, {displayModeBar: false});
-
-        //$('#IntegralForm').show();
-        //$('#DifferentialForm').hide();
-
-    }
-    loopActive = !loopActive;
-    buttonPresses ++
-}
-
 
 function buttonPlayFunction() {
     playing = !playing;
@@ -966,16 +924,6 @@ function buttonResetFunction() {
     $( "#circuitSelectList, #diameterSlider, #currentSlider, #buttonAddWire, #buttonRemoveWires" ).prop( "disabled", false );
     $('#buttonPlay').html('Play');
     $('#buttonReset').hide();
-}
-
-function buttonFieldFlowFunction() {
-    fieldFlow = !fieldFlow;
-    arr = []
-    for(i=0; i<width; i+=20) {
-        for(j=0; j<height; j+=20){
-            arr.push(new Arrow(i, j, 10));
-        }
-    }
 }
 
 function buttonExamplesFunction() {
@@ -1072,13 +1020,6 @@ function Arrow(x, y, length) {
         push();
 
         Bvec = calculateB(currentContainer, this.x, this.y);
-
-        if(fieldFlow){
-            this.Bxdisp = (Bvec[0]/mu0)*50;
-            this.Bydisp = (Bvec[1]/mu0)*50;
-            this.x = this.x + this.Bxdisp;
-            this.y = this.y + this.Bydisp;
-        };
 
         translate(this.x, this.y);
         let angle = atan2(Bvec[1], Bvec[0]);

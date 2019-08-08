@@ -527,10 +527,19 @@
 }
 
 #loadout3sub2 .innerBanner {
+    display: flex;
+    align-items: center;
     height: 12.5%;
     flex: 0 0 auto;
     order: 1;
+    margin: 0 30px;
+}
+
+#loadout3sub2 .infoDisplay {
     margin: 0;
+    padding: 0;
+    text-align: center;
+    flex: 0.2 1 auto;
 }
 
 #loadout3sub2 .overall-sliders-container {
@@ -550,26 +559,20 @@
     flex-basis: 0;
     flex-grow: 1;
     flex-shrink: 1;
-    position: absolute;
-    top: 10px;
-    right: calc(30px + 20% + 30px);
-    width: 60%;
-    height: 10%;
 }
 
 #loadout3sub2 .slider-label {
     font-size: 18pt;
-    text-align: left;
-    padding-left: 30px;
-    margin: 0;
-    padding-top: 0;
-    padding-bottom: 10px;
     flex-basis: auto;
     flex-grow: 0.3;
     flex-shrink: 1;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
 #loadout3sub2 .slider {
+    margin-top: 10px;
     display: flex;
     align-items: baseline;
     flex: 1 0 auto;
@@ -593,77 +596,164 @@
 #loadout4 {
 }
 
-#loadout4 #graph1Sec4 {
+#loadout4sub2 .sketchTitle {
     width: 45%;
-    height: 45%;
+    height: 70px;
     position: absolute;
-    left: 2.5%;
-    top: 2.5%;
+    top: 70px;
+    left: 60px;
+    text-align: center;
 }
 
-#loadout4 #graph2Sec4 {
+#loadout4sub2 #sketch-holder {
     width: 45%;
-    height: 45%;
+    height: 60%;
     position: absolute;
-    left: 2.5%;
-    bottom: 2.5%;
+    left: 60px;
+    top: 160px;
 }
 
-#loadout4 .inputsContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#loadout4sub2 .graphTitle {
+    width: 45%;
+    height: 70px;
     position: absolute;
-    right: 0;
-    top: 50px;
-    width: 50%;
-    height: 90vh;
+    top: 70px;
+    right: 60px;
+    text-align: center;
 }
 
-#loadout4 .selectorContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-basis: 0;
-    flex-grow: 1;
-    width: 100%;
+#loadout4sub2 #graph-holder {
+    width: 45%;
+    height: 47%;
+    position: absolute;
+    right: 60px;
+    top: 160px;
 }
 
-#loadout4 .overall-sliders-container {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 0;
-    flex-grow: 4;
-    width: 100%;
-}
-
-#loadout4 .partial-sliders-container {
+#loadout4sub2 .inputsContainer {
     display: flex;
     flex-direction: row;
-    flex-basis: 0;
-    flex-grow: 1;
-    flex-shrink: 1;
-    align-items: center;
+    align-items: flex-end;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 70px;
+    height: 20%;
+    width: 45%;
 }
 
-#loadout4 .slider-label {
+#loadout4sub2 #iC1 {
+    left: 60px;
+}
+
+#loadout4sub2 #iC2 {
+    padding-left: 50px;
+    right: 60px;
+}
+
+#loadout4sub2 #graphNoteContainer {
+    display: flex;
+    flex-direction: row;
+    width: 45%;
+    position: absolute;
+    right: 60px;
+    padding-right: 30px;
+    top: calc(190px + 47% + 30px);
+}
+
+#loadout4sub2 #B-dl-text-holder {
+    flex: 0 1 auto;
+    text-align: center;
+    margin-left: 30px;
     font-size: 14pt;
-    text-align: left;
-    padding-left: 8px;
-    margin: 0;
-    padding-top: 0;
-    flex-basis: 0;
-    flex-grow: 0.5;
-    flex-shrink: 1;
-    left:0;
+    min-width: 150px;
 }
 
-#loadout4 .slider {
-    flex-basis: 0;
-    flex-grow: 1;
-    flex-shrink: 1;
-    right: 0;
+#loadout4sub2 #graphNote {
+    flex: 1 0 auto;
+    text-align: left;
+    margin-left: 30px;
+    font-size: 10pt;
+    max-width: 70%;
 }
+
+#loadout4sub2 .scroll-down {
+    display: table;
+    flex: 1 0 auto;
+    margin: 0 auto;
+    font-size: 16pt;
+}
+
+#loadout4sub2 select {
+    font-size: 12pt;
+    margin-bottom: 10px;
+}
+
+#loadout4sub2 #play-pause-reset, #loadout4sub2 #add-remove-wires {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+#loadout4sub2 button {
+    text-align: center;
+    font-size: 1.4vw;
+    border: solid 1px #033482;
+    color: #033482;
+    box-shadow: none;
+    flex: 0 1 auto;
+}
+
+#loadout4sub2 button:hover {
+    background-color: #eaf2ff;
+}
+
+#loadout4sub2 .overall-sliders-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 60%;
+    height: 20%;
+}
+
+#loadout4sub2 .partial-sliders-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+#loadout4sub2 .slider-label {
+    font-size: 18pt;
+    flex-basis: auto;
+    flex-grow: 0.3;
+    flex-shrink: 1;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#loadout4sub2 .slider {
+    display: flex;
+    align-items: stretch;
+    flex: 1 0 auto;
+}
+
+#loadout4sub2 .sliderMin, #loadout2sub2 .sliderMax {
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout4sub2 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
 
 /* SECTION 5 */
 

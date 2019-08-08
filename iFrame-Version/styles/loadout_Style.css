@@ -513,10 +513,79 @@
 }
 
 #loadout3sub2 {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
 }
 
-#loadout3sub2 {
+#loadout3sub2 #sketch-holder {
+    flex: 1 0 auto;
+    order: 2;
+}
 
+#loadout3sub2 .innerBanner {
+    height: 12.5%;
+    flex: 0 0 auto;
+    order: 1;
+    margin: 0;
+}
+
+#loadout3sub2 .overall-sliders-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+    width: 60%;
+    height: 20%;
+}
+
+#loadout3sub2 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    position: absolute;
+    top: 10px;
+    right: calc(30px + 20% + 30px);
+    width: 60%;
+    height: 10%;
+}
+
+#loadout3sub2 .slider-label {
+    font-size: 18pt;
+    text-align: left;
+    padding-left: 30px;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 10px;
+    flex-basis: auto;
+    flex-grow: 0.3;
+    flex-shrink: 1;
+}
+
+#loadout3sub2 .slider {
+    display: flex;
+    align-items: baseline;
+    flex: 1 0 auto;
+}
+
+#loadout3sub2 .sliderMin, #loadout2sub2 .sliderMax {
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout3sub2 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
 }
 
 /* SECTION 4 */

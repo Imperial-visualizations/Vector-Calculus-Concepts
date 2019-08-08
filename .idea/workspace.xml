@@ -3,14 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5ab84a33-3352-4538-bf0c-005f2739d42b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VC/2aDiv_interactive.html" beforeDir="false" afterPath="$PROJECT_DIR$/VC/2aDiv_interactive.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/right-1aGrad.html" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/right-1aGrad.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/right-1bGrad.html" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/right-1bGrad.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/right-2aDiv.html" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/right-2aDiv.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1aGrad.js" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1aGrad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1bGrad.js" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1bGrad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/2aDiv.js" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/2aDiv.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iFrame-Version/right-2bDiv.html" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/right-2bDiv.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/2bDiv.js" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/2bDiv.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iFrame-Version/styles/index_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/styles/index_Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,24 +23,40 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/nav_Script.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="230">
+                    <state relative-caret-position="348">
                       <caret line="182" column="46" selection-start-line="182" selection-start-column="46" selection-end-line="182" selection-end-column="46" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file pinned="false" current-in-tab="true">
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/iFrame-Version/right-2bDiv.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-386">
-                      <caret line="16" column="67" lean-forward="true" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
+                    <state relative-caret-position="379">
+                      <caret line="64" column="14" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="14" />
                       <folding>
                         <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
                         <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
                         <element signature="n#script#8;n#head#0;n#html#0;n#!!top" />
-                        <element signature="n#style#0;n#label#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                        <element signature="n#style#0;n#label#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                       </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/2bDiv.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="3298">
+                      <caret line="194" column="57" selection-start-line="194" selection-start-column="50" selection-end-line="194" selection-end-column="57" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/VC/scripts/2bDiv.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="714">
+                      <caret line="120" column="18" selection-start-line="120" selection-start-column="18" selection-end-line="120" selection-end-column="18" />
                     </state>
                   </provider>
                 </entry>
@@ -53,11 +64,11 @@
             </leaf>
           </split-first>
           <split-second>
-            <leaf>
-              <file pinned="false" current-in-tab="true">
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/iFrame-Version/right-1bGrad.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="277">
+                    <state relative-caret-position="799">
                       <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
                       <folding>
                         <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
@@ -71,8 +82,20 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1bGrad.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-51">
-                      <caret line="374" column="54" lean-forward="true" selection-start-line="374" selection-start-column="54" selection-end-line="374" selection-end-column="54" />
+                    <state relative-caret-position="6443">
+                      <caret line="379" column="6" selection-start-line="379" selection-start-column="6" selection-end-line="379" selection-end-column="6" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/VC/2bDiv_interactive.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="90">
+                      <caret line="84" selection-start-line="84" selection-end-line="84" />
+                      <folding>
+                        <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                      </folding>
                     </state>
                   </provider>
                 </entry>
@@ -172,8 +195,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/iFrame-Version/styles/index_Style.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2618">
-                  <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+                <state relative-caret-position="493">
+                  <caret line="29" column="22" lean-forward="true" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
@@ -181,8 +204,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="586">
-                  <caret line="455" column="19" lean-forward="true" selection-start-line="455" selection-start-column="19" selection-end-line="455" selection-end-column="19" />
+                <state relative-caret-position="246">
+                  <caret line="520" column="21" selection-start-line="520" selection-start-column="21" selection-end-line="520" selection-end-column="21" />
                 </state>
               </provider>
             </entry>
@@ -200,15 +223,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>h7</find>
-      <find>arrow</find>
-      <find>sketch-holder</find>
       <find>classes</find>
       <find>relative</find>
       <find>done</find>
       <find>sket</find>
       <find>width</find>
-      <find>height</find>
       <find>vector</find>
       <find>loadout2</find>
       <find>HEAD</find>
@@ -230,6 +249,10 @@
       <find>path</find>
       <find>function value</find>
       <find>graph</find>
+      <find>height</find>
+      <find>ifra</find>
+      <find>rect</find>
+      <find>padding</find>
     </findStrings>
     <replaceStrings>
       <replace>tab</replace>
@@ -263,14 +286,11 @@
         <option value="$PROJECT_DIR$/styles/loadout_Style.css" />
         <option value="$PROJECT_DIR$/../Fourier-Series/iFrame-Version/index.html" />
         <option value="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/3aCurl.js" />
-        <option value="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/2bDiv.js" />
         <option value="$PROJECT_DIR$/iFrame-Version/scripts/nav_Script.js" />
-        <option value="$PROJECT_DIR$/iFrame-Version/right-2bDiv.html" />
         <option value="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/3bCurl.js" />
         <option value="$PROJECT_DIR$/iFrame-Version/right-3bCurl.html" />
         <option value="$PROJECT_DIR$/iFrame-Version/right-0Intro.html" />
         <option value="$PROJECT_DIR$/iFrame-Version/right-3aCurl.html" />
-        <option value="$PROJECT_DIR$/iFrame-Version/styles/index_Style.css" />
         <option value="$PROJECT_DIR$/iFrame-Version/index.html" />
         <option value="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1aGrad.js" />
         <option value="$PROJECT_DIR$/iFrame-Version/right-1aGrad.html" />
@@ -280,11 +300,14 @@
         <option value="$PROJECT_DIR$/VC/scripts/2aDiv.js" />
         <option value="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/2aDiv.js" />
         <option value="$PROJECT_DIR$/iFrame-Version/right-2aDiv.html" />
+        <option value="$PROJECT_DIR$/iFrame-Version/right-2bDiv.html" />
+        <option value="$PROJECT_DIR$/iFrame-Version/styles/index_Style.css" />
+        <option value="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/2bDiv.js" />
         <option value="$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -397,16 +420,20 @@
       <workItem from="1565029097146" duration="1474000" />
       <workItem from="1565173063633" duration="12802000" />
       <workItem from="1565204238480" duration="12755000" />
+      <workItem from="1565260709380" duration="3837000" />
+      <workItem from="1565264605311" duration="557000" />
+      <workItem from="1565267998436" duration="2071000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107407000" />
+    <option name="totallyTimeSpent" value="113872000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1975764" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.40064102" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -434,7 +461,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../Fourier-Series/styles/index_Style.css" />
     <entry file="file://$PROJECT_DIR$/../Fourier-Series/styles/loadout_Style.css" />
     <entry file="file://$PROJECT_DIR$/../Fourier-Series/scripts/nav_Script.js" />
     <entry file="file://$PROJECT_DIR$/styles/index_Style.css">
@@ -953,33 +979,9 @@
         <state relative-caret-position="-6231" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VC/2bDiv_interactive.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="126" column="10" lean-forward="true" selection-start-line="100" selection-start-column="4" selection-end-line="126" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VC/scripts/2bDiv.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5123">
-          <caret line="9" column="29" lean-forward="true" selection-end-line="354" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/classes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5449" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/2bDiv.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1598">
-          <caret line="8" column="5" selection-start-line="8" selection-end-line="8" selection-end-column="5" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VC/scripts/3bCurl.js">
@@ -1098,6 +1100,104 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/iFrame-Version/right-1aGrad.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+          <folding>
+            <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
+            <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
+            <element signature="n#script#8;n#head#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VC/2aDiv_interactive.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="983">
+          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" selection-end-column="42" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VC/scripts/2aDiv.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="214" column="18" selection-start-line="214" selection-start-column="18" selection-end-line="214" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iFrame-Version/right-2aDiv.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="57" column="37" lean-forward="true" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
+          <folding>
+            <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
+            <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
+            <element signature="n#script#8;n#head#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/2aDiv.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="231" lean-forward="true" selection-start-line="231" selection-end-line="231" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iFrame-Version/right-1bGrad.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+          <folding>
+            <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
+            <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
+            <element signature="n#script#8;n#head#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1bGrad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6443">
+          <caret line="379" column="6" selection-start-line="379" selection-start-column="6" selection-end-line="379" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VC/2bDiv_interactive.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Fourier-Series/iFrame-Version/scripts/nav_Script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="183" column="36" selection-start-line="183" selection-start-column="32" selection-end-line="183" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/nav_Script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="182" column="46" selection-start-line="182" selection-start-column="46" selection-end-line="182" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iFrame-Version/styles/index_Style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="22" lean-forward="true" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/iFrame-Version/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1182,105 +1282,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/styles/index_Style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2618">
-          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/right-1aGrad.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-          <folding>
-            <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#script#8;n#head#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1bGrad.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="374" column="54" lean-forward="true" selection-start-line="374" selection-start-column="54" selection-end-line="374" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VC/2aDiv_interactive.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="983">
-          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VC/scripts/2aDiv.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="214" column="18" selection-start-line="214" selection-start-column="18" selection-end-line="214" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/right-1bGrad.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
-          <folding>
-            <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#script#8;n#head#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/right-2aDiv.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="57" column="37" lean-forward="true" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
-          <folding>
-            <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#script#8;n#head#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/2aDiv.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="231" lean-forward="true" selection-start-line="231" selection-end-line="231" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/nav_Script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="182" column="46" selection-start-line="182" selection-start-column="46" selection-end-line="182" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/iFrame-Version/right-2bDiv.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-386">
-          <caret line="16" column="67" lean-forward="true" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
+        <state relative-caret-position="379">
+          <caret line="64" column="14" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="14" />
           <folding>
             <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
             <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
             <element signature="n#script#8;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#label#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VC/scripts/2bDiv.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="120" column="18" selection-start-line="120" selection-start-column="18" selection-end-line="120" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/2bDiv.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3298">
+          <caret line="194" column="57" selection-start-line="194" selection-start-column="50" selection-end-line="194" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="586">
-          <caret line="455" column="19" lean-forward="true" selection-start-line="455" selection-start-column="19" selection-end-line="455" selection-end-column="19" />
+        <state relative-caret-position="246">
+          <caret line="520" column="21" selection-start-line="520" selection-start-column="21" selection-end-line="520" selection-end-column="21" />
         </state>
       </provider>
     </entry>

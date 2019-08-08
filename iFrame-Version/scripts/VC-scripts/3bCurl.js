@@ -29,24 +29,24 @@ Maybe only setting calculations when need display, and avoid wires moving while 
 would then require only one calculation and therefore not slow viz down
 */
 
-var width = $('#sketch-holder').width(), height = $('#sketch-holder').height(), neutralpoints = [], allpoints = [], maxpoints = 10; //activepoints = []
-var Nvertices = 1700, max_range = 1500, R = 16, square_size = 100, padding = 50, rect_height = height/8, arrow_size = 5;
+let width = $('#sketch-holder').width(), height = $('#sketch-holder').height(), neutralpoints = [], allpoints = [], maxpoints = 10; //activepoints = []
+const Nvertices = 1700, max_range = 1500, R = 16, square_size = 100, padding = 50, rect_height = height/8, arrow_size = 5;
 
-var currentContainer = [], circuitContainer=[], arrows = [], myCanvas, countingFrames = 0, notChangeAngle=false, stepLength=1,t=10;
-var vectorB, circuit, arc1,arc2, rectangle1, square1, theta = -Math.PI / 2, magFieldScaling = 200;
-var dTheta = 0.5, dt=10, mu0 = 4 * Math.PI * Math.pow(10, -7);
-var fieldDisplay = true, playing = false, mouseWasPressed = false, someWireClose = false, wireSelected = 0, circuitSelected = 0, loopActive = true, hasPlayed = false;
-var fieldFlow = false, Examples = false;
+let currentContainer = [], circuitContainer=[], arrows = [], myCanvas, countingFrames = 0, notChangeAngle=false, stepLength=1,t=10;
+let vectorB, circuit, arc1,arc2, rectangle1, square1, theta = -Math.PI / 2, magFieldScaling = 200;
+let dTheta = 0.5, dt=10, mu0 = 4 * Math.PI * Math.pow(10, -7);
+let fieldDisplay = true, playing = false, mouseWasPressed = false, someWireClose = false, wireSelected = 0, circuitSelected = 0, loopActive = true, hasPlayed = false;
+let fieldFlow = false, Examples = false;
 
 //Example variables
-var angle_Eg = 0, frame_no = 60, mu0_1 = 1 /*Number(Math.PI * 4E-7)*/,arrowNo = 1, index = 0, nostep = 50, sign = 0, O11 = 1;
+let angle_Eg = 0, frame_no = 60, mu0_1 = 1 /*Number(Math.PI * 4E-7)*/,arrowNo = 1, index = 0, nostep = 50, sign = 0, O11 = 1;
 
 /* Now the plotly part of declaration */
-var trace = {x: [], y: []}, layout, trace2 = {x: [], y: []}, trace3 = {x:[], y:[]};
-var x = [], y = [], r = [];
-var B, Bdl = 0, intBdl = 0;
+let trace = {x: [], y: []}, layout, trace2 = {x: [], y: []}, trace3 = {x:[], y:[]};
+let x = [], y = [], r = [];
+let B, Bdl = 0, intBdl = 0;
 
-var doDraw = true;
+let doDraw = true;
 
 var arr = [];
 function setup() {
@@ -63,7 +63,7 @@ function setup() {
         circuitSelected = this.value;
         buttonResetFunction();
     });
-    //$('#buttonLoopToggle').click(buttonLoopToggleFunction);
+    $('#buttonLoopToggle').click(buttonLoopToggleFunction);
     $('#buttonFieldFlow').click(buttonFieldFlowFunction);
     $('#buttonExamples').click(buttonExamplesFunction);
     //buttonLoopToggleFunction();
@@ -82,9 +82,223 @@ function setup() {
     }
 }
 
+//defining the loop
+class Circuit {
+    constructor(x, y, type, args){
+        this.x=x;
+        this.y=y;
+        this.type=type;
+        if (type=== "circle"){
+            this.diam = args.diam;
+            this.diam1=args.diam;
+        } else if (type === "arcs" ){
+            this.args = {
+                diam:args.diam, //each of them is an array of the same length containing the starting angle and diameter of the arcs
+                theta:args.theta.sort(),
+                diam1:args.diam.splice(0),
+            };
+            for (let i=0; i<this.args.theta.length; i++){
+                if (this.args.theta[i]>=Math.PI){
+                    this.args.theta[i] -= 2*Math.PI
+                }
+            }
+            this.args.theta.sort((a, b) => a - b);
+        }
+        else if (type === "rectangle"){
+            this.h = args.height;
+            this.w= args.width;
+            this.h1=args.height;
+            this.w1=args.width;
+        }
+    };
 
+    //if want to change the shape of the circuit, this is to alter
+    drawCircuit() {
+        push();
+        stroke('red');
+        strokeWeight(3);
+        noFill();
+        translate(this.x, this.y);
+        if (this.type==="circle"){
+            ellipse(0, 0, this.diam, this.diam);
+        } else if (this.type==="arcs"){
+            let index = this.args.diam.length;
+            for (let k=0; k<index; k++){
+                let diam0, diam1, theta0, theta1;
+                if (k<index-1) {
+                    diam0 = this.args.diam[k], diam1 = this.args.diam[k + 1], theta0 = this.args.theta[k] + 2 * Math.PI, theta1 = 2 * Math.PI + this.args.theta[k + 1];
+                }
+                else {diam0= this.args.diam[index-1], diam1=this.args.diam[0]; theta0= this.args.theta[index-1], theta1 = this.args.theta[0];}
+                arc(0, 0, diam0, diam0, theta0, theta1);
+                line(diam0/2*Math.cos(theta1) , diam0/2*Math.sin(theta1), diam1/2*Math.cos(theta1), diam1/2*Math.sin(theta1));
+            }
+        } else if (this.type==="rectangle"){
+            rectMode(RADIUS);
+            rect(0, 0, this.w/2, this.h/2);
+        }
+        stroke (200);
+        line (-3, 0, 3, 0);
+        line(0, -3, 0, 3);
+        pop();
 
+    };
 
+    //this as well so that we follow the circuit
+    drawPath() {
+        //have arc being bolder as we go on it--> from angle -PI/2 to angle
+        push();
+        strokeWeight(3);
+        stroke('green');
+        noFill();
+        translate(this.x, this.y);
+        if (this.type ==="circle") {
+            arc(0, 0, this.diam, this.diam, 3 * Math.PI / 2, theta);
+        } else if (this.type==="arcs") {
+            /*let maxM = -1; //draw further than maxM
+            for (let m = 0; m < this.args.theta.length; m++) {
+                if (theta >= this.args.theta[m]) {
+                    maxM = m;
+                }
+            }
+            if (this.args.theta[maxM] >= - Math.PI / 2 && theta>= -Math.PI/2) {
+                for (let m = 0; m < maxM; m++) {
+                    arc(0, 0, this.args.diam[m], this.args.diam[m], Math.max(this.args.theta[m], -Math.PI / 2), this.args.theta[m + 1]);
+                }
+                arc(0, 0, this.args.diam[maxM], this.args.diam[maxM], this.args.theta[maxM], theta);
+            } else if (theta<-Math.PI/2){
+                let m=0;
+                for (m=0; m<this.args.theta.length-1; m++){
+                    arc(0, 0, this.args.diam[m], this.args.diam[m], Math.max(this.args.theta[m], -Math.PI / 2), this.args.theta[m + 1]);
+                }
+                arc(0,0, this.args.diam[m], this.args.diam[m], this.args.theta[m], Math.min(theta, this.args.theta[0]) );
+                for (m=0; m<maxM; m++){
+                    arc(0,0, this.args.diam[m], this.args.diam[m], Math.max(this.args.theta[m], -Math.PI), this.args.theta[m + 1] );
+                }
+                arc(0, 0, this.args.diam[maxM], this.args.diam[maxM], this.args.theta[maxM], theta);
+            }
+            else if (theta>=-Math.PI/2 && this.args.theta[maxM]<=-Math.PI/2){
+                arc(0, 0, this.args.diam[maxM], this.args.diam[maxM], -Math.PI/2, theta);
+            }*/
+        } else if (this.type ==="rectangle"){
+            let h = this.h, w = this.w
+            let alpha = atan2(h,w);
+            if (theta>= -Math.PI/2 &&theta< -alpha ){
+                line(0, -h/2, -h/2/Math.tan(theta), -h/2);
+            } else if (theta>=-alpha&&theta<=alpha){
+                line(0, -h/2, w/2, -h/2);
+                line(w/2, -h/2, w/2, w*Math.tan(theta)/2);
+            } else if (theta>=alpha && theta<=Math.PI-alpha){
+                line(0, -h/2, w/2, -h/2);
+                line(w/2, -h/2, w/2, h/2);
+                line (w/2, h/2, h/2/Math.tan(theta), h/2);
+            } else if (theta>= Math.PI-alpha || theta<= alpha- Math.PI){
+                line(0, -h/2, w/2, -h/2);
+                line(w/2, -h/2, w/2, h/2);
+                line (w/2, h/2, -w/2, h/2);
+                line(-w/2, h/2, -w/2, -w*Math.tan(theta)/2);
+            } else if (theta> alpha-Math.PI &&theta< -Math.PI/2){
+                line(0, -h/2, w/2, -h/2);
+                line(w/2, -h/2, w/2, h/2);
+                line (w/2, h/2, -w/2, h/2);
+                line(-w/2, h/2, -w/2, -h/2);
+                line(-w/2, -h/2, -h/2/Math.tan(theta), -h/2);
+            }
+        }
+        pop();
+    }
+};
+
+class Wire {
+    constructor(x, y, A, index) {
+        this.x = x;
+        this.y = y;
+        this.value = A;
+        if (A >= 0) {
+            this.valueSign = 1
+        }
+        else {
+            this.valueSign = -1
+        }
+        this.widthInner = 3;
+        this.widthOuter = 12;
+        this.index = index;
+        this.clicked = false;
+        this.color = 0;
+    }
+
+    intersect() { //check if we are close to a forbidden area
+        let areintersecting = false;
+        for (let i = 0; i < currentContainer.length; i++) {
+            if (currentContainer[i] != this) {
+                if (parseInt(dist(mouseX, mouseY, currentContainer[i].x, currentContainer[i].y)) <= this.widthOuter + 4) {
+                    areintersecting = true
+                }
+            }
+        }
+        //also case to avoid putting it out of the canvas
+        if (mouseIsPressed && (mouseX <= 4 || mouseY <= 4 || mouseX >= width || mouseY >= height - 10)) {
+            areintersecting = true;
+        }
+        return areintersecting;
+    }
+
+    pressed() {
+        let distance = dist(mouseX, mouseY, this.x, this.y);
+        if (distance <= this.widthOuter + 4 && !mouseWasPressed) {
+            someWireClose = true;
+            if (mouseIsPressed) {
+                this.clicked = true;
+                mouseWasPressed = true;
+            }
+        }
+
+        if (this.clicked && !mouseIsPressed) {
+            this.clicked = false;
+            mouseWasPressed = false;
+        }
+    }
+
+    updateWirePos() {
+        this.pressed();
+        if ((!this.intersect()) && this.clicked) {
+            this.x = mouseX;
+            this.y = mouseY;
+
+        }
+    }
+
+    selectingWire() {
+        if (this.clicked) {
+            wireSelected = this.index;
+            $('#currentSlider').val(this.value.toString());
+        }
+    }
+
+    drawWire() {
+        push();
+        stroke(this.color);
+        noFill();
+        ellipse(this.x, this.y, this.widthOuter, this.widthOuter);
+        fill(0);
+        strokeWeight(1);
+        //change for cross if current is positive, dot if negative
+        if (this.valueSign >= 0) {
+            line(this.x - this.widthInner, this.y - this.widthInner, this.x + this.widthInner, this.y + this.widthInner);
+            line(this.x + this.widthInner, this.y - this.widthInner, this.x - this.widthInner, this.y + this.widthInner);
+        } else {
+            //negative current represented by vector 3D notation (small dot in the middle)
+            strokeWeight(3);
+            ellipse(this.x, this.y, this.widthInner, this.widthInner);
+        }
+        strokeWeight(1);
+        textSize(15);
+        let textI = this.value;
+        fill(255,100,10);
+        text(textI, this.x + 10, this.y + 10);
+        pop();
+    }
+
+};
 
 circuit= new Circuit($('#sketch-holder').width() / 2, $('#sketch-holder').height() / 2, "circle", {diam:200});
 circuitContainer.push(circuit);
@@ -113,9 +327,9 @@ function getPath() { //create array of (x,y) for each path
     //console.log(scale, oldScale, circuitSelected, oldType);
 
     if(scale !== oldScale || circuitSelected !== oldType){
-            Path = []
-            //console.log('update path');
-            if (circuitSelected == 0) { //Circle path
+        Path = []
+        //console.log('update path');
+        if (circuitSelected == 0) { //Circle path
             stepSize = 0.03;
             for(i=-Math.PI; i<Math.PI; i+=stepSize){
                 x = scale*Math.cos(i + Math.PI/2) + width/2;
@@ -125,176 +339,176 @@ function getPath() { //create array of (x,y) for each path
 
             //Ensures green trace matches with arrow
             dTheta = 2*Math.PI/Path.length;
-    }
+        }
 
-            else if(circuitSelected == 1){ //Arc1 Path
-                stepSize = 0.05;
-                correction =0;
+        else if(circuitSelected == 1){ //Arc1 Path
+            stepSize = 0.05;
+            correction =0;
 
-                for(i=-Math.PI/2; i<-Math.PI/3; i+= stepSize){
-                    x = 0.75*scale*Math.cos(i) + width/2;
-                    y = 0.75*scale*Math.sin(i) + height/2;
-                    Path.push([x,y]);
-                }
-
-                for(i=0.75; i < 1.5; i+= stepSize){
-                    x = i*scale*Math.cos(-Math.PI/3) + width/2;
-                    y = i*scale*Math.sin(-Math.PI/3) + height/2;
-                    Path.push([x,y]);
-                    correction ++;
-                }
-
-                for(i=-Math.PI/3; i < Math.PI/2; i+= stepSize) {
-                    x = 1.5*scale*Math.cos(i) + width/2;
-                    y = 1.5*scale*Math.sin(i) + height/2;
-                    Path.push([x,y]);
-                }
-
-                for(i=1.5; i > 1.25; i-= stepSize){
-                    x = i*scale*Math.cos(Math.PI/2) + width/2;
-                    y = i*scale*Math.sin(Math.PI/2) + height/2;
-                    Path.push([x,y]);
-                    correction ++;
-                }
-
-                for(i=Math.PI/2; i < 2*Math.PI/3; i+= stepSize) {
-                    x = 1.25*scale*Math.cos(i) + width/2;
-                    y = 1.25*scale*Math.sin(i) + height/2;
-                    Path.push([x,y]);
-                }
-
-                for(i=1.25; i > 1; i-= stepSize){
-                    x = i*scale*Math.cos(2*Math.PI/3) + width/2;
-                    y = i*scale*Math.sin(2*Math.PI/3) + height/2;
-                    Path.push([x,y]);
-                    correction ++;
-                }
-
-                for(i=2*Math.PI/3; i < 8*Math.PI/7; i+= stepSize) {
-                    x = 1*scale*Math.cos(i) + width/2;
-                    y = 1*scale*Math.sin(i) + height/2;
-                    Path.push([x,y]);
-                }
-
-                for(i=1; i > 0.75; i-= stepSize){
-                    x = i*scale*Math.cos(8*Math.PI/7) + width/2;
-                    y = i*scale*Math.sin(8*Math.PI/7) + height/2;
-                    Path.push([x,y]);
-                    correction ++;
-                }
-
-                for(i=8*Math.PI/7; i < 3*Math.PI/2; i+= stepSize) {
-                    x = 0.75*scale*Math.cos(i) + width/2;
-                    y = 0.75*scale*Math.sin(i) + height/2;
-                    Path.push([x,y]);
-                }
-
-                //Ensures green trace matches with arrow (correcting for radial out/in parts)
-                dTheta = 2*Math.PI/(Path.length -correction+6);
-
+            for(i=-Math.PI/2; i<-Math.PI/3; i+= stepSize){
+                x = 0.75*scale*Math.cos(i) + width/2;
+                y = 0.75*scale*Math.sin(i) + height/2;
+                Path.push([x,y]);
             }
 
-            else if(circuitSelected == 2){ //Arc2 Path
-                stepSize = 0.05;
-                correction=0;
+            for(i=0.75; i < 1.5; i+= stepSize){
+                x = i*scale*Math.cos(-Math.PI/3) + width/2;
+                y = i*scale*Math.sin(-Math.PI/3) + height/2;
+                Path.push([x,y]);
+                correction ++;
+            }
 
-                for(i=-Math.PI/2; i<-Math.PI/3; i+= stepSize){
-                    x = 0.625*scale*Math.cos(i) + width/2;
-                    y = 0.625*scale*Math.sin(i) + height/2;
-                    Path.push([x,y]);
-                }
+            for(i=-Math.PI/3; i < Math.PI/2; i+= stepSize) {
+                x = 1.5*scale*Math.cos(i) + width/2;
+                y = 1.5*scale*Math.sin(i) + height/2;
+                Path.push([x,y]);
+            }
 
-                for(i=0.625; i < 1.2; i+= stepSize){
-                    x = i*scale*Math.cos(-Math.PI/3) + width/2;
-                    y = i*scale*Math.sin(-Math.PI/3) + height/2;
-                    Path.push([x,y]);
-                    correction ++;
-                }
+            for(i=1.5; i > 1.25; i-= stepSize){
+                x = i*scale*Math.cos(Math.PI/2) + width/2;
+                y = i*scale*Math.sin(Math.PI/2) + height/2;
+                Path.push([x,y]);
+                correction ++;
+            }
 
-                for(i=-Math.PI/3; i<Math.PI/6; i+= stepSize){
-                    x = 1.2*scale*Math.cos(i) + width/2;
-                    y = 1.2*scale*Math.sin(i) + height/2;
-                    Path.push([x,y]);
-                }
+            for(i=Math.PI/2; i < 2*Math.PI/3; i+= stepSize) {
+                x = 1.25*scale*Math.cos(i) + width/2;
+                y = 1.25*scale*Math.sin(i) + height/2;
+                Path.push([x,y]);
+            }
 
-                for(i=1.2; i > 1; i-= stepSize){
-                    x = i*scale*Math.cos(Math.PI/6) + width/2;
-                    y = i*scale*Math.sin(Math.PI/6) + height/2;
-                    Path.push([x,y]);
-                    correction ++;
-                }
+            for(i=1.25; i > 1; i-= stepSize){
+                x = i*scale*Math.cos(2*Math.PI/3) + width/2;
+                y = i*scale*Math.sin(2*Math.PI/3) + height/2;
+                Path.push([x,y]);
+                correction ++;
+            }
 
-                for(i=Math.PI/6; i<6*Math.PI/7; i+= stepSize){
-                    x = 1*scale*Math.cos(i) + width/2;
-                    y = 1*scale*Math.sin(i) + height/2;
-                    Path.push([x,y]);
-                }
+            for(i=2*Math.PI/3; i < 8*Math.PI/7; i+= stepSize) {
+                x = 1*scale*Math.cos(i) + width/2;
+                y = 1*scale*Math.sin(i) + height/2;
+                Path.push([x,y]);
+            }
 
-                for(i=1; i < 1.5; i+= stepSize){
-                    x = i*scale*Math.cos(6*Math.PI/7) + width/2;
-                    y = i*scale*Math.sin(6*Math.PI/7) + height/2;
-                    Path.push([x,y]);
-                    correction ++;
-                }
+            for(i=1; i > 0.75; i-= stepSize){
+                x = i*scale*Math.cos(8*Math.PI/7) + width/2;
+                y = i*scale*Math.sin(8*Math.PI/7) + height/2;
+                Path.push([x,y]);
+                correction ++;
+            }
 
-                for(i=6*Math.PI/7; i< 4*Math.PI/3; i+= stepSize){
-                    x = 1.5*scale*Math.cos(i) + width/2;
-                    y = 1.5*scale*Math.sin(i) + height/2;
-                    Path.push([x,y]);
-                }
+            for(i=8*Math.PI/7; i < 3*Math.PI/2; i+= stepSize) {
+                x = 0.75*scale*Math.cos(i) + width/2;
+                y = 0.75*scale*Math.sin(i) + height/2;
+                Path.push([x,y]);
+            }
 
-                for(i=1.5; i > 0.625; i-= stepSize){
-                    x = i*scale*Math.cos(4*Math.PI/3) + width/2;
-                    y = i*scale*Math.sin(4*Math.PI/3) + height/2;
-                    Path.push([x,y]);
-                    correction ++;
-                }
+            //Ensures green trace matches with arrow (correcting for radial out/in parts)
+            dTheta = 2*Math.PI/(Path.length -correction+6);
 
-                for(i=4*Math.PI/3; i< 3*Math.PI/2; i+= stepSize){
-                    x = 0.625*scale*Math.cos(i) + width/2;
-                    y = 0.625*scale*Math.sin(i) + height/2;
-                    Path.push([x,y]);
-                }
+        }
+
+        else if(circuitSelected == 2){ //Arc2 Path
+            stepSize = 0.05;
+            correction=0;
+
+            for(i=-Math.PI/2; i<-Math.PI/3; i+= stepSize){
+                x = 0.625*scale*Math.cos(i) + width/2;
+                y = 0.625*scale*Math.sin(i) + height/2;
+                Path.push([x,y]);
+            }
+
+            for(i=0.625; i < 1.2; i+= stepSize){
+                x = i*scale*Math.cos(-Math.PI/3) + width/2;
+                y = i*scale*Math.sin(-Math.PI/3) + height/2;
+                Path.push([x,y]);
+                correction ++;
+            }
+
+            for(i=-Math.PI/3; i<Math.PI/6; i+= stepSize){
+                x = 1.2*scale*Math.cos(i) + width/2;
+                y = 1.2*scale*Math.sin(i) + height/2;
+                Path.push([x,y]);
+            }
+
+            for(i=1.2; i > 1; i-= stepSize){
+                x = i*scale*Math.cos(Math.PI/6) + width/2;
+                y = i*scale*Math.sin(Math.PI/6) + height/2;
+                Path.push([x,y]);
+                correction ++;
+            }
+
+            for(i=Math.PI/6; i<6*Math.PI/7; i+= stepSize){
+                x = 1*scale*Math.cos(i) + width/2;
+                y = 1*scale*Math.sin(i) + height/2;
+                Path.push([x,y]);
+            }
+
+            for(i=1; i < 1.5; i+= stepSize){
+                x = i*scale*Math.cos(6*Math.PI/7) + width/2;
+                y = i*scale*Math.sin(6*Math.PI/7) + height/2;
+                Path.push([x,y]);
+                correction ++;
+            }
+
+            for(i=6*Math.PI/7; i< 4*Math.PI/3; i+= stepSize){
+                x = 1.5*scale*Math.cos(i) + width/2;
+                y = 1.5*scale*Math.sin(i) + height/2;
+                Path.push([x,y]);
+            }
+
+            for(i=1.5; i > 0.625; i-= stepSize){
+                x = i*scale*Math.cos(4*Math.PI/3) + width/2;
+                y = i*scale*Math.sin(4*Math.PI/3) + height/2;
+                Path.push([x,y]);
+                correction ++;
+            }
+
+            for(i=4*Math.PI/3; i< 3*Math.PI/2; i+= stepSize){
+                x = 0.625*scale*Math.cos(i) + width/2;
+                y = 0.625*scale*Math.sin(i) + height/2;
+                Path.push([x,y]);
+            }
 
             dTheta = 2*Math.PI/(Path.length -correction+8);
-            }
+        }
 
-            else if(circuitSelected == 3){ //Rectangle Path
-                stepSize = 2;
+        else if(circuitSelected == 3){ //Rectangle Path
+            stepSize = 2;
 
-                for(i=0; i < 1.5*scale; i+=stepSize){
-                    Path.push([i + width/2, -0.5*scale + height/2]);}
-                for(i=0; i < scale; i+=stepSize){
-                    Path.push([1.5*scale + width/2, -0.5*scale + i + height/2]);}
-                for(i=0; i < 3*scale; i+=stepSize){
-                    Path.push([1.5*scale - i + width/2, 0.5*scale + height/2]);}
-                for(i=0; i < scale; i+=stepSize){
-                    Path.push([-1.5*scale + width/2, -i +0.5*scale + height/2]);}
-                for(i=0; i < 1.5*scale; i+=stepSize){
-                    Path.push([i -1.5*scale + width/2, -0.5*scale + height/2]);}
+            for(i=0; i < 1.5*scale; i+=stepSize){
+                Path.push([i + width/2, -0.5*scale + height/2]);}
+            for(i=0; i < scale; i+=stepSize){
+                Path.push([1.5*scale + width/2, -0.5*scale + i + height/2]);}
+            for(i=0; i < 3*scale; i+=stepSize){
+                Path.push([1.5*scale - i + width/2, 0.5*scale + height/2]);}
+            for(i=0; i < scale; i+=stepSize){
+                Path.push([-1.5*scale + width/2, -i +0.5*scale + height/2]);}
+            for(i=0; i < 1.5*scale; i+=stepSize){
+                Path.push([i -1.5*scale + width/2, -0.5*scale + height/2]);}
 
-                //Ensures green trace matches with arrow
-                dTheta = 2*Math.PI/Path.length;
-            }
+            //Ensures green trace matches with arrow
+            dTheta = 2*Math.PI/Path.length;
+        }
 
-            else if(circuitSelected == 4){ //Square Path
-                stepSize = 2;
-                for(i=0; i<= scale -stepSize; i+=stepSize) {
-                    Path.push([i + width/2, -scale + height/2])}
-                for(i=0; i <= 2*scale -stepSize ; i+=stepSize){
-                    Path.push([scale + width/2, -scale + i + height/2]);}
-                for(i=0; i <= 2*scale - stepSize ; i+=stepSize){
-                    Path.push([scale - i + width/2, scale + height/2]);}
-                for(i=0; i <= 2*scale - stepSize ; i+=stepSize){
-                    Path.push([-scale + width/2, -i + scale + height/2]);}
-                for(i=0; i <= scale - stepSize ; i+=stepSize){
-                    Path.push([i -scale + width/2, -scale + height/2]);}
+        else if(circuitSelected == 4){ //Square Path
+            stepSize = 2;
+            for(i=0; i<= scale -stepSize; i+=stepSize) {
+                Path.push([i + width/2, -scale + height/2])}
+            for(i=0; i <= 2*scale -stepSize ; i+=stepSize){
+                Path.push([scale + width/2, -scale + i + height/2]);}
+            for(i=0; i <= 2*scale - stepSize ; i+=stepSize){
+                Path.push([scale - i + width/2, scale + height/2]);}
+            for(i=0; i <= 2*scale - stepSize ; i+=stepSize){
+                Path.push([-scale + width/2, -i + scale + height/2]);}
+            for(i=0; i <= scale - stepSize ; i+=stepSize){
+                Path.push([i -scale + width/2, -scale + height/2]);}
 
-                //Ensures green trace matches with arrow
-                dTheta = 2*Math.PI/Path.length;
-            }
+            //Ensures green trace matches with arrow
+            dTheta = 2*Math.PI/Path.length;
+        }
 
-            else (console.log('No circuit selected'));
+        else (console.log('No circuit selected'));
 
 
     } else {};
@@ -351,7 +565,7 @@ vectorB = { //describes the green vector B and the small increase element dl at 
         }
         else if (!notChangeAngle) {
             if (theta <= Math.PI) {
-            theta += dTheta;
+                theta += dTheta;
 
             } else {
                 theta = -Math.PI+dTheta;
@@ -393,7 +607,7 @@ vectorB = { //describes the green vector B and the small increase element dl at 
         let Bvect = calculateB(wires, this.x, this.y);
         //scales arrow to reasonable size
         this.length = Math.pow(vectorLength(Bvect), 0.4) / mu0 * this.scaling*0.00003;
-0
+        0
         //draw the arrow
         let angle = (atan2(Bvect[1], Bvect[0]));
         push(); //move the grid
@@ -619,8 +833,8 @@ function args_plot_Bdl(loop, wires) {
 function initialPlot() {
     layout = {
         title: {
-        text: 'Line integral of <b>A.dl</b> around the loop',
-        y: 0.8
+            text: 'Line integral of <b>A.dl</b> around the loop',
+            y: 0.8
         },
         autosize: true,
         xaxis: {
@@ -652,48 +866,48 @@ function initialPlot() {
 }
 
 //button functions:
-/*let buttonPresses = 0;
+var buttonPresses = 0;
 function buttonLoopToggleFunction() {
 
-        //console.log(loopActive);
-        if(loopActive){
-            //if Statement allows reset when switching back to differential form, without causing error on initialisation
-            if (buttonPresses != 0){
-                buttonResetFunction();
-            }
-
-            $('#graph-holder').hide();
-            $('#B-dl-text-holder').hide();
-            $('#buttonLoopToggle').html('Add Loop');
-            $('#circuit-modifiers').hide();
-            $('#desc').hide();
-            $('#buttonPlay').hide();
-            $('#diameter-modifiers').hide();
-            Plotly.react('graph-holder', [trace, trace3,trace2], layout, {displayModeBar: false});
-
-            //$('#IntegralForm').hide();
-            //$('#DifferentialForm').show();
-            //buttonResetFunction;
-
-
-        } else {
-            //buttonResetFunction();
-            $('#graph-holder').show();
-            $('#B-dl-text-holder').show();
-            $('#buttonLoopToggle').html('Remove Loop');
-            $('#circuit-modifiers').show();
-            $('#desc').show();
-            $('#buttonPlay').show();
-            $('#diameter-modifiers').show();
-            Plotly.react('graph-holder', [trace, trace3,trace2], layout, {displayModeBar: false});
-
-            //$('#IntegralForm').show();
-            //$('#DifferentialForm').hide();
-
+    //console.log(loopActive);
+    if(loopActive){
+        //if Statement allows reset when switching back to differential form, without causing error on initialisation
+        if (buttonPresses != 0){
+            buttonResetFunction();
         }
+
+        $('#graph-holder').hide();
+        $('#B-dl-text-holder').hide();
+        $('#buttonLoopToggle').html('Add Loop');
+        $('#circuit-modifiers').hide();
+        $('#desc').hide();
+        $('#buttonPlay').hide();
+        $('#diameter-modifiers').hide();
+        Plotly.react('graph-holder', [trace, trace3,trace2], layout, {displayModeBar: false});
+
+        //$('#IntegralForm').hide();
+        //$('#DifferentialForm').show();
+        //buttonResetFunction;
+
+
+    } else {
+        //buttonResetFunction();
+        $('#graph-holder').show();
+        $('#B-dl-text-holder').show();
+        $('#buttonLoopToggle').html('Remove Loop');
+        $('#circuit-modifiers').show();
+        $('#desc').show();
+        $('#buttonPlay').show();
+        $('#diameter-modifiers').show();
+        Plotly.react('graph-holder', [trace, trace3,trace2], layout, {displayModeBar: false});
+
+        //$('#IntegralForm').show();
+        //$('#DifferentialForm').hide();
+
+    }
     loopActive = !loopActive;
     buttonPresses ++
-    }*/
+}
 
 
 function buttonPlayFunction() {
@@ -848,7 +1062,7 @@ function mouseShape() {
 var Bxdisp = 0;
 var Bydisp = 0;
 
-function arrow(x, y, length) {
+function Arrow(x, y, length) {
     this.x = x;
     this.y = y;
     this.Bxdisp = Bxdisp;
@@ -901,81 +1115,83 @@ let done=false;
 function draw() {
     //if(doDraw || drawNumber < 2) {
 
-        background(255);
+    background(255);
 
-        if(fieldDisplay){
-            fill(255-100,255-0,255-0);
-            for(k=0; k<arr.length; k++){
-                arr[k].update();
-            }
-            arrow(width/2,height/2,20);
-        };
-
-
-        if(loopActive){
-            circuitContainer[circuitSelected].drawCircuit();
+    if(fieldDisplay){
+        fill(255-100,255-0,255-0);
+        for(k=0; k<arr.length; k++){
+            arr[k].update();
         }
+        Arrow(width/2,height/2,20);
+    };
 
-        for (let i = 0; i < currentContainer.length; i++) {
-            if (checkStartPos()) {
-                currentContainer[i].selectingWire(); //checks if we are currently selecting the wire
-                if (wireSelected === i) {
-                    currentContainer[i].color = [50, 50, 200];
-                }
-                else {
-                    currentContainer[i].color = 0;
-                }
-                currentContainer[i].updateWirePos();
-            }
-            currentContainer[i].drawWire(); //always draw the wires
-        }
 
-        if(loopActive){
-            vectorB.update(currentContainer, circuitContainer[circuitSelected]); //redraw the arrows
-        }
+    if(loopActive){
+        circuitContainer[circuitSelected].drawCircuit();
+    }
 
-        mouseShape();
-
-        if(playing){hasPlayed = true;}
-
-        //when we are in start position:
+    for (let i = 0; i < currentContainer.length; i++) {
         if (checkStartPos()) {
-            updateValuesFromSlider();
-            $('#wireSelected').html(parseInt(wireSelected.toString())+1);
-            if(hasPlayed === true){$('#buttonPlay').html('Play');}
-
-            //plotly parameters:
-            countingFrames = 0; //not started the animation
-            let intBdl2 = intBdl;
-            args_plot_Bdl(circuitContainer[circuitSelected], currentContainer);
-            if (intBdl2 !== intBdl) { // only if there's update of data
-                printIntBdl = Math.round((intBdl/mu0));
-                $('#Bdl-text').html(`${(printIntBdl).toString().slice(0, 4)}`); //print the value of Bdl on the page
-                Plotly.react('graph-holder', [trace,trace3, trace2], layout, {displayModeBar: false});
+            currentContainer[i].selectingWire(); //checks if we are currently selecting the wire
+            if (wireSelected === i) {
+                currentContainer[i].color = [50, 50, 200];
             }
-        } else { //we are not in start position, but we don't care if playing or not
-            circuitContainer[circuitSelected].drawPath(); //draw path from start position to current position
-        }
-
-        //while we play: we update the plotly graph to have the trace, we update the angle for the arrow
-        if (playing) {
-            currentContainer[wireSelected].color = 0;
-            vectorB.updateAngle(circuitContainer[circuitSelected]); //we update the position of the arrow on the circuit
-            trace2.x = trace.x.slice(0, countingFrames + 1);
-            trace2.y = trace.y.slice(0, countingFrames + 1);
-            // trace3.
-            Plotly.react('graph-holder', [trace, trace2], layout, {displayModeBar: false});
-            if (!playing) { //the precedent update set playing to false
-                $( "#circuitSelectList, #diameterSlider, #currentSlider, #buttonAddWire, #buttonRemoveWires" ).prop( "disabled", false );
-
+            else {
+                currentContainer[i].color = 0;
             }
+            currentContainer[i].updateWirePos();
         }
+        currentContainer[i].drawWire(); //always draw the wires
+    }
 
-        /* //Draw Path for debugging
-        for(i=0; i<Path.length-1; i+=2){
-            line(Path[i][0], Path[i][1], Path[i+1][0], Path[i+1][1]);
+    if(loopActive){
+        vectorB.update(currentContainer, circuitContainer[circuitSelected]); //redraw the arrows
+    }
+
+    mouseShape();
+
+    if(playing){hasPlayed = true;}
+
+    //when we are in start position:
+    if (checkStartPos()) {
+        updateValuesFromSlider();
+        $('#wireSelected').html(parseInt(wireSelected.toString())+1);
+        if(hasPlayed === true){$('#buttonPlay').html('Play');}
+
+        //plotly parameters:
+        countingFrames = 0; //not started the animation
+        let intBdl2 = intBdl;
+        args_plot_Bdl(circuitContainer[circuitSelected], currentContainer);
+        if (intBdl2 !== intBdl) { // only if there's update of data
+            printIntBdl = Math.round((intBdl/mu0));
+            $('#Bdl-text').html(`${(printIntBdl).toString().slice(0, 4)}`); //print the value of Bdl on the page
+            Plotly.react('graph-holder', [trace,trace3, trace2], layout, {displayModeBar: false});
         }
-        //}*/
-        //drawNumber ++
+    } else { //we are not in start position, but we don't care if playing or not
+        circuitContainer[circuitSelected].drawPath(); //draw path from start position to current position
+    }
+
+    //while we play: we update the plotly graph to have the trace, we update the angle for the arrow
+    if (playing) {
+        currentContainer[wireSelected].color = 0;
+        vectorB.updateAngle(circuitContainer[circuitSelected]); //we update the position of the arrow on the circuit
+        trace2.x = trace.x.slice(0, countingFrames + 1);
+        trace2.y = trace.y.slice(0, countingFrames + 1);
+        // trace3.
+        Plotly.react('graph-holder', [trace, trace2], layout, {displayModeBar: false});
+        if (!playing) { //the precedent update set playing to false
+            $( "#circuitSelectList, #diameterSlider, #currentSlider, #buttonAddWire, #buttonRemoveWires" ).prop( "disabled", false );
+
+        }
+    }
+
+    /* //Draw Path for debugging
+    for(i=0; i<Path.length-1; i+=2){
+        line(Path[i][0], Path[i][1], Path[i+1][0], Path[i+1][1]);
+    }
+    //}*/
+    //drawNumber ++
 
 }
+
+

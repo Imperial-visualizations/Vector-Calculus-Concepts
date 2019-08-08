@@ -377,7 +377,7 @@ function dataBallCompile(xBall, yBall, zBall){
                               },
                          name: "Ball",
                          showscale: false
-                         };
+    };
     return dataBall
 };
 
@@ -497,8 +497,8 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         vectorData.push(dataBallAVector);
         vectorData.push(dataBallBVector);
 
-        $("#functionValueBall1_1b").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
-        $("#functionValueBall2_1b").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
+        $("#functionValueBall1_1b").text(`Ball 1 = ${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2_1b").text(`Ball 2 = ${Math.round(100*zBallB)/100}`);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);
         Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar);
@@ -543,8 +543,8 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         vectorData.push(dataBallAVector);
         vectorData.push(dataBallBVector);
 
-        $("#functionValueBall1_1b").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
-        $("#functionValueBall2_1b").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
+        $("#functionValueBall1_1b").text(`${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2_1b").text(`${Math.round(100*zBallB)/100}`);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector );
         Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar);
@@ -615,15 +615,16 @@ function main(){
     let yLineMax = -2;
 
     const layoutScalar_1b = {
-            title: 'Scalar Field',
-            autosize: false,
-            width: 500,
-            height: 500,
+            title: false,
+            showlegend: false,
+            // autosize: true,
+            // width: 500,
+            // height: 500,
             margin: {
-                        l: 65,
-                        r: 50,
-                        b: 65,
-                        t: 90},
+                        l: 0,
+                        r: 0,
+                        b: 0,
+                        t: 0},
             dragmode: 'turntable',
             scene: {
                 aspectmode: "cube",
@@ -640,8 +641,9 @@ function main(){
 
 
     const layoutVector_1b = {
-        title: "Gradient Field",
+        title: false,
         showlegend: false,
+        // autosize: true,
         xaxis: {
             constrain: "domain",
             range: [-20, 20],
@@ -705,4 +707,4 @@ function main(){
     });
 };
 
-$(document).ready(main); //Load setup when document is ready.
+$(document).ready(setTimeout(function () {main()},100)); //Load setup when document is ready.

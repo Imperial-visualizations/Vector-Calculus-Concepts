@@ -320,7 +320,7 @@
                 <transition name="fade">
                     <!--Interactive Zone Sub Containers-->
                     <div class="rightload text" id='loadout2sub1' key="loadout2sub1"
-                         v-if="subSection[1] === 1">
+                         v-if="subSection[1] === 1" style='overflow-x:hidden'>
 
                         <div class='rightColumn' style="display: flex; flex-direction:column; width:30%; float:right; height:100%; padding-bottom: 10%; padding-top: 10%">
                             <div id="scroll" style='flex-grow: 1'>
@@ -347,13 +347,13 @@
                             </label>
                             </div>
                             
-                            <div id='eqContainer' style='flex-grow: 1'>
+                            <div id='eqContainer' style='flex-grow: 1; margin-right: 20%'>
                             <div>
                                 <div id="B_function_eqn_1a" style="display:none; width:100%">
                                         <img src='Images\B_function_eqn_1a.PNG' style='height:100%; width:100%'>   
                                 </div>
 
-                                <div id="A_function_eqn_1a" style="display:none; width:100%;">
+                                <div id="A_function_eqn_1a" style="display:none; width:120%;">
                                     <img src='Images\A_function_eqn_1a.PNG' style='height:100%; width:100%;'>
                                 </div>
 
@@ -367,7 +367,7 @@
                                     <img src='Images\B_grad_eqn_1a.PNG' style='height:100%; width:100%'>
                                 </div>
 
-                                <div id="A_grad_eqn_1a" style="display:none; width:100%;">
+                                <div id="A_grad_eqn_1a" style="display:none; width:120%;">
                                     <img src='Images\A_grad_eqn_1a.PNG' style='height:100%; width:100%;'>
                                 </div>
 
@@ -416,8 +416,8 @@
                                 </div>
 
                                 <div>
-                                    <h6 style="font-weight: bold;font-size: 16px">Adjust value $a =$:
-                                        <output id="Slider_1_1b_value" for="Slider_1_1b">5</output>
+                                    <h6 style="font-weight: bold;font-size: 16px">Adjust value $a =$
+                                        <output id="Slider_1_1b_value" for="Slider_1_1b">5</output>:
                                     </h6>
                                     <!--BEGIN Slider-->
 
@@ -555,7 +555,7 @@
                         </div>
                     </div>
                     <div class="rightload text" id='loadout3sub2' key="loadout3sub2" v-else>
-                        <iframe src="VC/2bDiv_interactive.html" width="950px" height="800px"></iframe>
+                        <iframe src="VC/2bDiv_interactive.html" style='overflow:hidden; height:100%; width:100%'></iframe>
                         <!--Text next to new charge-->
                         <!--<label class="text" style="position: relative; left: 4%; display:inline-block;">-->
                             <!--<font size="5">Move the surface element</font>-->
@@ -596,7 +596,7 @@
 
                     </div>
                     <div class="rightload text" id='loadout4sub2' key="loadout4sub2" v-else>
-                        <iframe src="VC/3bCurl_interactive.html" height="800px" width="950px"></iframe>
+                        <iframe src="VC/3bCurl_interactive.html" style='width:100%; height:100%'></iframe>
                         <!--<div class="three columns" id="buttons-holder"
                              style="position:inherit; margin-left: 1vw; margin-top: 5vh;">
 

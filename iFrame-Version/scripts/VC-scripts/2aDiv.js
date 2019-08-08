@@ -212,7 +212,7 @@ function computeBasis(x3,y3) {
 Now we just have to actually obtain the user input from the HTML file by using JQuery and then plot everything relevant that we want to see*/
 
 function initCarte(type) {
-    Plotly.purge("graph");
+    Plotly.purge("Graph_2a");
     initX3 = initialPoint3[0];
     initY3 = initialPoint3[0];
 
@@ -235,7 +235,7 @@ function initCarte(type) {
     var y3 = parseFloat(document.getElementById('y3Controller').value);
 
 
-    Plotly.newPlot("graph", computeBasis(x3, y3), layout);
+    Plotly.newPlot("Graph_2a", computeBasis(x3, y3), layout);
 
     return;
 }
@@ -257,7 +257,7 @@ function updatePlot() {
     data = computeBasis(x3,y3);
 
     Plotly.animate(
-        'graph',
+        'Graph_2a',
         {data: data},
         {
             fromcurrent: true,

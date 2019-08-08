@@ -44,12 +44,12 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
 }
 
 //C: Interactivity
-*/
+*!/
 //A: Global Initial Parameters:
 
-/* Start by putting in all initial parameters you want and any constants you want to use (e.g. G = 6.67*10**(-11),
+/!* Start by putting in all initial parameters you want and any constants you want to use (e.g. G = 6.67*10**(-11),
 any layout properties (which you probably want to keep constant for an individual part of a visualisation
-should go here */
+should go here *!/
 
 var initialPoint = [0, 1];
 var initialPoint1 = [1.1, 0.1];
@@ -73,9 +73,9 @@ var isBlackText = false;
 
 //B: Maths
 
-/*Next comes all the mathematical functions that are used, if you think a library will do a particular job
+/!*Next comes all the mathematical functions that are used, if you think a library will do a particular job
 that's fine, no need to recreate stuff, but any functions you need to construct yourself should go in this
-next block*/
+next block*!/
 
 
 
@@ -98,11 +98,11 @@ function computeBasis(x3) {
     //This is how we first declare objects
     x1Vector = new Line2d([[2 * x3, -2], [2 * x3, -2]]);
     y1Vector = new Line2d([[2 * x3, -2], [2 * x3, -2+dy1]]);
-  /*  vertex8  = new Line2d([[-10, -2], [2 * x3, -2]]);
+  /!*  vertex8  = new Line2d([[-10, -2], [2 * x3, -2]]);
     vertex9  = new Line2d([[-10, -1], [x3, -1]]);
     vertex10  = new Line2d([[-10, 0], [0, 0]]);
     vertex11  = new Line2d([[-10, 1], [-x3, 1]]);
-    vertex12  = new Line2d([[-10, 2], [-2*x3, 2]]);*/
+    vertex12  = new Line2d([[-10, 2], [-2*x3, 2]]);*!/
     
     vertex8  = new Line2d([[-10, -2], [10, -2]]);
     vertex9  = new Line2d([[-10, -1], [10, -1]]);
@@ -171,11 +171,11 @@ function computeBasis(x3) {
 
     
      ];
-     /*for (let j=0;j<10;j++)
+     /!*for (let j=0;j<10;j++)
     {  let a = arr[j];
         let b = a.gObject(cherry,[-0.5*j,0.5*j]);
         data.push(b);
-     }*/
+     }*!/
     
     }
     else
@@ -205,11 +205,11 @@ function computeBasis(x3) {
     
 
  ]; 
-/* for (let j=0;j<10;j++){
+/!* for (let j=0;j<10;j++){
     let a = arr[j];
     let b = a.gObject(blue,[-0.5*j,0.5*j]);
     data.push(b);
-    }*/
+    }*!/
  }
 
     return data;
@@ -217,8 +217,8 @@ function computeBasis(x3) {
 
 //C: Interactivity
 
-/* We've now got all the functions we need to use such that for a given user input, we have a data output that we'll use.
-Now we just have to actually obtain the user input from the HTML file by using JQuery and then plot everything relevant that we want to see*/
+/!* We've now got all the functions we need to use such that for a given user input, we have a data output that we'll use.
+Now we just have to actually obtain the user input from the HTML file by using JQuery and then plot everything relevant that we want to see*!/
 
 function initCarte(type) {
     Plotly.purge("graph");
@@ -235,12 +235,12 @@ function initCarte(type) {
     $("#x3ControllerDisplay").val(initX3);
 
 
-    /* ~Jquery
+    /!* ~Jquery
     2.  Declare and store the floating values from x/y- sliders.
         Hint:
             - use document.getElementById('idName').value
             - use parseFloat() to make sure you are getting floating points.
-    */
+    *!/
 
 
 
@@ -256,9 +256,9 @@ function initCarte(type) {
 
 //D: Calling
 
-/* Now we have to ask the plots to update every time the user interacts with the visualisation. Here we must both
+/!* Now we have to ask the plots to update every time the user interacts with the visualisation. Here we must both
 define what we want it to do when it updates, and then actually ask it to do that. These are the two functions below.
-*/
+*!/
 
 function updatePlot() {
     var data = [];
@@ -289,9 +289,9 @@ function updatePlot() {
 function main() {
     computeBasis(initX1, initY1,initX2,initY2 , initialPoint3[0],initialPoint3[1]);
 
-    /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
+    /!*Jquery*!/ //NB: Put Jquery stuff in the main not in HTML
     $("input[type=range]").each(function () {
-        /*Allows for live update for display values*/
+        /!*Allows for live update for display values*!/
         $(this).on('input', function(){
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
             $("#"+$(this).attr("id") + "Display").val( $(this).val());
@@ -313,7 +313,7 @@ function main() {
 
     });
 
-    /*Tabs*/
+    /!*Tabs*!/
     $(function() {
         $('ul.tab-nav li a.button').click(function() {
             var href = $(this).attr('href');
@@ -336,3 +336,4 @@ setTimeout(function () {
     main
 }, 5000)
 //$(document).ready(main); //Load main when document is ready.
+*/

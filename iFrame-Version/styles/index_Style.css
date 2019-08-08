@@ -21,6 +21,12 @@
     flex-direction: column;
 }
 
+iframe {
+    border: none;
+    width: 100vw;
+    height: 100vh;
+}
+
 /* LEFT SIDE STYLES */
 
 .left {
@@ -69,7 +75,7 @@ meter::-webkit-meter-optimum-value {
     height: 0.4vh;
     min-height: 3px;
     background: #ff1447;
-    background-size: 100% 100%; 
+    background-size: 100% 100%;
 }
 
 meter {
@@ -422,7 +428,7 @@ i {
 }
 
 #vis-logo img{
-     width: auto;
+    width: auto;
 }
 
 #loadwait {

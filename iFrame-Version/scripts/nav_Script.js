@@ -40,12 +40,12 @@ let app = new Vue ({
                 ["scripts/VC-scripts/1bGrad.js"],
             ],
             [
-                ["scripts/VC-scripts/2aDiv.js"],
-                ["scripts/VC-scripts/2bDiv.js"],
+                [],
+                [],
             ],
             [
-                ["scripts/VC-scripts/3aCurl.js"],
-                ["scripts/VC-scripts/3bCurl.js"],
+                [],
+                [],
             ],
         ],
     },

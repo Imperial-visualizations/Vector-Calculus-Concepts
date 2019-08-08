@@ -476,3 +476,7 @@ iframe {
     text-align: justify;
     margin-bottom: 30px;
 }
+
+iframe {
+    border: none;
+}

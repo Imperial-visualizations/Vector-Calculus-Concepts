@@ -56,13 +56,14 @@ const initialPoint1 = [1.1, 0.1];
 const initialPoint2 = [0.1,1.1];
 const initialPoint3 = [1,1];
 const layout = {
+    title:"Vector Field that points in the +x direction",
     autosize: true,
     //width: 450, "height": 500,
     margin: {l:30, r:30, t:30, b:30},
     hovermode: "closest",
     showlegend: false,
-    xaxis: {range: [-5, 5], zeroline: true},
-    yaxis: {range: [-5, 5], zeroline: true},
+    xaxis: {range: [-5, 5], zeroline: false},
+    yaxis: {range: [-2.5, 2.5], zeroline: false},
     aspectratio: {x:1, y:1},
 };
 var currentPoint = initialPoint;
@@ -110,27 +111,27 @@ function computeBasis(x3) {
     vertex11  = new Line2d([[-10, 1], [10, 1]]);
     vertex12  = new Line2d([[-10, 2], [10, 2]]);                            //increasing line length as function of current density slider
     
-    circ11 = new Circle(0.5,Math.abs(x3/2.5));//opacity of circle proportional to magnitude of current
+//    circ11 = new Circle(0.5,Math.abs(x3/2.5));//opacity of circle proportional to magnitude of current
+//
+//    circ21 = new Circle(0.5,Math.abs(x3/2.5));
+//
+//    circ31 = new Circle(0.5,Math.abs(x3/2.5));
+//
+//    circ41 = new Circle(0.5,Math.abs(x3/2.5));
+//
+//    circ12 = new Circle(0.25,Math.abs(x3/2.5));
+//    circ22 = new Circle(0.25,Math.abs(x3/2.5));
+//    circ32 = new Circle(0.25,Math.abs(x3/2.5));
+//    circ42 = new Circle(0.25,Math.abs(x3/2.5));
     
-    circ21 = new Circle(0.5,Math.abs(x3/2.5));
-    
-    circ31 = new Circle(0.5,Math.abs(x3/2.5));
-    
-    circ41 = new Circle(0.5,Math.abs(x3/2.5));
-    
-    circ12 = new Circle(0.25,Math.abs(x3/2.5));
-    circ22 = new Circle(0.25,Math.abs(x3/2.5));
-    circ32 = new Circle(0.25,Math.abs(x3/2.5));
-    circ42 = new Circle(0.25,Math.abs(x3/2.5));
-    
-    cross11  = new Line2d([[2-0.35355,2-0.35355],[2+0.35355,2+0.35355]]);
-    cross12  = new Line2d([[2-0.35355,2+0.35355],[2+0.35355,2-0.35355]]);
-    cross21  = new Line2d([[-2-0.35355,2-0.35355],[-2+0.35355,2+0.35355]]);
-    cross22  = new Line2d([[-2-0.35355,2+0.35355],[-2+0.35355,2-0.35355]]);
-    cross31  = new Line2d([[-2-0.35355,-2-0.35355],[-2+0.35355,-2+0.35355]]);
-    cross32  = new Line2d([[-2-0.35355,-2+0.35355],[-2+0.35355,-2-0.35355]]);
-    cross41  = new Line2d([[2-0.35355,-2-0.35355],[2+0.35355,-2+0.35355]]);
-    cross42  = new Line2d([[2-0.35355,-2+0.35355],[2+0.35355,-2-0.35355]]);
+//    cross11  = new Line2d([[2-0.35355,2-0.35355],[2+0.35355,2+0.35355]]);
+//    cross12  = new Line2d([[2-0.35355,2+0.35355],[2+0.35355,2-0.35355]]);
+//    cross21  = new Line2d([[-2-0.35355,2-0.35355],[-2+0.35355,2+0.35355]]);
+//    cross22  = new Line2d([[-2-0.35355,2+0.35355],[-2+0.35355,2-0.35355]]);
+//    cross31  = new Line2d([[-2-0.35355,-2-0.35355],[-2+0.35355,-2+0.35355]]);
+//    cross32  = new Line2d([[-2-0.35355,-2+0.35355],[-2+0.35355,-2-0.35355]]);
+//    cross41  = new Line2d([[2-0.35355,-2-0.35355],[2+0.35355,-2+0.35355]]);
+//    cross42  = new Line2d([[2-0.35355,-2+0.35355],[2+0.35355,-2-0.35355]]);
     let arr = [];
    for(i=0;i<10;i++)
      {
@@ -155,19 +156,19 @@ function computeBasis(x3) {
         vertex11.gObject(black,1, Math.abs(6 - (1.25*x3))),
         vertex12.gObject(black,1, Math.abs(6 - (2.5*x3))),
         
-        circ11.gObject(cherry,[2,2]),
-        circ21.gObject(cherry,[-2,2]),
-        circ31.gObject(cherry,[2,-2]),
-        circ41.gObject(cherry,[-2,-2]),
+//        circ11.gObject(cherry,[2,2]),
+//        circ21.gObject(cherry,[-2,2]),
+//        circ31.gObject(cherry,[2,-2]),
+//        circ41.gObject(cherry,[-2,-2]),
        
-        cross11.gObject(cherry,Math.abs(x3/2.5),5),
-        cross12.gObject(cherry,Math.abs(x3/2.5),5),
-        cross21.gObject(cherry,Math.abs(x3/2.5),5),
-        cross22.gObject(cherry,Math.abs(x3/2.5),5),
-        cross31.gObject(cherry,Math.abs(x3/2.5),5),
-        cross32.gObject(cherry,Math.abs(x3/2.5),5),
-        cross41.gObject(cherry,Math.abs(x3/2.5),5),
-        cross42.gObject(cherry,Math.abs(x3/2.5),5)
+//        cross11.gObject(cherry,Math.abs(x3/2.5),5),
+//        cross12.gObject(cherry,Math.abs(x3/2.5),5),
+//        cross21.gObject(cherry,Math.abs(x3/2.5),5),
+//        cross22.gObject(cherry,Math.abs(x3/2.5),5),
+//        cross31.gObject(cherry,Math.abs(x3/2.5),5),
+//        cross32.gObject(cherry,Math.abs(x3/2.5),5),
+//        cross41.gObject(cherry,Math.abs(x3/2.5),5),
+//        cross42.gObject(cherry,Math.abs(x3/2.5),5)
 
     
      ];
@@ -193,15 +194,15 @@ function computeBasis(x3) {
     vertex11.gObject(black, 1,Math.abs(6 - (1.25*x3))),
     vertex12.gObject(black, 1,Math.abs(6 - (2.5*x3))),
     
-    circ11.gObject(blue,[2,2]),
-    circ21.gObject(blue,[-2,2]),
-    circ31.gObject(blue,[2,-2]),
-    circ41.gObject(blue,[-2,-2]),
-   
-    circ12.gObject(blue,[2,2]),
-    circ22.gObject(blue,[-2,-2]),
-    circ32.gObject(blue,[-2,2]),
-    circ42.gObject(blue,[2,-2]),
+//    circ11.gObject(blue,[2,2]),
+//    circ21.gObject(blue,[-2,2]),
+//    circ31.gObject(blue,[2,-2]),
+//    circ41.gObject(blue,[-2,-2]),
+//
+//    circ12.gObject(blue,[2,2]),
+//    circ22.gObject(blue,[-2,-2]),
+//    circ32.gObject(blue,[-2,2]),
+//    circ42.gObject(blue,[2,-2]),
     
 
  ]; 

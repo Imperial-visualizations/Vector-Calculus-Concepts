@@ -81,7 +81,7 @@ function getVectorData(a, x_max, PlotStep){
 
             break;
 
-        case "Sinusodial": //cos type
+        case "sinusoidal": //cos type
             for (let i = -x_max; i <= x_max; i += PlotStep){
                 for (let j = -x_max; j <= x_max; j += PlotStep){
                     //ArrowData = GetArrowPoints(i, j, Equation, A);
@@ -131,7 +131,7 @@ function setupSurfaceData(xMin, xMax, yMin, yMax, plotStep){
 };
 
 //Line 1 is the horizontal line where y = 0.
-//Line 2 is a sinusodial path.
+//Line 2 is a sinusoidal path.
 function setupLineAData(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep) {
     let xLine = [];
     let yLine = [];
@@ -147,7 +147,7 @@ function setupLineAData(xLineMin, xLineMax, yLineMin, yLineMax, plotLineStep) {
     return [xLine , yLine]
 };
 
-//path2 draws sinusodial line.
+//path2 draws sinusoidal line.
 function path2(x){
     return 10 * Math.sin( (2*Math.PI/42) * (x+16) )
 };
@@ -219,7 +219,7 @@ function reciprocalPoint1b (a, xPoint, yPoint){
     return a/Math.sqrt(xPoint**2 + yPoint**2)
 };
 
-function sinusodialSurface1b (a, xSurface, ySurface){
+function sinusoidalSurface1b (a, xSurface, ySurface){
     let zSurface = [];
     for (let xValue in xSurface){
             let zArray = [];
@@ -231,7 +231,7 @@ function sinusodialSurface1b (a, xSurface, ySurface){
     return zSurface;
 };
 
-function sinusodialLine1b (a, xLine, yLine) {
+function sinusoidalLine1b (a, xLine, yLine) {
     let zLine = [];
     for (let yValue in yLine){
             zLine.push(0.8 * a * Math.sin(2* Math.PI/12 * yLine[yValue]) );
@@ -239,7 +239,7 @@ function sinusodialLine1b (a, xLine, yLine) {
     return zLine;
 };
 
-function sinusodialPoint1b (a, xPoint, yPoint){
+function sinusoidalPoint1b (a, xPoint, yPoint){
     return 0.8 * a * Math.sin(2* Math.PI/12 * yPoint)
 };
 
@@ -435,10 +435,10 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
 
     document.getElementById("Gaussian_eqn_1b").style.display = "none";
     document.getElementById("Reciprocal_eqn_1b").style.display = "none";
-    document.getElementById("Sinusodial_eqn_1b").style.display = "none";
+    document.getElementById("Sinusoidal_eqn_1b").style.display = "none";
     document.getElementById("Grad_Gaussian_eqn_1b").style.display = "none";
     document.getElementById("Grad_Reciprocal_eqn_1b").style.display = "none";
-    document.getElementById("Grad_Sinusodial_eqn_1b").style.display = "none";
+    document.getElementById("Grad_Sinusoidal_eqn_1b").style.display = "none";
 
     let a = parseFloat(document.getElementById('Slider_1_1b').value);
     let xPoint = parseFloat(document.getElementById('Slider_2_1b').value);
@@ -503,29 +503,29 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);
         Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar);
     }
-        else if (equation === "Sinusodial") {
+        else if (equation === "Sinusoidal") {
 
-        document.getElementById("Sinusodial_eqn_1b").style.display = "block";
-        document.getElementById("Grad_Sinusodial_eqn_1b").style.display = "block";
+        document.getElementById("Sinusoidal_eqn_1b").style.display = "block";
+        document.getElementById("Grad_Sinusoidal_eqn_1b").style.display = "block";
 
-        let zSurface = sinusodialSurface1b(a, xSurface, ySurface);
+        let zSurface = sinusoidalSurface1b(a, xSurface, ySurface);
         let dataSurface = dataSurfaceCompile(xSurface, ySurface, zSurface);
 
-        let zLineA = sinusodialLine1b(a, xLineA, yLineA);
+        let zLineA = sinusoidalLine1b(a, xLineA, yLineA);
         let dataLineA = dataLineACompile(xLineA, yLineA, zLineA);
 
-        let zLineB = sinusodialLine1b(a, xLineB, yLineB);
+        let zLineB = sinusoidalLine1b(a, xLineB, yLineB);
         let dataLineB = dataLineBCompile(xLineB, yLineB, zLineB);
 
-        let zPointA = sinusodialPoint1b(a, xPointA, yPointA);
-        let zPointB = sinusodialPoint1b(a, xPointB, yPointB);
+        let zPointA = sinusoidalPoint1b(a, xPointA, yPointA);
+        let zPointB = sinusoidalPoint1b(a, xPointB, yPointB);
 
         let dataPointA = dataPointACompile(xPointA, yPointA, zPointA);
         let dataPointB = dataPointBCompile(xPointB, yPointB, zPointB);
 
-        let zBallA = sinusodialPoint1b(a, xBallA, yBallA);
+        let zBallA = sinusoidalPoint1b(a, xBallA, yBallA);
 
-        let zBallB = sinusodialPoint1b(a, xBallB, yBallB);
+        let zBallB = sinusoidalPoint1b(a, xBallB, yBallB);
 
         let dataBallA = dataBallCompile(xBallA, yBallA, zBallA);
 

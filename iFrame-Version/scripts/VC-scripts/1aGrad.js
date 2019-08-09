@@ -368,7 +368,7 @@ function DisplayEquations(Equation){
             document.getElementById("C_grad_eqn_1a").style.display = "block";
             break;
     }
-    MathJax.Hub.Queue(["Rerender", MathJax.Hub, 'eqConSec2a']);
+    // MathJax.Hub.Queue(["Rerender", MathJax.Hub, 'eqConSec2a']);
 }
 
 function UpdatePlots(ScalarData, VectorData){
@@ -426,13 +426,13 @@ function Refresh(PlotNew = false){
 
 
 function Setup1a() {
-    $('#Slider_1_1a').on("input", function(){
+    $('#Slider_1_1a').on("input", debounce(function(){
         //update plots when coefficient changed
         //update slider 1 text
         $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
         //update graph
         Refresh();
-    });
+    }, 20));
 
     $('#Function_Selector_1a').on("input", function(){
         //update plots when function is changed

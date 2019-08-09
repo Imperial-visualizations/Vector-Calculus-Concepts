@@ -41,10 +41,18 @@
 <body id="loadout2sub1">
     <!--Graph 1-->
     <h4 class="graph1Title"> $$ f(x,y) $$ </h4>
-    <div id='Scalar_Graph_1a'></div>
+    <div id='Scalar_Graph_1a'>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
     <!--Graph 2-->
     <h4 class="graph2Title"> $$ \nabla f(x,y) $$ </h4>
-    <div id='Vector_Graph_1a'> </div>
+    <div id='Vector_Graph_1a'>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
 
     <div class="inputsContainer">
         <div id="scroll">
@@ -73,35 +81,24 @@
 
 
     <div id="eqConSec2a" class="equationContainer">
-        <div>
-            <div id="B_function_eqn_1a">
-                $$ f(x,y)= \frac{a}{ \sqrt{(bx)^2 + (by)^2} } $$
-            </div>
-
             <div id="A_function_eqn_1a">
-                $$ f(x,y) = ae^{-b((x+c)^2+y^2)} - ae^{-b((x-c)^2+y^2)} $$
+                <img src="A_function_eqn_1a.png">
             </div>
-
+            <div id="B_function_eqn_1a">
+                <img src="B_function_eqn_1a.png">
+            </div>
             <div id="C_function_eqn_1a">
-                $$ f(x,y)= a\cos(bx) $$
+                <img src="C_function_eqn_1a.png">
             </div>
-        </div>
-        <div>
-            <div id="B_grad_eqn_1a">
-                $$ \nabla f = - \frac{ab^2}{ ((bx)^2 +(by)^2)^ {\frac{3}{2}} } (x \mathbf{i} + y \mathbf{j} ) $$
-            </div>
-
             <div id="A_grad_eqn_1a">
-                \begin{align}
-                \nabla f & = 2ab & & \Big[(x-c)e^{-b((x-c)^2 y^2)} - (x+c)e^{-b((x+c)^2 + y^2)}\Big] \mathbf{i} \\
-                & + 2aby & & \Big[e^{-b((x-c)^2 + y^2)} - e^{-b((x+c)^2 + y^2)}\Big] \mathbf{j}
-                \end{align}
+                <img src="A_grad_eqn_1a.png">
             </div>
-
+            <div id="B_grad_eqn_1a">
+                <img src="B_grad_eqn_1a.png">
+            </div>
             <div id="C_grad_eqn_1a">
-                $$ \nabla f = - ab\sin (bx) \mathbf{i} $$
+                <img src="C_grad_eqn_1a.png">
             </div>
-        </div>
     </div>
 
 

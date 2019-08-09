@@ -53,7 +53,6 @@ function setup() {
     let width = $('#sketch-holder').width(), height = $('#sketch-holder').height();
     //link the functions to the buttons
     $('#buttonPlay').click(buttonPlayFunction);
-    $('#buttonField').click(buttonFieldFunction);
     $('#buttonAddWire').click(buttonAddWireFunction);
     $('#buttonRemoveWires').click(buttonRemoveWiresFunction);
     $('#buttonRemoveWires').hide();
@@ -832,7 +831,7 @@ function initialPlot() {
     layout = {
         title: {
             text: 'Line integral of <b>B.dl</b> around the loop',
-            y: 0.9
+            y: 1.05
         },
         autosize: true,
         xaxis: {
@@ -846,14 +845,14 @@ function initialPlot() {
             //dtick: Math.PI / 2,
         },
         yaxis: {
-            showticklabels: true,
+            showticklabels: false,
             title: 'B.dl',
             range: [-10 * Math.pow(10, -7), 10 * Math.pow(10, -7)],
             exponentformat: 'e',
             showexponent: 'all'
         },
         margin: {
-            l: 50, r: 1, b: 50, t: 1, pad: 1
+            l: 50, r: 1, b: 50, t: 30, pad: 1
         },
         showlegend: true,
         legend: {
@@ -878,15 +877,6 @@ function buttonPlayFunction() {
     }
 
     $( "#circuitSelectList, #diameterSlider, #currentSlider, #buttonAddWire, #buttonRemoveWires" ).prop( "disabled", true );
-}
-
-function buttonFieldFunction() {
-    fieldDisplay = !fieldDisplay;
-    if (fieldDisplay){
-        $('#buttonField').html('Hide   Field');
-    } else {
-        $('#buttonField').html('Show Field');
-    }
 }
 
 function buttonAddWireFunction() {

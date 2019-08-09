@@ -62,8 +62,8 @@ const layout = {
     margin: {l:30, r:30, t:30, b:30},
     hovermode: "closest",
     showlegend: false,
-    xaxis: {range: [-5, 5], zeroline: false},
-    yaxis: {range: [-2.5, 2.5], zeroline: false},
+    xaxis: {range: [0, 15], zeroline: false},
+    yaxis: {range: [0, 15], zeroline: false},
     aspectratio: {x:1, y:1},
 };
 var currentPoint = initialPoint;
@@ -71,6 +71,256 @@ var initX1 = 0, initY1 = 0;
 var initX2 = 0, initY2 = 0;
 var isBlackText = false;
 
+class Arrow{
+    //class currently only works for 2d arrows drawn at z = 0 on a 3d plot.
+    //need to edit GetDrawData if you want 3d arrows.
+    constructor(x1, y1, x2, y2, HeadSize){
+        //x1 and y1 are coords of tail of arrow
+        //x2 and y2 are coords of head of arrow
+        //HeadSize sets the size of the arrowhead.
+        this.TailPos = [x1, y1];
+        this.HeadPos = [x2, y2];
+
+        this.HeadSize = HeadSize;
+        this.HeadAngle = Math.PI/4;
+
+        this.r = this.GetLength(this.HeadPos, this.TailPos);
+        this.theta = this.GetTheta(this.HeadPos, this.TailPos);
+
+    }
+
+    GetHeadPos(){
+        return this.HeadPos;
+    }
+
+    GetTailPos(){
+        return this.TailPos;
+    }
+
+    GetLength(){
+        return Math.sqrt((this.HeadPos[0] - this.TailPos[0])**2 + (this.HeadPos[1] - this.TailPos[1])**2);
+    }
+
+    GetTheta(){
+        return Math.atan2((this.HeadPos[1] - this.TailPos[1]), (this.HeadPos[0] - this.TailPos[0]));
+    }
+
+    GetDrawData3D(){
+        //need arrays of x values and arrays of y values
+        //first line is main body of arrow
+
+        //let FirstLine = [[this.TailPos[0], this.HeadPos[0]],  [this.TailPos[1], this.HeadPos[1]]];
+
+        let Ax = this.HeadPos[0] - this.HeadSize*Math.sin((Math.PI/2) - this.theta + this.HeadAngle);
+        let Ay = this.HeadPos[1] - this.HeadSize*Math.cos((Math.PI/2) - this.theta + this.HeadAngle);
+        //let PointA = [Ax, Ay];
+
+        let Bx = this.HeadPos[0] - this.HeadSize*Math.sin((Math.PI/2) - this.theta - this.HeadAngle);
+        let By = this.HeadPos[1] - this.HeadSize*Math.cos((Math.PI/2) - this.theta - this.HeadAngle);
+        //let PointB = [Bx, By];
+
+        //let SecondLine = [[this.HeadPos[0], Ax], [this.HeadPos[1], Ay]];
+        //let ThirdLine = [[this.HeadPos[0], Bx], [this.HeadPos[1], By]];
+        let FirstLine = {};
+        let SecondLine = {};
+        let ThirdLine = {};
+
+        if (this.r <= 0.000001){
+            FirstLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.TailPos[0], this.HeadPos[0]],
+                y: [this.TailPos[1], this.HeadPos[1]],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+
+            SecondLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.HeadPos[0], Ax],
+                y: [this.HeadPos[1], Ay],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+
+            ThirdLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.HeadPos[0], Bx],
+                y: [this.HeadPos[1], By],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+        }else{
+
+            FirstLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.TailPos[0], this.HeadPos[0]],
+                y: [this.TailPos[1], this.HeadPos[1]],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+
+            SecondLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.HeadPos[0], Ax],
+                y: [this.HeadPos[1], Ay],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+
+            ThirdLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.HeadPos[0], Bx],
+                y: [this.HeadPos[1], By],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+        }
+
+        return [FirstLine, SecondLine, ThirdLine];
+    }
+
+    GetDrawData2D(){
+
+        //need arrays of x values and arrays of y values
+        //first line is main body of arrow
+
+        //let FirstLine = [[this.TailPos[0], this.HeadPos[0]],  [this.TailPos[1], this.HeadPos[1]]];
+
+        let Ax = this.HeadPos[0] - this.HeadSize*Math.sin((Math.PI/2) - this.theta + this.HeadAngle);
+        let Ay = this.HeadPos[1] - this.HeadSize*Math.cos((Math.PI/2) - this.theta + this.HeadAngle);
+        //let PointA = [Ax, Ay];
+
+        let Bx = this.HeadPos[0] - this.HeadSize*Math.sin((Math.PI/2) - this.theta - this.HeadAngle);
+        let By = this.HeadPos[1] - this.HeadSize*Math.cos((Math.PI/2) - this.theta - this.HeadAngle);
+        //let PointB = [Bx, By];
+
+        //let SecondLine = [[this.HeadPos[0], Ax], [this.HeadPos[1], Ay]];
+        //let ThirdLine = [[this.HeadPos[0], Bx], [this.HeadPos[1], By]];
+        let FirstLine = {};
+        let SecondLine = {};
+        let ThirdLine = {};
+
+        if (this.r == 0){
+            FirstLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.TailPos[0], this.HeadPos[0]],
+                y: [this.TailPos[1], this.HeadPos[1]],
+                line: {color: "blue", width: 0},
+                hoverinfo: "skip"
+            };
+
+            SecondLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.HeadPos[0], Ax],
+                y: [this.HeadPos[1], Ay],
+                line: {color: "blue", width: 0},
+                hoverinfo: "skip"
+            };
+
+            ThirdLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.HeadPos[0], Bx],
+                y: [this.HeadPos[1], By],
+                line: {color: "blue", width: 0},
+                hoverinfo: "skip"
+            };
+        }else{
+
+            FirstLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.TailPos[0], this.HeadPos[0]],
+                y: [this.TailPos[1], this.HeadPos[1]],
+                line: {color: "blue", width: 2},
+                hoverinfo: "skip"
+            };
+
+            SecondLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.HeadPos[0], Ax],
+                y: [this.HeadPos[1], Ay],
+                line: {color: "blue", width: 1},
+                hoverinfo: "skip"
+            };
+
+            ThirdLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.HeadPos[0], Bx],
+                y: [this.HeadPos[1], By],
+                line: {color: "blue", width: 1},
+                hoverinfo: "skip"
+            };
+        }
+
+        return [FirstLine, SecondLine, ThirdLine];
+    }
+
+};
+
+
+
+
+function getVectorData(curl, x_max, PlotStep){
+    let ArrowData = [];
+    //let z = [];
+    let VectorData = [];
+
+    let CurrentArrow, LineStuff;
+
+    let x = [];
+    let y = [];
+
+    let x2 = 0;
+    let y2 = 0;
+    let b = 0;
+    let c = 0;
+
+    for (let i = -x_max; i <= x_max; i += PlotStep){
+        for (let j = -x_max; j <= x_max; j += PlotStep){
+            x[0] = i;
+            y[0] = j;
+
+            let scaleFactor = 0.2;
+
+            x2 = y[0]*curl;
+            y2 = 0;
+
+
+            x2 *= scaleFactor;
+            y2 *= scaleFactor;
+
+            x[1] = x[0] + x2;
+            y[1] = y[0] + y2;
+
+            ArrowData = [x, y];
+
+            CurrentArrow = new Arrow(ArrowData[0][0], ArrowData[1][0], ArrowData[0][1], ArrowData[1][1], 1);
+            LineStuff = CurrentArrow.GetDrawData2D();
+
+            VectorData.push(LineStuff[0]);
+            VectorData.push(LineStuff[1]);
+            VectorData.push(LineStuff[2]);
+        }
+    }
+    return VectorData;
+};
 
 //B: Maths
 
@@ -78,143 +328,134 @@ var isBlackText = false;
 that's fine, no need to recreate stuff, but any functions you need to construct yourself should go in this
 next block*/
 
-
-
-
-
-
-
-
-
-
-function computeBasis(x3) {
-    let i;
-    dx1 = 5
-    dy1 = 1
-    dx2= 1
-    dy2 = 1
-    dx3= 1
-    dy3 = 1
-
-    //This is how we first declare objects
-    x1Vector = new Line2d([[2 * x3, -2], [2 * x3, -2]]);
-    y1Vector = new Line2d([[2 * x3, -2], [2 * x3, -2+dy1]]);
-  /*  vertex8  = new Line2d([[-10, -2], [2 * x3, -2]]);
-    vertex9  = new Line2d([[-10, -1], [x3, -1]]);
-    vertex10  = new Line2d([[-10, 0], [0, 0]]);
-    vertex11  = new Line2d([[-10, 1], [-x3, 1]]);
-    vertex12  = new Line2d([[-10, 2], [-2*x3, 2]]);*/
-    
-    vertex8  = new Line2d([[-10, -2], [10, -2]]);
-    vertex9  = new Line2d([[-10, -1], [10, -1]]);
-    vertex10  = new Line2d([[-10, 0], [10, 0]]);
-    vertex11  = new Line2d([[-10, 1], [10, 1]]);
-    vertex12  = new Line2d([[-10, 2], [10, 2]]);                            //increasing line length as function of current density slider
-    
-//    circ11 = new Circle(0.5,Math.abs(x3/2.5));//opacity of circle proportional to magnitude of current
+//function computeBasis(x3) {
+//    let i;
+//    dx1 = 5
+//    dy1 = 1
+//    dx2= 1
+//    dy2 = 1
+//    dx3= 1
+//    dy3 = 1
 //
-//    circ21 = new Circle(0.5,Math.abs(x3/2.5));
+//    //This is how we first declare objects
+//    x1Vector = new Line2d([[2 * x3, -2], [2 * x3, -2]]);
+//    y1Vector = new Line2d([[2 * x3, -2], [2 * x3, -2+dy1]]);
+//  /*  vertex8  = new Line2d([[-10, -2], [2 * x3, -2]]);
+//    vertex9  = new Line2d([[-10, -1], [x3, -1]]);
+//    vertex10  = new Line2d([[-10, 0], [0, 0]]);
+//    vertex11  = new Line2d([[-10, 1], [-x3, 1]]);
+//    vertex12  = new Line2d([[-10, 2], [-2*x3, 2]]);*/
 //
-//    circ31 = new Circle(0.5,Math.abs(x3/2.5));
+//    vertex8  = new Line2d([[-10, -2], [10, -2]]);
+//    vertex9  = new Line2d([[-10, -1], [10, -1]]);
+//    vertex10  = new Line2d([[-10, 0], [10, 0]]);
+//    vertex11  = new Line2d([[-10, 1], [10, 1]]);
+//    vertex12  = new Line2d([[-10, 2], [10, 2]]);                            //increasing line length as function of current density slider
 //
-//    circ41 = new Circle(0.5,Math.abs(x3/2.5));
+////    circ11 = new Circle(0.5,Math.abs(x3/2.5));//opacity of circle proportional to magnitude of current
+////
+////    circ21 = new Circle(0.5,Math.abs(x3/2.5));
+////
+////    circ31 = new Circle(0.5,Math.abs(x3/2.5));
+////
+////    circ41 = new Circle(0.5,Math.abs(x3/2.5));
+////
+////    circ12 = new Circle(0.25,Math.abs(x3/2.5));
+////    circ22 = new Circle(0.25,Math.abs(x3/2.5));
+////    circ32 = new Circle(0.25,Math.abs(x3/2.5));
+////    circ42 = new Circle(0.25,Math.abs(x3/2.5));
 //
-//    circ12 = new Circle(0.25,Math.abs(x3/2.5));
-//    circ22 = new Circle(0.25,Math.abs(x3/2.5));
-//    circ32 = new Circle(0.25,Math.abs(x3/2.5));
-//    circ42 = new Circle(0.25,Math.abs(x3/2.5));
-    
-//    cross11  = new Line2d([[2-0.35355,2-0.35355],[2+0.35355,2+0.35355]]);
-//    cross12  = new Line2d([[2-0.35355,2+0.35355],[2+0.35355,2-0.35355]]);
-//    cross21  = new Line2d([[-2-0.35355,2-0.35355],[-2+0.35355,2+0.35355]]);
-//    cross22  = new Line2d([[-2-0.35355,2+0.35355],[-2+0.35355,2-0.35355]]);
-//    cross31  = new Line2d([[-2-0.35355,-2-0.35355],[-2+0.35355,-2+0.35355]]);
-//    cross32  = new Line2d([[-2-0.35355,-2+0.35355],[-2+0.35355,-2-0.35355]]);
-//    cross41  = new Line2d([[2-0.35355,-2-0.35355],[2+0.35355,-2+0.35355]]);
-//    cross42  = new Line2d([[2-0.35355,-2+0.35355],[2+0.35355,-2-0.35355]]);
-    let arr = [];
-   for(i=0;i<10;i++)
-     {
-        let r = 0.25;
-        let opacity=Math.abs(x3/2.5);
-        console.log(r,opacity)
-        arr.push(new  Circle(r,opacity));}
-    
-
- if (x3<=0)
-    { let j;
-    var data = [
-
-
-
-       // let z = 6 + (2.5*x3);
-       // x1Vector.arrowHead(color= cherry,width= 3,wingLen= 5),
-        vertex8.arrowHead(cherry, 6),
-        vertex8.gObject(black, 1,Math.abs(6 + (2.5*x3))),
-        vertex9.gObject(black,1, Math.abs(6 + (1.25*x3))),
-        vertex10.gObject(black, 1,Math.abs(6)),
-        vertex11.gObject(black,1, Math.abs(6 - (1.25*x3))),
-        vertex12.gObject(black,1, Math.abs(6 - (2.5*x3))),
-        
-//        circ11.gObject(cherry,[2,2]),
-//        circ21.gObject(cherry,[-2,2]),
-//        circ31.gObject(cherry,[2,-2]),
-//        circ41.gObject(cherry,[-2,-2]),
-       
-//        cross11.gObject(cherry,Math.abs(x3/2.5),5),
-//        cross12.gObject(cherry,Math.abs(x3/2.5),5),
-//        cross21.gObject(cherry,Math.abs(x3/2.5),5),
-//        cross22.gObject(cherry,Math.abs(x3/2.5),5),
-//        cross31.gObject(cherry,Math.abs(x3/2.5),5),
-//        cross32.gObject(cherry,Math.abs(x3/2.5),5),
-//        cross41.gObject(cherry,Math.abs(x3/2.5),5),
-//        cross42.gObject(cherry,Math.abs(x3/2.5),5)
-
-    
-     ];
-     /*for (let j=0;j<10;j++)
-    {  let a = arr[j];
-        let b = a.gObject(cherry,[-0.5*j,0.5*j]);
-        data.push(b);
-     }*/
-    
-    }
-    else
-    {
-
-    var data = [
-
-
-   // let z = 6 + (2.5*x3);
-   // x1Vector.arrowHead(color= cherry,width= 3,wingLen= 5),
-    vertex8.arrowHead(cherry, 6),
-    vertex8.gObject(black, 1,Math.abs(6 + (2.5*x3))),
-    vertex9.gObject(black, 1,Math.abs(6 + (1.25*x3))),
-    vertex10.gObject(black, 1,Math.abs(6)),
-    vertex11.gObject(black, 1,Math.abs(6 - (1.25*x3))),
-    vertex12.gObject(black, 1,Math.abs(6 - (2.5*x3))),
-    
-//    circ11.gObject(blue,[2,2]),
-//    circ21.gObject(blue,[-2,2]),
-//    circ31.gObject(blue,[2,-2]),
-//    circ41.gObject(blue,[-2,-2]),
+////    cross11  = new Line2d([[2-0.35355,2-0.35355],[2+0.35355,2+0.35355]]);
+////    cross12  = new Line2d([[2-0.35355,2+0.35355],[2+0.35355,2-0.35355]]);
+////    cross21  = new Line2d([[-2-0.35355,2-0.35355],[-2+0.35355,2+0.35355]]);
+////    cross22  = new Line2d([[-2-0.35355,2+0.35355],[-2+0.35355,2-0.35355]]);
+////    cross31  = new Line2d([[-2-0.35355,-2-0.35355],[-2+0.35355,-2+0.35355]]);
+////    cross32  = new Line2d([[-2-0.35355,-2+0.35355],[-2+0.35355,-2-0.35355]]);
+////    cross41  = new Line2d([[2-0.35355,-2-0.35355],[2+0.35355,-2+0.35355]]);
+////    cross42  = new Line2d([[2-0.35355,-2+0.35355],[2+0.35355,-2-0.35355]]);
+//    let arr = [];
+//   for(i=0;i<10;i++)
+//     {
+//        let r = 0.25;
+//        let opacity=Math.abs(x3/2.5);
+//        console.log(r,opacity)
+//        arr.push(new  Circle(r,opacity));}
 //
-//    circ12.gObject(blue,[2,2]),
-//    circ22.gObject(blue,[-2,-2]),
-//    circ32.gObject(blue,[-2,2]),
-//    circ42.gObject(blue,[2,-2]),
-    
-
- ]; 
-/* for (let j=0;j<10;j++){
-    let a = arr[j];
-    let b = a.gObject(blue,[-0.5*j,0.5*j]);
-    data.push(b);
-    }*/
- }
-
-    return data;
-}
+//
+// if (x3<=0)
+//    { let j;
+//    var data = [
+//
+//
+//
+//       // let z = 6 + (2.5*x3);
+//       // x1Vector.arrowHead(color= cherry,width= 3,wingLen= 5),
+//        vertex8.arrowHead(cherry, 6),
+//        vertex8.gObject(black, 1,Math.abs(6 + (2.5*x3))),
+//        vertex9.gObject(black,1, Math.abs(6 + (1.25*x3))),
+//        vertex10.gObject(black, 1,Math.abs(6)),
+//        vertex11.gObject(black,1, Math.abs(6 - (1.25*x3))),
+//        vertex12.gObject(black,1, Math.abs(6 - (2.5*x3))),
+//
+////        circ11.gObject(cherry,[2,2]),
+////        circ21.gObject(cherry,[-2,2]),
+////        circ31.gObject(cherry,[2,-2]),
+////        circ41.gObject(cherry,[-2,-2]),
+//
+////        cross11.gObject(cherry,Math.abs(x3/2.5),5),
+////        cross12.gObject(cherry,Math.abs(x3/2.5),5),
+////        cross21.gObject(cherry,Math.abs(x3/2.5),5),
+////        cross22.gObject(cherry,Math.abs(x3/2.5),5),
+////        cross31.gObject(cherry,Math.abs(x3/2.5),5),
+////        cross32.gObject(cherry,Math.abs(x3/2.5),5),
+////        cross41.gObject(cherry,Math.abs(x3/2.5),5),
+////        cross42.gObject(cherry,Math.abs(x3/2.5),5)
+//
+//
+//     ];
+//     /*for (let j=0;j<10;j++)
+//    {  let a = arr[j];
+//        let b = a.gObject(cherry,[-0.5*j,0.5*j]);
+//        data.push(b);
+//     }*/
+//
+//    }
+//    else
+//    {
+//
+//    var data = [
+//
+//
+//   // let z = 6 + (2.5*x3);
+//   // x1Vector.arrowHead(color= cherry,width= 3,wingLen= 5),
+//    vertex8.arrowHead(cherry, 6),
+//    vertex8.gObject(black, 1,Math.abs(6 + (2.5*x3))),
+//    vertex9.gObject(black, 1,Math.abs(6 + (1.25*x3))),
+//    vertex10.gObject(black, 1,Math.abs(6)),
+//    vertex11.gObject(black, 1,Math.abs(6 - (1.25*x3))),
+//    vertex12.gObject(black, 1,Math.abs(6 - (2.5*x3))),
+//
+////    circ11.gObject(blue,[2,2]),
+////    circ21.gObject(blue,[-2,2]),
+////    circ31.gObject(blue,[2,-2]),
+////    circ41.gObject(blue,[-2,-2]),
+////
+////    circ12.gObject(blue,[2,2]),
+////    circ22.gObject(blue,[-2,-2]),
+////    circ32.gObject(blue,[-2,2]),
+////    circ42.gObject(blue,[2,-2]),
+//
+//
+// ];
+///* for (let j=0;j<10;j++){
+//    let a = arr[j];
+//    let b = a.gObject(blue,[-0.5*j,0.5*j]);
+//    data.push(b);
+//    }*/
+// }
+//
+//    return data;
+//}
 
 //C: Interactivity
 
@@ -245,11 +486,11 @@ function initCarte(type) {
 
 
 
-    var x3 = parseFloat(document.getElementById('x3Controller').value);
+    var curl = parseFloat(document.getElementById('x3Controller').value);
   
 
 
-    Plotly.newPlot("graph", computeBasis(x3), layout);
+    Plotly.newPlot("graph", getVectorData(curl, 14, 4), layout);
 
     return;
 }
@@ -262,14 +503,15 @@ define what we want it to do when it updates, and then actually ask it to do tha
 */
 
 function updatePlot() {
-    var data = [];
+//    var data = [];
 
 
-    var x3 = parseFloat(document.getElementById('x3Controller').value);
+    let curl = parseFloat(document.getElementById('x3Controller').value);
    // var y3 = parseFloat(document.getElementById('y3Controller').value);
 
 
-    data = computeBasis(x3);
+
+    let data = getVectorData(curl, 14, 4)
 
     Plotly.animate(
         'graph',
@@ -288,7 +530,9 @@ function updatePlot() {
 
 
 function main() {
-    computeBasis(initX1, initY1,initX2,initY2 , initialPoint3[0],initialPoint3[1]);
+    let curl = parseFloat(document.getElementById('x3Controller').value);
+//    computeBasis(initX1, initY1,initX2,initY2 , initialPoint3[0],initialPoint3[1]);
+    Plotly.react("graph", getVectorData(curl, 14, 4), layout)
 
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
     $("input[type=range]").each(function () {
@@ -329,7 +573,7 @@ function main() {
     });
 
     //The First Initialisation - I use 's' rather than 'z' :p
-    initCarte("#basis");
+//    initCarte("#basis");
     updatePlot(); //Shows initial positions of vectors
     }
 

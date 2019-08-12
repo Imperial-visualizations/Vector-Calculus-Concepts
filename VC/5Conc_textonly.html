@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Page Info-->
+    <title>Vector Calculus Conclusion</title>
+    <!--css link-->
+    <link rel="stylesheet"
+          href="styles/skeleton.css">
+    <link rel="stylesheet"
+          href="styles/style.css">
+    <!--Required JS resources-->
+    <!--NB: better to have resources before the main body but still works even if they are not-->
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+    </script>
+    <script type="text/javascript" src="scripts/MathJax-master/MathJax.js">
+    </script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+
+<body>
+
+<div class="container_journey">
+     <center><h4>Conclusion to Vector Calculus</h4></center>
+        In vector calculus, there are three important operations that are related to $\nabla$, the vector differential operator.
+        <br>
+        The three operations are gradient $\nabla$, divergence $\nabla \cdot$ and curl $\nabla \times$.
+        With these operations, we can specify any scalar field or vector field if given enough initial conditions.
+        <br><br>
+        To specify a scalar field, we need the value at a point and gradient of the entire space.
+        To specify a vector field, we need the value at a point along with the divergence and curl of the entire space.
+        <br><br>
+        There are two theorems that connect these differential operations to integration.
+        They are the Divergence Theorem:
+        <br><br>
+        <center>$\unicode{x222F}_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V \nabla \cdot \mathbf{F} dV$</center>
+        <br><br>
+        and Stoke's Theorem:
+        $$\displaystyle \oint_{l} \mathbf{A.dl} = \displaystyle \iint_{S} \nabla \times \mathbf {A} \cdot d\mathbf{S}$$
+</div>
+
+</body>

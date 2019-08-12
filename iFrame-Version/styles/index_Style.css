@@ -150,7 +150,7 @@ meter::-moz-meter-bar {
 
 #hoverTitleSpace {
     position: fixed;
-    top: 6vh;
+    top: calc(40px + 1.5vh);
     left: 0;
     font-size: 12pt;
     width: fit-content;

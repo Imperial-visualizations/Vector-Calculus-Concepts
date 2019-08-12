@@ -639,6 +639,74 @@
 #loadout4 {
 }
 
+#loadout4sub1 .graphTitle {
+    width: 95vw;
+    height: 7.5vh;
+    position: absolute;
+    top: 5vh;
+    left: 2.5vw;
+    text-align: center;
+    font-size: 2.0vw;
+}
+
+#loadout4sub1 #graph-holder {
+    width: 95vw;
+    height: 75vh;
+    position: absolute;
+    left: 2.5vw;
+    top: 10vh;
+}
+
+#loadout4sub1 .overall-sliders-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 4vh;
+    left: 2.5vw;
+    width: 95vw;
+    height: 10vh;
+}
+
+#loadout4sub1 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+#loadout4sub1 .slider-label {
+    font-size: 1.7vw;
+    flex-basis: auto;
+    flex-grow: 0.3;
+    flex-shrink: 1;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#loadout4sub1 .slider {
+    margin-top: 10px;
+    display: flex;
+    align-items: baseline;
+    flex: 1 0 auto;
+}
+
+#loadout4sub1 .sliderMin, #loadout2sub2 .sliderMax {
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout4sub1 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+
 #loadout4sub2 .sketchTitle {
     width: 45vw;
     height: 7.5vh;
@@ -728,6 +796,7 @@
 
 #loadout4sub2 select {
     font-size: 1.2vw;
+    margin-top: 15px;
     margin-bottom: 10px;
 }
 

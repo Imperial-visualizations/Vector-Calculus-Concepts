@@ -6,7 +6,7 @@
 }
 
 .mathJaxDisplay {
-    display:table;
+    display: table;
     margin: 10px auto;
     font-size: calc(4px + 0.95vw);
 }
@@ -49,7 +49,7 @@ iframe {
     /*position: fixed;*/
     left: 0;
     top: 0;
-    border:none;
+    border: none;
     z-index: 6;
 }
 
@@ -67,7 +67,7 @@ meter {
 meter::-webkit-meter-bar {
     background: none; /* Required to get rid of the default background property */
     background-color: #37578b;
-    box-shadow: 0 0.5vhpx 0.5vh -0.5vhpx #333 inset;
+    box-shadow: 0 0.5 vhpx 0.5vh -0.5 vhpx #333 inset;
 }
 
 meter::-webkit-meter-optimum-value {
@@ -82,7 +82,7 @@ meter {
     /* Firefox */
     background: none; /* Required to get rid of the default background property */
     background-color: #37578b;
-    box-shadow: 0 0.5vhpx 0.5vh -0.5vhpx #333 inset;
+    box-shadow: 0 0.5 vhpx 0.5vh -0.5 vhpx #333 inset;
 }
 
 meter::-moz-meter-bar {
@@ -182,8 +182,8 @@ meter::-moz-meter-bar {
     padding: 0;
     /*position: fixed;*/
     background: #ffffff;
-    overflow-y:auto !important;
-    overflow-x:hidden;
+    overflow-y: auto !important;
+    overflow-x: hidden;
     text-align: justify;
     box-shadow: 0 0 5px #a8a8a8;
 }
@@ -247,7 +247,7 @@ button.section-sub-head:hover {
     flex-direction: column;
     flex-basis: 0;
     flex-grow: 1;
-    border-radius: 0.5vh 0.5vh 0 0 ;
+    border-radius: 0.5vh 0.5vh 0 0;
     text-align: center;
     background: #ffffff;
     align-items: stretch;
@@ -284,9 +284,9 @@ button.section-sub-head:hover {
 
 .tab-content {
     position: relative;
-    color : #000000;
+    color: #000000;
     background-color: #eaf2ff;
-    padding : 2vh 2vw;
+    padding: 2vh 2vw;
     /*box-shadow: 3px 4px 3px #a8a8a8;*/
     z-index: 2;
     /*border-radius: 8px 8px 8px 8px;*/
@@ -306,7 +306,7 @@ button.section-sub-head:hover {
 .tab-content > .tab-pane.active,
 .pill-content > .pill-pane.active {
     display: block;
-    visibility:visible;
+    visibility: visible;
 }
 
 h3.section-sub-head {
@@ -402,7 +402,7 @@ i {
     flex-basis: 0;
     flex-grow: 1;
     min-height: 30px;
-    margin:0;
+    margin: 0;
     padding: 0;
     position: fixed;
     text-align: center;
@@ -422,7 +422,7 @@ i {
     margin-right: 7px;
 }
 
-#vis-logo img{
+#vis-logo img {
     width: auto;
 }
 
@@ -449,7 +449,7 @@ i {
 }
 
 .scriptSpace {
-    width:0;
+    width: 0;
     height: 0;
     margin: 0;
     padding: 0;
@@ -461,7 +461,8 @@ i {
     transition: opacity 0.5s;
 }
 
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+{
     opacity: 0;
 }
 

@@ -8,9 +8,9 @@
     <title>Visualisations Vector Calculus</title>
     <!--css links-->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
-        integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <link href="styles/style.css" rel="stylesheet">
     <link href="styles/skeleton.css" rel="stylesheet">
     <link href="styles/index_Style.css" rel="stylesheet">
@@ -35,8 +35,10 @@
     },
     "HTML-CSS": { fonts: ["TeX"] }
   });
+
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
     <script src="scripts/VC-scripts/VC_object.js"></script>
     <script src="scripts/VC-scripts/classes.js"></script>
 </head>
@@ -55,16 +57,24 @@
             <!--    Also act as buttons to navigate between sections    -->
             <div class="" id="overlay" @mousemove="hoverTitle !== false ? updateMouseX($event) : ''">
                 <button :class="[currentTitle === 1 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle1"
-                        key="sectionTitle1" data-no=1 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[0]}}
+                        key="sectionTitle1" data-no=1 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[0]}}
                 </button>
                 <button :class="[currentTitle === 2 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle2"
-                        key="sectionTitle2" data-no=2 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[1]}}
+                        key="sectionTitle2" data-no=2 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[1]}}
                 </button>
                 <button :class="[currentTitle === 3 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle3"
-                        key="sectionTitle3" data-no=3 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[2]}}
+                        key="sectionTitle3" data-no=3 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[2]}}
                 </button>
                 <button :class="[currentTitle === 4 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle4"
-                        key="sectionTitle4" data-no=4 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[3]}}
+                        key="sectionTitle4" data-no=4 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[3]}}
                 </button>
             </div>
             <!--    Dynamic meters indicating progress through each section    -->
@@ -90,15 +100,48 @@
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p1">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec augue tempus, ullamcorper mi eget, aliquet nulla. Pellentesque augue leo, sodales tempus justo sollicitudin, elementum placerat risus. Vivamus dapibus nulla id dolor egestas, eget efficitur tortor faucibus. Ut imperdiet vel velit quis rutrum. Aenean quis tempor lacus. Suspendisse augue libero, rhoncus non leo vitae, pulvinar vehicula dolor. Nulla viverra suscipit purus, in euismod ex ultrices id. Nullam ut sollicitudin ex. Nulla faucibus eu turpis sed placerat. Pellentesque nec iaculis nibh. Integer faucibus sodales arcu sed rutrum.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec augue tempus, ullamcorper mi eget,
+                    aliquet nulla. Pellentesque augue leo, sodales tempus justo sollicitudin, elementum placerat risus.
+                    Vivamus dapibus nulla id dolor egestas, eget efficitur tortor faucibus. Ut imperdiet vel velit quis
+                    rutrum. Aenean quis tempor lacus. Suspendisse augue libero, rhoncus non leo vitae, pulvinar vehicula
+                    dolor. Nulla viverra suscipit purus, in euismod ex ultrices id. Nullam ut sollicitudin ex. Nulla
+                    faucibus eu turpis sed placerat. Pellentesque nec iaculis nibh. Integer faucibus sodales arcu sed
+                    rutrum.
                     </br></br>
-                    Suspendisse mattis porttitor cursus. Curabitur et dolor lobortis, suscipit sapien id, sodales elit. Nunc cursus sapien vitae lectus rutrum eleifend. Fusce quis erat vel mauris tristique vulputate at sit amet orci. Integer aliquam mi quis quam hendrerit pulvinar. Phasellus fermentum nulla a est placerat, eget tincidunt purus varius. Morbi facilisis ante posuere tortor tristique, a lobortis ante pharetra. Suspendisse tempor est vel augue cursus tincidunt. Aenean sed nisi orci. Nulla nec euismod augue, eget fermentum libero. Donec vitae cursus felis, a ultrices erat. Aliquam dapibus mauris sem, sit amet imperdiet purus pellentesque in. Sed rhoncus finibus erat, eget ornare erat pretium eu.
+                    Suspendisse mattis porttitor cursus. Curabitur et dolor lobortis, suscipit sapien id, sodales elit.
+                    Nunc cursus sapien vitae lectus rutrum eleifend. Fusce quis erat vel mauris tristique vulputate at
+                    sit amet orci. Integer aliquam mi quis quam hendrerit pulvinar. Phasellus fermentum nulla a est
+                    placerat, eget tincidunt purus varius. Morbi facilisis ante posuere tortor tristique, a lobortis
+                    ante pharetra. Suspendisse tempor est vel augue cursus tincidunt. Aenean sed nisi orci. Nulla nec
+                    euismod augue, eget fermentum libero. Donec vitae cursus felis, a ultrices erat. Aliquam dapibus
+                    mauris sem, sit amet imperdiet purus pellentesque in. Sed rhoncus finibus erat, eget ornare erat
+                    pretium eu.
                     </br></br>
-                    Suspendisse vitae finibus ligula. Cras bibendum elit in diam porttitor, sit amet fermentum orci vulputate. Integer lectus justo, laoreet in condimentum et, accumsan vitae nulla. Morbi facilisis quam eros, vel fermentum velit volutpat nec. Morbi aliquam elit nibh, non finibus ipsum sollicitudin ut. Fusce finibus laoreet diam, eu finibus risus laoreet ac. Maecenas mi erat, semper sit amet nisl vel, consectetur auctor dolor. Aenean eget risus et metus elementum consequat. Nullam eget mi ante. Vivamus eget dolor arcu. Suspendisse id convallis mauris, in ultrices tortor.
+                    Suspendisse vitae finibus ligula. Cras bibendum elit in diam porttitor, sit amet fermentum orci
+                    vulputate. Integer lectus justo, laoreet in condimentum et, accumsan vitae nulla. Morbi facilisis
+                    quam eros, vel fermentum velit volutpat nec. Morbi aliquam elit nibh, non finibus ipsum sollicitudin
+                    ut. Fusce finibus laoreet diam, eu finibus risus laoreet ac. Maecenas mi erat, semper sit amet nisl
+                    vel, consectetur auctor dolor. Aenean eget risus et metus elementum consequat. Nullam eget mi ante.
+                    Vivamus eget dolor arcu. Suspendisse id convallis mauris, in ultrices tortor.
                     </br></br>
-                    Duis nec nisl quam. Sed ultricies tempor nibh non fermentum. Nulla facilisis pharetra nisl vitae lacinia. Vivamus et dolor nec purus convallis ornare a id sapien. Nunc eget nibh id nibh mollis molestie sit amet in purus. Mauris finibus tellus non mi feugiat, quis vestibulum purus facilisis. Maecenas malesuada convallis lobortis. Sed id tortor pretium, luctus felis ac, euismod dui.
+                    Duis nec nisl quam. Sed ultricies tempor nibh non fermentum. Nulla facilisis pharetra nisl vitae
+                    lacinia. Vivamus et dolor nec purus convallis ornare a id sapien. Nunc eget nibh id nibh mollis
+                    molestie sit amet in purus. Mauris finibus tellus non mi feugiat, quis vestibulum purus facilisis.
+                    Maecenas malesuada convallis lobortis. Sed id tortor pretium, luctus felis ac, euismod dui.
                     </br></br>
-                    Mauris vulputate urna id sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean in orci venenatis, maximus lorem quis, posuere massa. Aliquam id blandit tortor, et lacinia dui. Etiam urna ligula, fermentum venenatis quam sodales, porttitor consectetur nisi. Sed accumsan volutpat dolor. Duis feugiat accumsan massa, at rhoncus lorem sagittis at. Vestibulum massa sapien, faucibus sit amet consectetur vel, pulvinar vel neque. Integer tincidunt faucibus mi sit amet condimentum. Nullam finibus elementum nulla et pellentesque. Sed fermentum nisi et nibh pellentesque fermentum. Phasellus porta aliquet sem, eu rutrum justo luctus vel. Aliquam erat volutpat. o, sodales tempus justo sollicitudin, elementum placerat risus. Vivamus dapibus nulla id dolor egestas, eget efficitur tortor faucibus. Ut imperdiet vel velit quis rutrum. Aenean quis tempor lacus. Suspendisse augue libero, rhoncus non leo vitae, pulvinar vehicula dolor. Nulla viverra suscipit purus, in euismod ex ultrices id. Nullam ut sollicitudin ex. Nulla faucibus eu turpis sed placerat. Pellentesque nec iaculis nibh. Integer faucibus sodales arcu sed rutrum.
+                    Mauris vulputate urna id sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et
+                    ultrices posuere cubilia Curae; Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+                    per inceptos himenaeos. Aenean in orci venenatis, maximus lorem quis, posuere massa. Aliquam id
+                    blandit tortor, et lacinia dui. Etiam urna ligula, fermentum venenatis quam sodales, porttitor
+                    consectetur nisi. Sed accumsan volutpat dolor. Duis feugiat accumsan massa, at rhoncus lorem
+                    sagittis at. Vestibulum massa sapien, faucibus sit amet consectetur vel, pulvinar vel neque. Integer
+                    tincidunt faucibus mi sit amet condimentum. Nullam finibus elementum nulla et pellentesque. Sed
+                    fermentum nisi et nibh pellentesque fermentum. Phasellus porta aliquet sem, eu rutrum justo luctus
+                    vel. Aliquam erat volutpat. o, sodales tempus justo sollicitudin, elementum placerat risus. Vivamus
+                    dapibus nulla id dolor egestas, eget efficitur tortor faucibus. Ut imperdiet vel velit quis rutrum.
+                    Aenean quis tempor lacus. Suspendisse augue libero, rhoncus non leo vitae, pulvinar vehicula dolor.
+                    Nulla viverra suscipit purus, in euismod ex ultrices id. Nullam ut sollicitudin ex. Nulla faucibus
+                    eu turpis sed placerat. Pellentesque nec iaculis nibh. Integer faucibus sodales arcu sed rutrum.
                 </div>
             </div>
             <div class="section-container" id="sc2">
@@ -113,66 +156,101 @@
                     <!--    Sub-Section Tabs    -->
                     <ul class="nav nav-tabs nav-justified">
                         <li :class="[subSection[1] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
-                            <a data-toggle="tab" href="#gradDifferential" @click="subScrollTo(2); subSection[1]=1; $forceUpdate();">Differential</a>
+                            <a data-toggle="tab" href="#gradDifferential"
+                               @click="subScrollTo(2); subSection[1]=1; $forceUpdate();">Differential</a>
                         </li>
                         <li :class="[subSection[1] === 2 ? 'shaded' : '', 'tabRight']">
-                            <a data-toggle="tab" href="#gradIntegral" @click="subScrollTo(2); subSection[1]=2; $forceUpdate();">Integral</a>
+                            <a data-toggle="tab" href="#gradIntegral"
+                               @click="subScrollTo(2); subSection[1]=2; $forceUpdate();">Integral</a>
                         </li>
                     </ul>
                     <!--    Sub-Section Text Containers    -->
                     <div class="tab-content">
                         <div id="gradDifferential" class="tab-pane fade in active show">
-                            Grad operates on a scalar field <span class="mathJaxInline">$ f(x, y) $</span> to produce a vector field indicating the magnitude and direction of the
+                            Grad operates on a scalar field <span class="mathJaxInline">$ f(x, y) $</span> to produce a
+                            vector field indicating the magnitude and direction of the
                             steepest gradient at each point.
                             <br><br>
                             It is easy to remember that grad produces a vector field, because it is necessary
-                            for the gradient to have a direction once there is more than one dimension involved.  It must act on a scalar field
+                            for the gradient to have a direction once there is more than one dimension involved. It must
+                            act on a scalar field
                             because it doesn't make much sense for a vector field to have a gradient.
                             <br><br>
-                            The surface shown on the right is a scalar function <span class="mathJaxInline">$ f $</span> of two independent variables, <span class="mathJaxInline">$ x $</span> and <span class="mathJaxInline">$ y $</span>.  Note that it is a 2D scalar field &mdash;
+                            The surface shown on the right is a scalar function <span class="mathJaxInline">$ f $</span>
+                            of two independent variables, <span class="mathJaxInline">$ x $</span> and <span
+                                class="mathJaxInline">$ y $</span>. Note that it is a 2D scalar field &mdash;
                             the third dimension is just being used to display the value of the function.
                             <br><br>
-                            Beneath it the gradient of the function <span class="mathJaxInline">$ \nabla f $</span> is shown.  By changing the coefficient <span class="mathJaxInline">$ a $</span>, the gradient of the function can be increased
-                            and decreased in certain directions.  There are also several functions to choose from.
+                            Beneath it the gradient of the function <span class="mathJaxInline">$ \nabla f $</span> is
+                            shown. By changing the coefficient <span class="mathJaxInline">$ a $</span>, the gradient of
+                            the function can be increased
+                            and decreased in certain directions. There are also several functions to choose from.
                             <br><br>
-                            The idea extends to three dimensions in the same way.  For example, if you were to plot the magnitude of the Sun's gravitational field
-                            in 3D space around the Sun, the gradient of this field would give vectors that point to the centre of the Sun at every point.
+                            The idea extends to three dimensions in the same way. For example, if you were to plot the
+                            magnitude of the Sun's gravitational field
+                            in 3D space around the Sun, the gradient of this field would give vectors that point to the
+                            centre of the Sun at every point.
                         </div>
                         <div id="gradIntegral" class="tab-pane fade">
                             <span class="mathJaxDisplay">
                                 $$ \Omega_B - \Omega_A = \int _A ^B \nabla \Omega \cdot d\mathbf{l} $$
                             </span>
-                            For a given vector field, if <span class="mathJaxInline">$ \mathbf{A} \cdot d\mathbf{l} $</span> is an exact differential, <span class="mathJaxInline">$ \mathbf{A} $</span> is a conservative field. Then, <span class="mathJaxInline">$ \mathbf{A} $</span> is the
-                            gradient function of some scalar function <span class="mathJaxInline">$ \Omega $</span>. That is, <span class="mathJaxInline">$ \mathbf{A} = \nabla {\Omega} $</span>.
+                            For a given vector field, if <span
+                                class="mathJaxInline">$ \mathbf{A} \cdot d\mathbf{l} $</span> is an exact differential,
+                            <span class="mathJaxInline">$ \mathbf{A} $</span> is a conservative field. Then, <span
+                                class="mathJaxInline">$ \mathbf{A} $</span> is the
+                            gradient function of some scalar function <span class="mathJaxInline">$ \Omega $</span>.
+                            That is, <span class="mathJaxInline">$ \mathbf{A} = \nabla {\Omega} $</span>.
                             <br><br>
-                            We can relate <span class="mathJaxInline">$ \Omega $</span> and <span class="mathJaxInline">$ \nabla \Omega $</span> by the equation below:
+                            We can relate <span class="mathJaxInline">$ \Omega $</span> and <span class="mathJaxInline">$ \nabla \Omega $</span>
+                            by the equation below:
                             <span class="mathJaxDisplay">
                                 $$ \int _A ^B \nabla \Omega \cdot d\mathbf{l} = \Omega_B - \Omega_A $$
                             </span>
-                            From this equation above, we can see that the integral is independent of the path that one takes from A to B,
-                            for it is determined by only the values from the parent function <span class="mathJaxInline">$ \Omega_B - \Omega_A $</span>. This is a generalisation of the Fundamental Theorem of Calculus.
+                            From this equation above, we can see that the integral is independent of the path that one
+                            takes from A to B,
+                            for it is determined by only the values from the parent function <span
+                                class="mathJaxInline">$ \Omega_B - \Omega_A $</span>. This is a generalisation of the
+                            Fundamental Theorem of Calculus.
                             <br><br>
                             <h3 class="section-sub-head">
                                 Visualisation Guide
                             </h3>
                             <ol>
                                 <li>On the right, you can see a gradient field and its scalar parent function.
-                                    Change the value of the parameter <span class="mathJaxInline">$ a $</span>, and observe the change in <span class="mathJaxInline">$ \nabla \Omega $</span> and <span class="mathJaxInline">$ \Omega $</span>.</li>
+                                    Change the value of the parameter <span class="mathJaxInline">$ a $</span>, and
+                                    observe the change in <span class="mathJaxInline">$ \nabla \Omega $</span> and <span
+                                            class="mathJaxInline">$ \Omega $</span>.
+                                </li>
                                 <br>
-                                <li>Note that as the magnitude of <span class="mathJaxInline">$ a $</span> increases, the length of the arrows in <span class="mathJaxInline">$ \nabla \Omega $</span> increases and the contour of the parent function
-                                    <span class="mathJaxInline">$ \Omega $</span> becomes steeper as well. Hence, the gradient vector increases in magnitude as well.</li>
+                                <li>Note that as the magnitude of <span class="mathJaxInline">$ a $</span> increases,
+                                    the length of the arrows in <span class="mathJaxInline">$ \nabla \Omega $</span>
+                                    increases and the contour of the parent function
+                                    <span class="mathJaxInline">$ \Omega $</span> becomes steeper as well. Hence, the
+                                    gradient vector increases in magnitude as well.
+                                </li>
                                 <br>
-                                <li>All gradient fields shown in this suite are conservative. This means that the line integral along the field,
-                                    <span class="mathJaxInline">$ \int \nabla \Omega \cdot d\mathbf{l} $</span> is path independent. Move the path of the ball from Point A to Point B
-                                    along 2 different paths, Path 1 and Path 2.</li>
+                                <li>All gradient fields shown in this suite are conservative. This means that the line
+                                    integral along the field,
+                                    <span class="mathJaxInline">$ \int \nabla \Omega \cdot d\mathbf{l} $</span> is path
+                                    independent. Move the path of the ball from Point A to Point B
+                                    along 2 different paths, Path 1 and Path 2.
+                                </li>
                                 <br>
-                                <li>Observe their function values. Note that along the path, the value of <span class="mathJaxInline">$ \Omega $</span> may be different.
-                                    However, when the balls reach Point B, their function values are equal.</li>
+                                <li>Observe their function values. Note that along the path, the value of <span
+                                        class="mathJaxInline">$ \Omega $</span> may be different.
+                                    However, when the balls reach Point B, their function values are equal.
+                                </li>
                                 <br>
-                                <li>This means that the line integral <span class="mathJaxInline">$ \int _A ^B \nabla \Omega \cdot d\mathbf{l} $</span>  is determined
-                                    only by the value of <span class="mathJaxInline">$ \Omega $</span> at the limits, <span class="mathJaxInline">$ \Omega_B - \Omega_A $</span>.</li>
+                                <li>This means that the line integral <span class="mathJaxInline">$ \int _A ^B \nabla \Omega \cdot d\mathbf{l} $</span>
+                                    is determined
+                                    only by the value of <span class="mathJaxInline">$ \Omega $</span> at the limits,
+                                    <span class="mathJaxInline">$ \Omega_B - \Omega_A $</span>.
+                                </li>
                                 <br>
-                                <li>There are a few other functions for you to play around with. Click the dropdown menu to find out.</li>
+                                <li>There are a few other functions for you to play around with. Click the dropdown menu
+                                    to find out.
+                                </li>
                             </ol>
                         </div>
                     </div>
@@ -190,10 +268,12 @@
                     <!--    Sub-Section Tabs    -->
                     <ul class="nav nav-tabs nav-justified">
                         <li :class="[subSection[2] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
-                            <a data-toggle="tab" href="#divergenceDifferential" @click="subScrollTo(3); subSection[2]=1; $forceUpdate();">Differential</a>
+                            <a data-toggle="tab" href="#divergenceDifferential"
+                               @click="subScrollTo(3); subSection[2]=1; $forceUpdate();">Differential</a>
                         </li>
                         <li :class="[subSection[2] === 2 ? 'shaded' : '', 'tabRight']">
-                            <a data-toggle="tab" href="#divergenceIntegral" @click="subScrollTo(3); subSection[2]=2; $forceUpdate();">Integral</a>
+                            <a data-toggle="tab" href="#divergenceIntegral"
+                               @click="subScrollTo(3); subSection[2]=2; $forceUpdate();">Integral</a>
                         </li>
                     </ul>
                     <!--    Sub-Section Text Containers    -->
@@ -202,35 +282,51 @@
                             <h3 class="section-sub-head first-sub-head">
                                 What is divergence?
                             </h3>
-                            The divergence of a field quantifies how much a field varies in the direction of the field lines. A
-                            field is said to be diverging if the field strength changes as you step along field lines. On an
-                            infinitesimal level, this may be interpreted as 'sources' of field strength 'creating' or 'destroying'
-                            field lines. It may be calculated using the <span class="mathJaxInline">$ \nabla $</span> operator on a vector field to generate
-                            a scalar field. The Visualisation on the right shows an infinitesimal section of a surface (the y axis).
+                            The divergence of a field quantifies how much a field varies in the direction of the field
+                            lines. A
+                            field is said to be diverging if the field strength changes as you step along field lines.
+                            On an
+                            infinitesimal level, this may be interpreted as 'sources' of field strength 'creating' or
+                            'destroying'
+                            field lines. It may be calculated using the <span class="mathJaxInline">$ \nabla $</span>
+                            operator on a vector field to generate
+                            a scalar field. The Visualisation on the right shows an infinitesimal section of a surface
+                            (the y axis).
                             <br><br>
-                            The arrows show the direction of the field lines while their thickness and colour represent the field strength. Use the
-                            <span class="mathJaxInline">$ \nabla $</span> slider to understand the difference between positive and negative divergence.
+                            The arrows show the direction of the field lines while their thickness and colour represent
+                            the field strength. Use the
+                            <span class="mathJaxInline">$ \nabla $</span> slider to understand the difference between
+                            positive and negative divergence.
                             <br><br>
-                            Divergence may also occur if there are sources of field lines (e.g. monopoles) that increase/decrease the
-                            line density of a field, as shown by the figure to the right. The source of divergence adds field lines whereas
-                            the sink takes them away. Hence the source has a positive divergence and the sink has a negative divergence.
+                            Divergence may also occur if there are sources of field lines (e.g. monopoles) that
+                            increase/decrease the
+                            line density of a field, as shown by the figure to the right. The source of divergence adds
+                            field lines whereas
+                            the sink takes them away. Hence the source has a positive divergence and the sink has a
+                            negative divergence.
                         </div>
                         <div id="divergenceIntegral" class="tab-pane fade">
                             <h3 class="section-sub-head first-sub-head">
                                 Flux - the flow of field lines
                             </h3>
-                            We often call <span class="mathJaxInline">$ \mathbf{F} \cdot d\mathbf{S} $</span> the flux of field <span class="mathJaxInline">$ \mathbf{F} $</span> perpendicular through a surface element <span class="mathJaxInline">$ d\mathbf{S} $</span>.
-                            In this visualisation, the green line can be thought as taking the side view of the surface element.
+                            We often call <span class="mathJaxInline">$ \mathbf{F} \cdot d\mathbf{S} $</span> the flux
+                            of field <span class="mathJaxInline">$ \mathbf{F} $</span> perpendicular through a surface
+                            element <span class="mathJaxInline">$ d\mathbf{S} $</span>.
+                            In this visualisation, the green line can be thought as taking the side view of the surface
+                            element.
                             <br><br>
-                            The <b>net</b> flux through any surface <span class="mathJaxInline">$ \mathbf{S} $</span> is given by the integral:
+                            The <b>net</b> flux through any surface <span class="mathJaxInline">$ \mathbf{S} $</span> is
+                            given by the integral:
                             <span class="mathJaxDisplay">
                                 $$\iint_S \mathbf{F} \cdot d\mathbf{S}$$
                             </span>
-                            By considering a <b>closed</b> surface, the Divergence Theorem relates the net flux to the divergence of the field:
+                            By considering a <b>closed</b> surface, the Divergence Theorem relates the net flux to the
+                            divergence of the field:
                             <span class="mathJaxDisplay">
                                 $$ {\large\bigcirc}\kern-1.55em\iint_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V \nabla \cdot \mathbf{F} dV $$
                             </span>
-                            An <a href="Visualisations/Static-Electromagnetism/EM_p1.html">example</a> of the Divergence Theorem is Maxwell's Equation.
+                            An <a href="Visualisations/Static-Electromagnetism/EM_p1.html">example</a> of the Divergence
+                            Theorem is Maxwell's Equation.
                         </div>
                     </div>
                 </div>
@@ -247,10 +343,12 @@
                     <!--    Sub-Section Tabs    -->
                     <ul class="nav nav-tabs nav-justified">
                         <li :class="[subSection[3] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
-                            <a data-toggle="tab" href="#curlDifferential" @click="subScrollTo(4); subSection[3]=1; $forceUpdate();">Differential</a>
+                            <a data-toggle="tab" href="#curlDifferential"
+                               @click="subScrollTo(4); subSection[3]=1; $forceUpdate();">Differential</a>
                         </li>
                         <li :class="[subSection[3] === 2 ? 'shaded' : '', 'tabRight']">
-                            <a data-toggle="tab" href="#curlIntegral" @click="subScrollTo(4); subSection[3]=2; $forceUpdate();">Integral</a>
+                            <a data-toggle="tab" href="#curlIntegral"
+                               @click="subScrollTo(4); subSection[3]=2; $forceUpdate();">Integral</a>
                         </li>
                     </ul>
                     <!--    Sub-Section Text Containers    -->
@@ -263,14 +361,18 @@
                             It can be seen as the tendency of rotation at a point in the vector field.
                             Curl exists in circulation field such as a vortex.
                             <br><br>
-                            However, curl can still manifest in a  non "circulation-looking" vector field like the one on the right.
-                            Consider a microscopic point placed in the vector field; if the field strength acting on the point varies
+                            However, curl can still manifest in a non "circulation-looking" vector field like the one on
+                            the right.
+                            Consider a microscopic point placed in the vector field; if the field strength acting on the
+                            point varies
                             at different parts of the point, it creates a tendency for the point to rotate.
                             <br><br>
                             This leads to another way of understanding curl:
                             <br><br>
-                            Imagine travelling over an infinitesimal distance in the direction perpendicular to the vector field at a point.
-                            If the field strength changes along this infinitesimal distance travelled, there is a non-zero curl at the point.
+                            Imagine travelling over an infinitesimal distance in the direction perpendicular to the
+                            vector field at a point.
+                            If the field strength changes along this infinitesimal distance travelled, there is a
+                            non-zero curl at the point.
                             <br><br>
                             <h3 class="section-sub-head">
                                 Visualisation Guide
@@ -279,12 +381,17 @@
                                 <li>A vector field is shown on the right. This field has a curl value as indicated.</li>
                                 <br>
                                 <li>Note that the field does not look like a "circulation".
-                                    However, as you move along a direction perpendicular to the vector field at any point,
-                                    there is a change in the magnitude of the vector field. this gives a paddle the tendency to rotate in such a field.</li>
+                                    However, as you move along a direction perpendicular to the vector field at any
+                                    point,
+                                    there is a change in the magnitude of the vector field. this gives a paddle the
+                                    tendency to rotate in such a field.
+                                </li>
                                 <br>
                                 <li>Adjust the slider until the value of curl is zero.
-                                    Note that the length of the arrows in the field are constant; there is no rotational tendency, only translation.
-                                    Hence, this is a curl-free field.</li>
+                                    Note that the length of the arrows in the field are constant; there is no rotational
+                                    tendency, only translation.
+                                    Hence, this is a curl-free field.
+                                </li>
                             </ol>
                         </div>
                         <div id="curlIntegral" class="tab-pane fade">
@@ -292,18 +399,23 @@
                             <span class="mathJaxDisplay">
                                 $$ \oint_{l} \mathbf {B} \cdot d\mathbf{l} = \iint_{S} \nabla \times \mathbf {B} \cdot d\mathbf{S} $$
                             </span>
-                            i.e. the closed loop integral of a vector field is equal to the sum of all the curl contained in the surface
+                            i.e. the closed loop integral of a vector field is equal to the sum of all the curl
+                            contained in the surface
                             enclosed by the loop.
                             <br><br>
                             This is demonstrated in the visualisation on the right, where the components of
-                            <span class="mathJaxInline">$ \mathbf {B} \cdot d\mathbf{l} $</span> as you go around the loop are shown in the plot at the bottom. The contributions are positive if
+                            <span class="mathJaxInline">$ \mathbf {B} \cdot d\mathbf{l} $</span> as you go around the
+                            loop are shown in the plot at the bottom. The contributions are positive if
                             the field and dl are pointing in the same direction.
                             <br><br>
                             When there is curl inside the loop then the overall loop integral is non-zero,
-                            since on all parts of the loop, the contributions to the integral from the curl source have the same sign; however
-                            when the curl source is outside of the loop, then the contributions cancel out and the net integral is zero.
+                            since on all parts of the loop, the contributions to the integral from the curl source have
+                            the same sign; however
+                            when the curl source is outside of the loop, then the contributions cancel out and the net
+                            integral is zero.
                             <br><br>
-                            This also demonstrates that the curl of a conservative field is zero, since any loop integral
+                            This also demonstrates that the curl of a conservative field is zero, since any loop
+                            integral
                             in a conservative field is also zero.
                             <br><br>
                             You can change the shape of the loop to see that this is true for any type of closed loop.
@@ -327,55 +439,60 @@
         </div>
         <!--    Space into which visualisations are loaded    -->
         <div id="rightloadSpace">
-        <!--    fade transition tag for RHS - applied by Vue and CSS    -->
-        <transition-group name="fade" tag="div" class="transition-container">
-            <!--    Interactive Zone Containers   -->
-            <div class="rightload" id="loadwait" key="loadwait" v-if="true">
-            <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-            </div>
-            <div class="rightload text odd" id='loadout1Container' key="loadout1Container" v-if="currentSection === 1">
-                <iframe src="right-0Intro.html" class="rightload text" id="iframe1"></iframe>
-            </div>
-            <div class="rightload text even" id='loadout2Container' key="loadout2Container" v-if="currentSection === 2">
-                <transition name="fade">
-                    <!--Interactive Zone Sub Containers-->
-                    <div class="rightload text" id='loadout2sub1Container' key="loadout2sub1Container" v-if="subSection[1] === 1">
-                        <iframe src="right-1aGrad.html" class="rightload text" id="iframe2-1"></iframe>
+            <!--    fade transition tag for RHS - applied by Vue and CSS    -->
+            <transition-group name="fade" tag="div" class="transition-container">
+                <!--    Interactive Zone Containers   -->
+                <div class="rightload" id="loadwait" key="loadwait" v-if="true">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
                     </div>
-                    <div class="rightload text" id='loadout2sub2Container' key="loadout2sub2Container" v-else>
-                        <iframe src="right-1bGrad.html" class="rightload text" id="iframe2-2"></iframe>
-                    </div>
-                </transition>
-            </div>
-            <div class="rightload text odd" id='loadout3Container' key="loadout3Container" v-if="currentSection === 3">
-                <transition name="fade">
-                    <!--Interactive Zone Sub Containers-->
-                    <div class="rightload text" id='loadout3sub1Container' key="loadout3sub1Container" v-if="subSection[2] === 1">
-                        <iframe src="right-2aDiv.html" class="rightload text" id="iframe3-1"></iframe>
-                    </div>
-                    <div class="rightload text" id='loadout3sub2Container' key="loadout3sub2Container" v-else>
-                        <iframe src="right-2bDiv.html" class="rightload text" id="iframe3-2"></iframe>
-                    </div>
-                </transition>
-            </div>
-            <div class="rightload text even" id='loadout4Container' key="loadout4Container" v-if="currentSection === 4">
-                <transition name="fade">
-                    <!--Interactive Zone Sub Containers-->
-                    <div class="rightload text" id='loadout4sub1Container' key="loadout4sub1Container" v-if="subSection[3] === 1">
-                        <iframe src="right-3aCurl.html" class="rightload text" id="iframe4-1"></iframe>
-                    </div>
-                    <div class="rightload text" id='loadout4sub2Container' key="loadout4sub2Container" v-else>
-                        <iframe src="right-3bCurl.html" class="rightload text" id="iframe4-2"></iframe>
-                    </div>
-                </transition>
-            </div>
-        </transition-group>
+                </div>
+                <div class="rightload text odd" id='loadout1Container' key="loadout1Container"
+                     v-if="currentSection === 1">
+                    <iframe src="right-0Intro.html" class="rightload text" id="iframe1"></iframe>
+                </div>
+                <div class="rightload text even" id='loadout2Container' key="loadout2Container"
+                     v-if="currentSection === 2">
+                    <transition name="fade">
+                        <!--Interactive Zone Sub Containers-->
+                        <div class="rightload text" id='loadout2sub1Container' key="loadout2sub1Container"
+                             v-if="subSection[1] === 1">
+                            <iframe src="right-1aGrad.html" class="rightload text" id="iframe2-1"></iframe>
+                        </div>
+                        <div class="rightload text" id='loadout2sub2Container' key="loadout2sub2Container" v-else>
+                            <iframe src="right-1bGrad.html" class="rightload text" id="iframe2-2"></iframe>
+                        </div>
+                    </transition>
+                </div>
+                <div class="rightload text odd" id='loadout3Container' key="loadout3Container"
+                     v-if="currentSection === 3">
+                    <transition name="fade">
+                        <!--Interactive Zone Sub Containers-->
+                        <div class="rightload text" id='loadout3sub1Container' key="loadout3sub1Container"
+                             v-if="subSection[2] === 1">
+                            <iframe src="right-2aDiv.html" class="rightload text" id="iframe3-1"></iframe>
+                        </div>
+                        <div class="rightload text" id='loadout3sub2Container' key="loadout3sub2Container" v-else>
+                            <iframe src="right-2bDiv.html" class="rightload text" id="iframe3-2"></iframe>
+                        </div>
+                    </transition>
+                </div>
+                <div class="rightload text even" id='loadout4Container' key="loadout4Container"
+                     v-if="currentSection === 4">
+                    <transition name="fade">
+                        <!--Interactive Zone Sub Containers-->
+                        <div class="rightload text" id='loadout4sub1Container' key="loadout4sub1Container"
+                             v-if="subSection[3] === 1">
+                            <iframe src="right-3aCurl.html" class="rightload text" id="iframe4-1"></iframe>
+                        </div>
+                        <div class="rightload text" id='loadout4sub2Container' key="loadout4sub2Container" v-else>
+                            <iframe src="right-3bCurl.html" class="rightload text" id="iframe4-2"></iframe>
+                        </div>
+                    </transition>
+                </div>
+            </transition-group>
+        </div>
     </div>
-    </div>
-    <div class="rightScriptSpace scriptSpace"></div>
-    <div class="rightSubScriptSpace scriptSpace"></div>
 </div>
 </body>
 <script src="scripts/nav_Script.js"></script>

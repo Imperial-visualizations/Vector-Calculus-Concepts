@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--Page Info-->
+    <title>Introduction - Vector Calculus</title>
+    <!--css link-->
+    <link rel="stylesheet" href="styles/skeleton.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <!--Required JS resources-->
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="scripts/p5.min.js"></script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script language="javascript" type="text/javascript" src="scripts/p5.dom.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+</head>
+
+
+<body style="overflow: scroll">
+
+  <!--Text for left 1/3-->
+  <div id="Vis_text" class="container_journey" style="height:100vh">
+      <h5>Introduction</h5>
+      <p>
+          <strong>Nabla - </strong> is an object denoted with the $\nabla$ symbol. In cartesian coordinates
+          it is defined as<br>
+          $\displaystyle \nabla = \mathbf{i} \frac{\partial}{\partial x} + \mathbf{j} \frac{\partial}{\partial y} + \mathbf{k} \frac{\partial}{\partial z}$<br>
+          (The definition varies depending on the coordinate system).<br>
+          It allows us to calculate the slope of a field, and specify three
+          useful operators which can act on vector or scalar fields: gradient, divergence and curl.
+          <br><br>
+          The gradient of a scalar field, $F$ is represented as $\nabla F$ and gives a vector as the result.<br>
+          The divergence of a vector field $\mathbf{F}$ is represented as $\nabla \cdot \mathbf{F}$ and, when applied to a point, gives a scalar as the result. <br>
+          The curl of a vector field $\mathbf{F}$ is represented as $\nabla \times \mathbf{F}$ and, when applied to a point, returns a vector.
+          <br><br>
+          If the divergence and curl of a vector field are known, then these contain all the necessary information to
+          reconstruct the original field.
+          <br><br>
+          The divergence theorem can be used to convert between integral (macroscopic) and differential (microscopic) forms of equations involving divergence,
+          whereas Stokes' Theorem is used to convert between integral and differential forms of equations involving curl.
+
+      </p>
+
+  </div>
+
+</body>
+
+
+
+</html>

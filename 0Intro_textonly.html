@@ -38,27 +38,34 @@
      <center><h4>Introduction to Vector Calculus</h4></center>
         In vector calculus, there are three important operations that are related to $\nabla$, the vector differential operator.
         $\nabla$ can be operated on both scalar and vector fields.
-        <h6>What is a Scalar Field? $f( \mathbf{r} )$</h6>
+        <h6>Scalar Field $\Omega( \mathbf{r} )$</h6>
             A scalar field is a function that outputs a scalar value, given $n$ independent variables in $\mathbb{R}^n$.
             It assigns a scalar value to every point in space. A nice example of a scalar field is an elevation map as seen on the right.
             The elevation value, which is a scalar value, depends on the $x$ and $y$ coordinate values on the map.
             Countour lines or colours are usually used to represent the "height" of the function value, as seen in the map.
+            Some other examples of scalar fields are temperature of a room, pressure distribution in a fluid etc.
         <br>
-        Imagine travelling over an infinitesimal distance in the direction perpendicular to the vector field at a point.
-        If the field strength changes along this infinitesimal distance travelled, there is a non-zero curl at the point.
+        <h6>Vector Field $\mathbf{f}( \mathbf{r} )$</h6>
+            A vector field is very similar to a scalar field, except that the function outputs a vector, given $n$ independent variables in $\mathbb{R}^n$.
+            It is used to represent vectorial information.
+            For example, the ocean current map on the right is an example of a vector field that depends on the x and y coordinates.
+            At any position, the function assigns a vector that indicates the magnitude and direction of the ocean current.
+            Other examples of vector fields are electric and magnetic fields.
         <br>
-        The direction of the curl vector, by convention, follows the right hand rule.
-        In the field on the right, curl points out of the page when the rotational tendency is clockwise, and vice versa.
-        <h6>Visualisation Guide</h6>
-        <ol>
-            <li>A vector field is shown on the right. This field has a curl value as indicated.</li>
-            <li>Note that the field does not look like a "circulation".
-                However, as you move along a direction perpendicular to the vector field at any point,
-                there is a change in the magnitude of the vector field. this gives a paddle the tendency to rotate in such a field.</li>
-            <li>Adjust the slider until the value of curl is zero.
-                Note that the length of the arrows in the field are constant; there is no rotational tendency, only translation.
-                Hence, this is a curl-free field.</li>
-        </ol>
+        <h6>$\nabla \Omega,$ $\nabla \cdot \mathbf{f},$ $\nabla \times \mathbf{f}$</h6>
+        In 3D Cartesian coordinates, $\nabla$ is given by
+        $$ \nabla = \mathbf{\hat{i}} \frac {\partial}{\partial x} + \mathbf{\hat{j}} \frac {\partial}{\partial y} + \mathbf{\hat{k}} \frac {\partial}{\partial z} $$
+        . $\nabla$ operates on a scalar field $\Omega$ in one way, that is:
+        $$\nabla \Omega$$
+        . This returns a vector field, which is the gradient field of $\Omega$.
+        On the other hand, $\nabla$ can operate on a vector field $\mathbf{f}$ in two ways, namely
+        $$\nabla \cdot \mathbf{f}$$ and $$\nabla \times \mathbf{f}$$,
+        which give the divergence (scalar) and the curl (vector) of a vector field respectively.
+        <br>
+        In this visualisation suite, we will be placing our focus on the intuition of grad, divergence and curl
+        instead of their mathematical derivations in the following sections,
+        in order to provide a physical intuition to what $\nabla$ means, both microscopically and macroscopically.
+
 </div>
 
 </body>

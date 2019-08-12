@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <!--Page Info-->
-    <title>Vector Calculus Introduction</title>
+    <title>Curl</title>
     <!--css link-->
     <link rel="stylesheet"
           href="styles/skeleton.css">
@@ -31,34 +31,35 @@
     </script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
-
 <body>
 
-<div class="container_journey">
-     <center><h4>Curl Operator, $\nabla \times \mathbf{f} $</h4></center>
-        Curl is a vector operator that describes the infinitesimal rotation of a vector field.
-        It can be seen as the tendency of rotation at a point in the vector field.
-        Curl exists in circulation field such as a vortex.
-        However, curl can still manifest in a  non "circulation-looking" vector field like the one on the right.
-        Consider a microscopic point placed in the vector field; if the field strength acting on the point varies
-        at different parts of the point, it creates a tendency for the point to rotate.
-        This leads to another way of understanding curl:
-        <br>
-        Imagine travelling over an infinitesimal distance in the direction perpendicular to the vector field at a point.
-        If the field strength changes along this infinitesimal distance travelled, there is a non-zero curl at the point.
-        <br>
-        The direction of the curl vector, by convention, follows the right hand rule.
-        In the field on the right, curl points out of the page when the rotational tendency is clockwise, and vice versa.
-        <h6>Visualisation Guide</h6>
-        <ol>
-            <li>A vector field is shown on the right. This field has a curl value as indicated.</li>
-            <li>Note that the field does not look like a "circulation".
-                However, as you move along a direction perpendicular to the vector field at any point,
-                there is a change in the magnitude of the vector field. this gives a paddle the tendency to rotate in such a field.</li>
-            <li>Adjust the slider until the value of curl is zero.
-                Note that the length of the arrows in the field are constant; there is no rotational tendency, only translation.
-                Hence, this is a curl-free field.</li>
-        </ol>
-</div>
 
+    <div style="width: 65%; float:right">
+        <div style="width: 30%; float:left">
+            <label for="scalar" class="radio">
+              <input type="radio" id="scalar" value="scalar" name="wave-switch" checked="checked">
+              <span>Scalar Field (Elevation Map of Europe)</span>
+            </label>
+            <label for="vector" class="radio">
+              <input type="radio" id="vector" value="vector" name="wave-switch" >
+              <span>Vector Field (Ocean Currents)</span>
+            </label>
+        </div>
+
+        <div style="width:70%; float: right;">
+                <img id = "scalarFieldImage" style="float:left; width:90vh;" src="0scalar_field.jpg" alt = "Elevation Map of Europe">
+        </div>
+        <div style="width:70%; float: right;">
+                <img id = "vectorFieldImage" style="float:left; width:90vh;" src="0vector_field.png" alt = "Ocean Currents">
+        </div>
+    </div>
+
+
+
+
+
+<!--THE BRAINS-->
+<script src=scripts/0Intro.js></script>
+<!--<script src=scripts/VC_object.js></script>-->
 </body>
+</html>

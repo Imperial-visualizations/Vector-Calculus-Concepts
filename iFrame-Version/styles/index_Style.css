@@ -438,8 +438,14 @@ i {
 }
 
 .spinner-border {
-    width: 2vw;
-    height: 2vw;
+    width: 2vh;
+    height: 2vh;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -1vh;
+    margin-top: -1vh;
+    z-index: -10;
 }
 
 .scriptSpace {

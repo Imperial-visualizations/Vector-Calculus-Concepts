@@ -44,10 +44,18 @@
 
     <!--Graph 1-->
     <h4 class="graph1Title"> $$ \Omega (x,y) $$ </h4>
-    <div id='Vector_Graph_1b'></div>
+    <div id='Vector_Graph_1b'>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
     <!--Graph 2-->
     <h4 class="graph2Title"> $$ \nabla \Omega (x,y) $$ </h4>
-    <div id='Scalar_Graph_1b'> </div>
+    <div id='Scalar_Graph_1b'>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
 
 
     <div class="inputsContainer">
@@ -107,56 +115,36 @@
         </div>
     </div>
 
-    <div id=""eqConSec2b class="equationContainer">
-        <div id="scroll">
-            <div class="scroll-down">
-                <strong>Select Function: </strong>
-                <select id="Function_Selector">
-                    <option value="Gaussian">Gaussian</option>
-                    <option value="Reciprocal">Reciprocal</option>
-                    <option value="Sinusodial">Sinusodial</option>
-                </select>
-            </div>
+    <div id="scroll">
+        <div class="scroll-down">
+            <strong>Select Function: </strong>
+            <select id="Function_Selector">
+                <option value="Gaussian">Gaussian</option>
+                <option value="Reciprocal">Reciprocal</option>
+                <option value="Sinusoidal">Sinusoidal</option>
+            </select>
         </div>
-        <div>
-            <div id="Reciprocal_eqn_1b">
-                $$\Omega(x,y)= \frac{4a}{ \sqrt{x^2 + y^2} }$$
-            </div>
-
-            <div id="Gaussian_eqn_1b">
-                $$\Omega(x,y) = ae^{-\frac{x^2+y^2}{200}}$$
-            </div>
-
-            <div id="Sinusodial_eqn_1b">
-                $$\Omega(x,y)= \frac{4}{5} a\sin \Big( \frac{2 \pi}{12}y \Big) $$
-            </div>
-        </div>
-        <div>
-            <div id="Grad_Reciprocal_eqn_1b">
-                $$\displaystyle \nabla \Omega = - \frac{a}{ (x^2 +y^2)^ {\frac{3}{2}} } (x \mathbf{\hat{i}} + y
-                \mathbf{\hat{j}} )$$
-            </div>
-
-            <div id="Grad_Gaussian_eqn_1b">
-                $$ \displaystyle \nabla \Omega = \frac{-a}{100}e^{-\frac{x^2+y^2}{200}}(x \mathbf{\hat{i}} + y
-                \mathbf{\hat{j}}) $$
-            </div>
-
-            <div id="Grad_Sinusodial_eqn_1b">
-                $$\displaystyle \nabla \Omega = \frac{2 \pi}{15} a \cos \Big( \frac{2 \pi}{12} y \Big)
-                \mathbf{\hat{j}}$$
-            </div>
-        </div>
-
-
     </div>
-
-
-
-
-
-
-
+    <div id=""eqConSec2b class="equationContainer">
+        <div id="Reciprocal_eqn_1b">
+            <img src="Reciprocal_eqn_1b.png">
+        </div>
+        <div id="Gaussian_eqn_1b">
+            <img src="Gaussian_eqn_1b.png">
+        </div>
+        <div id="Sinusoidal_eqn_1b">
+            <img src="Sinusoidal_eqn_1b.png">
+        </div>
+        <div id="Grad_Reciprocal_eqn_1b">
+            <img src="Grad_Reciprocal_eqn_1.png">
+        </div>
+        <div id="Grad_Gaussian_eqn_1b">
+            <img src="Grad_Gaussian_eqn_1b.png">
+        </div>
+        <div id="Grad_Sinusoidal_eqn_1b">
+            <img src="Grad_Sinusoidal_eqn_1b.png">
+        </div>
+    </div>
 </body>
 <script src="scripts/VC-scripts/1bGrad.js"></script>
 </html>

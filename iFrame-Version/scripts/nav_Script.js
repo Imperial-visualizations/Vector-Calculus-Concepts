@@ -21,33 +21,8 @@ let app = new Vue ({
         n: "",
         journeyHeightOld: "",
         journeyHeightNew: "",
-        rightScripts: [
-            ["scripts/VC-scripts/0Intro.js"],
-            [],
-            [],
-            [],
-            [],
-        ],
         firstRunDone: false,
         subSection: [false,1,1,1],
-        rightSubScripts: [
-            [
-                [],
-                [],
-            ],
-            [
-                ["scripts/VC-scripts/1aGrad.js"],
-                ["scripts/VC-scripts/1bGrad.js"],
-            ],
-            [
-                [],
-                [],
-            ],
-            [
-                [],
-                [],
-            ],
-        ],
     },
 
     methods: {
@@ -122,22 +97,6 @@ let app = new Vue ({
             }
         },
 
-        // Removes and adds scripts depending on which section and subsection is active
-        loadSubScripts: debounce (function () {
-            document.querySelectorAll('.rightSubScriptSpace')[0].innerHTML = "";
-            console.log("section " + app.currentSection + " recognised");
-            console.log("subsection " + app.subSection[app.currentSection - 1] + " recognised");
-            for (let k = 1; k <= app.rightSubScripts[app.currentSection - 1][app.subSection[app.currentSection - 1] - 1].length; k++) {
-                console.log("subScriptNo " + k + " recognised");
-                app.addScript = document.createElement("script");
-                app.addScript.id = "rightSubScriptS" + app.currentSection + "." + app.subSection[app.currentSection - 1] + "E" + k;
-                app.addScript.src = (app.rightSubScripts[app.currentSection - 1][app.subSection[app.currentSection - 1] - 1][k - 1]);
-                app.addScript.async = false;
-                document.querySelectorAll('.rightSubScriptSpace')[0].appendChild(app.addScript);
-                // Antoine: added this line to make MathJax load, don't know if there is a better way of doing this
-                MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'right-container']);  }
-        }, 200),
-
         // Updates number of title being hovered over in nav/progress bar in data
         hoverPosUpdate: function (event) {
             app.hoverPos = parseFloat(event.currentTarget.dataset.no)
@@ -173,28 +132,8 @@ let app = new Vue ({
 
         // Updates current section title to display in full in nav/progress bar whilst minimising other section titles
         currentTitle: function (newValue, oldValue) {
-
             app.swapTitles(newValue, oldValue)
         },
-
-        // Removes and adds scripts depending on which section is at top of visible part of journey and which tab is open
-        currentSection: function (newValue, oldValue) {
-
-            document.querySelectorAll('.rightScriptSpace')[0].innerHTML = "";
-            for (let i=1; i<=app.rightScripts[newValue-1].length; i++) {
-                app.addScript = document.createElement("script");
-                app.addScript.id ="rightScriptS" + newValue + "E" + i;
-                app.addScript.src = (app.rightScripts[newValue-1][i-1]);
-                app.addScript.async = false;
-                document.querySelectorAll('.rightScriptSpace')[0].appendChild(app.addScript);
-            }
-
-            if (newValue !== 1) {
-                app.loadSubScripts();
-            } else {
-                document.querySelectorAll('.rightSubScriptSpace')[0].innerHTML = "";
-            }
-        }
     },
 
     mounted () {

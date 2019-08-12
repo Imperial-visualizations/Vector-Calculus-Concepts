@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ab84a33-3352-4538-bf0c-005f2739d42b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Vector-Calculus-Concepts.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/right-1aGrad.html" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/right-1aGrad.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/right-1bGrad.html" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/right-1bGrad.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/right-2aDiv.html" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/right-2aDiv.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/right-2bDiv.html" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/right-2bDiv.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/right-3bCurl.html" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/right-3bCurl.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1aGrad.js" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1aGrad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1bGrad.js" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1bGrad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/3bCurl.js" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/3bCurl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/styles/index_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/styles/index_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iFrame-Version/scripts/nav_Script.js" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/scripts/nav_Script.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -144,11 +139,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/iFrame-Version/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="96">
-                  <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+                <state relative-caret-position="79">
+                  <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
                   <folding>
                     <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
                     <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
@@ -228,8 +223,17 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="536">
+                <state relative-caret-position="11441">
                   <caret line="673" column="1" selection-start-line="673" selection-start-column="1" selection-end-line="673" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/nav_Script.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2669">
+                  <caret line="157" column="3" lean-forward="true" selection-start-line="157" selection-start-column="3" selection-end-line="157" selection-end-column="3" />
                 </state>
               </provider>
             </entry>
@@ -314,7 +318,6 @@
         <option value="$PROJECT_DIR$/styles/loadout_Style.css" />
         <option value="$PROJECT_DIR$/../Fourier-Series/iFrame-Version/index.html" />
         <option value="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/3aCurl.js" />
-        <option value="$PROJECT_DIR$/iFrame-Version/scripts/nav_Script.js" />
         <option value="$PROJECT_DIR$/iFrame-Version/right-0Intro.html" />
         <option value="$PROJECT_DIR$/iFrame-Version/right-3aCurl.html" />
         <option value="$PROJECT_DIR$/VC/2aDiv_interactive.html" />
@@ -333,6 +336,7 @@
         <option value="$PROJECT_DIR$/iFrame-Version/styles/index_Style.css" />
         <option value="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/3bCurl.js" />
         <option value="$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css" />
+        <option value="$PROJECT_DIR$/iFrame-Version/scripts/nav_Script.js" />
       </list>
     </option>
   </component>
@@ -346,6 +350,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -391,7 +396,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -454,16 +458,18 @@
       <workItem from="1565285260756" duration="9219000" />
       <workItem from="1565345601728" duration="21233000" />
       <workItem from="1565371731122" duration="48000" />
+      <workItem from="1565606467998" duration="479000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150712000" />
+    <option name="totallyTimeSpent" value="151191000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.3097998" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.17913593" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1103,13 +1109,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/nav_Script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3094">
-          <caret line="182" column="46" selection-start-line="182" selection-start-column="46" selection-end-line="182" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VC/3bCurl_interactive.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="841">
@@ -1270,15 +1269,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
+        <state relative-caret-position="11441">
           <caret line="673" column="1" selection-start-line="673" selection-start-column="1" selection-end-line="673" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/iFrame-Version/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+        <state relative-caret-position="79">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
           <folding>
             <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
             <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
@@ -1342,6 +1341,13 @@
             <element signature="n#a#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#transition-group#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/nav_Script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2669">
+          <caret line="157" column="3" lean-forward="true" selection-start-line="157" selection-start-column="3" selection-end-line="157" selection-end-column="3" />
         </state>
       </provider>
     </entry>

@@ -35,9 +35,38 @@
   });
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="scripts/VC-scripts/VC_object.js"></script>
+    <script src="scripts/VC-scripts/classes.js"></script>
 </head>
-<body id="loadout1">
+<body>
 
+<div style="margin-left: 3%; margin-top: 3%">
+
+        <div style="width: 30%; float:left">
+            <label for="scalar" class="radio">
+              <input type="radio" id="scalar" value="scalar" name="wave-switch" checked="checked">
+              <span>Scalar Field (Elevation Map of Europe)</span>
+            </label>
+            <label for="vector" class="radio">
+              <input type="radio" id="vector" value="vector" name="wave-switch" >
+              <span>Vector Field (Ocean Currents)</span>
+            </label>
+        </div>
+
+        <div style="width:70%; float: right;">
+                <img id = "scalarFieldImage" style="float:left; width:90vh;" src="0scalar_field.jpg" alt = "Elevation Map of Europe">
+        </div>
+        <div style="width:70%; float: right;">
+                <img id = "vectorFieldImage" style="float:left; width:90vh;" src="0vector_field.png" alt = "Ocean Currents">
+        </div>
+
+
+</div>
+
+
+
+<!--THE BRAINS-->
+<script src=scripts/VC-scripts/0Intro.js></script>
+<!--<script src=scripts/VC_object.js></script>-->
 </body>
-<script src="scripts/VC-scripts/VC_object.js"></script>
 </html>

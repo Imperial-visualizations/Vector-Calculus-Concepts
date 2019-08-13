@@ -1040,8 +1040,48 @@ function Arrow(x, y, length) {
 //$( ".container_vis" ).mouseenter(function(){doDraw = true;});
 //$( ".container_vis" ).mouseleave(function(){doDraw = false;});
 
+/**
+ * Represents a star.
+ * @constructor
+ * @param {float} x - x position of the center of the star.
+ * @param {float} y - y position of the center of the star.
+ * @param {float} radius1 - length of the centre of the star to the inner vertex.
+ * @param {float} radius2 - length of the centre of the star to the outer vertex.
+ * @param {float} npoints - number of the points of the star.
+ */
+function star(x,y,radius1, radius2, npoints, curl) {
+  let angle = TWO_PI / npoints;
+  let halfAngle = angle/2.0;
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += angle) {
+    let sx = x + cos(a) * radius2;
+    let sy = y + sin(a) * radius2;
+    vertex(sx, sy);
+    sx = x + cos(a+halfAngle) * radius1;
+    sy = y + sin(a+halfAngle) * radius1;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
+}
 
+function calculateCurl(x, y) {
+    B0 = calculateB(currentContainer, x ,y);
+    BdX = calculateB(currentContainer, x+10 ,y);
+    BdX2 = calculateB(currentContainer, x -10 ,y);
+    BdY = calculateB(currentContainer, x ,y+10);
+    BdY2 = calculateB(currentContainer, x ,y -10);
 
+    dByDx = BdX[1] - BdX2[1];
+    dBxDy = BdY[0] - BdY2[0];
+    //only component of curl going out/into page remains
+    curlB = (dByDx - dBxDy)*10000000;
+
+    if (Math.abs(curlB) < 0.1){curlB = 0};
+    //console.log(curlB);
+    return curlB;
+}
+
+let curl = 0;
 let done=false;
 function draw() {
     //if(doDraw || drawNumber < 2) {
@@ -1114,6 +1154,26 @@ function draw() {
             $( "#circuitSelectList, #diameterSlider, #currentSlider, #buttonAddWire, #buttonRemoveWires" ).prop( "disabled", false );
 
         }
+    }
+
+
+
+    //draw the paddle wheel, make it update with mouse position
+    if (mouseY < height){
+        push();
+        currentCurl = calculateCurl(mouseX, mouseY);
+        curl = curl + currentCurl;
+        translate(mouseX, mouseY);
+
+        if (currentCurl < 0){
+            rotate(-curl);
+            //fill(200,10,255)
+        }else if (currentCurl > 0){
+            rotate(-curl);
+            //fill(200,255,10)
+        }
+        star(0, 0, 5, 20, 4, curl);
+        pop();
     }
 
     /* //Draw Path for debugging

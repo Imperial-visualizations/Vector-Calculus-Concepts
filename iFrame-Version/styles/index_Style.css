@@ -5,6 +5,11 @@
     font-family: "Fira Sans", sans-serif;
 }
 
+.mathJaxHeading {
+    font-size: 1.6vw;
+    padding: 0 1vw;
+}
+
 .mathJaxDisplay {
     display: table;
     margin: 10px auto;

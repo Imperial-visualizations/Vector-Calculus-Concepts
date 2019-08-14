@@ -76,6 +76,11 @@
                         @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
                     {{sectionTitle[3]}}
                 </button>
+                <button :class="[currentTitle === 5 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle5"
+                        key="sectionTitle5" data-no=5 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[4]}}
+                </button>
             </div>
             <!--    Dynamic meters indicating progress through each section    -->
             <meter :class="[currentTitle === 1 ? 'activeMeter' : '']" id="m1" :min="sectionTops[0]"
@@ -86,6 +91,8 @@
                    :max="sectionBottoms[2]" :value="scrollPos"></meter>
             <meter :class="[currentTitle === 4 ? 'activeMeter' : '']" id="m4" :min="sectionTops[3]"
                    :max="sectionBottoms[3]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 5 ? 'activeMeter' : '']" id="m5" :min="sectionTops[4]"
+                   :max="sectionBottoms[4]" :value="scrollPos"></meter>
             <div id="banner-dummy"></div>
         </div>
         <!--    Container for text content split into sections    -->
@@ -217,39 +224,56 @@
                                 Visualisation Guide
                             </h3>
                             <ol>
-                                <li>On the right, you can see a gradient field and its scalar parent function.
-                                    Change the value of the parameter <span class="mathJaxInline">$ a $</span>, and
-                                    observe the change in <span class="mathJaxInline">$ \nabla \Omega $</span> and <span
-                                            class="mathJaxInline">$ \Omega $</span>.
+                                <li>
+                                    <p>
+                                        On the right, you can see a gradient field and its scalar parent function.
+                                        Change the value of the parameter <span class="mathJaxInline">$ a $</span>, and
+                                        observe the change in <span class="mathJaxInline">$ \nabla \Omega $</span> and
+                                        <span class="mathJaxInline">$ \Omega $</span>.
+                                    </p>
                                 </li>
-                                <br>
-                                <li>Note that as the magnitude of <span class="mathJaxInline">$ a $</span> increases,
-                                    the length of the arrows in <span class="mathJaxInline">$ \nabla \Omega $</span>
-                                    increases and the contour of the parent function
-                                    <span class="mathJaxInline">$ \Omega $</span> becomes steeper as well. Hence, the
-                                    gradient vector increases in magnitude as well.
+                                <li>
+                                    <p>
+                                        Note that as the magnitude of <span class="mathJaxInline">$ a $</span> increases,
+                                        the length of the arrows in <span class="mathJaxInline">$ \nabla \Omega $</span>
+                                        increases and the contour of the parent function
+                                        <span class="mathJaxInline">$ \Omega $</span> becomes steeper as well. Hence,
+                                        the gradient vector increases in magnitude as well.
+                                    </p>
                                 </li>
-                                <br>
-                                <li>All gradient fields shown in this suite are conservative. This means that the line
-                                    integral along the field,
-                                    <span class="mathJaxInline">$ \int \nabla \Omega \cdot d\mathbf{l} $</span> is path
-                                    independent. Move the path of the ball from Point A to Point B
-                                    along 2 different paths, Path 1 and Path 2.
+                                <li>
+                                    <p>
+                                        All gradient fields shown in this suite are conservative. This means that the
+                                        line
+                                        integral along the field,
+                                        <span class="mathJaxInline">$ \int \nabla \Omega \cdot d\mathbf{l} $</span> is
+                                        path
+                                        independent. Move the path of the ball from Point A to Point B
+                                        along 2 different paths, Path 1 and Path 2.
+                                    </p>
                                 </li>
-                                <br>
-                                <li>Observe their function values. Note that along the path, the value of <span
-                                        class="mathJaxInline">$ \Omega $</span> may be different.
-                                    However, when the balls reach Point B, their function values are equal.
+                                <li>
+                                    <p>
+                                        Observe their function values. Note that along the path, the value of <span
+                                            class="mathJaxInline">$ \Omega $</span> may be different.
+                                        However, when the balls reach Point B, their function values are equal.
+                                    </p>
                                 </li>
-                                <br>
-                                <li>This means that the line integral <span class="mathJaxInline">$ \int _A ^B \nabla \Omega \cdot d\mathbf{l} $</span>
-                                    is determined
-                                    only by the value of <span class="mathJaxInline">$ \Omega $</span> at the limits,
-                                    <span class="mathJaxInline">$ \Omega_B - \Omega_A $</span>.
+                                <li>
+                                    <p>
+                                        This means that the line integral <span class="mathJaxInline">$ \int _A ^B \nabla \Omega \cdot d\mathbf{l} $</span>
+                                        is determined
+                                        only by the value of <span class="mathJaxInline">$ \Omega $</span> at the
+                                        limits,
+                                        <span class="mathJaxInline">$ \Omega_B - \Omega_A $</span>.
+                                    </p>
                                 </li>
-                                <br>
-                                <li>There are a few other functions for you to play around with. Click the dropdown menu
-                                    to find out.
+                                <li>
+                                    <p>
+                                        There are a few other functions for you to play around with. Click the dropdown
+                                        menu
+                                        to find out.
+                                    </p>
                                 </li>
                             </ol>
                         </div>
@@ -280,30 +304,48 @@
                     <div class="tab-content">
                         <div id="divergenceDifferential" class="tab-pane fade in active show">
                             <h3 class="section-sub-head first-sub-head">
-                                What is divergence?
+                                Divergence Operator: <span class="mathJaxHeading">$ \nabla \cdot \mathbf{f} $</span>
                             </h3>
-                            The divergence of a field quantifies how much a field varies in the direction of the field
-                            lines. A
-                            field is said to be diverging if the field strength changes as you step along field lines.
-                            On an
-                            infinitesimal level, this may be interpreted as 'sources' of field strength 'creating' or
-                            'destroying'
-                            field lines. It may be calculated using the <span class="mathJaxInline">$ \nabla $</span>
-                            operator on a vector field to generate
-                            a scalar field. The Visualisation on the right shows an infinitesimal section of a surface
-                            (the y axis).
+                            Divergence is a vector operator that describes the quantity of a vector field at each point.
+                            It is the volume density of outward flux of a vector field at an infinitesimal volume around a point.
+                            This leads to another way of understanding divergence:
                             <br><br>
-                            The arrows show the direction of the field lines while their thickness and colour represent
-                            the field strength. Use the
-                            <span class="mathJaxInline">$ \nabla $</span> slider to understand the difference between
-                            positive and negative divergence.
+                            Imagine a point <span class="mathJaxInline">$ (x_A,y_A) $</span> in the vector field, which has a vector output assigned to it.
+                            If <span class="mathJaxInline">$ \nabla \cdot \mathbf{f}(x_A,y_A) \neq 0 $</span>, as we move along an
+                            infinitesimal distance parallel to the direction of the vector at the point (that is <span class="mathJaxInline">$ \mathbf{f}(x_A,y_A)) $</span>,
+                            there is a change in the magnitude of the output vector, which is the field strength. If divergence is positive, the field strength
+                            increases as we move in the direction of the vector at <span class="mathJaxInline">$ (x_A,y_A) $</span>. If divergence is negative, the field strength
+                            decreases as we move in the direction of the vector at the point.
                             <br><br>
-                            Divergence may also occur if there are sources of field lines (e.g. monopoles) that
-                            increase/decrease the
-                            line density of a field, as shown by the figure to the right. The source of divergence adds
-                            field lines whereas
-                            the sink takes them away. Hence the source has a positive divergence and the sink has a
-                            negative divergence.
+                            <h3 class="section-sub-head">
+                                Visualisation Guide
+                            </h3>
+                            <ol>
+                                <li>
+                                    <p>
+                                        A vector field is shown on the right. This field has a constant divergence value
+                                        as indicated.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Note that the field does not look like a "source" or "sink".
+                                        However, the field strength still changes along the x-direction, which indicates
+                                        a non-zero divergence.
+                                        As you move along a direction parallel to the vector field at any point,
+                                        there is a change in the magnitude of the vector field. We can imagine this as
+                                        if field lines are created or destroyed as we move along.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Adjust the slider until the value of divergence is zero.
+                                        Note that the length of the arrows in the field are constant; there is no
+                                        creation or destruction of field lines.
+                                        Hence, this is a divergence-free field.
+                                    </p>
+                                </li>
+                            </ol>
                         </div>
                         <div id="divergenceIntegral" class="tab-pane fade">
                             <h3 class="section-sub-head first-sub-head">
@@ -378,19 +420,29 @@
                                 Visualisation Guide
                             </h3>
                             <ol>
-                                <li>A vector field is shown on the right. This field has a curl value as indicated.</li>
-                                <br>
-                                <li>Note that the field does not look like a "circulation".
-                                    However, as you move along a direction perpendicular to the vector field at any
-                                    point,
-                                    there is a change in the magnitude of the vector field. this gives a paddle the
-                                    tendency to rotate in such a field.
+                                <li>
+                                    <p>
+                                        A vector field is shown on the right. This field has a curl value as
+                                        indicated.
+                                    </p>
                                 </li>
-                                <br>
-                                <li>Adjust the slider until the value of curl is zero.
-                                    Note that the length of the arrows in the field are constant; there is no rotational
-                                    tendency, only translation.
-                                    Hence, this is a curl-free field.
+                                <li>
+                                    <p>
+                                        Note that the field does not look like a "circulation".
+                                        However, as you move along a direction perpendicular to the vector field at any
+                                        point,
+                                        there is a change in the magnitude of the vector field. this gives a paddle the
+                                        tendency to rotate in such a field.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Adjust the slider until the value of curl is zero.
+                                        Note that the length of the arrows in the field are constant; there is no
+                                        rotational
+                                        tendency, only translation.
+                                        Hence, this is a curl-free field.
+                                    </p>
                                 </li>
                             </ol>
                         </div>
@@ -421,6 +473,36 @@
                             You can change the shape of the loop to see that this is true for any type of closed loop.
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="section-container" id="sc5">
+                <div class="placeholder" id="ph5">
+                    <hr>
+                    <h2 class="text section-head" id="s5">
+                        {{sectionTitleLong[4]}}
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p5">
+                    In vector calculus, there are three important operations that are related to <span class="mathJaxInline">$ \nabla $</span>, the vector differential operator.
+                    <br><br>
+                    The three operations are gradient <span class="mathJaxInline">$ \nabla $</span>, divergence <span class="mathJaxInline">$ \nabla \cdot $</span> and curl <span class="mathJaxInline">$ \nabla \times $</span>.
+                    With these operations, we can specify any scalar field or vector field if given enough initial conditions.
+                    <br><br>
+                    To specify a scalar field, we need the value at a point and gradient of the entire space.
+                    To specify a vector field, we need the value at a point along with the divergence and curl of the entire space.
+                    <br><br>
+                    There are two theorems that connect these differential operations to integration.
+                    They are the Divergence Theorem:
+                    <span class="mathJaxDisplay">
+                        $$ {\large\bigcirc}\kern-1.55em\iint_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V \nabla \cdot \mathbf{F} dV $$
+                    </span>
+                    and Stoke's Theorem:
+                    <span class="mathJaxDisplay">
+                        $$ \oint_{l} \mathbf{A.dl} = \displaystyle \iint_{S} \nabla \times \mathbf {A} \cdot d\mathbf{S} $$
+                    </span>
+                    Vector calculus is used extensively in electromagnetic fields, gravitational fields and fluid flow.
+                    You may like to visit our electromagnetism visualisation suite on Maxwell's equations. (add link here)
                 </div>
             </div>
         </div>
@@ -470,7 +552,7 @@
                         <!--Interactive Zone Sub Containers-->
                         <div class="rightload text" id='loadout3sub1Container' key="loadout3sub1Container"
                              v-if="subSection[2] === 1">
-                            <iframe src="2aDiv_interactive_XK.html" class="rightload text" id="iframe3-1"></iframe>
+                            <iframe src="right-2aDiv.html" class="rightload text" id="iframe3-1"></iframe>
                         </div>
                         <div class="rightload text" id='loadout3sub2Container' key="loadout3sub2Container" v-else>
                             <iframe src="right-2bDiv.html" class="rightload text" id="iframe3-2"></iframe>
@@ -489,6 +571,10 @@
                             <iframe src="right-3bCurl.html" class="rightload text" id="iframe4-2"></iframe>
                         </div>
                     </transition>
+                </div>
+                <div class="rightload text odd" id='loadout5Container' key="loadout5Container"
+                     v-if="currentSection === 5">
+                    <iframe src="" class="rightload text" id="iframe5"></iframe>
                 </div>
             </transition-group>
         </div>

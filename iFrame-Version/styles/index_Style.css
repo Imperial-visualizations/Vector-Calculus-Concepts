@@ -32,6 +32,16 @@ iframe {
     height: 100vh;
 }
 
+ol li {
+    list-style-position: outside;
+    font-weight: bolder;
+}
+
+ol li p {
+    font-weight: normal;
+    padding-left: 1vw;
+}
+
 /* LEFT SIDE STYLES */
 
 .left {

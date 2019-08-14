@@ -38,32 +38,25 @@
     <script src="scripts/VC-scripts/VC_object.js"></script>
     <script src="scripts/VC-scripts/classes.js"></script>
 </head>
-<body>
 
-<div style="margin-left: 3%; margin-top: 3%">
-
-        <div style="width: 30%; float:left">
-            <label for="scalar" class="radio">
-              <input type="radio" id="scalar" value="scalar" name="wave-switch" checked="checked">
-              <span>Scalar Field (Elevation Map of Europe)</span>
-            </label>
-            <label for="vector" class="radio">
-              <input type="radio" id="vector" value="vector" name="wave-switch" >
-              <span>Vector Field (Ocean Currents)</span>
-            </label>
-        </div>
-
-        <div style="width:70%; float: right;">
-                <img id = "scalarFieldImage" style="float:left; width:90vh;" src="0scalar_field.jpg" alt = "Elevation Map of Europe">
-        </div>
-        <div style="width:70%; float: right;">
-                <img id = "vectorFieldImage" style="float:left; width:90vh;" src="0vector_field.png" alt = "Ocean Currents">
-        </div>
-
-
+<body id="loadout1">
+<div class="radioButtonContainer">
+    <label for="scalar" class="radio">
+      <input type="radio" id="scalar" value="scalar" name="wave-switch" checked="checked">
+      <span class="radio-text">Scalar Field (Elevation Map of Europe)</span>
+    </label>
+    <label for="vector" class="radio">
+      <input type="radio" id="vector" value="vector" name="wave-switch" >
+      <span class="radio-text">Vector Field (Ocean Currents)</span>
+    </label>
 </div>
 
-
+<div class="fieldContainer">
+        <img id = "scalarFieldImage" src="0scalar_field.jpg" alt = "Elevation Map of Europe">
+</div>
+<div class="fieldContainer">
+        <img id = "vectorFieldImage" src="0vector_field.png" alt = "Ocean Currents">
+</div>
 
 <!--THE BRAINS-->
 <script src=scripts/VC-scripts/0Intro.js></script>

@@ -54,7 +54,7 @@
 <div id="Probability_Current_Density" >
     <center><h4>Probability Current Density</h4>
     In quantum mechanics, the probability current is a quantity that measures the flow of probability through space per unit time per unit area.
-    To understand this, imagine the travelling of a wavepacket from left to right that might represent the wavefunction of an electron.
+    To understand this, imagine a wavepacket travelling from left to right that might represent the wavefunction of an electron.
     This leads to a flow in the wavefunction, and hence the electron probability density from left to right.
     We can understand this as a flow of probability current.
     <br>
@@ -98,7 +98,7 @@
     To compute the $k$-th line integral, we can parametrise the edge from $(x_k, y_k)$ to $(x_{k_1}, y_{k+1}).$
     The coordinates of all lines of $C_k$ is as follow: $C_k = ((x_{k+1}-x_k)t + x_k, (y_{k+1}-y_k)t + y_k), \, 0 \leq t \leq 1).$
     Substituting into the integral, we get:
-        $$\int_{C_k} xdy = \int^1_0 ((x_{k+1}-x_k)t + x_k)(y_{k+1}-y_k)t + y_k) dt = \frac{(x_{k+1}-x_k)(y_{k+1}-y_k)}{2}.$$
+        $$\int_{C_k} xdy = \int^1_0 ((x_{k+1}-x_k)t + x_k)(y_{k+1}-y_k) dt = \frac{(x_{k+1}+x_k)(y_{k+1}-y_k)}{2}.$$
     By summing all $C_k$s, we get
         $$A = \sum_{k=0}^{n} \frac{(x_{k+1}+x_k)(y_{k+1}-y_k)}{2}$$
     which is the Shoelace Formula.

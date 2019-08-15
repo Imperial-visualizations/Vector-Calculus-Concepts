@@ -543,8 +543,8 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         vectorData.push(dataBallAVector);
         vectorData.push(dataBallBVector);
 
-        $("#functionValueBall1_1b").text(`${Math.round(100*zBallA)/100}`);
-        $("#functionValueBall2_1b").text(`${Math.round(100*zBallB)/100}`);
+        $("#functionValueBall1_1b").text(`Ball 1 = ${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2_1b").text(`Ball 2 = ${Math.round(100*zBallB)/100}`);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector );
         Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar);
@@ -591,8 +591,8 @@ function plot(xMin, xMax, yMin, yMax, plotStep, xSurface, ySurface, xLineA, yLin
         vectorData.push(dataBallAVector);
         vectorData.push(dataBallBVector);
 
-        $("#functionValueBall1_1b").text(`Function value for Ball 1 = ${Math.round(100*zBallA)/100}`);
-        $("#functionValueBall2_1b").text(`Function value for Ball 2 = ${Math.round(100*zBallB)/100}`);
+        $("#functionValueBall1_1b").text(`Ball 1 = ${Math.round(100*zBallA)/100}`);
+        $("#functionValueBall2_1b").text(`Ball 2 = ${Math.round(100*zBallB)/100}`);
 
         Plotly.react("Vector_Graph_1b", vectorData, layoutVector);
         Plotly.react('Scalar_Graph_1b', [dataSurface, dataLineA, dataLineB, dataPointA, dataPointB, dataBallA, dataBallB], layoutScalar)

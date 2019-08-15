@@ -53,6 +53,7 @@
     <div class="vis-container left" id="left-container">
         <!--     Dynamic Navigation Bar and Section Headings       -->
         <div class="" id="progress-container">
+            <div id="banner-dummy"></div>
             <!--    Dynamic Section Heading Text - overlaid on meters    -->
             <!--    Also act as buttons to navigate between sections    -->
             <div class="" id="overlay" @mousemove="hoverTitle !== false ? updateMouseX($event) : ''">
@@ -93,7 +94,6 @@
                    :max="sectionBottoms[3]" :value="scrollPos"></meter>
             <meter :class="[currentTitle === 5 ? 'activeMeter' : '']" id="m5" :min="sectionTops[4]"
                    :max="sectionBottoms[4]" :value="scrollPos"></meter>
-            <div id="banner-dummy"></div>
         </div>
         <!--    Container for text content split into sections    -->
         <div class="journey" id="main-journey" @scroll.passive="scrollFunc">
@@ -524,11 +524,6 @@
             <!--    fade transition tag for RHS - applied by Vue and CSS    -->
             <transition-group name="fade" tag="div" class="transition-container">
                 <!--    Interactive Zone Containers   -->
-                <div class="rightload" id="loadwait" key="loadwait" v-if="true">
-                    <div class="spinner-border" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
                 <div class="rightload text odd" id='loadout1Container' key="loadout1Container"
                      v-if="currentSection === 1">
                     <iframe src="right-0Intro.html" class="rightload text" id="iframe1"></iframe>
@@ -574,7 +569,7 @@
                 </div>
                 <div class="rightload text odd" id='loadout5Container' key="loadout5Container"
                      v-if="currentSection === 5">
-                    <iframe src="" class="rightload text" id="iframe5"></iframe>
+                    <iframe src="right-4Outro.html" class="rightload text" id="iframe5"></iframe>
                 </div>
             </transition-group>
         </div>

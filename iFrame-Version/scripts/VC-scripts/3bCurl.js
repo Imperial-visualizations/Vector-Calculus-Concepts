@@ -829,10 +829,10 @@ function args_plot_Bdl(loop, wires) {
 //initial plot
 function initialPlot() {
     layout = {
-        title: {
-            text: 'Line integral of <b>B.dl</b> around the loop',
-            y: 1.05
-        },
+        // title: {
+        //     text: 'Line integral of <b>B.dl</b> around the loop',
+        //     y: 1.05
+        // },
         autosize: true,
         xaxis: {
             rangemode: 'tozero',
@@ -852,7 +852,7 @@ function initialPlot() {
             showexponent: 'all'
         },
         margin: {
-            l: 50, r: 1, b: 50, t: 30, pad: 1
+            l: 50, r: 1, b: 50, t: 1, pad: 1
         },
         showlegend: true,
         legend: {

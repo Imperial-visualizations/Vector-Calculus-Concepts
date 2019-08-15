@@ -174,6 +174,9 @@
                     <!--    Sub-Section Text Containers    -->
                     <div class="tab-content">
                         <div id="gradDifferential" class="tab-pane fade in active show">
+                                <h3 class="section-sub-head first-sub-head">
+                                Gradient Operator: <span class="mathJaxHeading">$ \nabla \Omega $</span>
+                                </h3>
                             Grad operates on a scalar field <span class="mathJaxInline">$ f(x, y) $</span> to produce a
                             vector field indicating the magnitude and direction of the
                             steepest gradient at each point.
@@ -183,9 +186,12 @@
                             act on a scalar field
                             because it doesn't make much sense for a vector field to have a gradient.
                             <br><br>
+                            <h3 class="section-sub-head">
+                                    Visualisation Guide
+                                </h3>
                             The surface shown on the right is a scalar function <span class="mathJaxInline">$ f $</span>
                             of two independent variables, <span class="mathJaxInline">$ x $</span> and <span
-                                class="mathJaxInline">$ y $</span>. Note that it is a 2D scalar field &mdash;
+                                class="mathJaxInline">$ y. $</span> Note that it is a 2D scalar field &mdash;
                             the third dimension is just being used to display the value of the function.
                             <br><br>
                             Beneath it the gradient of the function <span class="mathJaxInline">$ \nabla f $</span> is
@@ -354,8 +360,6 @@
                             We often call <span class="mathJaxInline">$ \mathbf{F} \cdot d\mathbf{S} $</span> the flux
                             of field <span class="mathJaxInline">$ \mathbf{F} $</span> perpendicular through a surface
                             element <span class="mathJaxInline">$ d\mathbf{S} $</span>.
-                            In this visualisation, the green line can be thought as taking the side view of the surface
-                            element.
                             <br><br>
                             The <b>net</b> flux through any surface <span class="mathJaxInline">$ \mathbf{S} $</span> is
                             given by the integral:
@@ -367,8 +371,21 @@
                             <span class="mathJaxDisplay">
                                 $$ {\large\bigcirc}\kern-1.55em\iint_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V \nabla \cdot \mathbf{F} dV $$
                             </span>
-                            An <a href="Visualisations/Static-Electromagnetism/EM_p1.html">example</a> of the Divergence
+                            <!-- BROKEN LINK -->
+                            An <a> <!--href="Visualisations/Static-Electromagnetism/EM_p1.html"-->example</a> of the Divergence
                             Theorem is Maxwell's Equation.
+                            <h3 class="section-sub-head">
+                                    Visualisation Guide
+                                </h3>
+                                In this visualisation, the green line can be thought as taking the side view of the surface
+                                element. You may move it by dragging it and rotate it by moving the slider. 
+                                <br><br>
+                                There are two vectors shown: the black one is the normal of the surface element while the grey one is the 
+                                field strength at the point.
+                                <br><br>
+                                Note: The flux counter on top right is a scaled flux.
+                                <br><br>
+                                <b>Important:</b> We are using field lines representation here, not vector field.
                         </div>
                     </div>
                 </div>
@@ -460,6 +477,9 @@
                             loop are shown in the plot at the bottom. The contributions are positive if
                             the field and dl are pointing in the same direction.
                             <br><br>
+                            <h3 class="section-sub-head">
+                                    Visualisation Guide
+                                </h3>
                             When there is curl inside the loop then the overall loop integral is non-zero,
                             since on all parts of the loop, the contributions to the integral from the curl source have
                             the same sign; however
@@ -502,7 +522,8 @@
                         $$ \oint_{l} \mathbf{A.dl} = \displaystyle \iint_{S} \nabla \times \mathbf {A} \cdot d\mathbf{S} $$
                     </span>
                     Vector calculus is used extensively in electromagnetic fields, gravitational fields and fluid flow.
-                    You may like to visit our electromagnetism visualisation suite on Maxwell's equations. (add link here)
+                    You may like to visit our electromagnetism visualisation suite on Maxwell's equations.
+                    On top of that, there are two interesting applications of the Divergence and Stokes' Theorem where you can explore.
                 </div>
             </div>
         </div>

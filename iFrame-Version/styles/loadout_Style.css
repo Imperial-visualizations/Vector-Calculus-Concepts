@@ -792,7 +792,98 @@
     flex: 1 1 auto;
 }
 
-#loadout5 .memeContainer {
+/* SECTION 5 */
+
+#loadout5 .title {
+    width: 95vw;
+    height: 5vh;
+    position: absolute;
+    top: 3.5vh;
+    left: 2.5vw;
+    text-align: center;
+    font-size: calc(16px + 1.6vh);
+}
+
+#loadout5 .nav-tabs {
+    display: flex;
+    width: 90vw;
+    position: absolute;
+    left: 5vw;
+    top: 10vh;
+    margin: 0;
+}
+
+#loadout5 .nav-tabs > li {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 0;
+    flex-grow: 1;
+    border-radius: 0.5vh 0.5vh 0 0;
+    text-align: center;
+    background: #ffffff;
+    align-items: stretch;
+    z-index: 1;
+    font-weight: bolder;
+}
+
+#loadout5 .nav-tabs > li.tabLeft {
+    margin: 0 1.5% 0 0;
+}
+
+#loadout5 .nav-tabs > li.tabRight {
+    margin: 0 0 0 1.5%;
+}
+
+#loadout5 .nav-tabs > li:hover {
+    background: #eaf2ff;
+    box-shadow: 2px 2px 2px #a8a8a8;
+}
+
+#loadout5 .nav-tabs > li.shaded {
+    background: #eaf2ff;
+    box-shadow: 2px 2px 2px #a8a8a8;
+}
+
+#loadout5 .nav-tabs > li > a {
+    padding: 1.5vh 0 1.7vh 0;
+    border-radius: inherit;
+    font-size: calc(5px + 1.1vw);
+    z-index: 1;
+    text-decoration: none;
+    color: #033482;
+}
+
+#loadout5 .tab-content {
+    width: 90vw;
+    position: absolute;
+    left: 5vw;
+    top: 16vh;
+    color: #000000;
+    background-color: #eaf2ff;
+    padding: 2vh 2vw;
+    /*box-shadow: 3px 4px 3px #a8a8a8;*/
+    z-index: 2;
+    /*border-radius: 8px 8px 8px 8px;*/
+    border-radius: 0.5vh 0.5vh 0.5vh 0.5vh;
+    /*border: 1px solid grey;*/
+    box-shadow: 2px 2px 2px #a8a8a8;
+}
+
+#loadout5 .tab-content > .tab-pane:not(.active),
+#loadout5 .pill-content > .pill-pane:not(.active) {
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    height: 0;
+}
+
+#loadout5 .tab-content > .tab-pane.active,
+#loadout5 .pill-content > .pill-pane.active {
+    display: block;
+    visibility: visible;
+}
+
+/*#loadout5 .memeContainer {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -805,5 +896,5 @@
 
 #loadout5 .memeContainer img {
     height: 100%;
-}
+}*/
 

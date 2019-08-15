@@ -81,14 +81,14 @@ function getVectorData(a, x_max, PlotStep){
 
             break;
 
-        case "sinusoidal": //cos type
+        case "Sinusoidal": //cos type
             for (let i = -x_max; i <= x_max; i += PlotStep){
                 for (let j = -x_max; j <= x_max; j += PlotStep){
                     //ArrowData = GetArrowPoints(i, j, Equation, A);
                     x[0] = i;
                     y[0] = j;
 
-                    let scaleFactor = 0.6
+                    let scaleFactor = 0.6;
 
                     x2 = 0;
                     y2 = a*2*Math.PI/15*Math.cos(2*Math.PI/15*x[0]);

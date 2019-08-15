@@ -55,7 +55,7 @@
     <center><h4>Probability Current Density</h4>
     In quantum mechanics, the probability current is a quantity that measures the flow of probability through space per unit time per unit area.
     To understand this, imagine a wavepacket travelling from left to right that might represent the wavefunction of an electron.
-    This leads to a flow in the wavefunction, and hence the electron probability density from left to right.
+    This leads to a flow in the wavefunction (and hence the electron probability density) from left to right.
     We can understand this as a flow of probability current.
     <br>
     We summon the Conservation of Charge formula,
@@ -78,7 +78,9 @@
     <center><h4>Shoelace Formula</h4>
 
     The Shoelace Formula allows us to calculate the area $A$ of an $n$-side polygon using only the coordinates of the edges of the polygon.
-    Imagine an $n$-side polygon that is formed by $n$ number of vertices with coordinates $(x_1, y_1)$, $(x_2, y_2)$, $... (x_n, y_n)$.
+    Imagine an $n$-side polygon that is formed by $n$ number of vertices with coordinates
+    <br>
+        $(x_1, y_1)$, $(x_2, y_2)$, $... (x_n, y_n)$.
     Now by referring to the "shoelace" below,
     <br>
         <img id = "shoelaceImage" style="width: 10%;" src="4OutroShoelace.png">
@@ -87,10 +89,10 @@
         $$A = \frac{1}{2} | x_1 y_2 + x_2 y_3 + ... + x_{n-1} y_n + x_n y_1 - x_2 y_1 - x_3 y_2 - ... - x_n y_{n-1} - x_1 y_n |$$.
     The reason this is called the Shoelace Formula by following the blue diagonals using addition,
     and then following the red diagonals using subtraction. By organising the coordinate values in this way, this makes the formula easy to remember.
-    <br> The Shoelace Formula is a special case of Greene's Theorem, which itself is a special case of the more general Kelvin-Stokes Theorem.
-    Firstly, let us state the Greene's Theorem:
+    <br> The Shoelace Formula is a special case of Green's Theorem, which itself is a special case of the generalised Stokes' Theorem.
+    Firstly, let us state the Green's Theorem:
         $$\oint_C P(x,y)dx + Q(x,y)dy = \iint_S \Big( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \Big) dxdy $$
-    As area $A = \iint_A dA$, the Greene's Theorem can be used to calculate the area if $\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 1$.
+    As area $A = \iint_A dA$, the Green's Theorem can be used to calculate the area if $\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 1$.
     One possible combination for $P$ and $Q$ would be when $P = 0$ and $Q = x$. Hence,
     $$A = \oint_C xdy.$$
     Now, $C$ is the perimeter of the $n$-side polygon, where $C = C_1 + C_2 + ... + C_n$. This leads to

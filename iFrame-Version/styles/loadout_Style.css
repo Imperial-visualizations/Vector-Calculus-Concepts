@@ -809,7 +809,7 @@
     width: 90vw;
     position: absolute;
     left: 5vw;
-    top: 10vh;
+    top: 12vh;
     margin: 0;
 }
 
@@ -845,9 +845,9 @@
 }
 
 #loadout5 .nav-tabs > li > a {
-    padding: 1.5vh 0 1.7vh 0;
+    padding: 1.5vh 0 2.5vh 0;
     border-radius: inherit;
-    font-size: calc(5px + 1.1vw);
+    font-size: calc(8px + 1.4vw);
     z-index: 1;
     text-decoration: none;
     color: #033482;
@@ -857,7 +857,7 @@
     width: 90vw;
     position: absolute;
     left: 5vw;
-    top: 16vh;
+    top: 19vh;
     color: #000000;
     background-color: #eaf2ff;
     padding: 2vh 2vw;
@@ -867,6 +867,8 @@
     border-radius: 0.5vh 0.5vh 0.5vh 0.5vh;
     /*border: 1px solid grey;*/
     box-shadow: 2px 2px 2px #a8a8a8;
+    font-size: calc(6px + 1.2vw);
+    text-align: justify;
 }
 
 #loadout5 .tab-content > .tab-pane:not(.active),
@@ -881,6 +883,26 @@
 #loadout5 .pill-content > .pill-pane.active {
     display: block;
     visibility: visible;
+}
+
+#loadout5 .imageContainer {
+    width: inherit;
+    display: block;
+    text-align: center;
+}
+
+#loadout5 #shoelaceImage {
+    height: 20vh;
+}
+
+#loadout5 .mathJaxDisplayRHS {
+    display: table;
+    margin: 10px auto;
+    font-size: calc(6px + 1.2vw);
+}
+
+#loadout5 .mathJaxInlineRHS {
+    font-size: calc(6px + 1.2vw);
 }
 
 /*#loadout5 .memeContainer {

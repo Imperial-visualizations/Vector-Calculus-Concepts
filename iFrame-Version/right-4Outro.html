@@ -44,8 +44,8 @@
 
 <!--    Sub-Section Tabs    -->
 <ul class="nav nav-tabs nav-justified">
-    <li class="tabLeft">
-        <a data-toggle="tab" href="#probability">Conservation of Probability Current Density</a>
+    <li class="tabLeft shaded">
+        <a data-toggle="tab" href="#probability">Conservation of Probability</a>
     </li>
     <li class="tabRight">
         <a data-toggle="tab" href="#shoelace">The Shoelace Formula</a>
@@ -56,51 +56,78 @@
 <div class="tab-content">
     <div id="probability" class="tab-pane fade in active show">
         In quantum mechanics, the probability current is a quantity that measures the flow of probability through space per unit time per unit area.
+        <br><br>
         To understand this, imagine a wavepacket travelling from left to right that might represent the wavefunction of an electron.
         This leads to a flow in the wavefunction (and hence the electron probability density) from left to right.
-        We can understand this as a flow of probability current.
-        <br>
+        We can describe this as the flow of a probability current.
+        <br><br>
         We summon the Conservation of Charge formula,
-        $$ \nabla \cdot \mathbf{j} = - \frac{\partial \rho}{\partial t}$$
-        where $\rho$ is the charge density that flows through an infinitesimal surface element and $\mathbf{j}$ represents the current density.
+        <span class="mathJaxDisplayRHS">
+            $$ \nabla \cdot \mathbf{j} = - \frac{\partial \rho}{\partial t} $$
+        </span>
+        where <span class="mathJaxInlineRHS">$ \rho $</span> is the charge density that flows through an infinitesimal surface element and <span class="mathJaxInlineRHS">$ \mathbf{j} $</span> represents the current density.
+        <br><br>
         The intuition for this formula is to first imagine an infinitesimal volume that contains some charge.
-        The flow of charge outwards $( \nabla \cdot \mathbf{j} )$ equals to the decrease in the charge density of the of the volume element.
-        Using this conservation law, we now let $\rho$ represent the probability density.
-        Therefore, $\mathbf{j}$ represents the flow of probability density per unit time, namely the probability current.
-        <br>
-        Integrate both sides by $dV$,
-        $$\int_{V} \Bigg( \frac{\partial | \Psi | ^2 }{\partial t} \Bigg) dV = - \int_V (\nabla \cdot \mathbf{j})dV $$
+        The flow of charge outwards <span class="mathJaxInlineRHS">$ ( \nabla \cdot \mathbf{j} ) $</span> equals to the decrease in the charge density of the of the volume element.
+        <br><br>
+        Using this conservation law, we now let <span class="mathJaxInlineRHS">$ \rho $</span> represent the probability density.
+        Therefore, <span class="mathJaxInlineRHS">$ \mathbf{j} $</span> represents the flow of probability density per unit time, namely the probability current.
+        <br><br>
+        Integrate both sides by <span class="mathJaxInlineRHS">$ dV $</span>,
+        <span class="mathJaxDisplayRHS">
+            $$ \int_{V} \Bigg( \frac{\partial | \Psi | ^2 }{\partial t} \Bigg) dV = - \int_V (\nabla \cdot \mathbf{j})dV $$
+        </span>
         Hence, by Divergence Theorem,
-        $$\frac {\partial}{\partial t} \int_V | \Psi | ^2 dV = - {\large\bigcirc}\kern-1.55em\iint_S (\nabla \cdot \mathbf{j})dS.$$
-        This equation tells us that the time derivative of the probability of the particle being measured in $V$ is equal to the rate at which probability flows into $V$.
+        <span class="mathJaxDisplayRHS">
+        $$\frac {\partial}{\partial t} \int_V | \Psi | ^2 dV = - {\large\bigcirc}\kern-1.55em\iint_S (\nabla \cdot \mathbf{j})dS. $$
+        </span>
+        This equation tells us that the time derivative of the probability of the particle being measured in $V$ is equal to the rate at which probability flows into <span class="mathJaxInlineRHS">$ V $</span>.
     </div>
     <div id="shoelace" class="tab-pane fade">
-        The Shoelace Formula allows us to calculate the area $A$ of an $n$-side polygon using only the coordinates of the edges of the polygon.
-        Imagine an $n$-side polygon that is formed by $n$ number of vertices with coordinates
-        <br>
-        $(x_1, y_1)$, $(x_2, y_2)$, $... (x_n, y_n)$.
+        The Shoelace Formula allows us to calculate the area <span class="mathJaxInlineRHS">$ A $</span> of an $n$-side polygon using only the coordinates of the edges of the polygon.
+        Imagine an <span class="mathJaxInlineRHS">$ n $</span>-side polygon that is formed by <span class="mathJaxInlineRHS">$ n $</span> number of vertices with coordinates
+        <span class="mathJaxInlineRHS">$ (x_1, y_1)$, $(x_2, y_2)$, $... (x_n, y_n) $</span>.
         Now by referring to the "shoelace" below,
-        <br>
-        <img id = "shoelaceImage" style="width: 10%;" src="4OutroShoelace.png">
+        <br><br>
+        <div class="imageContainer">
+            <img id="shoelaceImage" src="4OutroShoelace.png">
+        </div>
         <br>
         we can calculate the area of the polygon by
-        $$A = \frac{1}{2} | x_1 y_2 + x_2 y_3 + ... + x_{n-1} y_n + x_n y_1 - x_2 y_1 - x_3 y_2 - ... - x_n y_{n-1} - x_1 y_n |$$.
-        The reason this is called the Shoelace Formula by following the blue diagonals using addition,
-        and then following the red diagonals using subtraction. By organising the coordinate values in this way, this makes the formula easy to remember.
-        <br> The Shoelace Formula is a special case of Green's Theorem, which itself is a special case of the generalised Stokes' Theorem.
+        <span class="mathJaxDisplayRHS">
+            $$ A = \frac{1}{2} | x_1 y_2 + x_2 y_3 + ... + x_{n-1} y_n + x_n y_1 - x_2 y_1 - x_3 y_2 - ... - x_n y_{n-1} - x_1 y_n |. $$
+        </span>
+        This is called the Shoelace Formula as it is formed by following the blue diagonals using addition,
+        and then following the red diagonals using subtraction. By organising the coordinate values in this way, the formula is easily to remembered.
+        <br><br>
+        The Shoelace Formula is a special case of Green's Theorem, which itself is a special case of the generalised Stokes' Theorem.
+        <br><br>
         Firstly, let us state the Green's Theorem:
-        $$\oint_C P(x,y)dx + Q(x,y)dy = \iint_S \Big( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \Big) dxdy $$
-        As area $A = \iint_A dA$, the Green's Theorem can be used to calculate the area if $\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 1$.
-        One possible combination for $P$ and $Q$ would be when $P = 0$ and $Q = x$. Hence,
-        $$A = \oint_C xdy.$$
-        Now, $C$ is the perimeter of the $n$-side polygon, where $C = C_1 + C_2 + ... + C_n$. This leads to
-        $$A = \oint_{C}xdy = \int_{C_1}xdy + \int_{C_1}xdy + ... + \int_{C_n}xdy.$$
-        To compute the $k$-th line integral, we can parametrise the edge from $(x_k, y_k)$ to $(x_{k_1}, y_{k+1}).$
-        The coordinates of all lines of $C_k$ is as follow: $C_k = ((x_{k+1}-x_k)t + x_k, (y_{k+1}-y_k)t + y_k), \, 0 \leq t \leq 1).$
+        <span class="mathJaxDisplayRHS">
+            $$ \oint_C P(x,y)dx + Q(x,y)dy = \iint_S \Big( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \Big) dxdy $$
+        </span>
+        As area <span class="mathJaxInlineRHS">$ A = \iint_A dA $</span>, the Green's Theorem can be used to calculate the area if <span class="mathJaxInlineRHS">$ \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 1 $</span>.
+        One possible combination for <span class="mathJaxInlineRHS">$ P $</span> and <span class="mathJaxInlineRHS">$ Q $</span> would be when <span class="mathJaxInlineRHS">$ P = 0 $</span> and <span class="mathJaxInlineRHS">$ Q = x $</span>. Hence,
+        <span class="mathJaxDisplayRHS">
+            $$ A = \oint_C xdy. $$
+        </span>
+        Now, <span class="mathJaxInlineRHS">$ C $</span> is the perimeter of the $n$-side polygon, where <span class="mathJaxInlineRHS">$ C = C_1 + C_2 + ... + C_n $</span>. This leads to
+        <span class="mathJaxDisplayRHS">
+            $$ A = \oint_{C}xdy = \int_{C_1}xdy + \int_{C_1}xdy + ... + \int_{C_n}xdy. $$
+        </span>
+        To compute the <span class="mathJaxInlineRHS">$ k $</span>-th line integral, we can parametrise the edge from <span class="mathJaxInlineRHS">$ (x_k, y_k) $</span> to <span class="mathJaxInlineRHS">$ (x_{k_1}, y_{k+1}). $</span>
+        The coordinates of all lines of <span class="mathJaxInlineRHS">$ C_k $</span> is as follows:
+        <span class="mathJaxDisplayRHS">
+            $$ C_k = ((x_{k+1}-x_k)t + x_k, (y_{k+1}-y_k)t + y_k), \, 0 \leq t \leq 1). $$
+        </span>
         Substituting into the integral, we get:
-        $$\int_{C_k} xdy = \int^1_0 ((x_{k+1}-x_k)t + x_k)(y_{k+1}-y_k) dt = \frac{(x_{k+1}+x_k)(y_{k+1}-y_k)}{2}.$$
-        By summing all $C_k$s, we get
-        $$A = \sum_{k=0}^{n} \frac{(x_{k+1}+x_k)(y_{k+1}-y_k)}{2}$$
+        <span class="mathJaxDisplayRHS">
+            $$\int_{C_k} xdy = \int^1_0 ((x_{k+1}-x_k)t + x_k)(y_{k+1}-y_k) dt = \frac{(x_{k+1}+x_k)(y_{k+1}-y_k)}{2}.$$
+        </span>
+        By summing all <span class="mathJaxInlineRHS">$ C_k $</span>'s, we get
+        <span class="mathJaxDisplayRHS">
+            $$ A = \sum_{k=0}^{n} \frac{(x_{k+1}+x_k)(y_{k+1}-y_k)}{2} $$
+        </span>
         which is the Shoelace Formula.
     </div>
 </div>

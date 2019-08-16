@@ -905,6 +905,13 @@
     font-size: calc(6px + 1.2vw);
 }
 
+#loadout5 #endMargin {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    bottom: -3.5vh;
+}
+
 /*#loadout5 .memeContainer {
     display: flex;
     align-items: center;

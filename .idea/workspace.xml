@@ -4,7 +4,6 @@
     <list default="true" id="5ab84a33-3352-4538-bf0c-005f2739d42b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iFrame-Version/right-4Outro.html" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/right-4Outro.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/4Outro.js" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/4Outro.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +17,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/iFrame-Version/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8">
-              <caret line="43" column="7" lean-forward="true" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
+            <state relative-caret-position="17">
+              <caret line="43" column="7" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
               <folding>
                 <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
                 <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
@@ -154,11 +153,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/iFrame-Version/right-4Outro.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2091">
-              <caret line="123" column="40" lean-forward="true" selection-start-line="123" selection-start-column="40" selection-end-line="123" selection-end-column="40" />
+            <state relative-caret-position="212">
+              <caret line="104" column="42" lean-forward="true" selection-start-line="104" selection-start-column="42" selection-end-line="104" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -175,17 +174,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="904" column="33" lean-forward="true" selection-start-line="904" selection-start-column="33" selection-end-line="904" selection-end-column="33" />
+            <state relative-caret-position="637">
+              <caret line="909" column="16" lean-forward="true" selection-start-line="909" selection-start-column="16" selection-end-line="909" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/4Outro.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+              <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -292,9 +291,9 @@
         <option value="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/3bCurl.js" />
         <option value="$PROJECT_DIR$/iFrame-Version/index.html" />
         <option value="$PROJECT_DIR$/iFrame-Version/right-4Outro-Meme.html" />
-        <option value="$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css" />
-        <option value="$PROJECT_DIR$/iFrame-Version/right-4Outro.html" />
         <option value="$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/4Outro.js" />
+        <option value="$PROJECT_DIR$/iFrame-Version/right-4Outro.html" />
+        <option value="$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css" />
       </list>
     </option>
   </component>
@@ -421,16 +420,16 @@
       <workItem from="1565791421187" duration="3280000" />
       <workItem from="1565902199262" duration="2699000" />
       <workItem from="1565905127438" duration="2623000" />
-      <workItem from="1565919443751" duration="5711000" />
+      <workItem from="1565919443751" duration="6311000" />
+      <workItem from="1565927723677" duration="1317000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="188928000" />
+    <option name="totallyTimeSpent" value="190845000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17913593" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -829,6 +828,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/4Outro.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/iFrame-Version/styles/index_Style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -836,17 +842,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="904" column="33" lean-forward="true" selection-start-line="904" selection-start-column="33" selection-end-line="904" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/iFrame-Version/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8">
-          <caret line="43" column="7" lean-forward="true" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
+        <state relative-caret-position="17">
+          <caret line="43" column="7" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
           <folding>
             <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
             <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
@@ -980,17 +979,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/right-4Outro.html">
+    <entry file="file://$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2091">
-          <caret line="123" column="40" lean-forward="true" selection-start-line="123" selection-start-column="40" selection-end-line="123" selection-end-column="40" />
+        <state relative-caret-position="637">
+          <caret line="909" column="16" lean-forward="true" selection-start-line="909" selection-start-column="16" selection-end-line="909" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/4Outro.js">
+    <entry file="file://$PROJECT_DIR$/iFrame-Version/right-4Outro.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        <state relative-caret-position="212">
+          <caret line="104" column="42" lean-forward="true" selection-start-line="104" selection-start-column="42" selection-end-line="104" selection-end-column="42" />
         </state>
       </provider>
     </entry>

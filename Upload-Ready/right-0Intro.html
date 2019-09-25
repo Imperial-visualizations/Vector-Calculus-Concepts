@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--Title-->
-    <title>right-2aDiv</title>
+    <title>right-0Intro</title>
     <!--css links-->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -20,8 +21,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
-    <script src="scripts/numeric/src/numeric.js"></script>
-    <script src="scripts/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js" integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js" integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
     <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
@@ -33,35 +34,38 @@
     },
     "HTML-CSS": { fonts: ["TeX"] }
   });
+
     </script>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 </head>
-<body id="loadout3sub1">
-    <!-- Graph -->
-    <h4 class="graphTitle">
-        Vector Field with Constant Divergence
-    </h4>
-    <div id='graph-holder'>
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+<body id="loadout1">
+<!--Scalar Field Example Image-->
+<div class="fieldContainer">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
-    <!--Buttons/Sliders-->
-    <div class="overall-sliders-container">
-        <!--BEGIN Slider-->
-        <label class="slider-label">
-            Divergence of the Vector Field: $ \nabla \cdot \mathbf{f}= $
-            <output id="x3ControllerDisplay" for="x3Controller">1</output>
-        </label>
-        <label class="slider">
-            <span class="sliderMin">-2.5</span>
-            <input id="x3Controller" class="inputs" type="range" value="1" min="-2.5" max="2.5" step="0.01"/>
-            <span class="sliderMax">2.5</span>
-        </label>
-        <!--END Slider-->
+    <img id="scalarFieldImage" src="images/0scalar_field.jpg" alt = "Elevation Map of Europe">
+</div>
+<!--Vector Field Example Image-->
+<div class="fieldContainer">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
+    <img id="vectorFieldImage" src="images/0vector_field.png" alt = "Ocean Currents">
+</div>
+<!--Swap Image Button-->
+<div class="radioButtonContainer">
+    <label for="scalar" class="radio">
+        <input type="radio" id="scalar" value="scalar" name="wave-switch" checked="checked">
+        <span class="radio-text">Scalar Field (Elevation Map of Europe)</span>
+    </label>
+    <label for="vector" class="radio">
+        <input type="radio" id="vector" value="vector" name="wave-switch" >
+        <span class="radio-text">Vector Field (Ocean Currents)</span>
+    </label>
+</div>
+<!--THE BRAINS-->
+<script src=scripts/VC-scripts/0Intro.js></script>
 </body>
-<script src="scripts/VC-scripts/VC_object.js"></script>
-<script src="scripts/VC-scripts/2aDiv.js"></script>
 </html>

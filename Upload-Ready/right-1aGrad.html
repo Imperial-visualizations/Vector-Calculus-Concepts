@@ -21,8 +21,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js" integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js" integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"
+            integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js"
+            integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
     <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
@@ -35,6 +37,7 @@
     "HTML-CSS": { fonts: ["TeX"] }
   });
 
+
     </script>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
@@ -42,66 +45,67 @@
     <script src="scripts/VC-scripts/classes.js"></script>
 </head>
 <body id="loadout2sub1">
-    <!--Graph 1-->
-    <h4 class="graph1Title"> $$ f(x,y) $$ </h4>
-    <div id='Scalar_Graph_1a'>
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+<!--Graph 1-->
+<h4 class="graph1Title"> $$ f(x,y) $$ </h4>
+<div id='Scalar_Graph_1a'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!--Graph 2-->
+<h4 class="graph2Title"> $$ \nabla f(x,y) $$ </h4>
+<div id='Vector_Graph_1a'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!--Vis Inputs-->
+<div class="inputsContainer">
+    <div id="scroll">
+        <div class="scroll_down">
+            <strong>Select Function: </strong>
+            <select id="Function_Selector_1a">
+                <option value="A">Gaussian</option>
+                <option value="B">Reciprocal</option>
+                <option value="C">Sinusoidal</option>
+            </select>
         </div>
     </div>
-    <!--Graph 2-->
-    <h4 class="graph2Title"> $$ \nabla f(x,y) $$ </h4>
-    <div id='Vector_Graph_1a'>
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+    <div class="partial-sliders-container">
+        <label class="slider-label">$a$:
+            <span id="Slider_1_1aDisplay" data-unit="">10</span>
+        </label>
+        <!--BEGIN Slider-->
+        <label class="slider">
+            <span class="sliderMin">-100</span>
+            <input id="Slider_1_1a" class="inputs" type="range" value="10" min="-100" max="100" step="1">
+            <span class="sliderMax">100</span>
+        </label>
+        <!--END Slider-->
     </div>
-    <!--Vis Inputs-->
-    <div class="inputsContainer">
-        <div id="scroll">
-            <div class="scroll_down">
-                <strong>Select Function: </strong>
-                <select id="Function_Selector_1a">
-                    <option value="A">Gaussian</option>
-                    <option value="B">Reciprocal</option>
-                    <option value="C">Sinusoidal</option>
-                </select>
-            </div>
-        </div>
-        <div class="overall-sliders-container">
-            <label class="slider-label">$a$:
-                <span id="Slider_1_1aDisplay" data-unit="">10</span>
-            </label>
-            <!--BEGIN Slider-->
-            <label class="slider">
-                <span class="sliderMin">-100</span>
-                <input id="Slider_1_1a" class="inputs" type="range" value="10" min="-100" max="100" step="1">
-                <span class="sliderMax">100</span>
-            </label>
-            <!--END Slider-->
-        </div>
+</div>
+<!--Equation Space-->
+<div id="eqConSec2a" class="equationContainer">
+    <div id="A_function_eqn_1a">
+        <img src="images/A_function_eqn_1a.png">
     </div>
-    <!--Equation Space-->
-    <div id="eqConSec2a" class="equationContainer">
-            <div id="A_function_eqn_1a">
-                <img src="images/A_function_eqn_1a.png">
-            </div>
-            <div id="B_function_eqn_1a">
-                <img src="images/B_function_eqn_1a.png">
-            </div>
-            <div id="C_function_eqn_1a">
-                <img src="images/C_function_eqn_1a.png">
-            </div>
-            <div id="A_grad_eqn_1a">
-                <img src="images/A_grad_eqn_1a.png">
-            </div>
-            <div id="B_grad_eqn_1a">
-                <img src="images/B_grad_eqn_1a.png">
-            </div>
-            <div id="C_grad_eqn_1a">
-                <img src="images/C_grad_eqn_1a.png">
-            </div>
+    <div id="B_function_eqn_1a">
+        <img src="images/B_function_eqn_1a.png">
     </div>
+    <div id="C_function_eqn_1a">
+        <img src="images/C_function_eqn_1a.png">
+    </div>
+    <div id="A_grad_eqn_1a">
+        <img src="images/A_grad_eqn_1a.png">
+    </div>
+    <div id="B_grad_eqn_1a">
+        <img src="images/B_grad_eqn_1a.png">
+    </div>
+    <div id="C_grad_eqn_1a">
+        <img src="images/C_grad_eqn_1a.png">
+    </div>
+</div>
 </body>
+<!--THE BRAINS-->
 <script src="scripts/VC-scripts/1aGrad.js"></script>
 </html>

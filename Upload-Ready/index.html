@@ -21,8 +21,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js" integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js" integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"
+            integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js"
+            integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
     <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
@@ -35,11 +37,14 @@
     "HTML-CSS": { fonts: ["TeX"] }
   });
 
+
     </script>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
     <script src="scripts/VC-scripts/VC_object.js"></script>
     <script src="scripts/VC-scripts/classes.js"></script>
+    <!--Favicon-->
+    <link rel="shortcut icon" href="images/favicon-blue.png" type="image/x-icon">
 </head>
 <body>
 <div id="app">
@@ -105,48 +110,66 @@
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p1">
-                    In vector calculus, there are three important operations that are related to <span class="mathJaxInline">$ \nabla $</span>, the vector differential operator.
+                    In vector calculus, there are three important operations that are related to <span
+                        class="mathJaxInline">$ \nabla $</span>, the vector differential operator.
                     <span class="mathJaxInline">$ \nabla $</span> can be operated on both scalar and vector fields.
                     <br><br>
                     <h3 class="section-sub-head">
                         Scalar Field <span class="mathJaxHeading">$ \Omega( \mathbf{r} ) $</span>
                     </h3>
-                    A scalar field is a function that outputs a scalar value, given $n$ independent variables in <span class="mathJaxInline">$ \mathbb{R}^n $</span>.
-                    It assigns a scalar value to every point in space. A nice example of a scalar field is an elevation map as seen on the right.
-                    The elevation value, which is a scalar value, depends on the <span class="mathJaxInline">$ x $</span> and <span class="mathJaxInline">$ y $</span> coordinate values on the map.
-                    Contour lines or colours are usually used to represent the "height" of the function value, as seen in the map.
-                    Some other examples of scalar fields are temperature of a room, pressure distribution in a fluid etc.
+                    A scalar field is a function that outputs a scalar value, given <span
+                        class="mathJaxInline">$ n $</span> independent variables in <span class="mathJaxInline">$ \mathbb{R}^n $</span>.
+                    It assigns a scalar value to every point in space. A nice example of a scalar field is an elevation
+                    map as seen on the right.
+                    The elevation value, which is a scalar value, depends on the <span
+                        class="mathJaxInline">$ x $</span> and <span class="mathJaxInline">$ y $</span> coordinate
+                    values on the map.
+                    Contour lines or colours are usually used to represent the "height" of the function value, as seen
+                    in the map.
+                    Some other examples of scalar fields are temperature of a room, pressure distribution in a fluid
+                    etc.
                     <br><br>
                     <h3 class="section-sub-head">
                         Vector Field <span class="mathJaxHeading">$ \mathbf{f}( \mathbf{r} ) $</span>
                     </h3>
-                    A vector field is very similar to a scalar field, except that the function outputs a vector, given <span class="mathJaxInline">$ n $</span> independent variables in <span class="mathJaxInline">$ \mathbb{R}^n $</span>.
+                    A vector field is very similar to a scalar field, except that the function outputs a vector, given
+                    <span class="mathJaxInline">$ n $</span> independent variables in <span class="mathJaxInline">$ \mathbb{R}^n $</span>.
                     It is used to represent vectorial information.
-                    For example, the ocean current map on the right is an example of a vector field that depends on the <span class="mathJaxInline">$ x $</span> and <span class="mathJaxInline">$ y $</span> coordinates.
-                    At any position, the function assigns a vector that indicates the speed and direction of the ocean current.
+                    For example, the ocean current map on the right is an example of a vector field that depends on the
+                    <span class="mathJaxInline">$ x $</span> and <span class="mathJaxInline">$ y $</span> coordinates.
+                    At any position, the function assigns a vector that indicates the speed and direction of the ocean
+                    current.
                     Other examples of vector fields are electric and magnetic fields.
                     <br><br>
                     <h3 class="section-sub-head">
-                        <span class="mathJaxHeading">$ \nabla \Omega, $</span> <span class="mathJaxHeading">$ \nabla \cdot \mathbf{f}, $</span> <span class="mathJaxHeading">$ \nabla \times \mathbf{f} $</span>
+                        <span class="mathJaxHeading">$ \nabla \Omega $</span>, <span class="mathJaxHeading">$ \nabla \cdot \mathbf{f} $</span>,
+                        <span class="mathJaxHeading">$ \nabla \times \mathbf{f} $</span>
                     </h3>
-                    In 3D Cartesian coordinates, $\nabla$ is given by
+                    In 3D Cartesian coordinates, <span class="mathJaxInline">$ \nabla $</span> is given by
                     <span class="mathJaxDisplay">
                         $$ \nabla = \mathbf{\hat{i}} \frac {\partial}{\partial x} + \mathbf{\hat{j}} \frac {\partial}{\partial y} + \mathbf{\hat{k}} \frac {\partial}{\partial z}. $$
                     </span>
-                    <span class="mathJaxInline">$ \nabla $</span> operates on a scalar field <span class="mathJaxInline">$ \Omega $</span> in one way, that is:
+                    <span class="mathJaxInline">$ \nabla $</span> operates on a scalar field <span
+                        class="mathJaxInline">$ \Omega $</span> in one way, that is:
                     <span class="mathJaxDisplay">
                         $$ \nabla \Omega . $$
                     </span>
-                    This returns a vector field, which is the gradient field of <span class="mathJaxInline">$ \Omega $</span>.
-                    On the other hand, $\nabla$ can operate on a vector field <span class="mathJaxInline">$ \mathbf{f} $</span> in two ways, namely
+                    This returns a vector field, which is the gradient field of <span
+                        class="mathJaxInline">$ \Omega $</span>.
+                    On the other hand, <span class="mathJaxInline">$ \nabla $</span> can operate on a vector field <span
+                        class="mathJaxInline">$ \mathbf{f} $</span> in two ways, namely
                     <span class="mathJaxDisplay">
-                        $$ \nabla \cdot \mathbf{f}$$ and $$\nabla \times \mathbf{f}, $$
+                        $$ \nabla \cdot \mathbf{f} $$
+                        and
+                        $$ \nabla \times \mathbf{f}, $$
                     </span>
                     which give the divergence (scalar) and the curl (vector) of a vector field respectively.
                     <br><br>
-                    In this visualisation suite, we will be placing our focus on the meaning of grad, divergence and curl
+                    In this visualisation suite, we will be placing our focus on the meaning of grad, divergence and
+                    curl
                     instead of their mathematical derivations in the following sections,
-                    in order to provide a physical intuition to what <span class="mathJaxInline">$ \nabla $</span> means, both microscopically and macroscopically.
+                    in order to provide a physical intuition to what <span class="mathJaxInline">$ \nabla $</span>
+                    means, both microscopically and macroscopically.
                 </div>
             </div>
             <div class="section-container" id="sc2">
@@ -172,9 +195,9 @@
                     <!--    Sub-Section Text Containers    -->
                     <div class="tab-content">
                         <div id="gradDifferential" class="tab-pane fade in active show">
-                                <h3 class="section-sub-head first-sub-head">
+                            <h3 class="section-sub-head first-sub-head">
                                 Gradient Operator: <span class="mathJaxHeading">$ \nabla \Omega $</span>
-                                </h3>
+                            </h3>
                             Grad operates on a scalar field <span class="mathJaxInline">$ f(x, y) $</span> to produce a
                             vector field indicating the magnitude and direction of the
                             steepest gradient at each point.
@@ -185,11 +208,11 @@
                             because it doesn't make much sense for a vector field to have a gradient.
                             <br><br>
                             <h3 class="section-sub-head">
-                                    Visualisation Guide
-                                </h3>
+                                Visualisation Guide
+                            </h3>
                             The surface shown on the right is a scalar function <span class="mathJaxInline">$ f $</span>
                             of two independent variables, <span class="mathJaxInline">$ x $</span> and <span
-                                class="mathJaxInline">$ y. $</span> Note that it is a 2D scalar field &mdash;
+                                class="mathJaxInline">$ y $</span>. Note that it is a 2D scalar field &mdash;
                             the third dimension is just being used to display the value of the function.
                             <br><br>
                             Beneath it the gradient of the function <span class="mathJaxInline">$ \nabla f $</span> is
@@ -238,7 +261,8 @@
                                 </li>
                                 <li>
                                     <p>
-                                        Note that as the magnitude of <span class="mathJaxInline">$ a $</span> increases,
+                                        Note that as the magnitude of <span class="mathJaxInline">$ a $</span>
+                                        increases,
                                         the length of the arrows in <span class="mathJaxInline">$ \nabla \Omega $</span>
                                         increases and the contour of the parent function
                                         <span class="mathJaxInline">$ \Omega $</span> becomes steeper as well. Hence,
@@ -311,14 +335,20 @@
                                 Divergence Operator: <span class="mathJaxHeading">$ \nabla \cdot \mathbf{f} $</span>
                             </h3>
                             Divergence is a vector operator that describes the quantity of a vector field at each point.
-                            It is the volume density of outward flux of a vector field at an infinitesimal volume around a point.
+                            It is the volume density of outward flux of a vector field at an infinitesimal volume around
+                            a point.
                             This leads to another way of understanding divergence:
                             <br><br>
-                            Imagine a point <span class="mathJaxInline">$ (x_A,y_A) $</span> in the vector field, which has a vector output assigned to it.
-                            If <span class="mathJaxInline">$ \nabla \cdot \mathbf{f}(x_A,y_A) \neq 0 $</span>, as we move along an
-                            infinitesimal distance parallel to the direction of the vector at the point (that is <span class="mathJaxInline">$ \mathbf{f}(x_A,y_A)) $</span>,
-                            there is a change in the magnitude of the output vector, which is the field strength. If divergence is positive, the field strength
-                            increases as we move in the direction of the vector at <span class="mathJaxInline">$ (x_A,y_A) $</span>. If divergence is negative, the field strength
+                            Imagine a point <span class="mathJaxInline">$ (x_A,y_A) $</span> in the vector field, which
+                            has a vector output assigned to it.
+                            If <span class="mathJaxInline">$ \nabla \cdot \mathbf{f}(x_A,y_A) \neq 0 $</span>, as we
+                            move along an
+                            infinitesimal distance parallel to the direction of the vector at the point (that is <span
+                                class="mathJaxInline">$ \mathbf{f}(x_A,y_A)) $</span>,
+                            there is a change in the magnitude of the output vector, which is the field strength. If
+                            divergence is positive, the field strength
+                            increases as we move in the direction of the vector at <span class="mathJaxInline">$ (x_A,y_A) $</span>.
+                            If divergence is negative, the field strength
                             decreases as we move in the direction of the vector at the point.
                             <br><br>
                             <h3 class="section-sub-head">
@@ -362,7 +392,7 @@
                             The <b>net</b> flux through any surface <span class="mathJaxInline">$ \mathbf{S} $</span> is
                             given by the integral:
                             <span class="mathJaxDisplay">
-                                $$\iint_S \mathbf{F} \cdot d\mathbf{S}$$
+                                $$ \iint_S \mathbf{F} \cdot d\mathbf{S} $$
                             </span>
                             By considering a <b>closed</b> surface, the Divergence Theorem relates the net flux to the
                             divergence of the field:
@@ -370,20 +400,22 @@
                                 $$ {\large\bigcirc}\kern-1.55em\iint_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V \nabla \cdot \mathbf{F} dV $$
                             </span>
                             <!-- BROKEN LINK -->
-                            An <a> <!--href="Visualisations/Static-Electromagnetism/EM_p1.html"-->example</a> of the Divergence
+                            An <a> <!--href="Visualisations/Static-Electromagnetism/EM_p1.html"-->example</a> of the
+                            Divergence
                             Theorem is Maxwell's Equation.
                             <h3 class="section-sub-head">
-                                    Visualisation Guide
-                                </h3>
-                                In this visualisation, the green line can be thought as taking the side view of the surface
-                                element. You may move it by dragging it and rotate it by moving the slider. 
-                                <br><br>
-                                There are two vectors shown: the black one is the normal of the surface element while the grey one is the 
-                                field strength at the point.
-                                <br><br>
-                                Note: The flux counter on top right is a scaled flux.
-                                <br><br>
-                                <b>Important:</b> We are using field lines representation here, not vector field.
+                                Visualisation Guide
+                            </h3>
+                            In this visualisation, the green line can be thought as taking the side view of the surface
+                            element. You may move it by dragging it and rotate it by moving the slider.
+                            <br><br>
+                            There are two vectors shown: the black one is the normal of the surface element while the
+                            grey one is the
+                            field strength at the point.
+                            <br><br>
+                            Note: The flux counter on top right is a scaled flux.
+                            <br><br>
+                            <b>Important:</b> We are using field lines representation here, not vector field.
                         </div>
                     </div>
                 </div>
@@ -476,8 +508,8 @@
                             the field and dl are pointing in the same direction.
                             <br><br>
                             <h3 class="section-sub-head">
-                                    Visualisation Guide
-                                </h3>
+                                Visualisation Guide
+                            </h3>
                             When there is curl inside the loop then the overall loop integral is non-zero,
                             since on all parts of the loop, the contributions to the integral from the curl source have
                             the same sign; however
@@ -502,13 +534,17 @@
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p5">
-                    In vector calculus, there are three important operations that are related to <span class="mathJaxInline">$ \nabla $</span>, the vector differential operator.
+                    In vector calculus, there are three important operations that are related to <span
+                        class="mathJaxInline">$ \nabla $</span>, the vector differential operator.
                     <br><br>
-                    The three operations are gradient <span class="mathJaxInline">$ \nabla $</span>, divergence <span class="mathJaxInline">$ \nabla \cdot $</span> and curl <span class="mathJaxInline">$ \nabla \times $</span>.
-                    With these operations, we can specify any scalar field or vector field if given enough initial conditions.
+                    The three operations are gradient <span class="mathJaxInline">$ \nabla $</span>, divergence <span
+                        class="mathJaxInline">$ \nabla \cdot $</span> and curl <span class="mathJaxInline">$ \nabla \times $</span>.
+                    With these operations, we can specify any scalar field or vector field if given enough initial
+                    conditions.
                     <br><br>
                     To specify a scalar field, we need the value at a point and gradient of the entire space.
-                    To specify a vector field, we need the value at a point along with the divergence and curl of the entire space.
+                    To specify a vector field, we need the value at a point along with the divergence and curl of the
+                    entire space.
                     <br><br>
                     There are two theorems that connect these differential operations to integration.
                     They are the Divergence Theorem:
@@ -521,7 +557,8 @@
                     </span>
                     Vector calculus is used extensively in electromagnetic fields, gravitational fields and fluid flow.
                     You may like to visit our electromagnetism visualisation suite on Maxwell's equations.
-                    On top of that, there are two interesting applications of the Divergence and Stokes' Theorem where you can explore.
+                    On top of that, there are two interesting applications of the Divergence and Stokes' Theorem where
+                    you can explore.
                 </div>
             </div>
         </div>

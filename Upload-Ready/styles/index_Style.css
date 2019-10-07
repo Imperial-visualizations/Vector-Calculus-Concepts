@@ -39,10 +39,6 @@ iframe {
     height: 100%;
 }
 
-iframe > body {
-    overflow-y: hidden;
-}
-
 ul li, ol li {
     list-style-position: outside;
     font-weight: bolder;

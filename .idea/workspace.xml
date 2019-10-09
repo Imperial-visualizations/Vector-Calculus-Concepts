@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5ab84a33-3352-4538-bf0c-005f2739d42b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Upload-Ready/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Upload-Ready/scripts/nav_Script.js" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/scripts/nav_Script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Upload-Ready/styles/index_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/styles/index_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,20 +14,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Upload-Ready/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="387" column="87" selection-start-line="387" selection-start-column="87" selection-end-line="387" selection-end-column="87" />
+            <state relative-caret-position="275">
+              <caret line="613" column="50" lean-forward="true" selection-start-line="613" selection-start-column="50" selection-end-line="613" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Upload-Ready/styles/index_Style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8908">
-              <caret line="524" column="11" selection-start-line="524" selection-start-column="11" selection-end-line="524" selection-end-column="11" />
+            <state relative-caret-position="360">
+              <caret line="583" column="39" selection-start-line="583" selection-start-column="39" selection-end-line="583" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -35,8 +35,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8534">
+            <state relative-caret-position="785">
               <caret line="502" selection-start-line="502" selection-end-line="502" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Upload-Ready/scripts/nav_Script.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="21" lean-forward="true" selection-end-line="182" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -108,7 +117,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/temp.html" />
         <option value="$PROJECT_DIR$/../Framework-Experiment/Amol Vue Content Test v4/styles/index_Style.css" />
         <option value="$PROJECT_DIR$/../Fourier-Series/index.html" />
         <option value="$PROJECT_DIR$/styles/index_Style.css" />
@@ -148,7 +156,6 @@
         <option value="$PROJECT_DIR$/iFrame-Version/right-4Outro.html" />
         <option value="$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css" />
         <option value="$PROJECT_DIR$/../Fourier-Series/Upload-Ready/styles/index_Style.css" />
-        <option value="$PROJECT_DIR$/Upload-Ready/styles/index_Style.css" />
         <option value="$PROJECT_DIR$/Upload-Ready/right-0Intro.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/right-4Outro.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/right-3bCurl.html" />
@@ -158,14 +165,17 @@
         <option value="$PROJECT_DIR$/Upload-Ready/right-1bGrad.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/right-1aGrad.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css" />
+        <option value="$PROJECT_DIR$/Upload-Ready/scripts/nav_Script.js" />
         <option value="$PROJECT_DIR$/Upload-Ready/index.html" />
+        <option value="$PROJECT_DIR$/Upload-Ready/styles/index_Style.css" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="1912" />
+    <option name="y" value="46" />
+    <option name="width" value="1296" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -195,6 +205,12 @@
               <item name="Vector-Calculus-Concepts" type="b2602c69:ProjectViewProjectNode" />
               <item name="Vector-Calculus-Concepts" type="462c0819:PsiDirectoryNode" />
               <item name="Upload-Ready" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vector-Calculus-Concepts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vector-Calculus-Concepts" type="462c0819:PsiDirectoryNode" />
+              <item name="Upload-Ready" type="462c0819:PsiDirectoryNode" />
               <item name="styles" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -207,7 +223,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Upload-Ready/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -282,17 +298,18 @@
       <workItem from="1569425116278" duration="2000" />
       <workItem from="1570385516526" duration="2843000" />
       <workItem from="1570409788258" duration="50000" />
+      <workItem from="1570634466580" duration="1718000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195383000" />
+    <option name="totallyTimeSpent" value="197101000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="46" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17913593" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27027026" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -320,16 +337,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/VC-scripts/1aGrad.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="372" lean-forward="true" selection-start-line="372" selection-end-line="372" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VC/1aGrad_interactive.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="501">
@@ -854,24 +861,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="785">
+          <caret line="502" selection-start-line="502" selection-end-line="502" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/scripts/nav_Script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="21" lean-forward="true" selection-end-line="182" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Upload-Ready/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="387" column="87" selection-start-line="387" selection-start-column="87" selection-end-line="387" selection-end-column="87" />
+        <state relative-caret-position="275">
+          <caret line="613" column="50" lean-forward="true" selection-start-line="613" selection-start-column="50" selection-end-line="613" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Upload-Ready/styles/index_Style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8908">
-          <caret line="524" column="11" selection-start-line="524" selection-start-column="11" selection-end-line="524" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8534">
-          <caret line="502" selection-start-line="502" selection-end-line="502" />
+        <state relative-caret-position="360">
+          <caret line="583" column="39" selection-start-line="583" selection-start-column="39" selection-end-line="583" selection-end-column="39" />
         </state>
       </provider>
     </entry>

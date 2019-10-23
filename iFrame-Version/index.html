@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--Title-->
+    <title>Visualisations Vector Calculus</title>
+    <!--css links-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/skeleton.css" rel="stylesheet">
+    <link href="styles/index_Style.css" rel="stylesheet">
+    <link href="styles/loadout_Style.css" rel="stylesheet">
+    <!--Required JS resources-->
+    <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/debounce_and_throttle.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="scripts/VC-scripts/VC_object.js"></script>
+    <script src="scripts/VC-scripts/classes.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <!--   Title of non-current sections to appear on hovering above respective number in navbar     -->
+    <div id="hoverTitleSpace" :style="{left: mouseX +'px'}" v-show="hoverTitle !== false">
+        {{hoverTitle}}
+    </div>
+    <!--    Left Side of Window - containing mainly text    -->
+    <div class="vis-container left" id="left-container">
+        <!--     Dynamic Navigation Bar and Section Headings       -->
+        <div class="" id="progress-container">
+            <div id="banner-dummy"></div>
+            <!--    Dynamic Section Heading Text - overlaid on meters    -->
+            <!--    Also act as buttons to navigate between sections    -->
+            <div class="" id="overlay" @mousemove="hoverTitle !== false ? updateMouseX($event) : ''">
+                <button :class="[currentTitle === 1 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle1"
+                        key="sectionTitle1" data-no=1 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[0]}}
+                </button>
+                <button :class="[currentTitle === 2 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle2"
+                        key="sectionTitle2" data-no=2 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[1]}}
+                </button>
+                <button :class="[currentTitle === 3 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle3"
+                        key="sectionTitle3" data-no=3 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[2]}}
+                </button>
+                <button :class="[currentTitle === 4 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle4"
+                        key="sectionTitle4" data-no=4 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[3]}}
+                </button>
+                <button :class="[currentTitle === 5 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle5"
+                        key="sectionTitle5" data-no=5 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[4]}}
+                </button>
+            </div>
+            <!--    Dynamic meters indicating progress through each section    -->
+            <meter :class="[currentTitle === 1 ? 'activeMeter' : '']" id="m1" :min="sectionTops[0]"
+                   :max="sectionBottoms[0]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 2 ? 'activeMeter' : '']" id="m2" :min="sectionTops[1]"
+                   :max="sectionBottoms[1]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 3 ? 'activeMeter' : '']" id="m3" :min="sectionTops[2]"
+                   :max="sectionBottoms[2]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 4 ? 'activeMeter' : '']" id="m4" :min="sectionTops[3]"
+                   :max="sectionBottoms[3]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 5 ? 'activeMeter' : '']" id="m5" :min="sectionTops[4]"
+                   :max="sectionBottoms[4]" :value="scrollPos"></meter>
+        </div>
+        <!--    Container for text content split into sections    -->
+        <div class="journey" id="main-journey" @scroll.passive="scrollFunc">
+            <!--    Section Text Containers   -->
+            <div class="section-container" id="sc1">
+                <div class="placeholder" id="ph1">
+                    <hr>
+                    <h2 class="text section-head" id="s1">
+                        {{sectionTitleLong[0]}}
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p1">
+                    In vector calculus, there are three important operations that are related to <span class="mathJaxInline">$ \nabla $</span>, the vector differential operator.
+                    <span class="mathJaxInline">$ \nabla $</span> can be operated on both scalar and vector fields.
+                    <br><br>
+                    <h3 class="section-sub-head">
+                        Scalar Field <span class="mathJaxHeading">$ \Omega( \mathbf{r} ) $</span>
+                    </h3>
+                    A scalar field is a function that outputs a scalar value, given $n$ independent variables in <span class="mathJaxInline">$ \mathbb{R}^n $</span>.
+                    It assigns a scalar value to every point in space. A nice example of a scalar field is an elevation map as seen on the right.
+                    The elevation value, which is a scalar value, depends on the <span class="mathJaxInline">$ x $</span> and <span class="mathJaxInline">$ y $</span> coordinate values on the map.
+                    Contour lines or colours are usually used to represent the "height" of the function value, as seen in the map.
+                    Some other examples of scalar fields are temperature of a room, pressure distribution in a fluid etc.
+                    <br><br>
+                    <h3 class="section-sub-head">
+                        Vector Field <span class="mathJaxHeading">$ \mathbf{f}( \mathbf{r} ) $</span>
+                    </h3>
+                    A vector field is very similar to a scalar field, except that the function outputs a vector, given <span class="mathJaxInline">$ n $</span> independent variables in <span class="mathJaxInline">$ \mathbb{R}^n $</span>.
+                    It is used to represent vectorial information.
+                    For example, the ocean current map on the right is an example of a vector field that depends on the <span class="mathJaxInline">$ x $</span> and <span class="mathJaxInline">$ y $</span> coordinates.
+                    At any position, the function assigns a vector that indicates the speed and direction of the ocean current.
+                    Other examples of vector fields are electric and magnetic fields.
+                    <br><br>
+                    <h3 class="section-sub-head">
+                        <span class="mathJaxHeading">$ \nabla \Omega, $</span> <span class="mathJaxHeading">$ \nabla \cdot \mathbf{f}, $</span> <span class="mathJaxHeading">$ \nabla \times \mathbf{f} $</span>
+                    </h3>
+                    In 3D Cartesian coordinates, $\nabla$ is given by
+                    <span class="mathJaxDisplay">
+                        $$ \nabla = \mathbf{\hat{i}} \frac {\partial}{\partial x} + \mathbf{\hat{j}} \frac {\partial}{\partial y} + \mathbf{\hat{k}} \frac {\partial}{\partial z}. $$
+                    </span>
+                    <span class="mathJaxInline">$ \nabla $</span> operates on a scalar field <span class="mathJaxInline">$ \Omega $</span> in one way, that is:
+                    <span class="mathJaxDisplay">
+                        $$ \nabla \Omega . $$
+                    </span>
+                    This returns a vector field, which is the gradient field of <span class="mathJaxInline">$ \Omega $</span>.
+                    On the other hand, $\nabla$ can operate on a vector field <span class="mathJaxInline">$ \mathbf{f} $</span> in two ways, namely
+                    <span class="mathJaxDisplay">
+                        $$ \nabla \cdot \mathbf{f}$$ and $$\nabla \times \mathbf{f}, $$
+                    </span>
+                    which give the divergence (scalar) and the curl (vector) of a vector field respectively.
+                    <br><br>
+                    In this visualisation suite, we will be placing our focus on the meaning of grad, divergence and curl
+                    instead of their mathematical derivations in the following sections,
+                    in order to provide a physical intuition to what <span class="mathJaxInline">$ \nabla $</span> means, both microscopically and macroscopically.
+                </div>
+            </div>
+            <div class="section-container" id="sc2">
+                <div class="placeholder" id="ph2">
+                    <hr>
+                    <h2 class="text section-head" id="s2">
+                        {{sectionTitleLong[1]}}
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p2">
+                    <!--    Sub-Section Tabs    -->
+                    <ul class="nav nav-tabs nav-justified">
+                        <li :class="[subSection[1] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
+                            <a data-toggle="tab" href="#gradDifferential"
+                               @click="subScrollTo(2); subSection[1]=1; $forceUpdate();">Differential</a>
+                        </li>
+                        <li :class="[subSection[1] === 2 ? 'shaded' : '', 'tabRight']">
+                            <a data-toggle="tab" href="#gradIntegral"
+                               @click="subScrollTo(2); subSection[1]=2; $forceUpdate();">Integral</a>
+                        </li>
+                    </ul>
+                    <!--    Sub-Section Text Containers    -->
+                    <div class="tab-content">
+                        <div id="gradDifferential" class="tab-pane fade in active show">
+                                <h3 class="section-sub-head first-sub-head">
+                                Gradient Operator: <span class="mathJaxHeading">$ \nabla \Omega $</span>
+                                </h3>
+                            Grad operates on a scalar field <span class="mathJaxInline">$ f(x, y) $</span> to produce a
+                            vector field indicating the magnitude and direction of the
+                            steepest gradient at each point.
+                            <br><br>
+                            It is easy to remember that grad produces a vector field, because it is necessary
+                            for the gradient to have a direction once there is more than one dimension involved. It must
+                            act on a scalar field
+                            because it doesn't make much sense for a vector field to have a gradient.
+                            <br><br>
+                            <h3 class="section-sub-head">
+                                    Visualisation Guide
+                                </h3>
+                            The surface shown on the right is a scalar function <span class="mathJaxInline">$ f $</span>
+                            of two independent variables, <span class="mathJaxInline">$ x $</span> and <span
+                                class="mathJaxInline">$ y. $</span> Note that it is a 2D scalar field &mdash;
+                            the third dimension is just being used to display the value of the function.
+                            <br><br>
+                            Beneath it the gradient of the function <span class="mathJaxInline">$ \nabla f $</span> is
+                            shown. By changing the coefficient <span class="mathJaxInline">$ a $</span>, the gradient of
+                            the function can be increased
+                            and decreased in certain directions. There are also several functions to choose from.
+                            <br><br>
+                            The idea extends to three dimensions in the same way. For example, if you were to plot the
+                            magnitude of the Sun's gravitational field
+                            in 3D space around the Sun, the gradient of this field would give vectors that point to the
+                            centre of the Sun at every point.
+                        </div>
+                        <div id="gradIntegral" class="tab-pane fade">
+                            <span class="mathJaxDisplay">
+                                $$ \Omega_B - \Omega_A = \int _A ^B \nabla \Omega \cdot d\mathbf{l} $$
+                            </span>
+                            For a given vector field, if <span
+                                class="mathJaxInline">$ \mathbf{A} \cdot d\mathbf{l} $</span> is an exact differential,
+                            <span class="mathJaxInline">$ \mathbf{A} $</span> is a conservative field. Then, <span
+                                class="mathJaxInline">$ \mathbf{A} $</span> is the
+                            gradient function of some scalar function <span class="mathJaxInline">$ \Omega. $</span>
+                            That is, <span class="mathJaxInline">$ \mathbf{A} = \nabla {\Omega}. $</span>
+                            <br><br>
+                            We can relate <span class="mathJaxInline">$ \Omega $</span> and <span class="mathJaxInline">$ \nabla \Omega $</span>
+                            by the equation below:
+                            <span class="mathJaxDisplay">
+                                $$ \int _A ^B \nabla \Omega \cdot d\mathbf{l} = \Omega_B - \Omega_A $$
+                            </span>
+                            From this equation above, we can see that the integral is independent of the path that one
+                            takes from A to B,
+                            for it is determined by only the values from the parent function <span
+                                class="mathJaxInline">$ \Omega_B - \Omega_A $</span>. This is a generalisation of the
+                            Fundamental Theorem of Calculus.
+                            <br><br>
+                            <h3 class="section-sub-head">
+                                Visualisation Guide
+                            </h3>
+                            <ol>
+                                <li>
+                                    <p>
+                                        On the right, you can see a gradient field and its scalar parent function.
+                                        Change the value of the parameter <span class="mathJaxInline">$ a $</span>, and
+                                        observe the change in <span class="mathJaxInline">$ \nabla \Omega $</span> and
+                                        <span class="mathJaxInline">$ \Omega $</span>.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Note that as the magnitude of <span class="mathJaxInline">$ a $</span> increases,
+                                        the length of the arrows in <span class="mathJaxInline">$ \nabla \Omega $</span>
+                                        increases and the contour of the parent function
+                                        <span class="mathJaxInline">$ \Omega $</span> becomes steeper as well. Hence,
+                                        the gradient vector increases in magnitude as well.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        All gradient fields shown in this suite are conservative. This means that the
+                                        line
+                                        integral along the field,
+                                        <span class="mathJaxInline">$ \int \nabla \Omega \cdot d\mathbf{l} $</span> is
+                                        path
+                                        independent. Move the path of the ball from Point A to Point B
+                                        along 2 different paths, Path 1 and Path 2.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Observe their function values. Note that along the path, the value of <span
+                                            class="mathJaxInline">$ \Omega $</span> may be different.
+                                        However, when the balls reach Point B, their function values are equal.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        This means that the line integral <span class="mathJaxInline">$ \int _A ^B \nabla \Omega \cdot d\mathbf{l} $</span>
+                                        is determined
+                                        only by the value of <span class="mathJaxInline">$ \Omega $</span> at the
+                                        limits,
+                                        <span class="mathJaxInline">$ \Omega_B - \Omega_A $</span>.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        There are a few other functions for you to play around with. Click the dropdown
+                                        menu
+                                        to find out.
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-container" id="sc3">
+                <div class="placeholder" id="ph3">
+                    <hr>
+                    <h2 class="text section-head" id="s3">
+                        {{sectionTitleLong[2]}}
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p3">
+                    <!--    Sub-Section Tabs    -->
+                    <ul class="nav nav-tabs nav-justified">
+                        <li :class="[subSection[2] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
+                            <a data-toggle="tab" href="#divergenceDifferential"
+                               @click="subScrollTo(3); subSection[2]=1; $forceUpdate();">Differential</a>
+                        </li>
+                        <li :class="[subSection[2] === 2 ? 'shaded' : '', 'tabRight']">
+                            <a data-toggle="tab" href="#divergenceIntegral"
+                               @click="subScrollTo(3); subSection[2]=2; $forceUpdate();">Integral</a>
+                        </li>
+                    </ul>
+                    <!--    Sub-Section Text Containers    -->
+                    <div class="tab-content">
+                        <div id="divergenceDifferential" class="tab-pane fade in active show">
+                            <h3 class="section-sub-head first-sub-head">
+                                Divergence Operator: <span class="mathJaxHeading">$ \nabla \cdot \mathbf{f} $</span>
+                            </h3>
+                            Divergence is a vector operator that describes the quantity of a vector field at each point.
+                            It is the volume density of outward flux of a vector field at an infinitesimal volume around a point.
+                            This leads to another way of understanding divergence:
+                            <br><br>
+                            Imagine a point <span class="mathJaxInline">$ (x_A,y_A) $</span> in the vector field, which has a vector output assigned to it.
+                            If <span class="mathJaxInline">$ \nabla \cdot \mathbf{f}(x_A,y_A) \neq 0 $</span>, as we move along an
+                            infinitesimal distance parallel to the direction of the vector at the point (that is <span class="mathJaxInline">$ \mathbf{f}(x_A,y_A)) $</span>,
+                            there is a change in the magnitude of the output vector, which is the field strength. If divergence is positive, the field strength
+                            increases as we move in the direction of the vector at <span class="mathJaxInline">$ (x_A,y_A) $</span>. If divergence is negative, the field strength
+                            decreases as we move in the direction of the vector at the point.
+                            <br><br>
+                            <h3 class="section-sub-head">
+                                Visualisation Guide
+                            </h3>
+                            <ol>
+                                <li>
+                                    <p>
+                                        A vector field is shown on the right. This field has a constant divergence value
+                                        as indicated.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Note that the field does not look like a "source" or "sink".
+                                        However, the field strength still changes along the x-direction, which indicates
+                                        a non-zero divergence.
+                                        As you move along a direction parallel to the vector field at any point,
+                                        there is a change in the magnitude of the vector field. We can imagine this as
+                                        if field lines are created or destroyed as we move along.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Adjust the slider until the value of divergence is zero.
+                                        Note that the length of the arrows in the field are constant; there is no
+                                        creation or destruction of field lines.
+                                        Hence, this is a divergence-free field.
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                        <div id="divergenceIntegral" class="tab-pane fade">
+                            <h3 class="section-sub-head first-sub-head">
+                                Flux - the flow of field lines
+                            </h3>
+                            We often call <span class="mathJaxInline">$ \mathbf{F} \cdot d\mathbf{S} $</span> the flux
+                            of field <span class="mathJaxInline">$ \mathbf{F} $</span> perpendicular through a surface
+                            element <span class="mathJaxInline">$ d\mathbf{S} $</span>.
+                            <br><br>
+                            The <b>net</b> flux through any surface <span class="mathJaxInline">$ \mathbf{S} $</span> is
+                            given by the integral:
+                            <span class="mathJaxDisplay">
+                                $$\iint_S \mathbf{F} \cdot d\mathbf{S}$$
+                            </span>
+                            By considering a <b>closed</b> surface, the Divergence Theorem relates the net flux to the
+                            divergence of the field:
+                            <span class="mathJaxDisplay">
+                                $$ {\large\bigcirc}\kern-1.55em\iint_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V \nabla \cdot \mathbf{F} dV $$
+                            </span>
+                            <!-- BROKEN LINK -->
+                            An <a> <!--href="Visualisations/Static-Electromagnetism/EM_p1.html"-->example</a> of the Divergence
+                            Theorem is Maxwell's Equation.
+                            <h3 class="section-sub-head">
+                                    Visualisation Guide
+                                </h3>
+                                In this visualisation, the green line can be thought as taking the side view of the surface
+                                element. You may move it by dragging it and rotate it by moving the slider. 
+                                <br><br>
+                                There are two vectors shown: the black one is the normal of the surface element while the grey one is the 
+                                field strength at the point.
+                                <br><br>
+                                Note: The flux counter on top right is a scaled flux.
+                                <br><br>
+                                <b>Important:</b> We are using field lines representation here, not vector field.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-container" id="sc4">
+                <div class="placeholder" id="ph4">
+                    <hr>
+                    <h2 class="text section-head" id="s4">
+                        {{sectionTitleLong[3]}}
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p4">
+                    <!--    Sub-Section Tabs    -->
+                    <ul class="nav nav-tabs nav-justified">
+                        <li :class="[subSection[3] === 1 ? 'shaded' : '', 'active', 'tabLeft']">
+                            <a data-toggle="tab" href="#curlDifferential"
+                               @click="subScrollTo(4); subSection[3]=1; $forceUpdate();">Differential</a>
+                        </li>
+                        <li :class="[subSection[3] === 2 ? 'shaded' : '', 'tabRight']">
+                            <a data-toggle="tab" href="#curlIntegral"
+                               @click="subScrollTo(4); subSection[3]=2; $forceUpdate();">Integral</a>
+                        </li>
+                    </ul>
+                    <!--    Sub-Section Text Containers    -->
+                    <div class="tab-content">
+                        <div id="curlDifferential" class="tab-pane fade in active show">
+                            <h3 class="section-sub-head first-sub-head">
+                                The Curl Operator: <span class="mathJaxHeading">$ \nabla \times \mathbf{f} $</span>
+                            </h3>
+                            Curl is a vector operator that describes the infinitesimal rotation of a vector field.
+                            It can be seen as the tendency of rotation at a point in the vector field.
+                            Curl exists in circulation field such as a vortex.
+                            <br><br>
+                            However, curl can still manifest in a non "circulation-looking" vector field like the one on
+                            the right.
+                            Consider a microscopic point placed in the vector field; if the field strength acting on the
+                            point varies
+                            at different parts of the point, it creates a tendency for the point to rotate.
+                            <br><br>
+                            This leads to another way of understanding curl:
+                            <br><br>
+                            Imagine travelling over an infinitesimal distance in the direction perpendicular to the
+                            vector field at a point.
+                            If the field strength changes along this infinitesimal distance travelled, there is a
+                            non-zero curl at the point.
+                            <br><br>
+                            <h3 class="section-sub-head">
+                                Visualisation Guide
+                            </h3>
+                            <ol>
+                                <li>
+                                    <p>
+                                        A vector field is shown on the right. This field has a curl value as
+                                        indicated.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Note that the field does not look like a "circulation".
+                                        However, as you move along a direction perpendicular to the vector field at any
+                                        point,
+                                        there is a change in the magnitude of the vector field. this gives a paddle the
+                                        tendency to rotate in such a field.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Adjust the slider until the value of curl is zero.
+                                        Note that the length of the arrows in the field are constant; there is no
+                                        rotational
+                                        tendency, only translation.
+                                        Hence, this is a curl-free field.
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                        <div id="curlIntegral" class="tab-pane fade">
+                            Stokes' Theorem states:
+                            <span class="mathJaxDisplay">
+                                $$ \oint_{l} \mathbf {B} \cdot d\mathbf{l} = \iint_{S} \nabla \times \mathbf {B} \cdot d\mathbf{S} $$
+                            </span>
+                            i.e. the closed loop integral of a vector field is equal to the sum of all the curl
+                            contained in the surface
+                            enclosed by the loop.
+                            <br><br>
+                            This is demonstrated in the visualisation on the right, where the components of
+                            <span class="mathJaxInline">$ \mathbf {B} \cdot d\mathbf{l} $</span> as you go around the
+                            loop are shown in the plot at the bottom. The contributions are positive if
+                            the field and dl are pointing in the same direction.
+                            <br><br>
+                            <h3 class="section-sub-head">
+                                    Visualisation Guide
+                                </h3>
+                            When there is curl inside the loop then the overall loop integral is non-zero,
+                            since on all parts of the loop, the contributions to the integral from the curl source have
+                            the same sign; however
+                            when the curl source is outside of the loop, then the contributions cancel out and the net
+                            integral is zero.
+                            <br><br>
+                            This also demonstrates that the curl of a conservative field is zero, since any loop
+                            integral
+                            in a conservative field is also zero.
+                            <br><br>
+                            You can change the shape of the loop to see that this is true for any type of closed loop.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-container" id="sc5">
+                <div class="placeholder" id="ph5">
+                    <hr>
+                    <h2 class="text section-head" id="s5">
+                        {{sectionTitleLong[4]}}
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p5">
+                    In vector calculus, there are three important operations that are related to <span class="mathJaxInline">$ \nabla $</span>, the vector differential operator.
+                    <br><br>
+                    The three operations are gradient <span class="mathJaxInline">$ \nabla $</span>, divergence <span class="mathJaxInline">$ \nabla \cdot $</span> and curl <span class="mathJaxInline">$ \nabla \times $</span>.
+                    With these operations, we can specify any scalar field or vector field if given enough initial conditions.
+                    <br><br>
+                    To specify a scalar field, we need the value at a point and gradient of the entire space.
+                    To specify a vector field, we need the value at a point along with the divergence and curl of the entire space.
+                    <br><br>
+                    There are two theorems that connect these differential operations to integration.
+                    They are the Divergence Theorem:
+                    <span class="mathJaxDisplay">
+                        $$ {\large\bigcirc}\kern-1.55em\iint_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V \nabla \cdot \mathbf{F} dV $$
+                    </span>
+                    and Stoke's Theorem:
+                    <span class="mathJaxDisplay">
+                        $$ \oint_{l} \mathbf{A.dl} = \displaystyle \iint_{S} \nabla \times \mathbf {A} \cdot d\mathbf{S} $$
+                    </span>
+                    Vector calculus is used extensively in electromagnetic fields, gravitational fields and fluid flow.
+                    You may like to visit our electromagnetism visualisation suite on Maxwell's equations.
+                    On top of that, there are two interesting applications of the Divergence and Stokes' Theorem where you can explore.
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    Right Side of Window - containing mainly interactive and visual content    -->
+    <div class="vis-container right" id="right-container">
+        <!--    Title Banner above Right Side    -->
+        <div class="banner">
+            <!--    Visualisation Title    -->
+            <h1 class="" id="vis-title">
+                VECTOR CALCULUS CONCEPTS
+            </h1>
+            <a href="https://www.imperialvisualisations.com/learn/">
+                <img id="vis-logo" src="VisualisationsLogoWhite2.png">
+            </a>
+        </div>
+        <!--    Space into which visualisations are loaded    -->
+        <div id="rightloadSpace">
+            <!--    fade transition tag for RHS - applied by Vue and CSS    -->
+            <transition-group name="fade" tag="div" class="transition-container">
+                <!--    Interactive Zone Containers   -->
+                <div class="rightload text odd" id='loadout1Container' key="loadout1Container"
+                     v-if="currentSection === 1">
+                    <iframe src="right-0Intro.html" class="rightload text" id="iframe1"></iframe>
+                </div>
+                <div class="rightload text even" id='loadout2Container' key="loadout2Container"
+                     v-if="currentSection === 2">
+                    <transition name="fade">
+                        <!--Interactive Zone Sub Containers-->
+                        <div class="rightload text" id='loadout2sub1Container' key="loadout2sub1Container"
+                             v-if="subSection[1] === 1">
+                            <iframe src="right-1aGrad.html" class="rightload text" id="iframe2-1"></iframe>
+                        </div>
+                        <div class="rightload text" id='loadout2sub2Container' key="loadout2sub2Container" v-else>
+                            <iframe src="right-1bGrad.html" class="rightload text" id="iframe2-2"></iframe>
+                        </div>
+                    </transition>
+                </div>
+                <div class="rightload text odd" id='loadout3Container' key="loadout3Container"
+                     v-if="currentSection === 3">
+                    <transition name="fade">
+                        <!--Interactive Zone Sub Containers-->
+                        <div class="rightload text" id='loadout3sub1Container' key="loadout3sub1Container"
+                             v-if="subSection[2] === 1">
+                            <iframe src="right-2aDiv.html" class="rightload text" id="iframe3-1"></iframe>
+                        </div>
+                        <div class="rightload text" id='loadout3sub2Container' key="loadout3sub2Container" v-else>
+                            <iframe src="right-2bDiv.html" class="rightload text" id="iframe3-2"></iframe>
+                        </div>
+                    </transition>
+                </div>
+                <div class="rightload text even" id='loadout4Container' key="loadout4Container"
+                     v-if="currentSection === 4">
+                    <transition name="fade">
+                        <!--Interactive Zone Sub Containers-->
+                        <div class="rightload text" id='loadout4sub1Container' key="loadout4sub1Container"
+                             v-if="subSection[3] === 1">
+                            <iframe src="right-3aCurl.html" class="rightload text" id="iframe4-1"></iframe>
+                        </div>
+                        <div class="rightload text" id='loadout4sub2Container' key="loadout4sub2Container" v-else>
+                            <iframe src="right-3bCurl.html" class="rightload text" id="iframe4-2"></iframe>
+                        </div>
+                    </transition>
+                </div>
+                <div class="rightload text odd" id='loadout5Container' key="loadout5Container"
+                     v-if="currentSection === 5">
+                    <iframe src="right-4Outro.html" class="rightload text" id="iframe5"></iframe>
+                </div>
+            </transition-group>
+        </div>
+    </div>
+</div>
+</body>
+<script src="scripts/nav_Script.js"></script>
+</html>

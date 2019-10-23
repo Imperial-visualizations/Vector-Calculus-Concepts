@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--Title-->
+    <title>right-1bGrad</title>
+    <!--css links-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/skeleton.css" rel="stylesheet">
+    <link href="styles/index_Style.css" rel="stylesheet">
+    <link href="styles/loadout_Style.css" rel="stylesheet">
+    <!--Required JS resources-->
+    <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/debounce_and_throttle.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"
+            integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js"
+            integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="scripts/VC-scripts/VC_object.js"></script>
+    <script src="scripts/VC-scripts/classes.js"></script>
+</head>
+<body id="loadout2sub2">
+<!--Graph 1-->
+<h4 class="graph1Title"> $$ \Omega (x,y) $$ </h4>
+<div id='Vector_Graph_1b'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!--Graph 2-->
+<h4 class="graph2Title"> $$ \nabla \Omega (x,y) $$ </h4>
+<div id='Scalar_Graph_1b'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!--Vis Inputs-->
+<div class="inputsContainer">
+    <div class="partial-sliders-container">
+        <label class="slider-label">$a$:
+            <output id="Slider_1_1b_value" for="Slider_1_1b">5</output>
+        </label>
+        <!--BEGIN Slider-->
+        <label class="slider">
+            <span class="sliderMin">-10</span>
+            <input id="Slider_1_1b" class="inputs" type="range" value="5" min="-10" max="10" step="0.5"
+                   oninput="Slider_1_1b_value.value=Slider_1_1b.value"/></input>
+            <span class="sliderMax">10</span>
+        </label>
+        <!--END Slider-->
+    </div>
+    <div class="partial-sliders-container">
+        <label class="slider-label flex-slider-label">
+            <span class="slider-label">Path:</span>
+            <div class="slider-label smaller-text">$ \Omega (x,y)$<span id="functionValueBall1_1b"
+                                                                        class="slider-label smaller-text">  </span>
+            </div>
+            <div class="slider-label smaller-text">$ \Omega (x,y)$<span id="functionValueBall2_1b"
+                                                                        class="slider-label smaller-text">  </span>
+            </div>
+        </label>
+        <!--BEGIN Slider-->
+        <label class="slider">
+            <span class="sliderMin">A</span>
+            <input id="Slider_2_1b" class="inputs" type="range" value="-16" min="-16" max="5" step="0.2"/></input>
+            <span class="sliderMax">B</span>
+        </label>
+        <!--END Slider-->
+    </div>
+</div>
+<!--Legend-->
+<div class="legendContainer">
+    <div id="path1" class="legendContent">
+        <div class="colorBlock yellow"></div>
+        <span>Path 1</span>
+    </div>
+    <div id="path2" class="legendContent">
+        <div class="colorBlock green"></div>
+        <span>Path 1</span>
+    </div>
+    <div id="pointA" class="legendContent">
+        <div class="colorCircle pink"></div>
+        <span>Point A</span>
+    </div>
+    <div id="pointB" class="legendContent">
+        <div class="colorCircle gray"></div>
+        <span>Point B</span>
+    </div>
+    <div id="ballA" class="legendContent">
+        <div class="colorCircle red"></div>
+        <span>Ball</span>
+    </div>
+    <div id="ballB" class="legendContent">
+        <div class="colorCircle red"></div>
+        <span>Ball</span>
+    </div>
+</div>
+<!--More Vis Inputs-->
+<div id="scroll">
+    <div class="scroll-down">
+        <strong>Select Function: </strong>
+        <select id="Function_Selector">
+            <option value="Gaussian">Gaussian</option>
+            <option value="Reciprocal">Reciprocal</option>
+            <option value="Sinusoidal">Sinusoidal</option>
+        </select>
+    </div>
+</div>
+<!--Equation Space-->
+<div id="" eqConSec2b class="equationContainer">
+    <div id="Grad_Reciprocal_eqn_1b">
+        <img src="images/Grad_Reciprocal_eqn_1.png">
+    </div>
+    <div id="Grad_Gaussian_eqn_1b">
+        <img src="images/Grad_Gaussian_eqn_1b.png">
+    </div>
+    <div id="Grad_Sinusoidal_eqn_1b">
+        <img src="images/Grad_Sinusoidal_eqn_1b.png">
+    </div>
+    <div id="Reciprocal_eqn_1b">
+        <img src="images/Reciprocal_eqn_1b.png">
+    </div>
+    <div id="Gaussian_eqn_1b">
+        <img src="images/Gaussian_eqn_1b.png">
+    </div>
+    <div id="Sinusoidal_eqn_1b">
+        <img src="images/Sinusoidal_eqn_1b.png">
+    </div>
+</div>
+</body>
+<!--THE BRAINS-->
+<script src="scripts/VC-scripts/1bGrad.js"></script>
+</html>

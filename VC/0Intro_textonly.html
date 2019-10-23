@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Page Info-->
+    <title>Vector Calculus Introduction</title>
+    <!--css link-->
+    <link rel="stylesheet"
+          href="styles/skeleton.css">
+    <link rel="stylesheet"
+          href="styles/style.css">
+    <!--Required JS resources-->
+    <!--NB: better to have resources before the main body but still works even if they are not-->
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+    </script>
+    <script type="text/javascript" src="scripts/MathJax-master/MathJax.js">
+    </script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+
+<body>
+
+<div class="container_journey">
+     <center><h4>Introduction to Vector Calculus</h4></center>
+        In vector calculus, there are three important operations that are related to $\nabla$, the vector differential operator.
+        $\nabla$ can be operated on both scalar and vector fields.
+        <h6>Scalar Field $\Omega( \mathbf{r} )$</h6>
+            A scalar field is a function that outputs a scalar value, given $n$ independent variables in $\mathbb{R}^n$.
+            It assigns a scalar value to every point in space. A nice example of a scalar field is an elevation map as seen on the right.
+            The elevation value, which is a scalar value, depends on the $x$ and $y$ coordinate values on the map.
+            Countour lines or colours are usually used to represent the "height" of the function value, as seen in the map.
+            Some other examples of scalar fields are temperature of a room, pressure distribution in a fluid etc.
+        <br>
+        <h6>Vector Field $\mathbf{f}( \mathbf{r} )$</h6>
+            A vector field is very similar to a scalar field, except that the function outputs a vector, given $n$ independent variables in $\mathbb{R}^n$.
+            It is used to represent vectorial information.
+            For example, the ocean current map on the right is an example of a vector field that depends on the $x$ and $y$ coordinates.
+            At any position, the function assigns a vector that indicates the speed and direction of the ocean current.
+            Other examples of vector fields are electric and magnetic fields.
+        <br>
+        <h6>$\nabla \Omega,$ $\nabla \cdot \mathbf{f},$ $\nabla \times \mathbf{f}$</h6>
+        In 3D Cartesian coordinates, $\nabla$ is given by
+        $$ \nabla = \mathbf{\hat{i}} \frac {\partial}{\partial x} + \mathbf{\hat{j}} \frac {\partial}{\partial y} + \mathbf{\hat{k}} \frac {\partial}{\partial z} .$$
+        $\nabla$ operates on a scalar field $\Omega$ in one way, that is:
+        $$\nabla \Omega .$$
+        This returns a vector field, which is the gradient field of $\Omega$.
+        On the other hand, $\nabla$ can operate on a vector field $\mathbf{f}$ in two ways, namely
+        $$\nabla \cdot \mathbf{f}$$ and $$\nabla \times \mathbf{f},$$
+        which give the divergence (scalar) and the curl (vector) of a vector field respectively.
+        <br>
+        In this visualisation suite, we will be placing our focus on the meaning of grad, divergence and curl
+        instead of their mathematical derivations in the following sections,
+        in order to provide a physical intuition to what $\nabla$ means, both microscopically and macroscopically.
+
+</div>
+
+</body>

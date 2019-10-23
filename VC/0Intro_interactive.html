@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Page Info-->
+    <title>Curl</title>
+    <!--css link-->
+    <link rel="stylesheet"
+          href="styles/skeleton.css">
+    <link rel="stylesheet"
+          href="styles/style.css">
+    <!--Required JS resources-->
+    <!--NB: better to have resources before the main body but still works even if they are not-->
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+    </script>
+    <script type="text/javascript" src="scripts/MathJax-master/MathJax.js">
+    </script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<body>
+
+
+    <div style="width: 65%; float:right">
+        <div style="width: 30%; float:left">
+            <label for="scalar" class="radio">
+              <input type="radio" id="scalar" value="scalar" name="wave-switch" checked="checked">
+              <span>Scalar Field (Elevation Map of Europe)</span>
+            </label>
+            <label for="vector" class="radio">
+              <input type="radio" id="vector" value="vector" name="wave-switch" >
+              <span>Vector Field (Ocean Currents)</span>
+            </label>
+        </div>
+
+        <div style="width:70%; float: right;">
+                <img id = "scalarFieldImage" style="float:left; width:90vh;" src="0scalar_field.jpg" alt = "Elevation Map of Europe">
+        </div>
+        <div style="width:70%; float: right;">
+                <img id = "vectorFieldImage" style="float:left; width:90vh;" src="0vector_field.png" alt = "Ocean Currents">
+        </div>
+    </div>
+
+
+
+
+
+<!--THE BRAINS-->
+<script src=scripts/0Intro.js></script>
+<!--<script src=scripts/VC_object.js></script>-->
+</body>
+</html>

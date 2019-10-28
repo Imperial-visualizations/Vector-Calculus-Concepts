@@ -1,22 +1,251 @@
-//A: Global Initial Parameters:
+class Arrow{
+    //class currently only works for 2d arrows drawn at z = 0 on a 3d plot.
+    //need to edit GetDrawData if you want 3d arrows.
+    constructor(x1, y1, x2, y2, HeadSize){
+        //x1 and y1 are coords of tail of arrow
+        //x2 and y2 are coords of head of arrow
+        //HeadSize sets the size of the arrowhead.
+        this.TailPos = [x1, y1];
+        this.HeadPos = [x2, y2];
 
-/* Start by putting in all initial parameters you want and any constants you want to use (e.g. G = 6.67*10**(-11),
-any layout properties (which you probably want to keep constant for an individual part of a visualisation
-should go here */
+        this.HeadSize = HeadSize;
+        this.HeadAngle = Math.PI/4;
 
-var initialPoint = [1, 0];
-var initialPoint3 = [1,0];
-var layout = {
-    autosize: true,
-    //width: 450, "height": 500,
-    margin: {l:30, r:30, t:30, b:30},
-    hovermode: "closest",
-    showlegend: false,
-    xaxis: {range: [-5, 5], zeroline: true},
-    yaxis: {range: [-5, 5], zeroline: true},
-    aspectratio: {x:1, y:1},
+        this.r = this.GetLength(this.HeadPos, this.TailPos);
+        this.theta = this.GetTheta(this.HeadPos, this.TailPos);
+
+    }
+
+    GetHeadPos(){
+        return this.HeadPos;
+    }
+
+    GetTailPos(){
+        return this.TailPos;
+    }
+
+    GetLength(){
+        return Math.sqrt((this.HeadPos[0] - this.TailPos[0])**2 + (this.HeadPos[1] - this.TailPos[1])**2);
+    }
+
+    GetTheta(){
+        return Math.atan2((this.HeadPos[1] - this.TailPos[1]), (this.HeadPos[0] - this.TailPos[0]));
+    }
+
+    GetDrawData3D(){
+        //need arrays of x values and arrays of y values
+        //first line is main body of arrow
+
+        //let FirstLine = [[this.TailPos[0], this.HeadPos[0]],  [this.TailPos[1], this.HeadPos[1]]];
+
+        let Ax = this.HeadPos[0] - this.HeadSize*Math.sin((Math.PI/2) - this.theta + this.HeadAngle);
+        let Ay = this.HeadPos[1] - this.HeadSize*Math.cos((Math.PI/2) - this.theta + this.HeadAngle);
+        //let PointA = [Ax, Ay];
+
+        let Bx = this.HeadPos[0] - this.HeadSize*Math.sin((Math.PI/2) - this.theta - this.HeadAngle);
+        let By = this.HeadPos[1] - this.HeadSize*Math.cos((Math.PI/2) - this.theta - this.HeadAngle);
+        //let PointB = [Bx, By];
+
+        //let SecondLine = [[this.HeadPos[0], Ax], [this.HeadPos[1], Ay]];
+        //let ThirdLine = [[this.HeadPos[0], Bx], [this.HeadPos[1], By]];
+        let FirstLine = {};
+        let SecondLine = {};
+        let ThirdLine = {};
+
+        if (this.r <= 0.000001){
+            FirstLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.TailPos[0], this.HeadPos[0]],
+                y: [this.TailPos[1], this.HeadPos[1]],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+
+            SecondLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.HeadPos[0], Ax],
+                y: [this.HeadPos[1], Ay],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+
+            ThirdLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.HeadPos[0], Bx],
+                y: [this.HeadPos[1], By],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+        }else{
+
+            FirstLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.TailPos[0], this.HeadPos[0]],
+                y: [this.TailPos[1], this.HeadPos[1]],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+
+            SecondLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.HeadPos[0], Ax],
+                y: [this.HeadPos[1], Ay],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+
+            ThirdLine = {
+                type: "scatter3d",
+                mode: "lines",
+                x: [this.HeadPos[0], Bx],
+                y: [this.HeadPos[1], By],
+                z: [0,0],
+                line: {color: "blue", width: 3},
+                hoverinfo: "skip"
+            };
+        }
+
+        return [FirstLine, SecondLine, ThirdLine];
+    }
+
+    GetDrawData2D(){
+
+        //need arrays of x values and arrays of y values
+        //first line is main body of arrow
+
+        //let FirstLine = [[this.TailPos[0], this.HeadPos[0]],  [this.TailPos[1], this.HeadPos[1]]];
+
+        let Ax = this.HeadPos[0] - this.HeadSize*Math.sin((Math.PI/2) - this.theta + this.HeadAngle);
+        let Ay = this.HeadPos[1] - this.HeadSize*Math.cos((Math.PI/2) - this.theta + this.HeadAngle);
+        //let PointA = [Ax, Ay];
+
+        let Bx = this.HeadPos[0] - this.HeadSize*Math.sin((Math.PI/2) - this.theta - this.HeadAngle);
+        let By = this.HeadPos[1] - this.HeadSize*Math.cos((Math.PI/2) - this.theta - this.HeadAngle);
+        //let PointB = [Bx, By];
+
+        //let SecondLine = [[this.HeadPos[0], Ax], [this.HeadPos[1], Ay]];
+        //let ThirdLine = [[this.HeadPos[0], Bx], [this.HeadPos[1], By]];
+        let FirstLine = {};
+        let SecondLine = {};
+        let ThirdLine = {};
+
+        if (this.r == 0){
+            FirstLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.TailPos[0], this.HeadPos[0]],
+                y: [this.TailPos[1], this.HeadPos[1]],
+                line: {color: "blue", width: 0},
+                hoverinfo: "skip"
+            };
+
+            SecondLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.HeadPos[0], Ax],
+                y: [this.HeadPos[1], Ay],
+                line: {color: "blue", width: 0},
+                hoverinfo: "skip"
+            };
+
+            ThirdLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.HeadPos[0], Bx],
+                y: [this.HeadPos[1], By],
+                line: {color: "blue", width: 0},
+                hoverinfo: "skip"
+            };
+        }else{
+
+            FirstLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.TailPos[0], this.HeadPos[0]],
+                y: [this.TailPos[1], this.HeadPos[1]],
+                line: {color: "blue", width: 2},
+                hoverinfo: "skip"
+            };
+
+            SecondLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.HeadPos[0], Ax],
+                y: [this.HeadPos[1], Ay],
+                line: {color: "blue", width: 1},
+                hoverinfo: "skip"
+            };
+
+            ThirdLine = {
+                type: "scatter",
+                mode: "lines",
+                x: [this.HeadPos[0], Bx],
+                y: [this.HeadPos[1], By],
+                line: {color: "blue", width: 1},
+                hoverinfo: "skip"
+            };
+        }
+
+        return [FirstLine, SecondLine, ThirdLine];
+    }
+
 };
-var currentPoint = initialPoint;
+
+
+function getVectorData(divergence, x_max, PlotStep){
+    let ArrowData = [];
+    //let z = [];
+    let VectorData = [];
+
+    let CurrentArrow, LineStuff;
+
+    let x = [];
+    let y = [];
+
+    let x2 = 0;
+    let y2 = 0;
+    let b = 0;
+    let c = 0;
+
+    for (let i = -x_max; i <= x_max; i += PlotStep){
+        for (let j = -x_max; j <= x_max; j += PlotStep){
+            x[0] = i;
+            y[0] = j;
+
+            let scaleFactor = 0.01;
+
+            x2 = 200 + 4*x[0]*divergence;
+            y2 = 0
+
+
+            x2 *= scaleFactor;
+            y2 *= scaleFactor;
+
+            x[1] = x[0] + x2;
+            y[1] = y[0] + y2;
+
+            ArrowData = [x, y];
+
+            CurrentArrow = new Arrow(ArrowData[0][0], ArrowData[1][0], ArrowData[0][1], ArrowData[1][1], 0.5);
+            LineStuff = CurrentArrow.GetDrawData2D();
+
+            VectorData.push(LineStuff[0]);
+            VectorData.push(LineStuff[1]);
+            VectorData.push(LineStuff[2]);
+        }
+    }
+    return VectorData;
+};
 
 //B: Maths
 
@@ -25,251 +254,69 @@ that's fine, no need to recreate stuff, but any functions you need to construct 
 next block*/
 
 
-function inner_product(first_vector , second_vector){
-    // Returns the inner product of two vectors
-    var sum = 0;
-    for (var i=0; i<2; i++) {
-        sum += first_vector[i] * second_vector[i];
-    }
-    return sum;
-}
-
-function orthogonal(vector_a , vector_b, tolerance = 0){
-    //Returns whether vectors a and b are orthogonal
-    dot = inner_product(vector_a , vector_b);
-    if (dot === 0){
-        return true;
-        }
-    else {
-        return false;
-        }
-    }
-
-
-function normalised(vector){
-    // Returns whether a vector has a normalised basis
-    dot = inner_product(vector, vector);
-    if (dot === 1){
-        return true;
-        }
-    else {
-        return false;
-        }
-    }
-
-function find_xy(resulting_vector, base_1 , base_2){
-    // Finds the projection of "resulting vector" into base_1 and base_2 and returns the
-    //coefficients that are needed such the reconstruct the result from the two bases
-    b1 = resulting_vector[0];
-    b2 = resulting_vector[1];
-    p1 = base_1[0];
-    p2 = base_1[1];
-    q1 = base_2[0];
-    q2 = base_2[1];
-
-    if (p1 === 0){
-        y = b1 / q1;
-        x = (q1*b2 - b1*q2)/p2;
-    }
-    else if (p1*q2 === p2**2){
-        y = (p1*b2 - b1)/(p2**2 - q1*p2);
-        x = (b1 - y*q1)/(p1);
-    }
-    else{
-        y = (p1*b2 - p2*b1)/(p1*q2 - p2**2);
-        x = (b1/p1) - y*p2;
-    }
-    return x,y;
-}
-
-function projection(target_vector, base_vector){
-    //Finds the distance along 'base_vector' the vector 'target_vector' is projected
-    dot_product = inner_product(target_vector ,base_vector);
-    base_size = Math.sqrt(inner_product(base_vector, base_vector));
-    span = dot_product / base_size;
-    return span;
-}
-
-function scale_vector(original_vector, scale){
-    // Multiplies the each component of the original vector by 'scale'
-    new_1 = scale * original_vector[0];
-    new_2 = scale * original_vector[1];
-    new_vector = [new_1, new_2];
-    return new_vector;
-}
-
-function unpackVertices (vertices) {
-    //to unpack the array of vertices allowing us to operate and place them on the graph with ease of control
-    for (i=0; i<vertices.length-1; i++) {
-        let current_vertex = vertices[i];
-        current_vertex.gObject(green, 3),
-        current_vertex.arrowHead(green, 3);
-    }
-    return;
-}
-
-function computeBasis(x3,y3) {
-    currentPoint3 = [x3, y3];
-
-    rho3 = Math.sqrt(x3**2+y3**2);
-    phi3 = Math.atan(x3/y3);
-
-    dx3 = 1;
-    dy3 = 1;
-
-
-    if (x3<0 && y3>0){
-    dx3=-dx3;
-    }else if (x3>0 && y3<0){
-    dy3=-dy3;
-    }else if (x3<0 && y3<0){
-    dx3=-dx3;
-    dy3=-dy3;
-    }else{}
-
-    //This is how we first declare objects
-
-    let vnumber =4;
-    let hnumber = 4;
-
-
-
-    let lhsx = [];
-    let rhsx = [];
-    let lhsy = [];
-    let rhsy = [];
-    let widths = [];
-    let colours = []
-
-    for (i=0; i<hnumber;i++){
-        for (j=0;j<vnumber;j++){
-            colorscale= [250*Math.cos(i*x3),0,Math.abs(250*Math.sin(i*x3))]
-            for (let jj=0; jj<2;jj++){
-                for (let ii=0;ii<2;ii++) {
-                    if (x3 >= 0) {
-                        lhsx.push(((-1) ** ii) * x3 * (i));
-                        rhsx.push(((-1) ** ii) * x3 * (i + 1));
-                        lhsy.push(((-1) ** jj) * j*y3);
-                        rhsy.push(((-1) ** jj) * j*y3);
-                        colours.push(colorscale);
-                        widths.push(Math.abs((hnumber-i)*x3));
-                    } else {
-                        lhsx.push(((-1) ** ii) * x3 * (i+1));
-                        rhsx.push(((-1) ** ii) * x3 * (i));
-                        lhsy.push(((-1) ** jj) * j*y3);
-                        rhsy.push(((-1) ** jj) * j*y3);
-                        colours.push(colorscale);
-                        widths.push(Math.abs((hnumber-i)*x3));
-                    }
-                }
-            }
-        }
-     }
-
-    let colors1 = [];
-    let colors2 = [];
-    let colors3 = [];
-    //let colors_string = (eval(colors));
-
-    for (i=0; i<lhsx.length;i++){
-        colors1.push(colours[i][0]);
-        colors2.push(colours[i][1]);
-        colors3.push(colours[i][2]);
-    }
-    let yolo = [];
-    for (i=0; i<lhsx.length;i++) {
-        yolo.push("rgb(" + colors1[i] + "," + colors2[i] + "," + colors3[i] + ")");
-
-    }
-
-
-    let vertices = [];
-    for (i=0; i<lhsx.length; i++){
-        let a = new Line2d([[lhsx[i], lhsy[i]], [rhsx[i], rhsy[i]]]);
-        vertices.push(color= a.gObject(yolo[i], widths[i]));
-        vertices.push(color= a.arrowHead(yolo[i] , widths[i]));
-    }
-
-        function isPositive(x){
-        if (Math.abs(x) === x) {
-        return true;
-        } else {
-        return false;
-        }
-    }
-
-    var data = [];
-
-    for (i=0;i<vertices.length; i++){
-        data.push(vertices[i])
-        }
-    return data;
-}
-
-//C: Interactivity
-
-/* We've now got all the functions we need to use such that for a given user input, we have a data output that we'll use.
-Now we just have to actually obtain the user input from the HTML file by using JQuery and then plot everything relevant that we want to see*/
-
-function initCarte(type) {
-    Plotly.purge("graph");
-    initX3 = initialPoint3[0];
-    initY3 = initialPoint3[0];
-
-
-    $("#x3Controller").val(initX3);
-    $("#x3ControllerDisplay").val(initX3);
-    $("#y3Controller").val(initY3);
-    $("#y3ControllerDisplay").val(initY3);
-    $("#y3Controller").hide();
-
-    /* ~Jquery
-    2.  Declare and store the floating values from x/y- sliders.
-        Hint:
-            - use document.getElementById('idName').value
-            - use parseFloat() to make sure you are getting floating points.
-    */
-
-
-    var x3 = parseFloat(document.getElementById('x3Controller').value);
-    var y3 = parseFloat(document.getElementById('y3Controller').value);
-
-
-    Plotly.newPlot("graph", computeBasis(x3, y3), layout);
-
-    return;
-}
-
-
 //D: Calling
 
 /* Now we have to ask the plots to update every time the user interacts with the visualisation. Here we must both
 define what we want it to do when it updates, and then actually ask it to do that. These are the two functions below.
 */
 
-function updatePlot() {
-    var data = [];
+function updatePlot(layout) {
+    let divergence = parseFloat(document.getElementById('x3Controller').value);
+    let data = getVectorData(divergence, 18, 4)
 
-    var x3 = parseFloat(document.getElementById('x3Controller').value);
-    var y3 = parseFloat(document.getElementById('y3Controller').value);
+//    Plotly.animate(
+//        'graph-holder',
+//        {data: data},
+//        {
+//            fromcurrent: true,
+//            transition: {duration: 0,},
+//            frame: {duration: 0, redraw: false,},
+//            mode: "afterall"
+//        }
+//    );
 
-
-    data = computeBasis(x3,y3);
-
-    Plotly.animate(
-        'graph',
-        {data: data},
-        {
-            fromcurrent: true,
-            transition: {duration: 0,},
-            frame: {duration: 0, redraw: false,},
-            mode: "immediate"
-        }
-    );
+    Plotly.react("graph-holder", data, layout);
 }
 
+
+
+
+
 function main() {
-    computeBasis(initialPoint3[0],initialPoint3[1]);
+    const initialPoint = [0, 1];
+    const initialPoint1 = [1.1, 0.1];
+    const initialPoint2 = [0.1,1.1];
+    const initialPoint3 = [1,1];
+    const layout = {
+        //title:"Vector Field with Constant Divergence",
+        autosize: true,
+        //width: 450, "height": 500,
+        margin: {l:30, r:30, t:30, b:30},
+        hovermode: "closest",
+        showlegend: false,
+        xaxis: {range: [1, 22],
+            zeroline: false,
+            showticklabels: false,
+//                showgrid: false,
+            zeroline: false,
+            showline: false,
+        },
+        yaxis: {range: [0, 20],
+            zeroline: false,
+            showticklabels: false,
+//                showgrid: false,
+            zeroline: false,
+            showline: false,
+        },
+        aspectratio: {x:1, y:1},
+
+    };
+    let currentPoint = initialPoint;
+    let initX1 = 0, initY1 = 0;
+    let initX2 = 0, initY2 = 0;
+    let isBlackText = false;
+
+    updatePlot(layout);
 
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
     $("input[type=range]").each(function () {
@@ -278,45 +325,13 @@ function main() {
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
             $("#"+$(this).attr("id") + "Display").val( $(this).val());
             //NB: Display values are restricted by their definition in the HTML to always display nice number.
-            updatePlot(); //Updating the plot is linked with display (Just My preference)
+            updatePlot(layout); //Updating the plot is linked with display (Just My preference)
         });
 
-    //Update sliders if value in box is changed
 
 
     });
 
-    $("#x3ControllerDisplay").change(function () {
-     var value = this.value;
-     $("#x3Controller").val(value);
-     updatePlot();
-    });
-
-    $("#y3ControllerDisplay").change(function () {
-     var value = this.value;
-     $("#y3Controller").val(value);
-     $("#y3Controller").hide();
-     updatePlot();
-    });
-
-
-    /*Tabs*/
-    $(function() {
-        $('ul.tab-nav li a.button').click(function() {
-            var href = $(this).attr('href');
-            $('li a.active.button', $(this).parent().parent()).removeClass('active');
-            $(this).addClass('active');
-            $('.tab-pane.active', $(href).parent()).removeClass('active');
-            $(href).addClass('active');
-
-            initCarte(href); //re-initialise when tab is changed
-            return false;
-        });
-    });
-
-    //The First Initialisation - I use 's' rather than 'z' :p
-    initCarte("#basis");
-    updatePlot(); //Shows initial positions of vectors
-    }
+}
 
 $(document).ready(main); //Load main when document is ready.

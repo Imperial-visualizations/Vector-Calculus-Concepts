@@ -1,1 +1,0 @@
-# Vector-Calculus-Concepts
